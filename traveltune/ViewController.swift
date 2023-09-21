@@ -11,12 +11,16 @@ import SnapKit
 class ViewController: UIViewController {
 
     let testLabel = UILabel()
-    let testImageView = UIImageView()
+    let testImageView = {
+        let view = UIImageView()
+        view.image = .koreaMap.withRenderingMode(.alwaysTemplate)
+        view.tintColor = .koreaMapTint
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .bg
-        testImageView.image = .koreaMap
+        view.backgroundColor = .background
         
         view.addSubview(testLabel)
         view.addSubview(testImageView)
@@ -30,7 +34,6 @@ class ViewController: UIViewController {
         }
         
         testImageView.snp.makeConstraints { make in
-            make.size.equalTo(200)
             make.center.equalToSuperview()
         }
         
