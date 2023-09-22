@@ -35,6 +35,7 @@
 		C0E8BAAC2ABDDCC800B1CCA6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */; };
 		C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */; };
 		C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAF2ABDDD9700B1CCA6 /* PlaylistView.swift */; };
+		C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C0E8BAAF2ABDDD9700B1CCA6 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 		C0E8BA8D2ABDCC4C00B1CCA6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C0E8BAB12ABDE71A00B1CCA6 /* Custom */,
 				C0E8BA982ABDCD2000B1CCA6 /* Playlist */,
 				C0E8BA972ABDCD1900B1CCA6 /* Map */,
 				C0E8BA942ABDCCFE00B1CCA6 /* Home */,
@@ -199,6 +202,14 @@
 				C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		C0E8BAB12ABDE71A00B1CCA6 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,6 +318,7 @@
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
+				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

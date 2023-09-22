@@ -15,8 +15,10 @@ final class TabBarVC: UITabBarController {
         let viewControllers = [tapVC(type: .home), tapVC(type: .map), tapVC(type: .playlist)]
         setViewControllers(viewControllers, animated: true)
         
+        tabBar.barTintColor = .background
         tabBar.backgroundColor = .background
         tabBar.tintColor = .background
+        tabBar.isTranslucent = false
         //        tabBar.unselectedItemTintColor = .black
     }
     
@@ -24,7 +26,7 @@ final class TabBarVC: UITabBarController {
         let nav = UINavigationController()
         nav.addChild(type.vc)
         nav.tabBarItem.image = type.icon.withTintColor(.txtDisabled, renderingMode: .alwaysOriginal)
-        nav.tabBarItem.selectedImage = type.icon.withTintColor(.txtPrimaryReversal, renderingMode: .alwaysOriginal)
+        nav.tabBarItem.selectedImage = type.icon.withTintColor(.txtPrimary, renderingMode: .alwaysOriginal)
         //        nav.tabBarItem.title = type.title
         return nav
     }

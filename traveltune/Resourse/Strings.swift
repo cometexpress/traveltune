@@ -9,7 +9,7 @@ import Foundation
 
 struct Strings {
     
-//    struct TabBar {
-//        static let home = "home".localized
-//    }
+    struct TabMap {
+        static let title = "tab_map_title".localized
+    }
 }
