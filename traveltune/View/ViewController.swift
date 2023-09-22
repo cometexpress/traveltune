@@ -13,8 +13,7 @@ class ViewController: UIViewController {
     let testLabel = UILabel()
     let testImageView = {
         let view = UIImageView()
-        view.image = .koreaMap.withRenderingMode(.alwaysTemplate)
-        view.tintColor = .koreaMapTint
+        view.image = .koreaMap.withTintColor(.koreaMapTint, renderingMode: .alwaysOriginal)
         return view
     }()
     
@@ -26,7 +25,7 @@ class ViewController: UIViewController {
         view.addSubview(testImageView)
         
         testLabel.textColor = .primary
-        testLabel.text = Strings.Test.test
+//        testLabel.text = Strings.Test.test
         testLabel.font = .monospacedSystemFont(ofSize: 40, weight: .bold)
         testLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(30)

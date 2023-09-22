@@ -8,7 +8,8 @@
 import Foundation
 
 struct Strings {
-    struct Test {
-        static let test = "test".localized
-    }
+    
+//    struct TabBar {
+//        static let home = "home".localized
+//    }
 }
