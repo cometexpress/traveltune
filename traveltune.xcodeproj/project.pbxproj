@@ -27,6 +27,11 @@
 		C0E8BA9A2ABDCD3800B1CCA6 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA992ABDCD3800B1CCA6 /* HomeVC.swift */; };
 		C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA9B2ABDCD5B00B1CCA6 /* MapVC.swift */; };
 		C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA9D2ABDCD8300B1CCA6 /* PlaylistVC.swift */; };
+		C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */; };
+		C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */; };
+		C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */; };
+		C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */; };
+		C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +53,11 @@
 		C0E8BA992ABDCD3800B1CCA6 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		C0E8BA9B2ABDCD5B00B1CCA6 /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
 		C0E8BA9D2ABDCD8300B1CCA6 /* PlaylistVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistVC.swift; sourceTree = "<group>"; };
+		C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableViewProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +102,9 @@
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
 				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
+				C0E8BAA82ABDDC3500B1CCA6 /* Protocol */,
 				C0E8BA692ABC913100B1CCA6 /* Resourse */,
+				C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */,
 				C0E8BA8D2ABDCC4C00B1CCA6 /* View */,
 			);
 			path = traveltune;
@@ -133,6 +145,9 @@
 		C0E8BA912ABDCCB100B1CCA6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */,
+				C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */,
+				C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -159,6 +174,22 @@
 				C0E8BA9D2ABDCD8300B1CCA6 /* PlaylistVC.swift */,
 			);
 			path = Playlist;
+			sourceTree = "<group>";
+		};
+		C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		C0E8BAA82ABDDC3500B1CCA6 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,11 +284,16 @@
 				C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* HomeVC.swift in Sources */,
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
+				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
+				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
+				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
+				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
+				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
