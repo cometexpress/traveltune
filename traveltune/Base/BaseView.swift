@@ -11,7 +11,7 @@ class BaseView: UIView {
     
     var isShowDeinit: Bool { false }
     
-    var viewBg: UIColor { .clear }
+    var viewBg: UIColor { .background }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

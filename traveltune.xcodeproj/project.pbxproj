@@ -32,6 +32,9 @@
 		C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */; };
 		C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */; };
 		C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */; };
+		C0E8BAAC2ABDDCC800B1CCA6 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */; };
+		C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */; };
+		C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAF2ABDDD9700B1CCA6 /* PlaylistView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableViewProtocol.swift; sourceTree = "<group>"; };
+		C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C0E8BAAF2ABDDD9700B1CCA6 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,14 +102,14 @@
 		C0E8BA492ABC8B7600B1CCA6 /* traveltune */ = {
 			isa = PBXGroup;
 			children = (
-				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
-				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
+				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
 				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
 				C0E8BAA82ABDDC3500B1CCA6 /* Protocol */,
 				C0E8BA692ABC913100B1CCA6 /* Resourse */,
+				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */,
 				C0E8BA8D2ABDCC4C00B1CCA6 /* View */,
 			);
@@ -156,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E8BA992ABDCD3800B1CCA6 /* HomeVC.swift */,
+				C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -164,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E8BA9B2ABDCD5B00B1CCA6 /* MapVC.swift */,
+				C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -172,6 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E8BA9D2ABDCD8300B1CCA6 /* PlaylistVC.swift */,
+				C0E8BAAF2ABDDD9700B1CCA6 /* PlaylistView.swift */,
 			);
 			path = Playlist;
 			sourceTree = "<group>";
@@ -282,8 +291,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */,
+				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* HomeVC.swift in Sources */,
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
+				C0E8BAAC2ABDDCC800B1CCA6 /* HomeView.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
@@ -294,6 +305,7 @@
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
+				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,10 +7,13 @@
 
 import UIKit
 
-final class MapVC: UIViewController {
+final class MapVC: BaseViewController<MapView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .link
+    }
+    
+    override func configureVC() {
+        
     }
 }

@@ -7,10 +7,13 @@
 
 import UIKit
 
-final class PlaylistVC: UIViewController {
+final class PlaylistVC: BaseViewController<PlaylistView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+    }
+    
+    override func configureVC() {
+        
     }
 }

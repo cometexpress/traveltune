@@ -7,10 +7,13 @@
 
 import UIKit
 
-final class HomeVC: UIViewController {
+final class HomeVC: BaseViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+    }
+    
+    override func configureVC() {
+        
     }
 }
