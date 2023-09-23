@@ -16,6 +16,7 @@
 		C04F9C972ABEEA5D0058A8D0 /* FirebaseAppDistribution-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9C962ABEEA5D0058A8D0 /* FirebaseAppDistribution-Beta */; };
 		C04F9C992ABEEA5D0058A8D0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9C982ABEEA5D0058A8D0 /* FirebaseAuth */; };
 		C04F9C9B2ABEEA5D0058A8D0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9C9A2ABEEA5D0058A8D0 /* FirebaseCrashlytics */; };
+		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */; };
@@ -49,6 +50,7 @@
 
 /* Begin PBXFileReference section */
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C04F9C9C2ABEEDDD0058A8D0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +131,7 @@
 		C0E8BA492ABC8B7600B1CCA6 /* traveltune */ = {
 			isa = PBXGroup;
 			children = (
+				C04F9C9C2ABEEDDD0058A8D0 /* Network */,
 				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
 				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
@@ -133,6 +143,7 @@
 				C0E8BA692ABC913100B1CCA6 /* Resourse */,
 				C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */,
 				C0E8BA8D2ABDCC4C00B1CCA6 /* View */,
+				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
 			);
 			path = traveltune;
 			sourceTree = "<group>";
@@ -316,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E8BA852ABC98F800B1CCA6 /* Localizable.strings in Resources */,
+				C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */,
 				C0E8BA6B2ABC915F00B1CCA6 /* Colors.xcassets in Resources */,
 				C0E8BA6D2ABC916A00B1CCA6 /* Images.xcassets in Resources */,
 				C0E8BA572ABC8B7700B1CCA6 /* LaunchScreen.storyboard in Resources */,
@@ -437,7 +449,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;

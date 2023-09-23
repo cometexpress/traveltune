@@ -50,10 +50,6 @@ final class MapView: BaseView {
     
     @objc func regionButtonClicked(_ sender: UIButton) {
         print(sender.titleLabel?.text)
-        
-        // crash Test
-        let numbers = [0]
-        let _ = numbers[1]
     }
     
     override func configureHierarchy() {
