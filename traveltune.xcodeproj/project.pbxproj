@@ -17,6 +17,12 @@
 		C04F9C992ABEEA5D0058A8D0 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9C982ABEEA5D0058A8D0 /* FirebaseAuth */; };
 		C04F9C9B2ABEEA5D0058A8D0 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9C9A2ABEEA5D0058A8D0 /* FirebaseCrashlytics */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
+		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
+		C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CA12ABEEF610058A8D0 /* Network.swift */; };
+		C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CA62ABEEFD50058A8D0 /* Router.swift */; };
+		C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */; };
+		C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */; };
+		C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */; };
@@ -51,6 +57,12 @@
 /* Begin PBXFileReference section */
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		C04F9CA12ABEEF610058A8D0 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		C04F9CA62ABEEFD50058A8D0 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTravelSpots.swift; sourceTree = "<group>"; };
+		C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTravelSpots.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,8 +120,35 @@
 		C04F9C9C2ABEEDDD0058A8D0 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				C04F9CA12ABEEF610058A8D0 /* Network.swift */,
+				C04F9CA62ABEEFD50058A8D0 /* Router.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		C04F9CAA2ABEF7970058A8D0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C04F9CAB2ABEF79E0058A8D0 /* Request */,
+				C04F9CAC2ABEF7A30058A8D0 /* Response */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C04F9CAB2ABEF79E0058A8D0 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		C04F9CAC2ABEF7A30058A8D0 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */,
+			);
+			path = Response;
 			sourceTree = "<group>";
 		};
 		C0E8BA3E2ABC8B7600B1CCA6 = {
@@ -131,19 +170,21 @@
 		C0E8BA492ABC8B7600B1CCA6 /* traveltune */ = {
 			isa = PBXGroup;
 			children = (
-				C04F9C9C2ABEEDDD0058A8D0 /* Network */,
+				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
 				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
 				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
+				C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */,
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
 				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
 				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
+				C04F9CAA2ABEF7970058A8D0 /* Model */,
+				C04F9C9C2ABEEDDD0058A8D0 /* Network */,
 				C0E8BAA82ABDDC3500B1CCA6 /* Protocol */,
 				C0E8BA692ABC913100B1CCA6 /* Resourse */,
 				C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */,
 				C0E8BA8D2ABDCC4C00B1CCA6 /* View */,
-				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
 			);
 			path = traveltune;
 			sourceTree = "<group>";
@@ -164,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				C0E8BA8B2ABC997800B1CCA6 /* String+Extension.swift */,
+				C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -369,7 +411,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */,
+				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
+				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
 				C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */,
+				C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */,
 				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* HomeVC.swift in Sources */,
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
@@ -378,9 +424,11 @@
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
+				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
+				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
