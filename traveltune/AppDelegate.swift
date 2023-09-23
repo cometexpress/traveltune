@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         UIView.appearance().backgroundColor = .clear
         UITabBar.appearance().clipsToBounds = true
         UITabBar.appearance().layer.borderColor = UIColor.clear.cgColor
