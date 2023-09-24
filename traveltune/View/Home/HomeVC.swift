@@ -11,6 +11,9 @@ final class HomeVC: BaseViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let testURL = URL(string: "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7237.mp3")!
+        AVPlayerManager.shared.play(url: testURL)
+        
         Network.shared.requestConvertible(
             api: .baseSpots(request: RequestTravelSpots(
                 serviceKey: APIKey.dataKey,
