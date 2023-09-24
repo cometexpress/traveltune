@@ -22,9 +22,10 @@
 		C04F9CF22AC00DB60058A8D0 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9CF12AC00DB60058A8D0 /* FirebaseAppCheck */; };
 		C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */; };
 		C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */; };
+		C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */; };
+		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
-		C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
 		C0E8BA572ABC8B7700B1CCA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */; };
 		C0E8BA6B2ABC915F00B1CCA6 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA6A2ABC915F00B1CCA6 /* Colors.xcassets */; };
@@ -64,10 +65,11 @@
 		C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTravelSpots.swift; sourceTree = "<group>"; };
 		C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerManager.swift; sourceTree = "<group>"; };
 		C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestInterceptor.swift; sourceTree = "<group>"; };
+		C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
+		C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0E8BA562ABC8B7700B1CCA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0E8BA582ABC8B7700B1CCA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */,
+				C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */,
+				C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -216,7 +220,6 @@
 				C0E8BA982ABDCD2000B1CCA6 /* Playlist */,
 				C0E8BA972ABDCD1900B1CCA6 /* Map */,
 				C0E8BA942ABDCCFE00B1CCA6 /* Home */,
-				C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */,
 				C0E8BA922ABDCCC900B1CCA6 /* TabBarVC.swift */,
 			);
 			path = View;
@@ -410,8 +413,8 @@
 			files = (
 				C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
+				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
-				C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */,
 				C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */,
 				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* HomeVC.swift in Sources */,
@@ -429,6 +432,7 @@
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
+				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,

@@ -31,13 +31,28 @@ final class HomeVC: BaseViewController<HomeView> {
 //            print("\(minutes):\(seconds)")
         }
         
+//        Network.shared.request(
+//            api: .baseSpots(request: RequestTravelSpots(
+//                numOfRows: "10",
+//                pageNo: "1",
+//                langCode: "ko")
+//            ),
+//            type: ResponseTravelSpots.self) { response in
+//                switch response {
+//                case .success(let success):
+//                    print(success)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
+        
         Network.shared.request(
-            api: .baseSpots(request: RequestTravelSpots(
-                numOfRows: "10",
+            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
                 pageNo: "1",
-                langCode: "ko")
-            ),
-            type: ResponseTravelSpots.self) { response in
+                numOfRows: "10",
+                startYmd: "20210513",
+                endYmd: "20210513")
+            ), type: ResponseCheckVisitorsInMetros.self) { response in
                 switch response {
                 case .success(let success):
                     print(success)

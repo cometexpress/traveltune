@@ -17,16 +17,19 @@ enum Router: URLRequestConvertible {
     case locationStories     // 이야기 위치 기반 목록 조회 - WGS84 좌표
     case searchStories      // 이야기 키워드 검색 조회
     
+    case checkVisitorsInMetro(request: RequestCheckVisitorsInMetro)       // 광역 지차체 방문자 수 조회
+    
     private var baseURL: URL {
         switch self {
-        case
-                .baseSpots(_),
+        case .baseSpots(_),
                 .locationSpots,
                 .searchSpots,
                 .baseStories,
                 .locationStories,
                 .searchStories:
             return URL(string: "https://apis.data.go.kr/B551011/Odii/")!
+        case .checkVisitorsInMetro:
+            return URL(string: "http://apis.data.go.kr/B551011/DataLabService/")!
         }
     }
     
@@ -44,6 +47,8 @@ enum Router: URLRequestConvertible {
             return "storyLocationBasedList"
         case .searchStories:
             return "storySearchList"
+        case .checkVisitorsInMetro:
+            return "metcoRegnVisitrDDList"
         }
     }
     
@@ -65,6 +70,8 @@ enum Router: URLRequestConvertible {
             return ["": ""]
         case .searchStories:
             return ["": ""]
+        case .checkVisitorsInMetro(let request):
+            return request.toEncodable
         }
     }
     
