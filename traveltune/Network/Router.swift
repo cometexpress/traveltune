@@ -18,7 +18,16 @@ enum Router: URLRequestConvertible {
     case searchStories      // 이야기 키워드 검색 조회
     
     private var baseURL: URL {
-        return URL(string: "https://apis.data.go.kr/B551011/Odii/")!
+        switch self {
+        case
+                .baseSpots(_),
+                .locationSpots,
+                .searchSpots,
+                .baseStories,
+                .locationStories,
+                .searchStories:
+            return URL(string: "https://apis.data.go.kr/B551011/Odii/")!
+        }
     }
     
     private var path: String {
@@ -57,7 +66,6 @@ enum Router: URLRequestConvertible {
         case .searchStories:
             return ["": ""]
         }
-        
     }
     
     func asURLRequest() throws -> URLRequest {
@@ -68,5 +76,5 @@ enum Router: URLRequestConvertible {
         return request
     }
     
-    
 }
+

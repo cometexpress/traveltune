@@ -11,15 +11,28 @@ final class HomeVC: BaseViewController<HomeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // 재생완료시점 확인용
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(playingMusicFinish(_:)),
+            name: Notification.Name.AVPlayerItemDidPlayToEndTime,
+            object: nil
+        )
+        
         let testURL = URL(string: "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7237.mp3")!
         AVPlayerManager.shared.play(url: testURL)
         
-        Network.shared.requestConvertible(
+        AVPlayerManager.shared.playTimeObserver { interval, playTime in
+            let seconds = String(format: "%02d", Int(playTime) % 60)
+            let minutes = String(format: "%02d", Int(playTime / 60))
+            
+//            print("interval = \(interval)")
+//            print("\(minutes):\(seconds)")
+        }
+        
+        Network.shared.request(
             api: .baseSpots(request: RequestTravelSpots(
-                serviceKey: APIKey.dataKey,
-                MobileOS: "IOS",
-                MobileApp: "AppTest",
-                _type: "json",
                 numOfRows: "10",
                 pageNo: "1",
                 langCode: "ko")
@@ -32,6 +45,12 @@ final class HomeVC: BaseViewController<HomeView> {
                     print(failure)
                 }
             }
+    }
+    
+    //현재 진행중인 PlayerItem이 EndTime에 도달하면 호출
+    @objc func playingMusicFinish(_ notification: Notification) {
+        //필요한 정보나 객체가 있으면 object를 통해서 받아서 이용
+        print("재생이 완료되었어요")
     }
     
     override func configureVC() {

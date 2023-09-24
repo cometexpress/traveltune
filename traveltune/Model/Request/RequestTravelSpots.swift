@@ -8,10 +8,6 @@
 import Foundation
 
 struct RequestTravelSpots: Encodable {
-    let serviceKey: String
-    let MobileOS: String
-    let MobileApp: String
-    let _type: String
     let numOfRows: String
     let pageNo: String
     let langCode: String    

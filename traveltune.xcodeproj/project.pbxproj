@@ -21,6 +21,7 @@
 		C04F9CF02AC00DB60058A8D0 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9CEF2AC00DB60058A8D0 /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		C04F9CF22AC00DB60058A8D0 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = C04F9CF12AC00DB60058A8D0 /* FirebaseAppCheck */; };
 		C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */; };
+		C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA4F2ABC8B7600B1CCA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4E2ABC8B7600B1CCA6 /* ViewController.swift */; };
@@ -62,6 +63,7 @@
 		C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseTravelSpots.swift; sourceTree = "<group>"; };
 		C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTravelSpots.swift; sourceTree = "<group>"; };
 		C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVPlayerManager.swift; sourceTree = "<group>"; };
+		C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestInterceptor.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				C04F9CA12ABEEF610058A8D0 /* Network.swift */,
 				C04F9CA62ABEEFD50058A8D0 /* Router.swift */,
+				C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -415,6 +418,7 @@
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
 				C0E8BAAC2ABDDCC800B1CCA6 /* HomeView.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
+				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
