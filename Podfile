@@ -7,6 +7,8 @@ target 'traveltune' do
 
   # Pods for traveltune
   pod 'FSPagerView'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
  end
   post_install do |installer|
       installer.generated_projects.each do |project|
