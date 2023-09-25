@@ -1,0 +1,6 @@
+framework module Pods_traveltune {
+  umbrella header "Pods-traveltune-umbrella.h"
+
+  export *
+  module * { export * }
+}
