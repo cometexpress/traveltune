@@ -20,16 +20,14 @@ final class HomeVC: BaseViewController<HomeView> {
             object: nil
         )
         
-        let testURL = URL(string: "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7237.mp3")!
-        AVPlayerManager.shared.play(url: testURL)
-        
-        AVPlayerManager.shared.playTimeObserver { interval, playTime in
-            let seconds = String(format: "%02d", Int(playTime) % 60)
-            let minutes = String(format: "%02d", Int(playTime / 60))
-            
+//        let testURL = URL(string: "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7237.mp3")!
+//        AVPlayerManager.shared.play(url: testURL)
+//        AVPlayerManager.shared.playTimeObserver { interval, playTime in
+//            let seconds = String(format: "%02d", Int(playTime) % 60)
+//            let minutes = String(format: "%02d", Int(playTime / 60))
 //            print("interval = \(interval)")
 //            print("\(minutes):\(seconds)")
-        }
+//        }
         
 //        Network.shared.request(
 //            api: .baseSpots(request: RequestTravelSpots(
