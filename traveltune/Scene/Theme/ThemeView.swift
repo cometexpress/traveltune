@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  ThemeView.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/22.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import FSPagerView
 
-final class HomeView: BaseView {
+final class ThemeView: BaseView {
     
     var themes: [ThemeStory] = []
     
@@ -18,7 +18,7 @@ final class HomeView: BaseView {
     private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
         let count: CGFloat = 1.2
         let spacing: CGFloat = 16
-        view.register(HomePagerCollectionViewCell.self, forCellWithReuseIdentifier: HomePagerCollectionViewCell.identifier)
+        view.register(ThemePagerCollectionViewCell.self, forCellWithReuseIdentifier: ThemePagerCollectionViewCell.identifier)
         let pagerItemWidth: CGFloat = UIScreen.main.bounds.width - (spacing * count)
         view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * 2)
         //        view.isInfinite = true
@@ -48,14 +48,14 @@ final class HomeView: BaseView {
     }
 }
 
-extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
+extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return themes.count
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: HomePagerCollectionViewCell.identifier, at: index) as? HomePagerCollectionViewCell else {
+        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCollectionViewCell.identifier, at: index) as? ThemePagerCollectionViewCell else {
             return FSPagerViewCell()
         }
         // 그림자 제거용

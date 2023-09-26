@@ -8,20 +8,16 @@
 import UIKit
 import SnapKit
 
-final class HomePagerCellView: BaseView {
+final class ThemePagerCellView: BaseView {
     
     private let titleView = UIView()
     
-    let themeImageView = UIImageView(frame: .zero).setup { view in
-        view.image = UIImage(systemName: "star.fill")
-        view.tintColor = .txtSecondary
-    }
+    let themeImageView = UIImageView(frame: .zero)
     
     let themeLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
         view.textAlignment = .center
-        view.numberOfLines = 1
-        view.font = .monospacedDigitSystemFont(ofSize: 18, weight: .semibold)
+        view.font = .monospacedDigitSystemFont(ofSize: 26, weight: .bold)
     }
     
     private let bottomContainerView = UIView()
@@ -35,19 +31,20 @@ final class HomePagerCellView: BaseView {
     private let opacityView = UIView().setup { view in
         view.clipsToBounds = true
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor(.black).withAlphaComponent(0.2)
+        view.backgroundColor = UIColor(.black).withAlphaComponent(0.4)
     }
     
     let contentLabel = UILabel().setup { view in
         view.textColor = .white
-        view.numberOfLines = 2
-        view.font = .monospacedSystemFont(ofSize: 15, weight: .medium)
+        view.numberOfLines = 0
+        view.textAlignment = .center
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .light)
     }
     
     let moveButton = UIButton().setup { view in
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
-        var attString = AttributedString("PLAY")
+        var attString = AttributedString(Strings.Common.commonPlay.uppercased())
         attString.font = .systemFont(ofSize: 16, weight: .medium)
         attString.foregroundColor = .txtPrimary
         var config = UIButton.Configuration.filled()
@@ -83,11 +80,11 @@ final class HomePagerCellView: BaseView {
         themeImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
             make.centerX.equalToSuperview()
-            make.size.equalTo(40)
+            make.size.equalTo(28)
         }
         
         themeLabel.snp.makeConstraints { make in
-            make.top.equalTo(themeImageView.snp.bottom).offset(6)
+            make.top.equalTo(themeImageView.snp.bottom).offset(10)
             make.horizontalEdges.equalToSuperview().inset(8)
         }
         
@@ -110,8 +107,8 @@ final class HomePagerCellView: BaseView {
         }
         
         contentLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(moveButton.snp.top).offset(-18)
-            make.horizontalEdges.equalToSuperview().inset(18)
+            make.bottom.equalTo(moveButton.snp.top).offset(-24)
+            make.horizontalEdges.equalToSuperview().inset(24)
         }
 
         //        moveButton.backgroundColor = .darkText

@@ -42,7 +42,7 @@ extension TabBarVC {
         var vc: UIViewController {
             switch self {
             case .home:
-                return HomeVC()
+                return ThemeVC()
             case .map:
                 return MapVC()
             case .playlist:

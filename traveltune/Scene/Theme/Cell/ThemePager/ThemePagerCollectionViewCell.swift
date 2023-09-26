@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 import FSPagerView
 
-final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
+final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     
     typealias Model = ThemeStory
     
-    private let containerView = HomePagerCellView()
+    private let containerView = ThemePagerCellView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +30,8 @@ final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     func configCell(row: ThemeStory) {
         containerView.thumbImageView.image = row.thumbnail
         containerView.themeLabel.text = row.title
-        containerView.themeImageView.image = row.miniThumbnail
+        containerView.themeImageView.image = row.miniThumbnail.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal)
         containerView.contentLabel.text = row.content
+        containerView.contentLabel.setLineSpacing(spacing: 8)
     }
 }

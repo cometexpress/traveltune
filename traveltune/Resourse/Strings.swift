@@ -11,6 +11,7 @@ struct Strings {
     
     struct Common {
         static let logoTitle = "home_nav_title".localized
+        static let commonPlay = "common_play".localized
     }
     
     struct TabMap {

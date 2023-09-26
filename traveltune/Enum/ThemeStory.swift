@@ -69,17 +69,17 @@ enum ThemeStory: CaseIterable {
     var miniThumbnail: UIImage {
         switch self {
         case .tale:
-                .magnifyingglass
+                .themeMiniTale
         case .history:
-                .magnifyingglass
+                .themeMiniHistory
         case .market:
-                .magnifyingglass
+                .themeMiniMarket
         case .eastSea:
-                .magnifyingglass
+                .themeMiniEastSea
         case .museum:
-                .magnifyingglass
+                .themeMiniMuseum
         case .temple:
-                .magnifyingglass
+                .themeMiniTemple
         }
     }
 }

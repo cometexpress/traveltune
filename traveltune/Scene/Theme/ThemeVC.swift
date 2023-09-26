@@ -1,5 +1,5 @@
 //
-//  HomeVC.swift
+//  ThemeVC.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/22.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class HomeVC: BaseViewController<HomeView> {
+final class ThemeVC: BaseViewController<ThemeView> {
     
-    private let viewModel = HomeViewModel()
+    private let viewModel = ThemeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

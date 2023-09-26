@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "theme_mini_history.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
