@@ -11,7 +11,7 @@ import FSPagerView
 
 final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     
-    typealias Model = String
+    typealias Model = ThemeStory
     
     private let containerView = HomePagerCellView()
     
@@ -27,9 +27,10 @@ final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(row: String) {
-        containerView.themeLabel.text = "\(row)"
-        containerView.thumbImageView.image = .themeLegend
-        containerView.contentLabel.text = "컨텐츠 2줄 처리\n2줄"
+    func configCell(row: ThemeStory) {
+        containerView.thumbImageView.image = row.thumbnail
+        containerView.themeLabel.text = row.title
+        containerView.themeImageView.image = row.miniThumbnail
+        containerView.contentLabel.text = row.content
     }
 }

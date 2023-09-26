@@ -11,7 +11,7 @@ import FSPagerView
 
 final class HomeView: BaseView {
     
-    var list: [String] = ["설화 이야기", "2번 제목", "3번 제목", "4번 제목", "5번 제목", "6번 제목"]
+    var themes: [ThemeStory] = []
     
     private let contentView = UIView(frame: .zero)
     
@@ -51,7 +51,7 @@ final class HomeView: BaseView {
 extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return list.count
+        return themes.count
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
@@ -60,7 +60,7 @@ extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
         }
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-        cell.configCell(row: list[index])
+        cell.configCell(row: themes[index])
         return cell
     }
     

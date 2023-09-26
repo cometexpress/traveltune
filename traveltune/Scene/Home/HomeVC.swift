@@ -9,8 +9,16 @@ import UIKit
 
 final class HomeVC: BaseViewController<HomeView> {
     
+    private let viewModel = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        viewModel.themes.bind { [weak self] themes in
+            self?.mainView.themes.append(contentsOf: themes)
+        }
+        
+        viewModel.updateThemes()
         
         // 재생완료시점 확인용
         NotificationCenter.default.addObserver(

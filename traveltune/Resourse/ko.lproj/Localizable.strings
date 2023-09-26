@@ -8,3 +8,19 @@
 
 // 하단 탭 맵
 "tab_map_title" = "지역선택";
+
+// 홈 테마 타이틀
+"theme_tail" = "설화";
+"theme_history" = "한국역사";
+"theme_market" = "전통시장";
+"theme_east_sea" = "동해여행";
+"theme_museum" = "박물관";
+"theme_temple" = "사찰";
+
+// 홈 테마 컨텐츠
+"theme_tail_content" = "설화 이야기";
+"theme_history_content" = "한국역사 이야기";
+"theme_market_content" = "전통시장 이야기";
+"theme_east_sea_content" = "동해여행 이야기";
+"theme_museum_content" = "박물관 이야기";
+"theme_temple_content" = "사찰 이야기";

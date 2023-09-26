@@ -28,14 +28,14 @@ final class HomePagerCellView: BaseView {
     
     let thumbImageView = UIImageView(frame: .zero).setup { view in
         view.clipsToBounds = true
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 30
         view.contentMode = .scaleAspectFill
     }
     
     private let opacityView = UIView().setup { view in
         view.clipsToBounds = true
-        view.layer.cornerRadius = 20
-        view.backgroundColor = UIColor(.black).withAlphaComponent(0.4)
+        view.layer.cornerRadius = 30
+        view.backgroundColor = UIColor(.black).withAlphaComponent(0.2)
     }
     
     let contentLabel = UILabel().setup { view in
@@ -45,13 +45,14 @@ final class HomePagerCellView: BaseView {
     }
     
     let moveButton = UIButton().setup { view in
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 16
         var attString = AttributedString("PLAY")
         attString.font = .systemFont(ofSize: 16, weight: .medium)
         attString.foregroundColor = .txtPrimary
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attString
-        config.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        config.baseBackgroundColor = .grey500
+        config.baseBackgroundColor = .primary
         view.configuration = config
     }
     
@@ -109,14 +110,14 @@ final class HomePagerCellView: BaseView {
         }
         
         contentLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(moveButton.snp.top).offset(-12)
-            make.horizontalEdges.equalToSuperview().inset(12)
+            make.bottom.equalTo(moveButton.snp.top).offset(-18)
+            make.horizontalEdges.equalToSuperview().inset(18)
         }
 
         //        moveButton.backgroundColor = .darkText
         moveButton.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.5)
-            make.height.equalTo(moveButton.snp.width).multipliedBy(0.3)
+            make.width.equalToSuperview().multipliedBy(0.45)
+            make.height.equalTo(moveButton.snp.width).multipliedBy(0.4)
             make.centerX.equalToSuperview()
             make.bottom.equalTo(thumbImageView.snp.bottom).offset(18)
         }
