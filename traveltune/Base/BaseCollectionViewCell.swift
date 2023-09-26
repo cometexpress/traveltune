@@ -7,13 +7,12 @@
 
 import UIKit
 
-class BaseCollectionViewCell<Model>: UICollectionViewCell, BaseCellProtocol {
+class BaseCollectionViewCell<View, Model>: UICollectionViewCell, BaseCellProtocol {
+    
     typealias T = Model
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureHierarchy()
-        configureLayout()
     }
     
     @available(*, unavailable)
@@ -21,7 +20,5 @@ class BaseCollectionViewCell<Model>: UICollectionViewCell, BaseCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureHierarchy() { }
-    func configureLayout() { }
     func configCell(row: T) {}
 }

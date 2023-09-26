@@ -13,6 +13,14 @@ final class HomeView: BaseView {
     
     var list: [String] = ["1번 제목", "2번 제목", "3번 제목", "4번 제목", "5번 제목", "6번 제목"]
     
+    private let guideLabel = UILabel().setup { view in
+        view.text = "어디로 떠나볼까요?"
+        view.textColor = .txtPrimary
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
+    }
+    
+    private let contentView = UIView(frame: .zero)
+    
     private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
         let count: CGFloat = 1.6
         let spacing: CGFloat = 16
@@ -30,12 +38,26 @@ final class HomeView: BaseView {
     }
     
     override func configureHierarchy() {
-        addSubview(pagerView)
+        addSubview(guideLabel)
+        addSubview(contentView)
+        contentView.addSubview(pagerView)
     }
     
     override func configureLayout() {
+        guideLabel.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).inset(16)
+            make.leading.equalToSuperview().inset(16)
+        }
+        
+        contentView.backgroundColor = .orange
+        contentView.snp.makeConstraints { make in
+            make.top.equalTo(guideLabel.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide)
+        }
+        
         pagerView.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide)
+            make.top.equalToSuperview().inset(10)
             make.horizontalEdges.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.7)
         }
@@ -52,9 +74,6 @@ extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
         guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: HomePagerCollectionViewCell.identifier, at: index) as? HomePagerCollectionViewCell else {
             return FSPagerViewCell()
         }
-        cell.backgroundColor = .primary
-        cell.imageView?.image = UIImage(systemName: "star")
-        cell.imageView?.contentMode = .scaleAspectFit
         cell.configCell(row: list[index])
         return cell
     }

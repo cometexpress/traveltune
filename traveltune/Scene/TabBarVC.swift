@@ -26,7 +26,7 @@ final class TabBarVC: UITabBarController {
         let nav = UINavigationController()
         nav.addChild(type.vc)
         nav.tabBarItem.image = type.icon.withTintColor(.txtDisabled, renderingMode: .alwaysOriginal)
-        nav.tabBarItem.selectedImage = type.icon.withTintColor(.txtPrimary, renderingMode: .alwaysOriginal)
+        nav.tabBarItem.selectedImage = type.icon.withTintColor(.primary, renderingMode: .alwaysOriginal)
         //        nav.tabBarItem.title = type.title
         return nav
     }

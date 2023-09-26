@@ -20,6 +20,7 @@
 		C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */; };
 		C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */; };
 		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
+		C06C933C2AC2B231006B26F6 /* HomePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* HomePagerCellView.swift */; };
 		C08B37A32AC2A627007FF39F /* HomePagerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* HomePagerCollectionViewCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
@@ -68,6 +69,7 @@
 		C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestInterceptor.swift; sourceTree = "<group>"; };
 		C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
 		C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
+		C06C933B2AC2B231006B26F6 /* HomePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagerCellView.swift; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* HomePagerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagerCollectionViewCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
@@ -172,10 +174,19 @@
 			path = Response;
 			sourceTree = "<group>";
 		};
-		C08B37A12AC2A5FE007FF39F /* Cell */ = {
+		C06C93392AC2B214006B26F6 /* HomePager */ = {
 			isa = PBXGroup;
 			children = (
 				C08B37A22AC2A627007FF39F /* HomePagerCollectionViewCell.swift */,
+				C06C933B2AC2B231006B26F6 /* HomePagerCellView.swift */,
+			);
+			path = HomePager;
+			sourceTree = "<group>";
+		};
+		C08B37A12AC2A5FE007FF39F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C06C93392AC2B214006B26F6 /* HomePager */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -216,7 +227,6 @@
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
 				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
-				C08B37A12AC2A5FE007FF39F /* Cell */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
 				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
 				C04F9CAA2ABEF7970058A8D0 /* Model */,
@@ -275,6 +285,7 @@
 		C0E8BA942ABDCCFE00B1CCA6 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C08B37A12AC2A5FE007FF39F /* Cell */,
 				C0E8BA992ABDCD3800B1CCA6 /* HomeVC.swift */,
 				C0E8BAAB2ABDDCC800B1CCA6 /* HomeView.swift */,
 			);
@@ -487,6 +498,7 @@
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
+				C06C933C2AC2B231006B26F6 /* HomePagerCellView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C08B37A32AC2A627007FF39F /* HomePagerCollectionViewCell.swift in Sources */,

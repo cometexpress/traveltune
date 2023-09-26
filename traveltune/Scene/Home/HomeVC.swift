@@ -66,7 +66,16 @@ final class HomeVC: BaseViewController<HomeView> {
         print("재생이 완료되었어요")
     }
     
+    @objc func searchButtonClicked() {
+        print("검색버튼 클릭")
+    }
+    
     override func configureVC() {
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .magnifyingglass.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(searchButtonClicked)
+        )
     }
 }
