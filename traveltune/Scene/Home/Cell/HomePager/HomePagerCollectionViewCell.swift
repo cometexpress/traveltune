@@ -13,7 +13,7 @@ final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     
     typealias Model = String
     
-    private let containerView = HomePagerCellView(frame: .zero)
+    private let containerView = HomePagerCellView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,7 +28,8 @@ final class HomePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     }
     
     func configCell(row: String) {
-        containerView.guideLabel.text = row
-        containerView.thumbImageView.image = UIImage(systemName: "star")
+        containerView.themeLabel.text = "\(row)"
+        containerView.thumbImageView.image = .themeLegend
+        containerView.contentLabel.text = "컨텐츠 2줄 처리\n2줄"
     }
 }

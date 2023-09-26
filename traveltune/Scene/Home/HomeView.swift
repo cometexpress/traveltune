@@ -11,26 +11,17 @@ import FSPagerView
 
 final class HomeView: BaseView {
     
-    var list: [String] = ["1번 제목", "2번 제목", "3번 제목", "4번 제목", "5번 제목", "6번 제목"]
-    
-    private let guideLabel = UILabel().setup { view in
-        view.text = "어디로 떠나볼까요?"
-        view.textColor = .txtPrimary
-        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
-    }
+    var list: [String] = ["설화 이야기", "2번 제목", "3번 제목", "4번 제목", "5번 제목", "6번 제목"]
     
     private let contentView = UIView(frame: .zero)
     
     private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
-        let count: CGFloat = 1.6
+        let count: CGFloat = 1.2
         let spacing: CGFloat = 16
         view.register(HomePagerCollectionViewCell.self, forCellWithReuseIdentifier: HomePagerCollectionViewCell.identifier)
-        //        view.itemSize = FSPagerView.automaticSize
         let pagerItemWidth: CGFloat = UIScreen.main.bounds.width - (spacing * count)
-        // view.itemSize 에서 height 는 양 사이드에 있는 아이템의 높이
-        view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * count)
+        view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * 2)
         //        view.isInfinite = true
-        view.backgroundColor = .link
         //        view.interitemSpacing = 10 // margin
         view.transformer = FSPagerViewTransformer(type: .linear)
         view.dataSource = self
@@ -38,28 +29,21 @@ final class HomeView: BaseView {
     }
     
     override func configureHierarchy() {
-        addSubview(guideLabel)
+//        pagerView.backgroundColor = .purple
         addSubview(contentView)
         contentView.addSubview(pagerView)
     }
     
     override func configureLayout() {
-        guideLabel.snp.makeConstraints { make in
-            make.top.equalTo(safeAreaLayoutGuide).inset(16)
-            make.leading.equalToSuperview().inset(16)
-        }
-        
-        contentView.backgroundColor = .orange
         contentView.snp.makeConstraints { make in
-            make.top.equalTo(guideLabel.snp.bottom)
+            make.top.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
         }
         
         pagerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(10)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.7)
+            make.height.equalToSuperview()
         }
     }
 }
@@ -74,6 +58,8 @@ extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
         guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: HomePagerCollectionViewCell.identifier, at: index) as? HomePagerCollectionViewCell else {
             return FSPagerViewCell()
         }
+        // 그림자 제거용
+        cell.contentView.layer.shadowColor = UIColor.clear.cgColor
         cell.configCell(row: list[index])
         return cell
     }
@@ -84,10 +70,10 @@ extension HomeView: FSPagerViewDataSource, FSPagerViewDelegate {
         return false
     }
     
-    // cornerRadius 조정
+    // cell 자체 cornerRadius 조정
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
-        cell.clipsToBounds = true
-        cell.layer.cornerRadius = 10
+//        cell.clipsToBounds = true
+//        cell.layer.cornerRadius = 10
     }
     
 }
