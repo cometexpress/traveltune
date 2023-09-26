@@ -9,6 +9,10 @@ import Foundation
 
 struct Strings {
     
+    struct Common {
+        static let logoTitle = "home_nav_title".localized
+    }
+    
     struct TabMap {
         static let title = "tab_map_title".localized
     }

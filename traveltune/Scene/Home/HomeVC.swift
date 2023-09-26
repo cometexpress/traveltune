@@ -14,6 +14,14 @@ final class HomeVC: BaseViewController<HomeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UIFont.familyNames.sorted().forEach { familyName in
+            print("*** \(familyName) ***")
+            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
+                print("\(fontName)")
+            }
+            print("---------------------")
+        }
+        
         viewModel.themes.bind { [weak self] themes in
             self?.mainView.themes.append(contentsOf: themes)
         }
@@ -85,5 +93,11 @@ final class HomeVC: BaseViewController<HomeView> {
             target: self,
             action: #selector(searchButtonClicked)
         )
+        
+        navigationController?.navigationBar.topItem?.title = Strings.Common.logoTitle
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: UIColor.txtPrimary,
+            NSAttributedString.Key.font: UIFont(name: Fonts.logo, size: 12)!
+        ]
     }
 }

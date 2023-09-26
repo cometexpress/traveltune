@@ -22,6 +22,8 @@
 		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
 		C05BB6B02AC31770007CC4A5 /* ThemeStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */; };
 		C05BB6B22AC31D2A007CC4A5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6B12AC31D2A007CC4A5 /* HomeViewModel.swift */; };
+		C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */; };
+		C05BB6BF2AC33A3D007CC4A5 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6BE2AC33A3D007CC4A5 /* Fonts.swift */; };
 		C06C933C2AC2B231006B26F6 /* HomePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* HomePagerCellView.swift */; };
 		C08B37A32AC2A627007FF39F /* HomePagerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* HomePagerCollectionViewCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
@@ -73,6 +75,8 @@
 		C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
 		C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStory.swift; sourceTree = "<group>"; };
 		C05BB6B12AC31D2A007CC4A5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pavelt 400.otf"; sourceTree = "<group>"; };
+		C05BB6BE2AC33A3D007CC4A5 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* HomePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagerCellView.swift; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* HomePagerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagerCollectionViewCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
@@ -182,8 +186,17 @@
 			isa = PBXGroup;
 			children = (
 				C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */,
+				C05BB6BE2AC33A3D007CC4A5 /* Fonts.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		C05BB6BD2AC339C8007CC4A5 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		C06C93392AC2B214006B26F6 /* HomePager */ = {
@@ -214,6 +227,7 @@
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
+				C05BB6BD2AC339C8007CC4A5 /* Font */,
 				C0E8BA492ABC8B7600B1CCA6 /* traveltune */,
 				C0E8BA482ABC8B7600B1CCA6 /* Products */,
 				5E6D859DA31D3F4FF6A1C4D2 /* Pods */,
@@ -425,6 +439,7 @@
 				C0E8BA6B2ABC915F00B1CCA6 /* Colors.xcassets in Resources */,
 				C0E8BA6D2ABC916A00B1CCA6 /* Images.xcassets in Resources */,
 				C0E8BA572ABC8B7700B1CCA6 /* LaunchScreen.storyboard in Resources */,
+				C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */,
 				C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */,
 				C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */,
 			);
@@ -523,6 +538,7 @@
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
+				C05BB6BF2AC33A3D007CC4A5 /* Fonts.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
