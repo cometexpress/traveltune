@@ -33,6 +33,10 @@
 		C08B37A32AC2A627007FF39F /* ThemePagerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCollectionViewCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
+		C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */; };
+		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
+		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
+		C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -91,6 +95,10 @@
 		C08B37A22AC2A627007FF39F /* ThemePagerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCollectionViewCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
+		C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
+		C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +252,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		C0D81A702AC40A4E00CB2EF0 /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */,
+				C0D81A732AC40A7700CB2EF0 /* SplashView.swift */,
+				C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +330,7 @@
 		C0E8BA8D2ABDCC4C00B1CCA6 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				C0D81A702AC40A4E00CB2EF0 /* Splash */,
 				C0E8BA922ABDCCC900B1CCA6 /* TabBarVC.swift */,
 				C0E8BA972ABDCD1900B1CCA6 /* Map */,
 				C0E8BA982ABDCD2000B1CCA6 /* Playlist */,
@@ -366,6 +385,7 @@
 			children = (
 				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
 				C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */,
+				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -540,6 +560,7 @@
 				C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */,
 				C05F92212AC3F4F400427F6D /* ThemeDetailView.swift in Sources */,
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
+				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
@@ -548,6 +569,7 @@
 				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* ThemeVC.swift in Sources */,
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
+				C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */,
 				C0E8BAAC2ABDDCC800B1CCA6 /* ThemeView.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
@@ -558,12 +580,14 @@
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */,
 				C08B37A32AC2A627007FF39F /* ThemePagerCollectionViewCell.swift in Sources */,
+				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
 				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
+				C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */,
 				C05BB6BF2AC33A3D007CC4A5 /* Fonts.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,

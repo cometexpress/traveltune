@@ -13,15 +13,15 @@
 "home_nav_title" = "travel tune";
 
 // 하단 탭 맵
-"tab_map_title" = "지역선택";
+"tab_map_title" = "Select Region";
 
 // 홈 테마 타이틀
-"theme_tail" = "옛날 이야기";
-"theme_history" = "한국역사마을";
-"theme_market" = "전통시장";
-"theme_east_sea" = "동해여행";
-"theme_museum" = "박물관";
-"theme_temple" = "사찰";
+"theme_tail" = "데이터없음";
+"theme_history" = "History Village Of Korea";
+"theme_market" = "Traditional Market";
+"theme_east_sea" = "데이터없음";
+"theme_museum" = "Museum";
+"theme_temple" = "Temple";
 
 // 홈 테마 컨텐츠
 "theme_tail_content" = "현실 세계를 이해하는 데 도움을 주는 동시에 상상력을 자극하고 재미를 선사하는 이야기다. 구두로 전해 내려오는 옛 이야기는 한국 문화와 역사를 이해하는 데 중요한 자료다.";
