@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import OSLog
 
-class Network {
+final class Network {
     static let shared = Network()
     private init() { }
     

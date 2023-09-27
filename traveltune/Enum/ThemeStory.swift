@@ -15,6 +15,23 @@ enum ThemeStory: CaseIterable {
     case museum             // 박물관
     case temple             // 사찰
     
+    var searchKeyword: String {
+        switch self {
+        case .tale:
+            "전설따라"
+        case .history:
+            ""
+        case .market:
+            ""
+        case .eastSea:
+            ""
+        case .museum:
+            ""
+        case .temple:
+            ""
+        }
+    }
+    
     var title: String {
         switch self {
         case .tale:

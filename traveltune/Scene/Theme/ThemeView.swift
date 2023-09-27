@@ -15,6 +15,8 @@ final class ThemeView: BaseView {
     
     private let contentView = UIView(frame: .zero)
     
+    weak var themeVCProtocol: ThemeVCProtocol?
+    
     private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
         let count: CGFloat = 1.2
         let spacing: CGFloat = 16
@@ -61,6 +63,9 @@ extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
         cell.configCell(row: themes[index])
+        cell.moveThemeDetailClicked = { [weak self] themeStory in
+            self?.themeVCProtocol?.moveDetailThemeClicked(theme: themeStory)
+        }
         return cell
     }
     

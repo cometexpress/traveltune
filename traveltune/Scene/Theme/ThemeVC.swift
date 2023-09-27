@@ -14,14 +14,6 @@ final class ThemeVC: BaseViewController<ThemeView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIFont.familyNames.sorted().forEach { familyName in
-            print("*** \(familyName) ***")
-            UIFont.fontNames(forFamilyName: familyName).forEach { fontName in
-                print("\(fontName)")
-            }
-            print("---------------------")
-        }
-        
         viewModel.themes.bind { [weak self] themes in
             self?.mainView.themes.append(contentsOf: themes)
         }
@@ -87,6 +79,8 @@ final class ThemeVC: BaseViewController<ThemeView> {
     }
     
     override func configureVC() {
+        mainView.themeVCProtocol = self
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .magnifyingglass.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal),
             style: .plain,
@@ -99,5 +93,16 @@ final class ThemeVC: BaseViewController<ThemeView> {
             .foregroundColor: UIColor.txtPrimary,
             NSAttributedString.Key.font: UIFont(name: Fonts.logo, size: 12)!
         ]
+    }
+}
+
+extension ThemeVC: ThemeVCProtocol {
+    
+    func moveDetailThemeClicked(theme: ThemeStory) {
+        let vc = ThemeDetailVC()
+        vc.themeStory = theme
+        vc.modalTransitionStyle = .coverVertical
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }

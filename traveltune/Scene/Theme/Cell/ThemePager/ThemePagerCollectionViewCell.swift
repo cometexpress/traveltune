@@ -1,5 +1,5 @@
 //
-//  HomePagerCell.swift
+//  ThemePagerCollectionViewCell.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/26.
@@ -14,6 +14,8 @@ final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     typealias Model = ThemeStory
     
     private let containerView = ThemePagerCellView()
+    
+    var moveThemeDetailClicked: ((ThemeStory) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,5 +35,10 @@ final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
         containerView.themeImageView.image = row.miniThumbnail.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal)
         containerView.contentLabel.text = row.content
         containerView.contentLabel.setLineSpacing(spacing: 8)
+        containerView.contentLabel.lineBreakMode = .byTruncatingTail
+        
+        containerView.moveButton.addAction(.init(handler: { [weak self] _ in
+            self?.moveThemeDetailClicked?(row)
+        }), for: .touchUpInside)
     }
 }

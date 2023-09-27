@@ -1,5 +1,5 @@
 //
-//  HomePagerCellView.swift
+//  ThemePagerCellView.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/26.
@@ -36,8 +36,7 @@ final class ThemePagerCellView: BaseView {
     
     let contentLabel = UILabel().setup { view in
         view.textColor = .white
-        view.numberOfLines = 0
-        view.textAlignment = .center
+        view.numberOfLines = 3
         view.font = .monospacedSystemFont(ofSize: 14, weight: .light)
     }
     
@@ -52,7 +51,6 @@ final class ThemePagerCellView: BaseView {
         config.baseBackgroundColor = .primary
         view.configuration = config
     }
-    
     
     override func configureHierarchy() {
         backgroundColor = .clear

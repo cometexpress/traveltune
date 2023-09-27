@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+protocol ThemeVCProtocol: AnyObject {
+    func moveDetailThemeClicked(theme: ThemeStory)
+}
