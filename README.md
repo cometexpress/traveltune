@@ -31,8 +31,9 @@
 |:-----:|:-----:|:-----:|:------:|:----:|
 |  프로젝트 세팅 (다국어, 다크모드..)  |  이터레이션 0  | > 6 hours  |  > 12 hours | <ul><li>[x] </li></ul>
 |  홈 메인 UI  |  이터레이션 1  | > 8 hours  |  > 12 hours | <ul><li>[x] </li></ul>
+|  Splash UI & 기능 |  이터레이션 1  | > 8 hours  |  >  13 hours | <ul><li>[x] </li></ul>
 |  테마 상세 UI |  이터레이션 1  | > 8 hours  |  >  hours | <ul><li>[ ] </li></ul>
-|  테마 상세 지도모드 UI |  이터레이션 1  | > 4 hours  |  > hours | <ul><li>[ ] </li></ul>
+|  테마 상세 지도모드 UI |  이터레이션 2  | > 4 hours  |  > hours | <ul><li>[ ] </li></ul>
 |  검색 메인 UI  |  이터레이션 2  | > 6 hours  |  > hours | <ul><li>[ ] </li></ul>
 |  검색 기능  |  이터레이션 2  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul>
 |  검색 결과 UI  |  이터레이션 2  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul>
