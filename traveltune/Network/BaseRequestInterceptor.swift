@@ -18,7 +18,7 @@ final class BaseRequestInterceptor: RequestInterceptor {
         langCode = language
     }
     
-    private var langCode: String = ""
+    private var langCode = "ko"
     
     private lazy var defaultParameters = [
         "serviceKey": APIKey.dataKey,

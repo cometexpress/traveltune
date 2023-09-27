@@ -38,13 +38,14 @@ final class LocalTravelSpotRepository: RealmProtocol {
     }
     
     // 리스트 한번에 추가하기
-    func createAll(_ items: [TravelSpotItem], errorHandler: () -> Void) {
+    func createAll(_ items: [TravelSpotItem], completionHandler: () -> Void) {
         do {
             try realm?.write {
                 realm?.add(items)
+                completionHandler()
             }
         } catch {
-            errorHandler()
+            completionHandler()
         }
     }
     
