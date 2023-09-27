@@ -37,6 +37,8 @@
 		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
 		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
 		C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */; };
+		C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A792AC4104300CB2EF0 /* RealmProtocol.swift */; };
+		C0D81A7F2AC4143A00CB2EF0 /* TravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A7E2AC4143A00CB2EF0 /* TravelSpotRepository.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -99,6 +101,8 @@
 		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C0D81A792AC4104300CB2EF0 /* RealmProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProtocol.swift; sourceTree = "<group>"; };
+		C0D81A7E2AC4143A00CB2EF0 /* TravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TravelSpotRepository.swift; path = traveltune/Repository/Local/TravelSpotRepository.swift; sourceTree = SOURCE_ROOT; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -262,6 +266,30 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		C0D81A7B2AC413EE00CB2EF0 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C0D81A7D2AC413F800CB2EF0 /* Remote */,
+				C0D81A7C2AC413F300CB2EF0 /* Local */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		C0D81A7C2AC413F300CB2EF0 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		C0D81A7D2AC413F800CB2EF0 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				C0D81A7E2AC4143A00CB2EF0 /* TravelSpotRepository.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -285,20 +313,21 @@
 			isa = PBXGroup;
 			children = (
 				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
-				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
-				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
 				C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */,
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
-				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
 				C05BB6AE2AC31748007CC4A5 /* Enum */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
+				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
+				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
 				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
 				C04F9CAA2ABEF7970058A8D0 /* Model */,
 				C04F9C9C2ABEEDDD0058A8D0 /* Network */,
 				C0E8BAA82ABDDC3500B1CCA6 /* Protocol */,
+				C0D81A7B2AC413EE00CB2EF0 /* Repository */,
 				C0E8BA692ABC913100B1CCA6 /* Resourse */,
 				C0E8BA8D2ABDCC4C00B1CCA6 /* Scene */,
+				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
 				C0E8BA9F2ABDDA4C00B1CCA6 /* Utils */,
 				C08B37AA2AC2A897007FF39F /* View */,
 			);
@@ -343,6 +372,7 @@
 		C0E8BA912ABDCCB100B1CCA6 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */,
 				C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */,
 				C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */,
 				C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */,
@@ -395,7 +425,7 @@
 			children = (
 				C0E8BAA92ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift */,
 				C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */,
-				C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */,
+				C0D81A792AC4104300CB2EF0 /* RealmProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -586,6 +616,7 @@
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
+				C0D81A7F2AC4143A00CB2EF0 /* TravelSpotRepository.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
 				C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */,
 				C05BB6BF2AC33A3D007CC4A5 /* Fonts.swift in Sources */,
@@ -594,6 +625,7 @@
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */,
 				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
+				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,

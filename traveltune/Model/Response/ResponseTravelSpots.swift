@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // MARK: - TouristSpot
 struct ResponseTravelSpots: Decodable {
@@ -29,15 +30,25 @@ struct TravelSpotItems: Decodable {
 }
 
 // MARK: - Item
-struct TravelSpotItem: Decodable {
-    let tid, tlid: String
-    let themeCategory: String
-    let addr1: String
-    let addr2, title, mapX, mapY: String
-    let langCheck: String
-    let langCode: String
-    let imageURL: String
-    let createdtime, modifiedtime: String
+final class TravelSpotItem: Object, Decodable {
+    @objc dynamic var _id = ObjectId()
+    @objc dynamic var tid = ""
+    @objc dynamic var tlid = ""
+    @objc dynamic var themeCategory = ""
+    @objc dynamic var addr1 = ""
+    @objc dynamic var addr2 = ""
+    @objc dynamic var title = ""
+    @objc dynamic var mapX = ""
+    @objc dynamic var mapY = ""
+    @objc dynamic var langCheck = ""
+    @objc dynamic var langCode = ""
+    @objc dynamic var imageURL = ""
+    @objc dynamic var createdtime = ""
+    @objc dynamic var modifiedtime = ""
+    
+    override static func primaryKey() -> String? {
+        return "_id"
+    }
     
     enum CodingKeys: String, CodingKey {
         case tid, tlid, themeCategory, addr1, addr2, title, mapX, mapY, langCheck, langCode
