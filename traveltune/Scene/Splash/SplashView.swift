@@ -12,8 +12,16 @@ final class SplashView: BaseView {
     
     private let logoImageView = UIImageView()
     
+    let indicatorView = UIActivityIndicatorView().setup { view in
+        view.hidesWhenStopped = true
+        view.isHidden = false
+        view.startAnimating()
+        view.color = .grey500
+    }
+    
     override func configureHierarchy() {
         addSubview(logoImageView)
+        addSubview(indicatorView)
     }
     
     override func configureLayout() {
@@ -21,6 +29,11 @@ final class SplashView: BaseView {
         logoImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.size.equalTo(50)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.top.equalTo(logoImageView.snp.bottom).offset(32)
+            make.centerX.equalToSuperview()
         }
     }
 }

@@ -73,4 +73,15 @@ final class LocalTravelSpotRepository: RealmProtocol {
         }
     }
     
+    func deleteAll(completionHandler: (Bool) -> Void) {
+        do {
+            try realm?.write {
+                let allTravelSpot = realm?.objects(TravelSpotItem.self)
+                realm?.delete(allTravelSpot!)
+                completionHandler(true)
+            }
+        } catch  {
+            completionHandler(false)
+        }
+    }
 }

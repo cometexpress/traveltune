@@ -9,13 +9,16 @@
 // 공통
 "common_play" = "play";
 
+// 에러메시지
+"error_restart_app" = "Please restart app";
+
 // 홈 네비 타이틀
 "home_nav_title" = "travel tune";
 
 // 하단 탭 맵
 "tab_map_title" = "Select Region";
 
-// 홈 테마 타이틀
+// 홈 테마 타이틀 - 영어버전은 tail, east_sea 현재 api 데이터 없음, 영어버전일 때 옛이야기, 동해여행 안보이도록 처리 필요
 "theme_tail" = "데이터없음";
 "theme_history" = "History Village Of Korea";
 "theme_market" = "Traditional Market";

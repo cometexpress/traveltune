@@ -32,16 +32,28 @@ final class SplashVC: BaseViewController<SplashView> {
             updateBindData()
         } else {
             // 2. 기존 유저
-            // TODO: 유저가 앱에 들어온 시간 비교해서 2주 지났을 때만 기존 데이터 삭제 후 데이터 업데이트 시키기
+            // 유저가 앱에 들어온 시간 비교해서 2주 지났을 때만 기존 데이터 삭제 후 데이터 업데이트 시키기
             let today = Date().basic
             print("오늘 날짜 = ", today)
             print("방문했던 날짜 = ", UserDefaults.visitDate)
-            viewModel.compareToDateTheDay(start: UserDefaults.visitDate, end: "2023-11-11")
+            
+            let testEndDate = "2025-12-12"
+            
+            viewModel.compareToDateTheDay(start: UserDefaults.visitDate, end: today)
             viewModel.compareDay.bind { [weak self] days in
                 if days <= self?.viewModel.maximumDays ?? 0 {
                     self?.moveTabBarVC()
                 } else {
                     print("데이터 업데이트 필요")
+                    self?.viewModel.removeAllSpot()
+                }
+            }
+            
+            viewModel.isDelete.bind { [weak self] isSuccess in
+                if isSuccess {
+                    self?.updateBindData()
+                } else {
+                    self?.showToast(msg: "")
                 }
             }
         }
@@ -49,9 +61,11 @@ final class SplashVC: BaseViewController<SplashView> {
     
     private func updateBindData() {
         viewModel.updateAllLangTravelSpots()
-        viewModel.isLoading.bind { loading in
-            if !loading {
-                self.viewModel.saveTravelSpots()
+        viewModel.isLoading.bind { [weak self] loading in
+            if loading {
+                self?.mainView.indicatorView.startAnimating()
+            } else {
+                self?.viewModel.saveTravelSpots()
             }
         }
         viewModel.updateKoreaData.bind { isKoreaData in
@@ -62,6 +76,7 @@ final class SplashVC: BaseViewController<SplashView> {
         }
         viewModel.isComplete.bind { [weak self] complete in
             if complete {
+                self?.mainView.indicatorView.stopAnimating()
                 self?.moveTabBarVC()
             }
         }
