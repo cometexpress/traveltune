@@ -8,6 +8,5 @@
 import Foundation
 
 struct RequestSearchTravelSpots: Encodable {
-    let langCode: String
     let keyword: String
 }

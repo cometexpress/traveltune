@@ -10,5 +10,4 @@ import Foundation
 struct RequestTravelSpots: Encodable {
     let numOfRows: String
     let pageNo: String
-    let langCode: String    
 }

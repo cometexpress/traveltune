@@ -1,5 +1,5 @@
 //
-//  TravelSpotRepository.swift
+//  LocalTravelSpotRepository.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/27.
@@ -8,12 +8,12 @@
 import Foundation
 import RealmSwift
 
-final class TravelSpotRepository: RealmProtocol {
+final class LocalTravelSpotRepository: RealmProtocol {
     
     typealias T = TravelSpotItem
     
     private let realm = try? Realm()
-    private lazy var fileURL = self.realm?.configuration.fileURL
+    lazy var fileURL = self.realm?.configuration.fileURL
     
     func fetch() -> Results<TravelSpotItem>? {
         return realm?.objects(TravelSpotItem.self)
@@ -31,6 +31,17 @@ final class TravelSpotRepository: RealmProtocol {
         do {
             try realm?.write {
                 realm?.add(item)
+            }
+        } catch {
+            errorHandler()
+        }
+    }
+    
+    // 리스트 한번에 추가하기
+    func createAll(_ items: [TravelSpotItem], errorHandler: () -> Void) {
+        do {
+            try realm?.write {
+                realm?.add(items)
             }
         } catch {
             errorHandler()

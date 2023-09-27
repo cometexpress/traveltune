@@ -10,15 +10,34 @@ import Alamofire
 
 final class BaseRequestInterceptor: RequestInterceptor {
     
-    private var defaultParameters = [
+    init(language: String?) {
+        guard let language else {
+            langCode = systemLangCode
+            return
+        }
+        langCode = language
+    }
+    
+    private var langCode: String = ""
+    
+    private lazy var defaultParameters = [
         "serviceKey": APIKey.dataKey,
         "MobileOS": "IOS",
-        "MobileApp": "AppTest",
-        "_type": "json"
+        "MobileApp": "traveltune",
+        "_type": "json",
+        "langCode": langCode
     ]
+    
+    private let systemLangCode = if #available(iOS 16.0, *) {
+        Locale.current.language.languageCode?.identifier ?? "ko"
+    } else {
+        Locale.current.languageCode ?? "ko"
+    }
     
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
+        
+        print("defaultParameters = ", defaultParameters)
         
         let encoding = URLEncodedFormParameterEncoder.default
         if let request = try? encoding.encode(defaultParameters, into: urlRequest) {

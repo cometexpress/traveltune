@@ -16,9 +16,13 @@ final class Network {
     func request<T: Decodable>(
         api: Router,
         type: T.Type,
+        language: LangCode? = nil,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        AF.request(api, interceptor: BaseRequestInterceptor()).responseDecodable(of: T.self) { response in
+        AF.request(
+            api,
+            interceptor: BaseRequestInterceptor(language: language?.rawValue)
+        ).responseDecodable(of: T.self) { response in
             var result = ""
             switch response.result {
             case .success(let data):
@@ -31,6 +35,10 @@ final class Network {
             print("========= \(response.request?.url) - \(result) =========")
             
         }
-        
+    }
+    
+    enum LangCode: String {
+        case ko
+        case en
     }
 }

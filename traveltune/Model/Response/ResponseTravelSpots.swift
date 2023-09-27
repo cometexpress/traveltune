@@ -31,7 +31,7 @@ struct TravelSpotItems: Decodable {
 
 // MARK: - Item
 final class TravelSpotItem: Object, Decodable {
-    @objc dynamic var _id = ObjectId()
+    @objc dynamic var _id = ObjectId.generate()
     @objc dynamic var tid = ""
     @objc dynamic var tlid = ""
     @objc dynamic var themeCategory = ""
@@ -46,7 +46,7 @@ final class TravelSpotItem: Object, Decodable {
     @objc dynamic var createdtime = ""
     @objc dynamic var modifiedtime = ""
     
-    override static func primaryKey() -> String? {
+    override class func primaryKey() -> String? {
         return "_id"
     }
     
