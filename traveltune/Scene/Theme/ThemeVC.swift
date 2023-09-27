@@ -52,20 +52,21 @@ final class ThemeVC: BaseViewController<ThemeView> {
 //                }
 //            }
         
-        Network.shared.request(
-            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
-                pageNo: "1",
-                numOfRows: "10",
-                startYmd: "20210513",
-                endYmd: "20210513")
-            ), type: ResponseCheckVisitorsInMetros.self) { response in
-                switch response {
-                case .success(let success):
-                    print(success)
-                case .failure(let failure):
-                    print(failure)
-                }
-            }
+        
+//        Network.shared.requestVisitorInfo(
+//            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
+//                pageNo: "1",
+//                numOfRows: "10",
+//                startYmd: "20210513",
+//                endYmd: "20210513")
+//            ), type: ResponseCheckVisitorsInMetros.self) { response in
+//                switch response {
+//                case .success(let success):
+//                    print(success)
+//                case .failure(let failure):
+//                    print(failure)
+//                }
+//            }
     }
     
     //현재 진행중인 PlayerItem이 EndTime에 도달하면 호출

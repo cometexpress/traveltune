@@ -41,6 +41,9 @@
 		C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */; };
 		C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A852AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift */; };
 		C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */; };
+		C0D81A8D2AC4941100CB2EF0 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */; };
+		C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */; };
+		C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -107,6 +110,9 @@
 		C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalTravelSpotRepository.swift; path = traveltune/Repository/Local/LocalTravelSpotRepository.swift; sourceTree = SOURCE_ROOT; };
 		C0D81A852AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTravelSpotRepository.swift; sourceTree = "<group>"; };
 		C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorDataInfoRequestInterceptor.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +183,7 @@
 				C04F9CA12ABEEF610058A8D0 /* Network.swift */,
 				C04F9CA62ABEEFD50058A8D0 /* Router.swift */,
 				C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */,
+				C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -358,6 +365,7 @@
 				C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */,
 				C05F92192AC3494F00427F6D /* UILabel+Extension.swift */,
 				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
+				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -422,6 +430,7 @@
 				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
 				C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */,
 				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
+				C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -595,6 +604,7 @@
 			files = (
 				C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */,
 				C05F92212AC3F4F400427F6D /* ThemeDetailView.swift in Sources */,
+				C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */,
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
 				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
@@ -625,6 +635,8 @@
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */,
+				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,
+				C0D81A8D2AC4941100CB2EF0 /* UserDefault.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
 				C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */,
 				C05BB6BF2AC33A3D007CC4A5 /* Fonts.swift in Sources */,
