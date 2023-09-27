@@ -28,6 +28,9 @@ final class SplashViewModel {
     
     var isComplete: Observable<Bool> = Observable(false)
     
+    var compareDay: Observable<Int> = Observable(-1)
+    var maximumDays = 14
+    
     func updateAllLangTravelSpots() {
         requestGroup { group in
             updateKoTravelSpots(group: group) { self.updateKoreaData.value = false }
@@ -140,5 +143,10 @@ final class SplashViewModel {
         localTravelSpotRepository.createAll(baseTravelSpots) {
             isComplete.value = true
         }
+    }
+    
+    func compareToDateTheDay(start: String, end: String) {
+        let days = DateManager.shared.compareToDateByTheDay(start: start, end: end)
+        compareDay.value = days
     }
 }

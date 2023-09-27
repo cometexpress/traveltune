@@ -8,15 +8,18 @@
 import Foundation
 
 extension Date {
-    
     var basic: String {
-        return toString("yyyy-MM-dd")
+        return toString(DateFormat.basic.rawValue)
     }
     
     // MARK: - Date -> String
-      public func toString(_ dateFormat: String) -> String {
-          let dateFormatter = DateFormatter()
-          dateFormatter.dateFormat = dateFormat
-          return dateFormatter.string(from: self)
-      }
+    func toString(_ dateFormat: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = dateFormat
+        return dateFormatter.string(from: self)
+    }
+}
+
+enum DateFormat: String {
+    case basic = "yyyy-MM-dd"
 }
