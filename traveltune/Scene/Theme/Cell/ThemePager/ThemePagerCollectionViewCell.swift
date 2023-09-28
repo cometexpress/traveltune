@@ -6,14 +6,18 @@
 //
 
 import UIKit
-import SnapKit
 import FSPagerView
+import Hero
+import SnapKit
+
 
 final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     
     typealias Model = ThemeStory
     
-    private let containerView = ThemePagerCellView()
+    private let containerView = ThemePagerCellView().setup { view in
+        view.hero.id = Constant.HeroID.themeThumnail
+    }
     
     var moveThemeDetailClicked: ((ThemeStory) -> Void)?
     

@@ -6,13 +6,17 @@
 //
 
 import UIKit
+import Hero
 
 final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     
     var themeStory: ThemeStory?
     
     override func configureVC() {
-        print(themeStory?.searchKeyword)
+        guard let themeStory else { return }
+        mainView.hero.modifiers = [.translate(y:100)]
+        mainView.backgroundImageView.image = themeStory.thumbnail
+//        print(themeStory?.searchKeyword)
     }
     
 }

@@ -93,7 +93,7 @@ final class ThemeVC: BaseViewController<ThemeView> {
         navigationController?.navigationBar.topItem?.title = Strings.Common.logoTitle
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: UIColor.txtPrimary,
-            NSAttributedString.Key.font: UIFont(name: Fonts.logo, size: 12)!
+            NSAttributedString.Key.font: UIFont(name: Constant.Fonts.logo, size: 12)!
         ]
     }
 }
@@ -102,7 +102,9 @@ extension ThemeVC: ThemeVCProtocol {
     
     func moveDetailThemeClicked(theme: ThemeStory) {
         let vc = ThemeDetailVC()
+        vc.hero.isEnabled = true
         vc.themeStory = theme
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

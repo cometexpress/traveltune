@@ -60,6 +60,7 @@ extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
         guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCollectionViewCell.identifier, at: index) as? ThemePagerCollectionViewCell else {
             return FSPagerViewCell()
         }
+        
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
         cell.configCell(row: themes[index])
