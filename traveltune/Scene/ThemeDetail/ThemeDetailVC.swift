@@ -19,13 +19,19 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         mainView.hero.modifiers = [.translate(y:100)]
         mainView.backgroundImageView.image = themeStory.thumbnail
         mainView.topTitleLabel.text = themeStory.title
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.mainView.collectionView.isHidden = false
+        }
     }
     
 }
 
 extension ThemeDetailVC: ThemeDetailVCProtocol {
+    
     func backButtonClicked() {
         mainView.topView.isHidden = true
+        mainView.collectionView.isHidden = true
         dismiss(animated: true)
     }
     

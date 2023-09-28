@@ -21,7 +21,7 @@ final class ThemeView: BaseView {
     private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
         let count: CGFloat = 1.2
         let spacing: CGFloat = 16
-        view.register(ThemePagerCollectionViewCell.self, forCellWithReuseIdentifier: ThemePagerCollectionViewCell.identifier)
+        view.register(ThemePagerCell.self, forCellWithReuseIdentifier: ThemePagerCell.identifier)
         let pagerItemWidth: CGFloat = UIScreen.main.bounds.width - (spacing * count)
         view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * 2)
         //        view.isInfinite = true
@@ -58,7 +58,7 @@ extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCollectionViewCell.identifier, at: index) as? ThemePagerCollectionViewCell else {
+        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCell.identifier, at: index) as? ThemePagerCell else {
             return FSPagerViewCell()
         }
         

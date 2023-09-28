@@ -1,5 +1,5 @@
 //
-//  ThemePagerCollectionViewCell.swift
+//  ThemePagerCell.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/26.
@@ -11,13 +11,11 @@ import Hero
 import SnapKit
 
 
-final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
+final class ThemePagerCell: FSPagerViewCell, BaseCellProtocol {
     
     typealias Model = ThemeStory
     
-    let containerView = ThemePagerCellView().setup { view in
-        //        view.hero.id = Constant.HeroID.themeThumnail
-    }
+    let containerView = ThemePagerCellView()
     
     var moveThemeDetailClicked: ((ThemeStory) -> Void)?
     

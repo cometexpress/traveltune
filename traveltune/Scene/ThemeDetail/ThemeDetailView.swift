@@ -44,10 +44,17 @@ final class ThemeDetailView: BaseView {
         view.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
     
-    private lazy var collectionView = UICollectionView(
+    lazy var collectionView = UICollectionView(
         frame: .zero,
         collectionViewLayout: self.collectionViewLayout()
-    )
+    ).setup { view in
+        view.showsVerticalScrollIndicator = false
+        view.register(ThemeDetailCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier)
+        view.register(StoryCell.self, forCellWithReuseIdentifier: StoryCell.identifier)
+        view.delegate = self
+        view.dataSource = self
+        view.isHidden = true
+    }
     
     @objc private func buttonClicked(_ sender: UIButton) {
         switch sender {
@@ -65,10 +72,10 @@ final class ThemeDetailView: BaseView {
         
         addSubview(vibrancyEffectView)
         vibrancyEffectView.contentView.addSubview(topView)
-        vibrancyEffectView.contentView.addSubview(collectionView)
         topView.addSubview(topTitleLabel)
         topView.addSubview(backButton)
         topView.addSubview(infoButton)
+        vibrancyEffectView.contentView.addSubview(collectionView)
     }
     
     override func configureLayout() {
@@ -112,17 +119,51 @@ final class ThemeDetailView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
             make.bottom.equalTo(safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
+            make.horizontalEdges.equalTo(vibrancyEffectView).inset(10)
         }
-        
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let width: CGFloat = UIScreen.main.bounds.width
+        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.2
+        
+        print("headerHeight = ", headerHeight)
+        
         return UICollectionViewFlowLayout().collectionViewLayout(
-            itemSize: CGSize(width: width, height: 50),
-            sectionInset: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0),
-            minimumLineSpacing: 0,
+            headerSize: CGSize(width: width, height: headerHeight),
+            itemSize: CGSize(width: width, height: headerHeight / 3),
+            sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
+            minimumLineSpacing: 2,
             minimumInteritemSpacing: 0)
     }
+}
+
+extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCell.identifier, for: indexPath) as! StoryCell
+        cell.backgroundColor = .cyan
+        cell.layer.cornerRadius = 10.0
+        cell.configCell(row: "12345")
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard
+                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
+                fatalError("Invalid view type")
+            }
+            headerView.configView()
+            return headerView
+        default:
+            assert(false, "Invalid element type")
+        }
+    }    
 }
