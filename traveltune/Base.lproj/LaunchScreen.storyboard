@@ -28,7 +28,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="background"/>
+                        <color key="backgroundColor" name="primary"/>
                         <constraints>
                             <constraint firstItem="yiA-zX-TDh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fGh-qK-pL7"/>
                             <constraint firstItem="yiA-zX-TDh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="uCq-4B-Yyv"/>
@@ -41,8 +41,8 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="background">
-            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="primary">
+            <color red="0.71764705882352942" green="0.20392156862745098" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Hero
 
 final class ThemeVC: BaseViewController<ThemeView> {
     
@@ -102,8 +103,6 @@ extension ThemeVC: ThemeVCProtocol {
     func moveDetailThemeClicked(theme: ThemeStory) {
         let vc = ThemeDetailVC()
         vc.themeStory = theme
-        vc.modalTransitionStyle = .coverVertical
-        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }
 }

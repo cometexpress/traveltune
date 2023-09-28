@@ -12,11 +12,13 @@ final class SplashView: BaseView {
     
     private let logoImageView = UIImageView()
     
+    override var viewBg: UIColor { .primary }
+    
     let indicatorView = UIActivityIndicatorView().setup { view in
         view.hidesWhenStopped = true
         view.isHidden = false
         view.startAnimating()
-        view.color = .grey500
+        view.color = .white
     }
     
     override func configureHierarchy() {

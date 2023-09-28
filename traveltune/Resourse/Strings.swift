@@ -14,6 +14,10 @@ struct Strings {
         static let commonPlay = "common_play".localized
     }
     
+    struct ErrorMsg {
+        static let errorRestartApp = "error_restart_app".localized
+    }
+    
     struct TabMap {
         static let title = "tab_map_title".localized
     }

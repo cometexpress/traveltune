@@ -53,7 +53,7 @@ final class SplashVC: BaseViewController<SplashView> {
                 if isSuccess {
                     self?.updateBindData()
                 } else {
-                    self?.showToast(msg: "")
+                    self?.showToast(msg: Strings.ErrorMsg.errorRestartApp)
                 }
             }
         }

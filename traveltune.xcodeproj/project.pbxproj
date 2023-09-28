@@ -45,6 +45,7 @@
 		C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */; };
 		C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */; };
 		C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */; };
+		C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = C0D81A952AC5437800CB2EF0 /* Hero */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -151,6 +152,7 @@
 			files = (
 				C0E8BA812ABC977C00B1CCA6 /* Toast in Frameworks */,
 				C0E8BA792ABC974900B1CCA6 /* Alamofire in Frameworks */,
+				C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */,
 				C0E8BA762ABC973900B1CCA6 /* Kingfisher in Frameworks */,
 				C0E8BA7C2ABC976500B1CCA6 /* Realm in Frameworks */,
 				C0E8BA7E2ABC976500B1CCA6 /* RealmSwift in Frameworks */,
@@ -474,6 +476,7 @@
 				C0E8BA7B2ABC976500B1CCA6 /* Realm */,
 				C0E8BA7D2ABC976500B1CCA6 /* RealmSwift */,
 				C0E8BA802ABC977C00B1CCA6 /* Toast */,
+				C0D81A952AC5437800CB2EF0 /* Hero */,
 			);
 			productName = traveltune;
 			productReference = C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */;
@@ -510,6 +513,7 @@
 				C0E8BA772ABC974900B1CCA6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				C0E8BA7A2ABC976500B1CCA6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				C0E8BA7F2ABC977C00B1CCA6 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */,
 			);
 			productRefGroup = C0E8BA482ABC8B7600B1CCA6 /* Products */;
 			projectDirPath = "";
@@ -891,6 +895,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.2;
+			};
+		};
 		C0E8BA712ABC972D00B1CCA6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -934,6 +946,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C0D81A952AC5437800CB2EF0 /* Hero */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */;
+			productName = Hero;
+		};
 		C0E8BA722ABC972D00B1CCA6 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0E8BA712ABC972D00B1CCA6 /* XCRemoteSwiftPackageReference "SnapKit" */;

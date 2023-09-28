@@ -44,7 +44,7 @@ final class ThemePagerCellView: BaseView {
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
         var attString = AttributedString(Strings.Common.commonPlay.uppercased())
-        attString.font = .systemFont(ofSize: 16, weight: .medium)
+        attString.font = .monospacedSystemFont(ofSize: 14, weight: .bold)
         attString.foregroundColor = .txtPrimary
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attString
