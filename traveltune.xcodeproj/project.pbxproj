@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72431900FFBB4314210744B8 /* Pods_traveltune.framework */; };
+		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -82,6 +83,7 @@
 /* Begin PBXFileReference section */
 		6A6C9A4659B7BEA01E36D10E /* Pods-traveltune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-traveltune.release.xcconfig"; path = "Target Support Files/Pods-traveltune/Pods-traveltune.release.xcconfig"; sourceTree = "<group>"; };
 		72431900FFBB4314210744B8 /* Pods_traveltune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_traveltune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
 				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
 				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
+				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
+				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */,
 				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,

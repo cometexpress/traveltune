@@ -9,5 +9,5 @@ import Foundation
 
 protocol ThemeDetailVCProtocol: AnyObject {
     func backButtonClicked()
-    func shareButtonClicked()
+    func infoButtonClicked()
 }

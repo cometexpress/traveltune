@@ -13,31 +13,34 @@ final class ThemeDetailView: BaseView {
     
     weak var themeDetailVCProtocol: ThemeDetailVCProtocol?
     
+    private let blurredEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
+    private let vibrancyEffectView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .regular)))
+    
     let backgroundImageView = UIImageView().setup { view in
-        view.hero.id = Constant.HeroID.themeThumnail
         view.contentMode = .scaleAspectFill
+        view.hero.id = Constant.HeroID.themeThumnail
     }
     
     private let opacityView = UIView().setup { view in
         view.hero.id = Constant.HeroID.themeOpacity
-        view.backgroundColor = .black.withAlphaComponent(0.6)
+        view.backgroundColor = .translucent
     }
     
     let topView = UIView()
     
-    let topTitleLabel = UILabel().setup { view in
+    lazy var topTitleLabel = UILabel().setup { view in
         view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
         view.textColor = .white
         view.textAlignment = .center
     }
     
     lazy var backButton = UIButton().setup { view in
-        view.setImage(.backCircle.withTintColor(.white), for: .normal)
+        view.setImage(.backCircle.withTintColor(.white, renderingMode: .alwaysTemplate), for: .normal)
         view.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
     
-    lazy var shareButton = UIButton().setup { view in
-        view.setImage(.share.withTintColor(.white), for: .normal)
+    lazy var infoButton = UIButton().setup { view in
+        view.setImage(.infoCircle.withTintColor(.white, renderingMode: .alwaysTemplate), for: .normal)
         view.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
     
@@ -46,37 +49,39 @@ final class ThemeDetailView: BaseView {
         collectionViewLayout: self.collectionViewLayout()
     )
     
-    private let playView = UIView().setup { view in
-//        view.backgroundColor = .purple
-    }
-    
     @objc private func buttonClicked(_ sender: UIButton) {
         switch sender {
         case backButton:
             themeDetailVCProtocol?.backButtonClicked()
-        case shareButton:
-            themeDetailVCProtocol?.shareButtonClicked()
+        case infoButton:
+            themeDetailVCProtocol?.infoButtonClicked()
         default: print(#function)
         }
     }
     
     override func configureHierarchy() {
         addSubview(backgroundImageView)
-        addSubview(opacityView)
-        addSubview(topView)
+        backgroundImageView.addSubview(blurredEffectView)
+        
+        addSubview(vibrancyEffectView)
+        vibrancyEffectView.contentView.addSubview(topView)
+        vibrancyEffectView.contentView.addSubview(collectionView)
         topView.addSubview(topTitleLabel)
         topView.addSubview(backButton)
-        topView.addSubview(shareButton)
-        addSubview(collectionView)
-        addSubview(playView)
+        topView.addSubview(infoButton)
     }
     
     override func configureLayout() {
-        backgroundImageView.snp.makeConstraints { make in
+        
+        blurredEffectView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
-        opacityView.snp.makeConstraints { make in
+        vibrancyEffectView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
@@ -95,27 +100,21 @@ final class ThemeDetailView: BaseView {
         topTitleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(backButton.snp.trailing).offset(8)
-            make.trailing.equalTo(shareButton.snp.leading).offset(-8)
+            make.trailing.equalTo(infoButton.snp.leading).offset(-8)
         }
         
-        shareButton.snp.makeConstraints { make in
+        infoButton.snp.makeConstraints { make in
             make.size.equalTo(44)
             make.trailing.equalToSuperview().inset(16)
             make.centerY.equalToSuperview()
         }
         
-//        collectionView.backgroundColor = .primary
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
-            make.bottom.equalTo(playView.snp.top)
+            make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
         }
         
-        playView.snp.makeConstraints { make in
-            make.bottom.equalTo(safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(60)
-        }
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {

@@ -31,7 +31,7 @@ final class ThemePagerCellView: BaseView {
     let opacityView = UIView().setup { view in
         view.clipsToBounds = true
         view.layer.cornerRadius = 30
-        view.backgroundColor = UIColor(.black).withAlphaComponent(0.4)
+        view.backgroundColor = .translucent
     }
     
     let contentLabel = UILabel().setup { view in
@@ -68,7 +68,6 @@ final class ThemePagerCellView: BaseView {
     }
     
     override func configureLayout() {
-//        titleView.backgroundColor = .cyan
         titleView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview()
@@ -86,14 +85,11 @@ final class ThemePagerCellView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(8)
         }
         
-        
-//        bottomContainerView.backgroundColor = .primary
         bottomContainerView.snp.makeConstraints { make in
             make.top.equalTo(titleView.snp.bottom).offset(8)
             make.bottom.horizontalEdges.equalToSuperview()
         }
         
-        //        thumbImageView.backgroundColor = .green
         thumbImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.88)
@@ -109,7 +105,6 @@ final class ThemePagerCellView: BaseView {
             make.horizontalEdges.equalToSuperview().inset(24)
         }
 
-        //        moveButton.backgroundColor = .darkText
         moveButton.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.45)
             make.height.equalTo(moveButton.snp.width).multipliedBy(0.4)

@@ -62,8 +62,6 @@ extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
             return FSPagerViewCell()
         }
         
-        cell.moveThemeDetailClicked = nil
-        
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
         cell.configCell(row: themes[index])

@@ -29,8 +29,8 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         dismiss(animated: true)
     }
     
-    func shareButtonClicked() {
-        print("공유하기 기능")
+    func infoButtonClicked() {
+        print("상세 내용 보는 기능")
     }
     
     
