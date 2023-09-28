@@ -49,7 +49,7 @@
 |  (공통)하단 재생 UI - minimalSize  |  4  | > 2 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
 |  (공통)하단 재생 기능 - minimalSize  |  4  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
 |  (공통)하단 재생 UI - fullSize  |  4  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
-|  (공통)하단 재생 기능 - fullSize |  4  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul> ㅍ
+|  (공통)하단 재생 기능 - fullSize |  4  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
 |  지도 메인 UI  |  5  | > 3 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
 |  지도 메인 줌인 기능  |  5  | > 2 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
 |  지도 상세 UI  |  5  | > 8 hours  |  > hours | <ul><li>[ ] </li></ul> | - |
