@@ -13,10 +13,25 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     var themeStory: ThemeStory?
     
     override func configureVC() {
+        mainView.themeDetailVCProtocol = self
         guard let themeStory else { return }
+        print("현재 컨텐츠 정보 \(themeStory.title)")
         mainView.hero.modifiers = [.translate(y:100)]
         mainView.backgroundImageView.image = themeStory.thumbnail
-//        print(themeStory?.searchKeyword)
+        mainView.topTitleLabel.text = themeStory.title
     }
+    
+}
+
+extension ThemeDetailVC: ThemeDetailVCProtocol {
+    func backButtonClicked() {
+        mainView.topView.isHidden = true
+        dismiss(animated: true)
+    }
+    
+    func shareButtonClicked() {
+        print("공유하기 기능")
+    }
+    
     
 }

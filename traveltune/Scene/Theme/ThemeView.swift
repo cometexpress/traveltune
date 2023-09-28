@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import FSPagerView
+import Hero
 
 final class ThemeView: BaseView {
     
@@ -61,10 +62,15 @@ extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
             return FSPagerViewCell()
         }
         
+        cell.moveThemeDetailClicked = nil
+        
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
         cell.configCell(row: themes[index])
         cell.moveThemeDetailClicked = { [weak self] themeStory in
+            cell.hero.id = Constant.HeroID.themeThumnail
+//            cell.containerView.hero.id = Constant.HeroID.themeThumnail
+            cell.containerView.opacityView.hero.id = Constant.HeroID.themeOpacity
             self?.themeVCProtocol?.moveDetailThemeClicked(theme: themeStory)
         }
         return cell

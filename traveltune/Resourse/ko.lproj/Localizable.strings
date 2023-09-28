@@ -19,7 +19,7 @@
 "tab_map_title" = "지역선택";
 
 // 홈 테마 타이틀 - 영어버전은 tail, east_sea 현재 api 데이터 없음, 영어버전일 때 옛이야기, 동해여행 안보이도록 처리 필요
-"theme_tail" = "옛날 이야기";
+"theme_tail" = "옛날이야기";
 "theme_history" = "한국역사마을";
 "theme_market" = "전통시장";
 "theme_east_sea" = "동해여행";

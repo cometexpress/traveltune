@@ -47,6 +47,8 @@
 		C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = C0D81A952AC5437800CB2EF0 /* Hero */; };
 		C0D81A982AC55FE600CB2EF0 /* HeroID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A972AC55FE600CB2EF0 /* HeroID.swift */; };
 		C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A992AC5609800CB2EF0 /* Constant.swift */; };
+		C0D81AA22AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */; };
+		C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -118,6 +120,8 @@
 		C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
 		C0D81A972AC55FE600CB2EF0 /* HeroID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroID.swift; sourceTree = "<group>"; };
 		C0D81A992AC5609800CB2EF0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
+		C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVCProtocol.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 			children = (
 				C05F921E2AC3F4C600427F6D /* ThemeDetailVC.swift */,
 				C05F92202AC3F4F400427F6D /* ThemeDetailView.swift */,
+				C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */,
 			);
 			path = ThemeDetail;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				C05F92192AC3494F00427F6D /* UILabel+Extension.swift */,
 				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
 				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
+				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -623,6 +629,7 @@
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
 				C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */,
 				C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */,
+				C0D81AA22AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
 				C0E8BA9A2ABDCD3800B1CCA6 /* ThemeVC.swift in Sources */,
 				C0E8BA9E2ABDCD8300B1CCA6 /* PlaylistVC.swift in Sources */,
@@ -656,6 +663,7 @@
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */,
+				C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */,
 				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
 				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,

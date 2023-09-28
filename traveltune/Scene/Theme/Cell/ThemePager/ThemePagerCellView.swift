@@ -28,7 +28,7 @@ final class ThemePagerCellView: BaseView {
         view.contentMode = .scaleAspectFill
     }
     
-    private let opacityView = UIView().setup { view in
+    let opacityView = UIView().setup { view in
         view.clipsToBounds = true
         view.layer.cornerRadius = 30
         view.backgroundColor = UIColor(.black).withAlphaComponent(0.4)

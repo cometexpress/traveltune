@@ -14,6 +14,7 @@ final class ThemeVC: BaseViewController<ThemeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.hero.isEnabled = true
         
         viewModel.themes.bind { [weak self] themes in
             self?.mainView.themes.append(contentsOf: themes)

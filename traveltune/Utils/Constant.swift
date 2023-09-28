@@ -11,6 +11,7 @@ struct Constant {
     
     struct HeroID {
         static let themeThumnail = "themeThumnail"
+        static let themeOpacity = "themeOpacity"
     }
     
     struct Fonts {

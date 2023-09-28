@@ -15,8 +15,8 @@ final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
     
     typealias Model = ThemeStory
     
-    private let containerView = ThemePagerCellView().setup { view in
-        view.hero.id = Constant.HeroID.themeThumnail
+    let containerView = ThemePagerCellView().setup { view in
+        //        view.hero.id = Constant.HeroID.themeThumnail
     }
     
     var moveThemeDetailClicked: ((ThemeStory) -> Void)?
@@ -33,7 +33,14 @@ final class ThemePagerCollectionViewCell: FSPagerViewCell, BaseCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        containerView.moveButton.removeTarget(nil, action: nil, for: .allEvents)
+    }
+    
     func configCell(row: ThemeStory) {
+        containerView.heroID = nil
+        containerView.opacityView.heroID = nil
         containerView.thumbImageView.image = row.thumbnail
         containerView.themeLabel.text = row.title
         containerView.themeImageView.image = row.miniThumbnail.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal)
