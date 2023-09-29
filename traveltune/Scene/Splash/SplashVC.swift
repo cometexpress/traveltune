@@ -40,6 +40,8 @@ final class SplashVC: BaseViewController<SplashView> {
             let testEndDate = "2025-12-12"
             
             viewModel.compareToDateTheDay(start: UserDefaults.visitDate, end: today)
+            UserDefaults.visitDate = Date().basic
+            
             viewModel.compareDay.bind { [weak self] days in
                 if days <= self?.viewModel.maximumDays ?? 0 {
                     self?.moveTabBarVC()
