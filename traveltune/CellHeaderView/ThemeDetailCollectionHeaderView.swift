@@ -14,6 +14,49 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
         view.contentMode = .scaleAspectFill
     }
     
+    lazy var slider = CustomUISlider(frame: .zero).setup { view in
+        view.addTarget(self, action: #selector(didChangedProgressBar(_:)), for: .valueChanged)
+    }
+    
+    private let playerView = UIView()
+    
+    private lazy var previousImageView = AudioImageView(frame: .zero).setup { view in
+        view.addImage(image: .skipPrevious)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(previousStoryClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private lazy var playAndPauseImageView = AudioImageView(frame: .zero).setup { view in
+        view.addImage(image: .playCircle)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private lazy var nextImageView = AudioImageView(frame: .zero).setup { view in
+        view.addImage(image: .skipNext)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(nextStoryClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func previousStoryClicked() {
+        print("이전")
+    }
+    
+    @objc func nextStoryClicked() {
+        print("다음")
+    }
+    
+    @objc func playAndPauseClicked() {
+        print("재생/일시정지")
+    }
+    
+    @objc func didChangedProgressBar(_ sender: UISlider) {
+//        guard let duration = player?.currentItem?.duration else { return }
+//        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
+//        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+//        player?.seek(to: seekTime)
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureHierarchy()
@@ -25,16 +68,51 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     }
     
     private func configureHierarchy() {
-        backgroundColor = .white
         addSubview(thumbImageView)
+        addSubview(slider)
+        addSubview(playerView)
+        playerView.addSubview(previousImageView)
+        playerView.addSubview(playAndPauseImageView)
+        playerView.addSubview(nextImageView)
     }
     
     private func configureLayout() {
         thumbImageView.snp.makeConstraints { make in
             make.size.equalTo(self.snp.height).multipliedBy(0.5)
-            make.top.equalToSuperview().inset(24)
+            make.top.equalToSuperview().inset(16)
             make.centerX.equalToSuperview()
         }
+        
+        slider.snp.makeConstraints { make in
+            make.width.equalTo(self.snp.width).multipliedBy(0.5)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(thumbImageView.snp.bottom).offset(16)
+        }
+        
+        playerView.snp.makeConstraints { make in
+            make.width.equalTo(self.snp.width).multipliedBy(0.6)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(slider.snp.bottom)
+            make.bottom.equalToSuperview().inset(16)
+        }
+        
+        playAndPauseImageView.snp.makeConstraints { make in
+            make.size.equalTo(playerView.snp.height).multipliedBy(0.9)
+            make.center.equalToSuperview()
+        }
+        
+        previousImageView.snp.makeConstraints { make in
+            make.size.equalTo(playerView.snp.height).multipliedBy(0.6)
+            make.leading.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        nextImageView.snp.makeConstraints { make in
+            make.size.equalTo(playerView.snp.height).multipliedBy(0.6)
+            make.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
     }
     
     func configView() {

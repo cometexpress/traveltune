@@ -27,6 +27,7 @@ final class ThemeDetailView: BaseView {
     }
     
     let topView = UIView()
+    private let emptyTopView = UIView()
     
     lazy var topTitleLabel = UILabel().setup { view in
         view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
@@ -66,16 +67,20 @@ final class ThemeDetailView: BaseView {
         }
     }
     
+    private let topViewHeight = 50
+    
     override func configureHierarchy() {
         addSubview(backgroundImageView)
         backgroundImageView.addSubview(blurredEffectView)
-        
+        addSubview(emptyTopView)
         addSubview(vibrancyEffectView)
         vibrancyEffectView.contentView.addSubview(topView)
         topView.addSubview(topTitleLabel)
         topView.addSubview(backButton)
         topView.addSubview(infoButton)
-        vibrancyEffectView.contentView.addSubview(collectionView)
+        
+        addSubview(collectionView)
+//        vibrancyEffectView.contentView.addSubview(collectionView)
     }
     
     override func configureLayout() {
@@ -93,7 +98,7 @@ final class ThemeDetailView: BaseView {
         }
         
         topView.snp.makeConstraints { make in
-            make.height.equalTo(50)
+            make.height.equalTo(topViewHeight)
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide)
         }
@@ -116,22 +121,31 @@ final class ThemeDetailView: BaseView {
             make.centerY.equalToSuperview()
         }
         
-        collectionView.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom)
-            make.bottom.equalTo(safeAreaLayoutGuide)
-            make.horizontalEdges.equalTo(vibrancyEffectView).inset(10)
+        emptyTopView.snp.makeConstraints { make in
+            make.height.equalTo(topViewHeight)
+            make.horizontalEdges.equalToSuperview()
+            make.top.equalTo(safeAreaLayoutGuide)
         }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(emptyTopView.snp.bottom)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview().inset(10)
+        }
+        
+//        collectionView.snp.makeConstraints { make in
+//            make.top.equalTo(topView.snp.bottom)
+//            make.bottom.equalTo(safeAreaLayoutGuide)
+//            make.horizontalEdges.equalTo(vibrancyEffectView).inset(10)
+//        }
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let width: CGFloat = UIScreen.main.bounds.width
-        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.2
-        
-        print("headerHeight = ", headerHeight)
-        
+        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
         return UICollectionViewFlowLayout().collectionViewLayout(
             headerSize: CGSize(width: width, height: headerHeight),
-            itemSize: CGSize(width: width, height: headerHeight / 3),
+            itemSize: CGSize(width: width, height: headerHeight / 3.4),
             sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
             minimumLineSpacing: 2,
             minimumInteritemSpacing: 0)

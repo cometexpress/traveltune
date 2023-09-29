@@ -12,7 +12,7 @@ import AVFoundation
 final class AVPlayerManager {
     
     static var shared = AVPlayerManager()
-    private var player = AVPlayer()
+    var player = AVPlayer()
     
     private init() {}
     
