@@ -39,21 +39,6 @@ final class ThemeVC: BaseViewController<ThemeView> {
 //            print("\(minutes):\(seconds)")
 //        }
         
-//        Network.shared.request(
-//            api: .baseSpots(request: RequestTravelSpots(
-//                numOfRows: "10",
-//                pageNo: "1",
-//                langCode: "ko")
-//            ),
-//            type: ResponseTravelSpots.self) { response in
-//                switch response {
-//                case .success(let success):
-//                    print(success)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            }
-        
         
 //        Network.shared.requestVisitorInfo(
 //            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(

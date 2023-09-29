@@ -9,4 +9,5 @@ import Foundation
 
 struct RequestSearchTravelSpots: Encodable {
     let keyword: String
+    let numOfRows: String
 }

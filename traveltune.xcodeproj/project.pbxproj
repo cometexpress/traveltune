@@ -12,6 +12,8 @@
 		C00839F32AC67EBB00C17BD6 /* CustomUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* CustomUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
+		C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D182AC6A3DB00C220A6 /* RequestStory.swift */; };
+		C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -90,6 +92,8 @@
 		C00839F22AC67EBB00C17BD6 /* CustomUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
+		C0453D182AC6A3DB00C220A6 /* RequestStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStory.swift; sourceTree = "<group>"; };
+		C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStory.swift; sourceTree = "<group>"; };
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 				C04F9CAF2ABEF8950058A8D0 /* RequestTravelSpots.swift */,
 				C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */,
 				C05F921B2AC3F33000427F6D /* RequestSearchTravelSpots.swift */,
+				C0453D182AC6A3DB00C220A6 /* RequestStory.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 			children = (
 				C04F9CAD2ABEF8320058A8D0 /* ResponseTravelSpots.swift */,
 				C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */,
+				C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -684,11 +690,13 @@
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
+				C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */,
 				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,
 				C0D81A8D2AC4941100CB2EF0 /* UserDefault.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
+				C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */,
 				C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
