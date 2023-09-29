@@ -28,7 +28,7 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     
     private lazy var playAndPauseImageView = AudioImageView(frame: .zero).setup { view in
         view.addImage(image: .playCircle)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseClicked))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseStoryClicked))
         view.addGestureRecognizer(tap)
     }
     
@@ -38,16 +38,20 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
         view.addGestureRecognizer(tap)
     }
     
+    var previousClicked: (() -> Void)?
+    var nextClicked: (() -> Void)?
+    var playAndPauseClicked: (() -> Void)?
+    
     @objc func previousStoryClicked() {
-        print("이전")
+        previousClicked?()
     }
     
     @objc func nextStoryClicked() {
-        print("다음")
+        nextClicked?()
     }
     
-    @objc func playAndPauseClicked() {
-        print("재생/일시정지")
+    @objc func playAndPauseStoryClicked() {
+        playAndPauseClicked?()
     }
     
     @objc func didChangedProgressBar(_ sender: UISlider) {

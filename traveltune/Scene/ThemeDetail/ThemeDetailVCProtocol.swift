@@ -10,4 +10,7 @@ import Foundation
 protocol ThemeDetailVCProtocol: AnyObject {
     func backButtonClicked()
     func infoButtonClicked()
+    func previousButtonClicked()
+    func nextButtonClicked()
+    func playAndPauseButtonClicked()
 }

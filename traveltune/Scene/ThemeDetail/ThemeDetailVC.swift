@@ -39,5 +39,16 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         print("상세 내용 보는 기능")
     }
     
+    func previousButtonClicked() {
+        print("이전으로 스킵")
+    }
+    
+    func nextButtonClicked() {
+        print("다음으로 스킵")
+    }
+    
+    func playAndPauseButtonClicked() {
+        print("재생 or 일시정지 클릭")
+    }
     
 }

@@ -170,10 +170,24 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard
-                let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
-                fatalError("Invalid view type")
+            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
+                return UICollectionReusableView()
             }
+            
+            headerView.previousClicked = { [weak self] in
+                self?.themeDetailVCProtocol?.previousButtonClicked()
+            }
+            
+            headerView.nextClicked = { [weak self] in
+                self?.themeDetailVCProtocol?.nextButtonClicked()
+            }
+            
+            headerView.playAndPauseClicked = { [weak self] in
+                self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
+            }
+            
             headerView.configView()
             return headerView
         default:
