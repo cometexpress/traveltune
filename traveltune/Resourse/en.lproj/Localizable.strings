@@ -8,8 +8,10 @@
 
 // 공통
 "common_play" = "play";
+"common_ok" = "OK";
 
 // 에러메시지
+"error_network" = "Please check network";
 "error_restart_app" = "Please restart app";
 
 // 홈 네비 타이틀

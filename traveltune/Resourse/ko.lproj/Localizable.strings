@@ -8,8 +8,10 @@
 
 // 공통
 "common_play" = "play";
+"common_ok" = "확인";
 
 // 에러메시지
+"error_network" = "네크워크 연결을 확인해주세요";
 "error_restart_app" = "앱을 재실행 해주세요";
 
 // 홈 네비 타이틀

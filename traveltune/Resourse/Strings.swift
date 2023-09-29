@@ -11,10 +11,12 @@ struct Strings {
     
     struct Common {
         static let logoTitle = "home_nav_title".localized
-        static let commonPlay = "common_play".localized
+        static let play = "common_play".localized
+        static let ok = "common_ok".localized
     }
     
     struct ErrorMsg {
+        static let errorNetwork = "error_network".localized
         static let errorRestartApp = "error_restart_app".localized
     }
     

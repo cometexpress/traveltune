@@ -43,7 +43,7 @@ final class ThemePagerCellView: BaseView {
     let moveButton = UIButton().setup { view in
         view.clipsToBounds = true
         view.layer.cornerRadius = 16
-        var attString = AttributedString(Strings.Common.commonPlay.uppercased())
+        var attString = AttributedString(Strings.Common.play.uppercased())
         attString.font = .monospacedSystemFont(ofSize: 14, weight: .bold)
         attString.foregroundColor = .txtPrimary
         var config = UIButton.Configuration.filled()
