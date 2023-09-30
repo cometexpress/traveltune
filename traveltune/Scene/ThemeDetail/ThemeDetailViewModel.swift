@@ -19,10 +19,11 @@ final class ThemeDetailViewModel {
     private let storyGroup = DispatchGroup()
     
     func fetchStories(searchKeyword: String) {
-        let localThemeSpots = localTravelSpotRepository.fetchFilter {
-            $0.title.contains(searchKeyword, options: .caseInsensitive)
-        }
-
+//        let localThemeSpots = localTravelSpotRepository.fetchFilter {
+//            $0.themeCategory.contains(searchKeyword, options: .caseInsensitive)
+//        }
+        
+        let localThemeSpots = localTravelSpotRepository.fetch()?.filter("themeCategory CONTAINS '\(searchKeyword)' OR title CONTAINS '\(searchKeyword)'")
         localThemeSpots?.forEach { item in
             storyGroup.enter()
             storyRepository.requestBasedStory(item: item) { [weak self] response in

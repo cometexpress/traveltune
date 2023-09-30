@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72431900FFBB4314210744B8 /* Pods_traveltune.framework */; };
 		C00839F12AC5E6DE00C17BD6 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F02AC5E6DE00C17BD6 /* CircleView.swift */; };
-		C00839F32AC67EBB00C17BD6 /* CustomUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* CustomUISlider.swift */; };
+		C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
 		C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D182AC6A3DB00C220A6 /* RequestStory.swift */; };
@@ -92,7 +92,7 @@
 		6A6C9A4659B7BEA01E36D10E /* Pods-traveltune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-traveltune.release.xcconfig"; path = "Target Support Files/Pods-traveltune/Pods-traveltune.release.xcconfig"; sourceTree = "<group>"; };
 		72431900FFBB4314210744B8 /* Pods_traveltune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_traveltune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C00839F02AC5E6DE00C17BD6 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		C00839F22AC67EBB00C17BD6 /* CustomUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUISlider.swift; sourceTree = "<group>"; };
+		C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
 		C0453D182AC6A3DB00C220A6 /* RequestStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStory.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 			children = (
 				C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */,
 				C00839F02AC5E6DE00C17BD6 /* CircleView.swift */,
-				C00839F22AC67EBB00C17BD6 /* CustomUISlider.swift */,
+				C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */,
 				C00839F52AC68DB700C17BD6 /* AudioImageView.swift */,
 			);
 			path = View;
@@ -700,7 +700,7 @@
 				C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */,
 				C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */,
 				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
-				C00839F32AC67EBB00C17BD6 /* CustomUISlider.swift in Sources */,
+				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,
 				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,

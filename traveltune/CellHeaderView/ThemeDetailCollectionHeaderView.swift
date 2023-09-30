@@ -16,7 +16,7 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
         view.image = .defaultImg
     }
     
-    lazy var slider = CustomUISlider(frame: .zero).setup { view in
+    lazy var slider = AudioUISlider(frame: .zero).setup { view in
         view.addTarget(self, action: #selector(didChangedProgressBar(_:)), for: .valueChanged)
     }
     

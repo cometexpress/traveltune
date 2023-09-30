@@ -8,95 +8,95 @@
 import UIKit
 
 enum ThemeStory: CaseIterable {
-    case tale               // 설화
-    case history            // 한국 역사마을
+    case cheonggyecheon      // 청계천
     case market             // 전통시장
-    case eastSea            // 동해
+    case history            // 한국 역사마을
     case museum             // 박물관
     case temple             // 사찰
+    case bukchon            // 북촌골목여행
     
     var searchKeyword: String {
         switch self {
-        case .tale:
-            "전설따라"
-        case .history:
-            ""
+        case .cheonggyecheon:
+            Strings.ThemeStory.cheonggyecheonSearchKeyword
         case .market:
-            ""
-        case .eastSea:
-            ""
+            Strings.ThemeStory.marketSearchKeyword
+        case .history:
+            Strings.ThemeStory.historySearchKeyword
         case .museum:
-            ""
+            Strings.ThemeStory.museumSearchKeyword
         case .temple:
-            ""
+            Strings.ThemeStory.templeSearchKeyword
+        case .bukchon:
+            Strings.ThemeStory.bukchonSearchKeyword
         }
     }
     
     var title: String {
         switch self {
-        case .tale:
-            Strings.ThemeStory.tale
-        case .history:
-            Strings.ThemeStory.history
+        case .cheonggyecheon:
+            Strings.ThemeStory.cheonggyecheon
         case .market:
             Strings.ThemeStory.market
-        case .eastSea:
-            Strings.ThemeStory.eastSea
+        case .history:
+            Strings.ThemeStory.history
         case .museum:
             Strings.ThemeStory.museum
         case .temple:
             Strings.ThemeStory.temple
+        case .bukchon:
+            Strings.ThemeStory.bukchon
         }
     }
     
     var content: String {
         switch self {
-        case .tale:
-            Strings.ThemeStory.taleContent
-        case .history:
-            Strings.ThemeStory.historyContent
+        case .cheonggyecheon:
+            Strings.ThemeStory.cheonggyecheonContent
         case .market:
             Strings.ThemeStory.marketContent
-        case .eastSea:
-            Strings.ThemeStory.eastSeaContent
+        case .history:
+            Strings.ThemeStory.historyContent
         case .museum:
             Strings.ThemeStory.museumContent
         case .temple:
             Strings.ThemeStory.templeContent
+        case .bukchon:
+            Strings.ThemeStory.bukchonContent
         }
     }
     
     var thumbnail: UIImage {
         switch self {
-        case .tale:
-                .themeTale
+        case .cheonggyecheon:
+                .themeCheonggyecheon
         case .history:
                 .themeHistory
         case .market:
                 .themeMarket
-        case .eastSea:
-                .themeEastSea
         case .museum:
                 .themeMuseum
         case .temple:
                 .themeTemple
+        case .bukchon:
+                .themeBukchon
         }
     }
     
     var miniThumbnail: UIImage {
         switch self {
-        case .tale:
-                .themeMiniTale
+        case .cheonggyecheon:
+                .themeMiniCheonggyecheon
         case .history:
                 .themeMiniHistory
         case .market:
                 .themeMiniMarket
-        case .eastSea:
-                .themeMiniEastSea
         case .museum:
                 .themeMiniMuseum
         case .temple:
                 .themeMiniTemple
+        case .bukchon:
+                .themeMiniBukchon
         }
     }
 }
