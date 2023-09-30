@@ -11,7 +11,7 @@ final class ThemeViewModel {
     
     var themes: Observable<[ThemeStory]> = Observable([])
     
-    func updateThemes() {
+    func fetchThemes() {
         themes.value = ThemeStory.allCases
     }
 }

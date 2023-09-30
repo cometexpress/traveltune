@@ -32,7 +32,6 @@ final class ThemeView: BaseView {
     }
     
     override func configureHierarchy() {
-//        pagerView.backgroundColor = .purple
         addSubview(contentView)
         contentView.addSubview(pagerView)
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     
@@ -55,10 +56,10 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     }
     
     @objc func didChangedProgressBar(_ sender: UISlider) {
-//        guard let duration = player?.currentItem?.duration else { return }
-//        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
-//        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
-//        player?.seek(to: seekTime)
+        //        guard let duration = player?.currentItem?.duration else { return }
+        //        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
+        //        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+        //        player?.seek(to: seekTime)
     }
     
     override init(frame: CGRect) {
@@ -119,7 +120,11 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
         
     }
     
-    func configView() {
-        thumbImageView.image = .themeEastSea
+    func configView(item: StoryItem) {
+        let url = URL(string: item.imageURL)
+        thumbImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "tap_home"),
+            options: [.transition(.fade(2)), .forceTransition])
     }
 }

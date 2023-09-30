@@ -37,7 +37,7 @@ final class BaseRequestInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
         var urlRequest = urlRequest
         
-        print("defaultParameters = ", defaultParameters)
+//        print("defaultParameters = ", defaultParameters)
         
         let encoding = URLEncodedFormParameterEncoder.default
         if let request = try? encoding.encode(defaultParameters, into: urlRequest) {

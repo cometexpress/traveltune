@@ -20,7 +20,7 @@ final class ThemeVC: BaseViewController<ThemeView> {
             self?.mainView.themes.append(contentsOf: themes)
         }
         
-        viewModel.updateThemes()
+        viewModel.fetchThemes()
         
         // 재생완료시점 확인용
         NotificationCenter.default.addObserver(

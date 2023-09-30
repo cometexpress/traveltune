@@ -10,7 +10,8 @@ import Hero
 import SnapKit
 
 final class ThemeDetailView: BaseView {
-    
+        
+    weak var viewModel: ThemeDetailViewModel?
     weak var themeDetailVCProtocol: ThemeDetailVCProtocol?
     
     private let blurredEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
@@ -145,7 +146,8 @@ final class ThemeDetailView: BaseView {
         let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
         return UICollectionViewFlowLayout().collectionViewLayout(
             headerSize: CGSize(width: width, height: headerHeight),
-            itemSize: CGSize(width: width, height: headerHeight / 3.4),
+            itemSize: CGSize(width: width, height: 60),
+//            itemSize: CGSize(width: width, height: headerHeight / 3.4),
             sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
             minimumLineSpacing: 2,
             minimumInteritemSpacing: 0)
@@ -155,14 +157,16 @@ final class ThemeDetailView: BaseView {
 extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return viewModel?.stories.value.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCell.identifier, for: indexPath) as! StoryCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCell.identifier, for: indexPath) as? StoryCell,
+              let row = viewModel?.stories.value[indexPath.item] else {
+            return UICollectionViewCell()
+        }
         cell.backgroundColor = .cyan
-        cell.layer.cornerRadius = 10.0
-        cell.configCell(row: "12345")
+        cell.configCell(row: row)
         return cell
     }
     
@@ -188,7 +192,8 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
                 self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
             }
             
-            headerView.configView()
+            // TODO: 어떻게 헤더뷰에 데이터 추가해줄지?
+//            headerView.configView(item: <#T##StoryItem#>)
             return headerView
         default:
             assert(false, "Invalid element type")

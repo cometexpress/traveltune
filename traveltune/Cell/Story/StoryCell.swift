@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class StoryCell: BaseCollectionViewCell<String> {
+final class StoryCell: BaseCollectionViewCell<StoryItem> {
     
     let testLabel = UILabel().setup { view in
         view.textColor = .black
@@ -26,8 +26,8 @@ final class StoryCell: BaseCollectionViewCell<String> {
         }
     }
     
-    override func configCell(row: String) {
-        testLabel.text = row
+    override func configCell(row: StoryItem) {
+        testLabel.text = row.title
     }
     
     
