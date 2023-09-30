@@ -14,15 +14,8 @@ final class ThemeVC: BaseViewController<ThemeView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.hero.isEnabled = true
         
-        viewModel.themes.bind { [weak self] themes in
-            self?.mainView.themes.append(contentsOf: themes)
-        }
-        
-        viewModel.fetchThemes()
-        
-        // 재생완료시점 확인용
+        // TEST 재생완료시점 확인용
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(playingMusicFinish(_:)),
@@ -67,7 +60,15 @@ final class ThemeVC: BaseViewController<ThemeView> {
     }
     
     override func configureVC() {
+        mainView.hero.isEnabled = true
         mainView.themeVCProtocol = self
+        mainView.viewModel = viewModel
+        
+        viewModel.themes.bind { [weak self] themes in
+            self?.mainView.pagerView.reloadData()
+        }
+        
+        viewModel.fetchThemes()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .magnifyingglass.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal),

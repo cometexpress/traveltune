@@ -11,14 +11,13 @@ import FSPagerView
 import Hero
 
 final class ThemeView: BaseView {
-    
-    var themes: [ThemeStory] = []
-    
+
     private let contentView = UIView(frame: .zero)
     
+    weak var viewModel: ThemeViewModel?
     weak var themeVCProtocol: ThemeVCProtocol?
     
-    private lazy var pagerView = FSPagerView(frame: .zero).setup { view in
+    lazy var pagerView = FSPagerView(frame: .zero).setup { view in
         let count: CGFloat = 1.2
         let spacing: CGFloat = 16
         view.register(ThemePagerCell.self, forCellWithReuseIdentifier: ThemePagerCell.identifier)
@@ -53,20 +52,20 @@ final class ThemeView: BaseView {
 extension ThemeView: FSPagerViewDataSource, FSPagerViewDelegate {
     
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return themes.count
+        return viewModel?.themes.value.count ?? 0
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCell.identifier, at: index) as? ThemePagerCell else {
+        guard let cell = pagerView.dequeueReusableCell(withReuseIdentifier: ThemePagerCell.identifier, at: index) as? ThemePagerCell,
+              let row = viewModel?.themes.value[index] else {
             return FSPagerViewCell()
         }
         
         // 그림자 제거용
         cell.contentView.layer.shadowColor = UIColor.clear.cgColor
-        cell.configCell(row: themes[index])
+        cell.configCell(row: row)
         cell.moveThemeDetailClicked = { [weak self] themeStory in
             cell.hero.id = Constant.HeroID.themeThumnail
-//            cell.containerView.hero.id = Constant.HeroID.themeThumnail
             cell.containerView.opacityView.hero.id = Constant.HeroID.themeOpacity
             self?.themeVCProtocol?.moveDetailThemeClicked(theme: themeStory)
         }
