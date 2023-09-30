@@ -27,10 +27,10 @@ final class SplashView: BaseView {
     }
     
     override func configureLayout() {
-        logoImageView.backgroundColor = .link
+        logoImageView.image = UIImage(named: "launch_screen")
         logoImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.size.equalTo(50)
+            make.size.equalTo(80)
         }
         
         indicatorView.snp.makeConstraints { make in

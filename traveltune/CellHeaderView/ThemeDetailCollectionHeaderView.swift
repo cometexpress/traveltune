@@ -13,6 +13,7 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     
     let thumbImageView = CircleImageView(frame: .zero).setup { view in
         view.contentMode = .scaleAspectFill
+        view.image = .defaultImg
     }
     
     lazy var slider = CustomUISlider(frame: .zero).setup { view in
@@ -117,14 +118,13 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
             make.trailing.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-        
     }
     
     func configView(item: StoryItem) {
         let url = URL(string: item.imageURL)
-        thumbImageView.kf.setImage(
-            with: url,
-            placeholder: UIImage(named: "tap_home"),
-            options: [.transition(.fade(2)), .forceTransition])
+//        thumbImageView.kf.setImage(
+//            with: url,
+//            placeholder: UIImage(named: "default"),
+//            options: [.transition(.fade(0.5)), .forceTransition])
     }
 }

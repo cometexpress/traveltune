@@ -16,6 +16,7 @@
 		C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */; };
 		C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */; };
 		C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1E2AC7F8F500C220A6 /* ThemeDetailViewModel.swift */; };
+		C0453D252AC81EC100C220A6 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = C0453D242AC81EC100C220A6 /* launch_screen.png */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -98,6 +99,7 @@
 		C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStory.swift; sourceTree = "<group>"; };
 		C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
 		C0453D1E2AC7F8F500C220A6 /* ThemeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailViewModel.swift; sourceTree = "<group>"; };
+		C0453D242AC81EC100C220A6 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_screen.png; sourceTree = "<group>"; };
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -201,6 +203,14 @@
 				6A6C9A4659B7BEA01E36D10E /* Pods-traveltune.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C0453D232AC81E7100C220A6 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C0453D242AC81EC100C220A6 /* launch_screen.png */,
+			);
+			path = LaunchScreen;
 			sourceTree = "<group>";
 		};
 		C04F9C9C2ABEEDDD0058A8D0 /* Network */ = {
@@ -377,6 +387,7 @@
 		C0E8BA692ABC913100B1CCA6 /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
+				C0453D232AC81E7100C220A6 /* LaunchScreen */,
 				C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */,
 				C0E8BA872ABC98F800B1CCA6 /* Localizable.strings */,
 				C0E8BA892ABC993000B1CCA6 /* Strings.swift */,
@@ -584,6 +595,7 @@
 				C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */,
 				C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */,
 				C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */,
+				C0453D252AC81EC100C220A6 /* launch_screen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

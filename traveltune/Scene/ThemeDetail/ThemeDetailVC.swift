@@ -11,7 +11,6 @@ import Hero
 final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     
     var themeStory: ThemeStory?
-    
     private let viewModel = ThemeDetailViewModel()
     
     override func configureVC() {
@@ -27,15 +26,15 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             self.mainView.collectionView.isHidden = false
         }
         
-        viewModel.fetchStories(searchKeyword: themeStory.searchKeyword)
-        viewModel.stories.bind { items in
-            print("몇개인가 = ", items.count)
-            self.mainView.collectionView.reloadData()
-        }
+        bindData()
     }
     
     private func bindData() {
-        
+        guard let themeStory else { return }
+        viewModel.fetchStories(searchKeyword: themeStory.searchKeyword)
+        viewModel.stories.bind { items in
+            self.mainView.collectionView.reloadData()
+        }
     }
     
 }

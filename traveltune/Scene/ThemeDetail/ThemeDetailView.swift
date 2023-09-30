@@ -133,12 +133,7 @@ final class ThemeDetailView: BaseView {
             make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview().inset(10)
         }
-        
-//        collectionView.snp.makeConstraints { make in
-//            make.top.equalTo(topView.snp.bottom)
-//            make.bottom.equalTo(safeAreaLayoutGuide)
-//            make.horizontalEdges.equalTo(vibrancyEffectView).inset(10)
-//        }
+
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
@@ -191,9 +186,10 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
             headerView.playAndPauseClicked = { [weak self] in
                 self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
             }
-            
-            // TODO: 어떻게 헤더뷰에 데이터 추가해줄지?
-//            headerView.configView(item: <#T##StoryItem#>)
+                    
+            if let item = viewModel?.stories.value.first {
+                headerView.configView(item: item)
+            }
             return headerView
         default:
             assert(false, "Invalid element type")
