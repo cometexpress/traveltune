@@ -41,13 +41,15 @@
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
+		C0BDC31B2AC8871A00D7331E /* LocalThemeStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */; };
+		C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3252AC8912200D7331E /* Copy+Extension.swift */; };
 		C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */; };
 		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
 		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
 		C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */; };
 		C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A792AC4104300CB2EF0 /* RealmProtocol.swift */; };
 		C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */; };
-		C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A852AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift */; };
+		C0D81A862AC42C2800CB2EF0 /* TravelSpotRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A852AC42C2800CB2EF0 /* TravelSpotRepository.swift */; };
 		C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */; };
 		C0D81A8D2AC4941100CB2EF0 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */; };
 		C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */; };
@@ -124,13 +126,15 @@
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
+		C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalThemeStoryRepository.swift; sourceTree = "<group>"; };
+		C0BDC3252AC8912200D7331E /* Copy+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Copy+Extension.swift"; sourceTree = "<group>"; };
 		C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		C0D81A792AC4104300CB2EF0 /* RealmProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmProtocol.swift; sourceTree = "<group>"; };
 		C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalTravelSpotRepository.swift; path = traveltune/Repository/Local/LocalTravelSpotRepository.swift; sourceTree = SOURCE_ROOT; };
-		C0D81A852AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteTravelSpotRepository.swift; sourceTree = "<group>"; };
+		C0D81A852AC42C2800CB2EF0 /* TravelSpotRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelSpotRepository.swift; sourceTree = "<group>"; };
 		C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -325,6 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */,
+				C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -332,7 +337,7 @@
 		C0D81A7D2AC413F800CB2EF0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				C0D81A852AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift */,
+				C0D81A852AC42C2800CB2EF0 /* TravelSpotRepository.swift */,
 				C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */,
 			);
 			path = Remote;
@@ -405,6 +410,7 @@
 				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
 				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
 				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
+				C0BDC3252AC8912200D7331E /* Copy+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -710,12 +716,14 @@
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
+				C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */,
 				C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
-				C0D81A862AC42C2800CB2EF0 /* RemoteTravelSpotRepository.swift in Sources */,
+				C0D81A862AC42C2800CB2EF0 /* TravelSpotRepository.swift in Sources */,
 				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,
 				C0D81A8D2AC4941100CB2EF0 /* UserDefault.swift in Sources */,
 				C0E8BA932ABDCCC900B1CCA6 /* TabBarVC.swift in Sources */,
+				C0BDC31B2AC8871A00D7331E /* LocalThemeStoryRepository.swift in Sources */,
 				C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */,
 				C0D81A782AC40FB000CB2EF0 /* NetworkMonitor.swift in Sources */,
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,

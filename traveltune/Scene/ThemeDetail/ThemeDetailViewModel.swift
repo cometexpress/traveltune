@@ -10,42 +10,62 @@ import Foundation
 final class ThemeDetailViewModel {
     
     private let localTravelSpotRepository = LocalTravelSpotRepository()
+    private let localThemeStoryRepository = LocalThemeStoryRepository()
     private let storyRepository = StoryRepository()
     
     private var saveStories: [StoryItem] = []
     
     var stories: Observable<[StoryItem]> = Observable([])
-
+    
     private let storyGroup = DispatchGroup()
     
-    func fetchStories(searchKeyword: String) {
-//        let localThemeSpots = localTravelSpotRepository.fetchFilter {
-//            $0.themeCategory.contains(searchKeyword, options: .caseInsensitive)
-//        }
-        
+    private func updateStories(searchKeyword: String) {
         let localThemeSpots = localTravelSpotRepository.fetch()?.filter("themeCategory CONTAINS '\(searchKeyword)' OR title CONTAINS '\(searchKeyword)'")
-        localThemeSpots?.forEach { item in
+        localThemeSpots?.forEach { localItem in
             storyGroup.enter()
-            storyRepository.requestBasedStory(item: item) { [weak self] response in
+            storyRepository.requestBasedStory(item: localItem) { response in
                 switch response {
                 case .success(let success):
                     let result = success.response.body.items.item
-                    if let item = result.first {
-                        if !item.audioURL.isEmpty {
-                            self?.saveStories.append(item)
+                    if let resultItem = result.first {
+                        if !resultItem.audioURL.isEmpty {
+                            let item = copy(resultItem) { $0.searchKeyword = searchKeyword }
+                            self.saveStories.append(item)
                         }
                     }
-                case .failure(_):
-                    print("item.title = ",item.title, " 오류")
+                case .failure(let _):
+                    print("item.title = ",localItem.title, " 오류")
                 }
-                self?.storyGroup.leave()
+                self.storyGroup.leave()
+            }
+        }
+        storyGroup.notify(queue: .main) { [weak self] in
+            self?.stories.value.append(contentsOf: self?.saveStories ?? [])
+            
+            self?.localThemeStoryRepository.createAll(self?.saveStories ?? []) {
+                print("실패했을 때")
             }
         }
         
-        storyGroup.notify(queue: .main) { [weak self] in
-            print("모두 종료")
-            self?.stories.value.append(contentsOf: self?.saveStories ?? [])
+    }
+    
+    func fetchThemeStoriesData(keyword: String) {
+        let localStories = localThemeStoryRepository.fetchFilter {
+            $0.searchKeyword.equals(keyword)
+        }?.sorted(byKeyPath: "_id")
+        
+        guard let localStories else { return }
+        
+        // 없을 때는 remote 레포에서 불러와야됨.
+        if localStories.isEmpty {
+            print("데이터 없어서 새로 불러오기")
+            self.updateStories(searchKeyword: keyword)
+        } else {
+            localStories.forEach { item in
+                self.saveStories.append(item)
+            }
+            print("데이터 기존꺼 불러오기")
+            stories.value = saveStories
         }
     }
- 
 }

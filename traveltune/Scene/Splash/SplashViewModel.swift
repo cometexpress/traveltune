@@ -9,7 +9,7 @@ import Foundation
 
 final class SplashViewModel {
     
-    private let remoteTravelSpotRepository = RemoteTravelSpotRepository()
+    private let remoteTravelSpotRepository = TravelSpotRepository()
     private let localTravelSpotRepository = LocalTravelSpotRepository()
     
     private var koPage = 1

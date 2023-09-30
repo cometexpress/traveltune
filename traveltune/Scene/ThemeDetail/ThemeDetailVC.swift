@@ -31,7 +31,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     
     private func bindData() {
         guard let themeStory else { return }
-        viewModel.fetchStories(searchKeyword: themeStory.searchKeyword)
+        viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
         viewModel.stories.bind { items in
             self.mainView.collectionView.reloadData()
         }
