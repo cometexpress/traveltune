@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CustomUISlider: UISlider {
+final class AudioUISlider: UISlider {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
