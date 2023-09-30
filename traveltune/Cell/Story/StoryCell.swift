@@ -10,24 +10,112 @@ import SnapKit
 
 final class StoryCell: BaseCollectionViewCell<StoryItem> {
     
-    let testLabel = UILabel().setup { view in
-        view.textColor = .black
-        view.font = .boldSystemFont(ofSize: 20)
+    private let leftView = UIView()
+    
+    private let textStackView = UIStackView().setup { view in
+        view.axis = .vertical
+        view.alignment = .leading
+        view.distribution = .equalSpacing
+        view.spacing = 8
+    }
+    
+    private let buttonStackView = UIStackView().setup { view in
+        view.axis = .horizontal
+        view.alignment = .center
+        view.distribution = .equalSpacing
+        view.spacing = 4
+    }
+    
+    private let titleLabel = UILabel().setup { view in
+        view.textColor = .whiteOpacity50
+        view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
+    }
+    
+    private let playTimeLabel = UILabel().setup { view in
+        view.textColor = .whiteOpacity50
+        view.font = .monospacedSystemFont(ofSize: 11, weight: .light)
+    }
+    
+    private let thumbImageView = UIImageView().setup { view in
+        view.contentMode = .scaleAspectFill
+        view.image = .defaultImg
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 8
+    }
+    
+    private lazy var playImageView = AudioImageView(frame: .zero).setup { view in
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
+        view.addImage(image: .playFill.withConfiguration(configuration))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private lazy var heartImageView = AudioImageView(frame: .zero).setup { view in
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
+        view.addImage(image: .heart.withConfiguration(configuration))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(heartClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func playClicked() {
+        print("아이템 재생 버튼 클릭")
     }
    
+    @objc func heartClicked() {
+        print("하트 버튼 클릭")
+    }
+    
     override func configureHierarchy() {
-        contentView.addSubview(testLabel)
+        contentView.addSubview(leftView)
+        contentView.addSubview(buttonStackView)
+        leftView.addSubview(thumbImageView)
+        leftView.addSubview(textStackView)
+        textStackView.addArrangedSubview(titleLabel)
+        textStackView.addArrangedSubview(playTimeLabel)
+        buttonStackView.addArrangedSubview(playImageView)
+        buttonStackView.addArrangedSubview(heartImageView)
     }
     
     override func configureLayout() {
-        testLabel.snp.makeConstraints { make in
+        leftView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        leftView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview().inset(4)
+            make.leading.equalToSuperview()
+            make.width.equalToSuperview().multipliedBy(0.74)
+        }
+        
+        textStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().inset(12)
+            make.leading.equalTo(thumbImageView.snp.trailing)
+            make.trailing.equalToSuperview()
+        }
+        
+        buttonStackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        buttonStackView.snp.makeConstraints { make in
+            make.verticalEdges.equalToSuperview()
+            make.leading.equalTo(leftView.snp.trailing).offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        
+        thumbImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
+        thumbImageView.snp.makeConstraints { make in
+            make.size.equalTo(leftView.snp.height)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalTo(textStackView.snp.leading).offset(-10)
         }
     }
     
     override func configCell(row: StoryItem) {
-        testLabel.text = row.title
+        titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
+        playTimeLabel.text = row.playTime
+        if let url = URL(string: row.imageURL) {
+            thumbImageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "default_img"),
+                options: [.transition(.fade(1)), .forceTransition]
+            )
+        }
+        
     }
     
     

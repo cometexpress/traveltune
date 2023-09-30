@@ -30,7 +30,9 @@ final class ThemeDetailViewModel {
                 case .success(let success):
                     let result = success.response.body.items.item
                     if let item = result.first {
-                        self?.saveStories.append(item)
+                        if !item.audioURL.isEmpty {
+                            self?.saveStories.append(item)
+                        }
                     }
                 case .failure(_):
                     print("item.title = ",item.title, " 오류")

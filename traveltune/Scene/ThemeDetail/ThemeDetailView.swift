@@ -131,7 +131,7 @@ final class ThemeDetailView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(emptyTopView.snp.bottom)
             make.bottom.equalTo(safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview().inset(10)
+            make.horizontalEdges.equalToSuperview()
         }
 
     }
@@ -160,7 +160,6 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
               let row = viewModel?.stories.value[indexPath.item] else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .cyan
         cell.configCell(row: row)
         return cell
     }

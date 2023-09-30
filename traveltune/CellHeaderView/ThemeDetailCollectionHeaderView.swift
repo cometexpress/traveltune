@@ -122,9 +122,10 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     
     func configView(item: StoryItem) {
         let url = URL(string: item.imageURL)
-//        thumbImageView.kf.setImage(
-//            with: url,
-//            placeholder: UIImage(named: "default"),
-//            options: [.transition(.fade(0.5)), .forceTransition])
+        thumbImageView.kf.setImage(
+            with: url,
+            placeholder: UIImage(named: "default_img"),
+            options: [.transition(.fade(1)), .forceTransition]
+        )
     }
 }
