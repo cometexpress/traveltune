@@ -42,6 +42,7 @@
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
 		C0B6CA172AC994AF005A0E2A /* PlayerBottomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6CA162AC994AF005A0E2A /* PlayerBottomProtocol.swift */; };
+		C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */; };
 		C0BDC31B2AC8871A00D7331E /* LocalThemeStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */; };
 		C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3252AC8912200D7331E /* Copy+Extension.swift */; };
 		C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3272AC934F100D7331E /* FavoriteStory.swift */; };
@@ -131,6 +132,7 @@
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
 		C0B6CA162AC994AF005A0E2A /* PlayerBottomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomProtocol.swift; sourceTree = "<group>"; };
+		C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageView.swift; sourceTree = "<group>"; };
 		C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalThemeStoryRepository.swift; sourceTree = "<group>"; };
 		C0BDC3252AC8912200D7331E /* Copy+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Copy+Extension.swift"; sourceTree = "<group>"; };
 		C0BDC3272AC934F100D7331E /* FavoriteStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStory.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				C00839F02AC5E6DE00C17BD6 /* CircleView.swift */,
 				C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */,
 				C00839F52AC68DB700C17BD6 /* AudioImageView.swift */,
+				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
+				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,

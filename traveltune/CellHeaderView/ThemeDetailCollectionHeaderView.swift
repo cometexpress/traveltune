@@ -29,7 +29,7 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     }
     
     private lazy var playAndPauseImageView = AudioImageView(frame: .zero).setup { view in
-        view.addImage(image: .playCircle)
+        view.addImage(image: .playFill)
         let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseStoryClicked))
         view.addGestureRecognizer(tap)
     }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class StoryCell: BaseCollectionViewCell<StoryItem> {
     
@@ -17,69 +18,46 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.alignment = .leading
         view.distribution = .equalSpacing
         view.spacing = 8
-//        view.isUserInteractionEnabled = true
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(labelContentClicked))
-//        view.addGestureRecognizer(tap)
     }
     
-//    private let buttonStackView = UIStackView().setup { view in
-//        view.axis = .horizontal
-//        view.alignment = .center
-//        view.distribution = .equalSpacing
-//        view.spacing = 4
-//    }
-    
     private let titleLabel = UILabel().setup { view in
-        view.textColor = .whiteOpacity50
         view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
     }
     
     private let playTimeLabel = UILabel().setup { view in
-        view.textColor = .whiteOpacity50
         view.font = .monospacedSystemFont(ofSize: 11, weight: .light)
     }
     
-    private let thumbImageView = UIImageView().setup { view in
-        view.contentMode = .scaleAspectFill
+    private let thumbImageView = ThumbnailImageView(frame: .zero).setup { view in
         view.image = .defaultImg
-        view.clipsToBounds = true
-        view.layer.cornerRadius = 8
     }
     
     private lazy var heartImageView = AudioImageView(frame: .zero).setup { view in
-//        view.addImageInCell(image: .heart)
         let tap = UITapGestureRecognizer(target: self, action: #selector(heartClicked))
         view.addGestureRecognizer(tap)
     }
     
     private var storyItem: StoryItem?
-//    var playButtonClicked: (() -> Void)?
     var heartButtonClicked: ((StoryItem) -> Void)?
-//    var contentClicked: (() -> Void)?
-    
-//    @objc private func playClicked() {
-//        playButtonClicked?()
-//    }
    
     @objc private func heartClicked() {
         if let storyItem {
             heartButtonClicked?(storyItem)
         }
     }
-    
-//    @objc private func labelContentClicked() {
-//        contentClicked?()
-//    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbImageView.image = .defaultImg
+    }
     
     override func configureHierarchy() {
         contentView.addSubview(leftView)
-//        contentView.addSubview(buttonStackView)
         leftView.addSubview(thumbImageView)
         leftView.addSubview(textStackView)
         textStackView.addArrangedSubview(titleLabel)
         textStackView.addArrangedSubview(playTimeLabel)
         contentView.addSubview(heartImageView)
-//        buttonStackView.addArrangedSubview(heartImageView)
     }
     
     override func configureLayout() {
@@ -110,13 +88,6 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
             make.bottom.equalToSuperview()
         }
         
-//        buttonStackView.snp.makeConstraints { make in
-//            make.verticalEdges.equalToSuperview()
-//            make.leading.equalTo(leftView.snp.trailing).offset(10)
-//            make.trailing.equalToSuperview().offset(-16)
-//        }
-        
-        
         heartImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         heartImageView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
@@ -128,19 +99,11 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         storyItem = row
         titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
         playTimeLabel.text = row.convertTime
-        if let url = URL(string: row.imageURL) {
-            thumbImageView.kf.setImage(
-                with: url,
-                placeholder: UIImage(named: "default_img"),
-                options: [.transition(.fade(1)), .forceTransition]
-            )
-        }
+        thumbImageView.addImage(url: row.imageURL)
         heartImageView.addConfigImage(image: row.isFavorite ? .heartFill : .heart, configuration: .init(pointSize: 24, weight: .medium))
-    }
-    
-    func changePlayItemColor() {
-        titleLabel.textColor = .subGreen
-        playTimeLabel.textColor = .subGreen
+        
+        titleLabel.textColor = row.isPlaying ? .subGreen : .whiteOpacity50
+        playTimeLabel.textColor = row.isPlaying ? .subGreen : .whiteOpacity50
     }
     
 }

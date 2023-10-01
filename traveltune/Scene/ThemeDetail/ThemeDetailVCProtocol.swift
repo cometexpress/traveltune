@@ -11,4 +11,5 @@ protocol ThemeDetailVCProtocol: AnyObject {
     func backButtonClicked()
     func infoButtonClicked()
     func cellHeartButtonClicked(item: StoryItem)
+    func didSelectItemAt(item: StoryItem)
 }

@@ -145,7 +145,6 @@ final class ThemeDetailView: BaseView {
             make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(self.snp.height).multipliedBy(0.13)
         }
-
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
@@ -178,6 +177,12 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
         }
         cell.configCell(row: row)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(#function)
+        guard let item = viewModel?.stories.value[indexPath.item] else { return }
+        themeDetailVCProtocol?.didSelectItemAt(item: item)
     }
     
     // HeaderView 주석처리

@@ -26,8 +26,7 @@ final class PlayerBottomView: UIView {
     }
     
     private lazy var playAndPauseImageView = AudioImageView(frame: .zero).setup { view in
-        let configuration = UIImage.SymbolConfiguration(pointSize: 55, weight: .black)
-        view.addConfigImage(image: .playFill, configuration: configuration)
+        view.addConfigImage(image: .playFill, configuration: .init(pointSize: 50, weight: .black))
         let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseStoryClicked))
         view.addGestureRecognizer(tap)
     }
@@ -38,14 +37,14 @@ final class PlayerBottomView: UIView {
         view.addGestureRecognizer(tap)
     }
     
-    lazy var thumbImageView = UIImageView().setup { view in
+    lazy var thumbImageView = ThumbnailImageView(frame: .zero).setup { view in
         view.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(nextStoryClicked))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(thumbImageViewClicked))
         view.addGestureRecognizer(tap)
     }
     
     let titleLabel = UILabel().setup { view in
-        view.text = "이야기를 선택해주세요"
+        view.text = Strings.Common.selectPlayStory
         view.textColor = .whiteOpacity50
         view.textAlignment = .center
         view.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
@@ -79,13 +78,19 @@ final class PlayerBottomView: UIView {
     
     func updateData(title: String, thumbnail: String) {
         titleLabel.text = title
-        if let url = URL(string: thumbnail) {
-            thumbImageView.kf.setImage(
-                with: url,
-                placeholder: UIImage(named: "default_img"),
-                options: [.transition(.fade(1)), .forceTransition]
-            )
+        if thumbnail.isEmpty {
+            thumbImageView.image = .defaultImg
+        } else {
+            thumbImageView.addImage(url: thumbnail)
         }
+        playAndPauseImageView.addConfigImage(image: .pauseFill, configuration: .init(pointSize: 50, weight: .black))
+    }
+    
+    func resetData() {
+        titleLabel.text = Strings.Common.selectPlayStory
+        playAndPauseImageView.addConfigImage(image: .playFill, configuration: .init(pointSize: 50, weight: .black))
+        thumbImageView.image = nil
+        audioSlider.value = 0
     }
     
     private func configureHierarchy() {
@@ -100,7 +105,7 @@ final class PlayerBottomView: UIView {
     
     private func configureLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(4)
+            make.top.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview()
         }
         
@@ -131,7 +136,6 @@ final class PlayerBottomView: UIView {
             make.size.equalTo(40)
         }
         
-        thumbImageView.backgroundColor = .yellow
         thumbImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(12)
             make.centerY.equalToSuperview()

@@ -37,14 +37,13 @@ final class LocalThemeStoryRepository: RealmProtocol {
     }
     
     // 리스트 한번에 추가하기
-    func createAll(_ items: [StoryItem], completionHandler: () -> Void) {
+    func createAll(_ items: [StoryItem], errorHandler: () -> Void) {
         do {
             try realm?.write {
                 realm?.add(items)
-                completionHandler()
             }
         } catch {
-            completionHandler()
+            errorHandler()
         }
     }
     

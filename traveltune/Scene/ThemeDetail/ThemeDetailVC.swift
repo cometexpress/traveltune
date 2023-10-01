@@ -14,6 +14,10 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     var themeStory: ThemeStory?
     private let viewModel = ThemeDetailViewModel()
     
+    deinit {
+        AVPlayerManager.shared.removePlayTimeObserver()
+    }
+    
     override func configureVC() {
         mainView.themeDetailVCProtocol = self
         mainView.playerBottomView.playerBottomProtocol = self
@@ -37,9 +41,6 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             name: Notification.Name.AVPlayerItemDidPlayToEndTime,
             object: nil
         )
-        
-        //        let testURL = URL(string: "https://sfj608538-sfj608538.ktcdn.co.kr/file/audio/56/7237.mp3")!
-        
     }
     
     private func bindData() {
@@ -54,6 +55,12 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     @objc func playingMusicFinish(_ notification: Notification) {
         //필요한 정보나 객체가 있으면 object를 통해서 받아서 이용
         print("재생이 완료되었어요")
+        AVPlayerManager.shared.stop()
+        mainView.playerBottomView.resetData()
+        viewModel.stories.value = viewModel.stories.value.map { 
+            $0.isPlaying = false
+            return $0
+        }
     }
 }
 
@@ -68,6 +75,8 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     
     func playAndPauseClicked() {
         print("재생재생재생")
+        // TODO: 재생 중일 떄 아닐 때 구분 필요
+        
     }
     
     func thumbImageClicked() {
@@ -88,26 +97,43 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         print("상세 내용 보는 기능")
     }
     
-//    func playAndPauseButtonClicked() {
-//        print("재생 or 일시정지 클릭")
-//        let url = viewModel.stories.value.first?.audioURL
-//        guard let url, let testURL = URL(string: url) else { return }
-//        AVPlayerManager.shared.play(url: testURL)
-//    }
-    
-//    func sliderValueChanged(value: Float) {
-//        guard let duration = AVPlayerManager.shared.player.currentItem?.duration else { return }
-//        let value = Float64(value) * CMTimeGetSeconds(duration)
-//        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
-//        AVPlayerManager.shared.player.seek(to: seekTime)
-//    }
-    
     func cellHeartButtonClicked(item: StoryItem) {
         if item.isFavorite {
             viewModel.deleteFavoriteStory(item: item)
         } else {
             viewModel.addFavoriteStory(item: item)
         }
+    }
+    
+    func didSelectItemAt(item: StoryItem) {
+        viewModel.stories.value = viewModel.stories.value.map {
+            $0.isPlaying = false
+            if $0 == item {
+                $0.isPlaying = !item.isPlaying
+            }
+            return $0
+        }
+        
+        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first,
+            let audioURL = URL(string: playItem.audioURL) else {
+            AVPlayerManager.shared.stop()
+            self.mainView.playerBottomView.resetData()
+            return
+        }
+        
+        AVPlayerManager.shared.removePlayTimeObserver()
+        AVPlayerManager.shared.play(url: audioURL)
+        AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
+            let seconds = String(format: "%02d", Int(playTime) % 60)
+            let minutes = String(format: "%02d", Int(playTime / 60))
+            print("interval = \(interval)")
+            print("\(minutes):\(seconds)")
+            self.mainView.playerBottomView.audioSlider.value = interval
+        }
+        self.mainView.playerBottomView.updateData(
+            title: playItem.audioTitle.isEmpty ? playItem.title : playItem.audioTitle,
+            thumbnail: playItem.imageURL
+        )
     }
 }
 

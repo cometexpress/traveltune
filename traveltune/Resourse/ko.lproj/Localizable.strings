@@ -9,6 +9,7 @@
 // 공통
 "common_play" = "play";
 "common_ok" = "확인";
+"select_play_story" = "이야기를 선택해주세요";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";
@@ -28,9 +29,9 @@
 "theme_temple" = "사찰";
 "theme_bukchon" = "북촌골목여행";
 
-// 테마에서 단어만 떼서 사용 - 최대한 많이 검색되게하기 위함
+// 테마에서 단어만 떼서 사용 - 최대한 많이 검색되게하기 위해 단어 최대한 줄이기
 "theme_cheonggyecheon_search_keyword" = "청계천";
-"theme_market_search_keyword" = "전통시장";
+"theme_market_search_keyword" = "시장";
 "theme_history_search_keyword" = "마을";
 "theme_museum_search_keyword" = "박물관";
 "theme_temple_search_keyword" = "사찰";
