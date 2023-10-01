@@ -12,6 +12,7 @@ final class AudioUISlider: UISlider {
     override init(frame: CGRect) {
         super.init(frame: frame)
         config()
+        isUserInteractionEnabled = false
     }
     
     required init?(coder: NSCoder) {
@@ -26,10 +27,12 @@ final class AudioUISlider: UISlider {
         minimumValue = 0
         minimumTrackTintColor = .primary
         maximumTrackTintColor = .translucent
+        setThumbImage(UIImage(), for: .normal)
         
-        let configuration = UIImage.SymbolConfiguration(pointSize: 18)
-        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
-        setThumbImage(image, for: .normal)
-        setThumbImage(image, for: .highlighted)
+//        let configuration = UIImage.SymbolConfiguration(pointSize: 18)
+//        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+//        setThumbImage(image, for: .normal)
+//        setThumbImage(image, for: .highlighted)
     }
+    
 }

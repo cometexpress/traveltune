@@ -22,8 +22,7 @@ final class AudioImageView: UIImageView {
         self.image = image.withTintColor(.whiteOpacity50, renderingMode: .alwaysOriginal)
     }
     
-    func addImageInCell(image: UIImage) {
-        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
+    func addConfigImage(image: UIImage, configuration: UIImage.SymbolConfiguration) {
         addImage(image: image.withConfiguration(configuration))
     }
     

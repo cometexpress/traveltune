@@ -50,6 +50,7 @@ final class ThemeDetailView: BaseView {
         frame: .zero,
         collectionViewLayout: self.collectionViewLayout()
     ).setup { view in
+        view.alwaysBounceVertical = true
         view.showsVerticalScrollIndicator = false
         view.register(ThemeDetailCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier)
         view.register(StoryCell.self, forCellWithReuseIdentifier: StoryCell.identifier)
@@ -57,6 +58,8 @@ final class ThemeDetailView: BaseView {
         view.dataSource = self
         view.isHidden = true
     }
+    
+    let playerBottomView = PlayerBottomView()
     
     @objc private func buttonClicked(_ sender: UIButton) {
         switch sender {
@@ -81,6 +84,7 @@ final class ThemeDetailView: BaseView {
         topView.addSubview(infoButton)
         
         addSubview(collectionView)
+        addSubview(playerBottomView)
 //        vibrancyEffectView.contentView.addSubview(collectionView)
     }
     
@@ -128,10 +132,18 @@ final class ThemeDetailView: BaseView {
             make.top.equalTo(safeAreaLayoutGuide)
         }
         
+        collectionView.setContentHuggingPriority(.required, for: .vertical)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(emptyTopView.snp.bottom)
-            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(playerBottomView.snp.top)
             make.horizontalEdges.equalToSuperview()
+        }
+        
+        playerBottomView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        playerBottomView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.bottom.equalToSuperview().inset(40)
+            make.height.equalTo(self.snp.height).multipliedBy(0.13)
         }
 
     }
@@ -140,7 +152,7 @@ final class ThemeDetailView: BaseView {
         let width: CGFloat = UIScreen.main.bounds.width
         let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
         return UICollectionViewFlowLayout().collectionViewLayout(
-            headerSize: CGSize(width: width, height: headerHeight),
+            headerSize: .zero,
             itemSize: CGSize(width: width, height: 60),
 //            itemSize: CGSize(width: width, height: headerHeight / 3.4),
             sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
@@ -164,56 +176,48 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
         cell.heartButtonClicked = { [weak self] storyItem in
             self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: storyItem)
         }
-        
-        cell.playButtonClicked = { [weak self] in
-            self?.themeDetailVCProtocol?.cellPlayButtonClicked()
-        }
-        
-        cell.contentClicked = { [weak self] in
-            self?.themeDetailVCProtocol?.cellContentClicked()
-        }
-        
         cell.configCell(row: row)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        switch kind {
-        case UICollectionView.elementKindSectionHeader:
-            guard let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
-                return UICollectionReusableView()
-            }
-            
-            headerView.previousClicked = { [weak self] in
-                self?.themeDetailVCProtocol?.previousButtonClicked()
-            }
-            
-            headerView.nextClicked = { [weak self] in
-                self?.themeDetailVCProtocol?.nextButtonClicked()
-            }
-            
-            headerView.playAndPauseClicked = { [weak self] in
-                self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
-            }
-            
-            headerView.sliderValueChanged = { [weak self] sliderValue in
-                self?.themeDetailVCProtocol?.sliderValueChanged(value: sliderValue)
-            }
-            
-            let currentItem = viewModel?.stories.value.filter { $0.isPlaying == true }.first
-            guard let currentItem else {
-                if let item = viewModel?.stories.value.first {
-                    headerView.configView(item: item)
-                }
-                return headerView
-            }
-            headerView.configView(item: currentItem)
-            return headerView
-        default:
-            assert(false, "Invalid element type")
-        }
-    }    
+    // HeaderView 주석처리
+//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+//        
+//        switch kind {
+//        case UICollectionView.elementKindSectionHeader:
+//            guard let headerView = collectionView.dequeueReusableSupplementaryView(
+//                    ofKind: kind,
+//                    withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
+//                return UICollectionReusableView()
+//            }
+//            
+//            headerView.previousClicked = { [weak self] in
+//                self?.themeDetailVCProtocol?.previousButtonClicked()
+//            }
+//            
+//            headerView.nextClicked = { [weak self] in
+//                self?.themeDetailVCProtocol?.nextButtonClicked()
+//            }
+//            
+//            headerView.playAndPauseClicked = { [weak self] in
+//                self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
+//            }
+//            
+//            headerView.sliderValueChanged = { [weak self] sliderValue in
+//                self?.themeDetailVCProtocol?.sliderValueChanged(value: sliderValue)
+//            }
+//            
+//            let currentItem = viewModel?.stories.value.filter { $0.isPlaying == true }.first
+//            guard let currentItem else {
+//                if let item = viewModel?.stories.value.first {
+//                    headerView.configView(item: item)
+//                }
+//                return headerView
+//            }
+//            headerView.configView(item: currentItem)
+//            return headerView
+//        default:
+//            assert(false, "Invalid element type")
+//        }
+//    }    
 }

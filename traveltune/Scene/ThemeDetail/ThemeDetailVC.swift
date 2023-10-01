@@ -16,6 +16,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     
     override func configureVC() {
         mainView.themeDetailVCProtocol = self
+        mainView.playerBottomView.playerBottomProtocol = self
         mainView.viewModel = viewModel
         
         guard let themeStory else { return }
@@ -56,6 +57,25 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     }
 }
 
+extension ThemeDetailVC: PlayerBottomProtocol {
+    func previousClicked() {
+        print("이전 이야기")
+    }
+    
+    func nextClicked() {
+        print("다음 이야기")
+    }
+    
+    func playAndPauseClicked() {
+        print("재생재생재생")
+    }
+    
+    func thumbImageClicked() {
+        print("이미지 클릭")
+    }
+    
+}
+
 extension ThemeDetailVC: ThemeDetailVCProtocol {
     
     func backButtonClicked() {
@@ -68,27 +88,19 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         print("상세 내용 보는 기능")
     }
     
-    func previousButtonClicked() {
-        print("이전으로 스킵")
-    }
+//    func playAndPauseButtonClicked() {
+//        print("재생 or 일시정지 클릭")
+//        let url = viewModel.stories.value.first?.audioURL
+//        guard let url, let testURL = URL(string: url) else { return }
+//        AVPlayerManager.shared.play(url: testURL)
+//    }
     
-    func nextButtonClicked() {
-        print("다음으로 스킵")
-    }
-    
-    func playAndPauseButtonClicked() {
-        print("재생 or 일시정지 클릭")
-        let url = viewModel.stories.value.first?.audioURL
-        guard let url, let testURL = URL(string: url) else { return }
-        AVPlayerManager.shared.play(url: testURL)
-    }
-    
-    func sliderValueChanged(value: Float) {
-        guard let duration = AVPlayerManager.shared.player.currentItem?.duration else { return }
-        let value = Float64(value) * CMTimeGetSeconds(duration)
-        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
-        AVPlayerManager.shared.player.seek(to: seekTime)
-    }
+//    func sliderValueChanged(value: Float) {
+//        guard let duration = AVPlayerManager.shared.player.currentItem?.duration else { return }
+//        let value = Float64(value) * CMTimeGetSeconds(duration)
+//        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
+//        AVPlayerManager.shared.player.seek(to: seekTime)
+//    }
     
     func cellHeartButtonClicked(item: StoryItem) {
         if item.isFavorite {
@@ -96,15 +108,6 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         } else {
             viewModel.addFavoriteStory(item: item)
         }
-    }
-    
-    func cellPlayButtonClicked() {
-        print("셀 재생버튼")
-    }
-    
-    func cellContentClicked() {
-        // TODO: 스크립트 보여주기
-        print("셀 레이블 영역 클릭")
     }
 }
 

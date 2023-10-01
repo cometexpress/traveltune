@@ -10,12 +10,5 @@ import Foundation
 protocol ThemeDetailVCProtocol: AnyObject {
     func backButtonClicked()
     func infoButtonClicked()
-    func previousButtonClicked()
-    func nextButtonClicked()
-    func playAndPauseButtonClicked()
-    func cellContentClicked()
     func cellHeartButtonClicked(item: StoryItem)
-    func cellPlayButtonClicked()
-    func sliderValueChanged(value: Float)
-    
 }

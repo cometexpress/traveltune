@@ -17,17 +17,17 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.alignment = .leading
         view.distribution = .equalSpacing
         view.spacing = 8
-        view.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(labelContentClicked))
-        view.addGestureRecognizer(tap)
+//        view.isUserInteractionEnabled = true
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(labelContentClicked))
+//        view.addGestureRecognizer(tap)
     }
     
-    private let buttonStackView = UIStackView().setup { view in
-        view.axis = .horizontal
-        view.alignment = .center
-        view.distribution = .equalSpacing
-        view.spacing = 4
-    }
+//    private let buttonStackView = UIStackView().setup { view in
+//        view.axis = .horizontal
+//        view.alignment = .center
+//        view.distribution = .equalSpacing
+//        view.spacing = 4
+//    }
     
     private let titleLabel = UILabel().setup { view in
         view.textColor = .whiteOpacity50
@@ -46,12 +46,6 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.layer.cornerRadius = 8
     }
     
-    private lazy var playImageView = AudioImageView(frame: .zero).setup { view in
-        view.addImageInCell(image: .playFill)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(playClicked))
-        view.addGestureRecognizer(tap)
-    }
-    
     private lazy var heartImageView = AudioImageView(frame: .zero).setup { view in
 //        view.addImageInCell(image: .heart)
         let tap = UITapGestureRecognizer(target: self, action: #selector(heartClicked))
@@ -59,13 +53,13 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     }
     
     private var storyItem: StoryItem?
-    var playButtonClicked: (() -> Void)?
+//    var playButtonClicked: (() -> Void)?
     var heartButtonClicked: ((StoryItem) -> Void)?
-    var contentClicked: (() -> Void)?
+//    var contentClicked: (() -> Void)?
     
-    @objc private func playClicked() {
-        playButtonClicked?()
-    }
+//    @objc private func playClicked() {
+//        playButtonClicked?()
+//    }
    
     @objc private func heartClicked() {
         if let storyItem {
@@ -73,27 +67,28 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         }
     }
     
-    @objc private func labelContentClicked() {
-        contentClicked?()
-    }
+//    @objc private func labelContentClicked() {
+//        contentClicked?()
+//    }
     
     override func configureHierarchy() {
         contentView.addSubview(leftView)
-        contentView.addSubview(buttonStackView)
+//        contentView.addSubview(buttonStackView)
         leftView.addSubview(thumbImageView)
         leftView.addSubview(textStackView)
         textStackView.addArrangedSubview(titleLabel)
         textStackView.addArrangedSubview(playTimeLabel)
-        buttonStackView.addArrangedSubview(playImageView)
-        buttonStackView.addArrangedSubview(heartImageView)
+        contentView.addSubview(heartImageView)
+//        buttonStackView.addArrangedSubview(heartImageView)
     }
     
     override func configureLayout() {
         leftView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        heartImageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         leftView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview().inset(4)
             make.leading.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.74)
+            make.width.equalToSuperview().multipliedBy(0.83)
         }
         
         thumbImageView.snp.makeConstraints { make in
@@ -115,18 +110,17 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
             make.bottom.equalToSuperview()
         }
         
-        buttonStackView.snp.makeConstraints { make in
-            make.verticalEdges.equalToSuperview()
-            make.leading.equalTo(leftView.snp.trailing).offset(10)
-            make.trailing.equalToSuperview().offset(-10)
-        }
+//        buttonStackView.snp.makeConstraints { make in
+//            make.verticalEdges.equalToSuperview()
+//            make.leading.equalTo(leftView.snp.trailing).offset(10)
+//            make.trailing.equalToSuperview().offset(-16)
+//        }
         
-        playImageView.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-        }
         
+        heartImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
         heartImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
         }
     }
     
@@ -141,7 +135,7 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
                 options: [.transition(.fade(1)), .forceTransition]
             )
         }
-        heartImageView.addImageInCell(image: row.isFavorite ? .heartFill : .heart)
+        heartImageView.addConfigImage(image: row.isFavorite ? .heartFill : .heart, configuration: .init(pointSize: 24, weight: .medium))
     }
     
     func changePlayItemColor() {
