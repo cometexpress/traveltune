@@ -104,9 +104,19 @@ final class ThemeDetailViewModel {
             convertTime: item.convertTime, audioURL: item.audioURL, langCode: item.langCode,
             imageURL: item.imageURL, searchKeyword: item.searchKeyword
         )
-        
         localFavoriteStoryRepository.create(favoriteItem) {
             print(#function, " 추가 실패")
+        }
+    }
+    
+    func deleteFavoriteStory(item: StoryItem) {
+        let checkItem = localFavoriteStoryRepository.fetch()?.filter(
+            "tid == '\(item.tid)' AND tlid == '\(item.tlid)' AND stid == '\(item.stid)' AND stlid == '\(item.stlid)' AND searchKeyword == '\(item.searchKeyword)'"
+        ).first
+        if let checkItem {
+            localFavoriteStoryRepository.delete(checkItem) {
+                print(#function, " 삭제 실패")
+            }
         }
     }
     

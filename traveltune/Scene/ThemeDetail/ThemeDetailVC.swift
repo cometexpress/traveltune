@@ -64,8 +64,13 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     }
     
     func cellHeartButtonClicked(item: StoryItem) {
-        print("셀 하트버튼")
-        viewModel.addFavoriteStory(item: item)
+        if item.isFavorite {
+            print("하트 삭제")
+            viewModel.deleteFavoriteStory(item: item)
+        } else {
+            print("하트 추가")
+            viewModel.addFavoriteStory(item: item)
+        }
     }
     
     func cellPlayButtonClicked() {
