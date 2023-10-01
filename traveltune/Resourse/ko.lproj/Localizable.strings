@@ -10,6 +10,8 @@
 "common_play" = "play";
 "common_ok" = "확인";
 "select_play_story" = "이야기를 선택해주세요";
+"error_first_story" = "첫번째 이야기에요";
+"error_last_story" = "마지막 이야기에요";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";

@@ -59,7 +59,9 @@ final class ThemeDetailView: BaseView {
         view.isHidden = true
     }
     
-    let playerBottomView = PlayerBottomView()
+    let playerBottomView = PlayerBottomView().setup { view in
+        view.isHidden = true
+    }
     
     @objc private func buttonClicked(_ sender: UIButton) {
         switch sender {

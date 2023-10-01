@@ -21,6 +21,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     }
     
     override func configureVC() {
+        LoadingIndicator.show()
         mainView.themeDetailVCProtocol = self
         mainView.playerBottomView.playerBottomProtocol = self
         mainView.viewModel = viewModel
@@ -32,6 +33,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.mainView.collectionView.isHidden = false
+            self.mainView.playerBottomView.isHidden = false
         }
         
         bindData()
@@ -50,6 +52,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
         viewModel.stories.bind { items in
             self.mainView.collectionView.reloadData()
+            LoadingIndicator.hide()
         }
     }
     
@@ -64,11 +67,57 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             return $0
         }
     }
+    
+    private func audioPlay(url: URL) {
+        AVPlayerManager.shared.removePlayTimeObserver()
+        AVPlayerManager.shared.play(url: url)
+        AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
+            let seconds = String(format: "%02d", Int(playTime) % 60)
+            let minutes = String(format: "%02d", Int(playTime / 60))
+            print("interval = \(interval)")
+            print("\(minutes):\(seconds)")
+            self.mainView.playerBottomView.audioSlider.value = interval
+        }
+    }
 }
 
 extension ThemeDetailVC: PlayerBottomProtocol {
+    
     func previousClicked() {
         print("이전 이야기")
+        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+            AVPlayerManager.shared.stop()
+            self.mainView.playerBottomView.resetData()
+            return
+        }
+        
+        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem),
+              let audioURL = URL(string: playItem.audioURL) else {
+            return
+        }
+        
+        if currentIndex == 0 {
+            showToast(msg: "첫번째 이야기입니다")
+        } else {
+            let previousItemIndex = currentIndex - 1
+            let previousPlayItem = viewModel.stories.value[previousItemIndex]
+            
+            viewModel.stories.value = viewModel.stories.value.map {
+                $0.isPlaying = false
+                if $0 == previousPlayItem {
+                    $0.isPlaying = !previousPlayItem.isPlaying
+                }
+                return $0
+            }
+            
+            audioPlay(url: audioURL)
+            self.mainView.playerBottomView.updateData(
+                title: previousPlayItem.audioTitle.isEmpty ? previousPlayItem.title : previousPlayItem.audioTitle,
+                thumbnail: previousPlayItem.imageURL
+            )
+            
+        }
+        
     }
     
     func nextClicked() {
@@ -76,6 +125,8 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     }
     
     func playAndPauseClicked() {
+        // StoryItem 안의 isPlaying 값은 재생시작 때 관리
+        // 일시정지할 때는 viewModel.stories.value 의 StoryItem 안의 isPlaying 값 그대로 true 로 유지
         switch AVPlayerManager.shared.status {
         case .playing:  // 재생중일 때 누르면 할 일
             AVPlayerManager.shared.pause()
@@ -99,6 +150,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     func backButtonClicked() {
         mainView.topView.isHidden = true
         mainView.collectionView.isHidden = true
+        mainView.playerBottomView.isHidden = true
         dismiss(animated: true)
     }
     
@@ -129,16 +181,8 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             self.mainView.playerBottomView.resetData()
             return
         }
-        
-        AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(url: audioURL)
-        AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
-            let seconds = String(format: "%02d", Int(playTime) % 60)
-            let minutes = String(format: "%02d", Int(playTime / 60))
-            print("interval = \(interval)")
-            print("\(minutes):\(seconds)")
-            self.mainView.playerBottomView.audioSlider.value = interval
-        }
+    
+        audioPlay(url: audioURL)
         self.mainView.playerBottomView.updateData(
             title: playItem.audioTitle.isEmpty ? playItem.title : playItem.audioTitle,
             thumbnail: playItem.imageURL

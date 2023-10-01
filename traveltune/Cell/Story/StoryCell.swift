@@ -17,11 +17,11 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.axis = .vertical
         view.alignment = .leading
         view.distribution = .equalSpacing
-        view.spacing = 8
+        view.spacing = 4
     }
     
     private let titleLabel = UILabel().setup { view in
-        view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
     }
     
     private let playTimeLabel = UILabel().setup { view in
