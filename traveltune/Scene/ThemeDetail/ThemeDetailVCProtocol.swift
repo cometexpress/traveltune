@@ -16,5 +16,6 @@ protocol ThemeDetailVCProtocol: AnyObject {
     func cellContentClicked()
     func cellHeartButtonClicked(item: StoryItem)
     func cellPlayButtonClicked()
+    func sliderValueChanged(value: Float)
     
 }

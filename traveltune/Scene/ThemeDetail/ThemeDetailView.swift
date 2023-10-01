@@ -198,10 +198,19 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
             headerView.playAndPauseClicked = { [weak self] in
                 self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
             }
-                    
-            if let item = viewModel?.stories.value.first {
-                headerView.configView(item: item)
+            
+            headerView.sliderValueChanged = { [weak self] sliderValue in
+                self?.themeDetailVCProtocol?.sliderValueChanged(value: sliderValue)
             }
+            
+            let currentItem = viewModel?.stories.value.filter { $0.isPlaying == true }.first
+            guard let currentItem else {
+                if let item = viewModel?.stories.value.first {
+                    headerView.configView(item: item)
+                }
+                return headerView
+            }
+            headerView.configView(item: currentItem)
             return headerView
         default:
             assert(false, "Invalid element type")

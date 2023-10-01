@@ -141,7 +141,6 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
                 options: [.transition(.fade(1)), .forceTransition]
             )
         }
-        print(row.audioTitle, row.isFavorite)
         heartImageView.addImageInCell(image: row.isFavorite ? .heartFill : .heart)
     }
     

@@ -44,6 +44,8 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     var nextClicked: (() -> Void)?
     var playAndPauseClicked: (() -> Void)?
     
+    var sliderValueChanged: ((Float)-> Void)?
+    
     @objc func previousStoryClicked() {
         previousClicked?()
     }
@@ -57,10 +59,9 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
     }
     
     @objc func didChangedProgressBar(_ sender: UISlider) {
-        //        guard let duration = player?.currentItem?.duration else { return }
-        //        let value = Float64(sender.value) * CMTimeGetSeconds(duration)
-        //        let seekTime = CMTime(value: CMTimeValue(value), timescale: 1)
-        //        player?.seek(to: seekTime)
+        // 유저가 직접 손으로 변경했을 때 오디오 위치 조정 필요
+        sliderValueChanged?(sender.value)
+        print("슬라이더 = ",sender.value)
     }
     
     override init(frame: CGRect) {
@@ -127,5 +128,8 @@ final class ThemeDetailCollectionHeaderView: UICollectionReusableView {
             placeholder: UIImage(named: "default_img"),
             options: [.transition(.fade(1)), .forceTransition]
         )
+        
+        let playTime = Float(Int(item.playTime) ?? 0)
+        slider.maximumValue = playTime
     }
 }

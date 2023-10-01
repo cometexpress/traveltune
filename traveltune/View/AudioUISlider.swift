@@ -23,6 +23,7 @@ final class AudioUISlider: UISlider {
     }
     
     private func config() {
+        minimumValue = 0
         minimumTrackTintColor = .primary
         maximumTrackTintColor = .translucent
         
