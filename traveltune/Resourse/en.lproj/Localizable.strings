@@ -36,6 +36,7 @@
 "theme_temple_search_keyword" = "Temple";
 "theme_bukchon_search_keyword" = "Bukchon";
 
+// 테마와 완전히 똑같은 것
 //"theme_cheonggyecheon_search_keyword" = "The Cheonggyecheon bridge";
 //"theme_market_search_keyword" = "Traditional Market";
 //"theme_history_search_keyword" = "History Village of Korea";
@@ -50,3 +51,22 @@
 "theme_museum_content" = "과거 박물관의 역할은 전시품을 보존하고 이용객들이 관람할 수 있도록 전시하는 기능에 한정되기 마련이었다. 그러나 오늘날 박물관은 전시와 관련된 프로그램을 체험하거나 휴식을 취하기도 하고 다양한 컨텐츠를 즐길 수 있는 공간으로 변모하고 있다.";
 "theme_temple_content" = "사찰의 구조물들에는 각각 의미가 있다. 일주문에서 시작하는 사찰의 경계를 통해 세속의 때를 벗고 깨달음의 길로 나아갈 수 있게 점층적인 구조를 가지고 있다. 한국의 전통적 사찰구조는 탑을 중심으로 배치되어 있다. 건축물들의 이름은 그곳에 모셔진 부처님에 따라 다르게 부르고 있다.";
 "theme_bukchon_content" = "북촌한옥마을은 600년 전부터 양반층이 살던 곳으로 지금도 실제 주민들이 거주하며 한옥마을을 보존하고 있다. 북촌한옥마을에는 중요한 역사적 자산들이 남아있으며, 한옥의 아름다움이 돋보이는 거리가 많아 매력적인 관광지로 손꼽힌다.";
+
+// 지역
+"seoul" = "seoul";
+"gyeonggi" = "gyeonggi";
+"incheon" = "incheon";
+"gangwon" = "gangwon";
+"chungbuk" = "chungbuk";
+"chungnam" = "chungnam";
+"sejong" = "sejong";
+"daejeon" = "daejeon";
+"gyeongbuk" = "gyeongbuk";
+"gyeongnam" = "gyeongnam";
+"daegu" = "daegu";
+"ulsan" = "ulsan";
+"busan" = "busan";
+"jeonbuk" = "jeonbuk";
+"jeonnam" = "jeonnam";
+"gwangju" = "gwangju";
+"jeju" = "jeju";

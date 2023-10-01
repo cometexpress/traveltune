@@ -10,48 +10,35 @@ import SnapKit
 
 final class MapView: BaseView {
     
-    lazy var scrollView = {
-        let view = UIScrollView()
+    lazy var scrollView = UIScrollView().setup { view in
         view.delegate = self
         view.backgroundColor = .clear
         view.minimumZoomScale = 1.5
         view.maximumZoomScale = 3
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
-        return view
-    }()
+    }
     
-    private let containerView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .clear
-        return view
-    }()
+    private let containerView = UIView()
     
-    private let mapImageView = {
-        let view = UIImageView(frame: .zero)
+    private let mapImageView = UIImageView().setup { view in
         view.contentMode = .scaleAspectFit
         view.image = .koreaMap.withTintColor(.koreaMapTint, renderingMode: .alwaysOriginal)
-        return view
-    }()
+    }
     
-    private lazy var seoulButton = {
-        let view = RegionButton()
-        view.setRegionTitle(title: "서울")
+    private lazy var seoulButton = RegionButton().setup { view in
+        view.setRegionTitle(title: Strings.Region.seoul.uppercased())
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
-        return view
-    }()
+    }
     
-    private lazy var gyeonggiButton = {
-        let view = RegionButton()
-        view.setRegionTitle(title: "경기")
+    private lazy var gyeonggiButton = RegionButton().setup { view in
+        view.setRegionTitle(title: Strings.Region.gyeonggi.uppercased())
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
-        return view
-    }()
+    }
+    
     
     @objc func regionButtonClicked(_ sender: UIButton) {
         print(sender.titleLabel?.text)
-        let numbers = [0]
-        let _ = numbers[1]
     }
     
     override func configureHierarchy() {

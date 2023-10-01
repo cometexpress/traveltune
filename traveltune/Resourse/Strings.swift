@@ -46,4 +46,24 @@ struct Strings {
         static let templeContent = "theme_temple_content".localized  
         static let bukchonContent = "theme_bukchon_content".localized
     }
+    
+    struct Region {
+        static let seoul = "seoul".localized
+        static let gyeonggi = "gyeonggi".localized
+        static let incheon = "incheon".localized
+        static let gangwon = "gangwon".localized
+        static let chungbuk = "chungbuk".localized
+        static let chungnam = "chungnam".localized
+        static let sejong = "sejong".localized
+        static let daejeon = "daejeon".localized
+        static let gyeongbuk = "gyeongbuk".localized
+        static let gyeongnam = "gyeongnam".localized
+        static let daegu = "daegu".localized
+        static let ulsan = "ulsan".localized
+        static let busan = "busan".localized
+        static let jeonbuk = "jeonbuk".localized
+        static let jeonnam = "jeonnam".localized
+        static let gwangju = "gwangju".localized
+        static let jeju = "jeju".localized
+    }
 }

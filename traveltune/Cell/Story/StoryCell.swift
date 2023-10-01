@@ -84,25 +84,40 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
             make.width.equalToSuperview().multipliedBy(0.74)
         }
         
+        thumbImageView.snp.makeConstraints { make in
+            make.size.equalTo(leftView.snp.height)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
         textStackView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(thumbImageView.snp.trailing)
+            make.leading.equalTo(thumbImageView.snp.trailing).offset(10)
             make.trailing.equalToSuperview()
         }
         
-        buttonStackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+        }
+        
+        playTimeLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+        }
+        
         buttonStackView.snp.makeConstraints { make in
             make.verticalEdges.equalToSuperview()
             make.leading.equalTo(leftView.snp.trailing).offset(10)
             make.trailing.equalToSuperview().offset(-10)
         }
         
-        thumbImageView.setContentCompressionResistancePriority(.required, for: .horizontal)
-        thumbImageView.snp.makeConstraints { make in
-            make.size.equalTo(leftView.snp.height)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalTo(textStackView.snp.leading).offset(-10)
+        playImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview()
         }
+        
+        heartImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+        }
+        
+        
     }
     
     override func configCell(row: StoryItem) {
