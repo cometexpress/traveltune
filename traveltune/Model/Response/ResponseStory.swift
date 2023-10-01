@@ -72,4 +72,12 @@ final class StoryItem: Object, Decodable {
         case imageURL = "imageUrl"
         case createdtime, modifiedtime
     }
+    
+    override var hash: Int {
+        return _id.hashValue
+    }
+    
+    static func == (lhs: StoryItem, rhs: StoryItem) -> Bool {
+        return lhs._id == rhs._id
+    }
 }

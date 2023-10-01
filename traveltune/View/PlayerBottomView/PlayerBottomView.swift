@@ -47,7 +47,7 @@ final class PlayerBottomView: UIView {
         view.text = Strings.Common.selectPlayStory
         view.textColor = .whiteOpacity50
         view.textAlignment = .center
-        view.font = .monospacedSystemFont(ofSize: 12, weight: .regular)
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .semibold)
     }
     
     @objc private func previousStoryClicked() {

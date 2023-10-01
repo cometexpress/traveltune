@@ -47,11 +47,20 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         )
     }
     
+//    private func configureSnapshot(items: [StoryItem]) {
+//        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
+//        snapshot.appendSections([0])
+//        snapshot.appendItems(items)
+//        self.mainView.dataSource.apply(snapshot, animatingDifferences: true)
+//    }
+    
     private func bindData() {
         guard let themeStory else { return }
         viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
         viewModel.stories.bind { items in
-            self.mainView.collectionView.reloadData()
+            self.mainView.configureSnapshot(items: items)
+//            self.configureSnapshot(items: items)
+//            self.mainView.collectionView.reloadData()
             LoadingIndicator.hide()
         }
     }
@@ -74,8 +83,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
             let seconds = String(format: "%02d", Int(playTime) % 60)
             let minutes = String(format: "%02d", Int(playTime / 60))
-            print("interval = \(interval)")
-            print("\(minutes):\(seconds)")
+//            print("interval = \(interval)")
+//            print("\(minutes):\(seconds)")
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }
@@ -90,8 +99,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             return
         }
         
-        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem),
-              let audioURL = URL(string: playItem.audioURL) else {
+        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem) else {
             return
         }
         
@@ -101,19 +109,21 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = viewModel.stories.value[previousItemIndex]
             
-            viewModel.stories.value = viewModel.stories.value.map {
-                $0.isPlaying = false
-                if $0 == previousPlayItem {
-                    $0.isPlaying = !previousPlayItem.isPlaying
+            if let audioURL = URL(string: previousPlayItem.audioURL) {
+                audioPlay(url: audioURL)
+                self.mainView.playerBottomView.updateData(
+                    title: previousPlayItem.audioTitle.isEmpty ? previousPlayItem.title : previousPlayItem.audioTitle,
+                    thumbnail: previousPlayItem.imageURL
+                )
+                
+                viewModel.stories.value = viewModel.stories.value.map {
+                    $0.isPlaying = false
+                    if $0 == previousPlayItem {
+                        $0.isPlaying = !previousPlayItem.isPlaying
+                    }
+                    return $0
                 }
-                return $0
             }
-            
-            audioPlay(url: audioURL)
-            self.mainView.playerBottomView.updateData(
-                title: previousPlayItem.audioTitle.isEmpty ? previousPlayItem.title : previousPlayItem.audioTitle,
-                thumbnail: previousPlayItem.imageURL
-            )
         }
     }
     
@@ -124,8 +134,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             return
         }
         
-        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem),
-              let audioURL = URL(string: playItem.audioURL) else {
+        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem) else {
             return
         }
         
@@ -135,19 +144,21 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             let nextItemIndex = currentIndex + 1
             let nextPlayItem = viewModel.stories.value[nextItemIndex]
             
-            viewModel.stories.value = viewModel.stories.value.map {
-                $0.isPlaying = false
-                if $0 == nextPlayItem {
-                    $0.isPlaying = !nextPlayItem.isPlaying
+            if let audioURL = URL(string: nextPlayItem.audioURL) {
+                audioPlay(url: audioURL)
+                self.mainView.playerBottomView.updateData(
+                    title: nextPlayItem.audioTitle.isEmpty ? nextPlayItem.title : nextPlayItem.audioTitle,
+                    thumbnail: nextPlayItem.imageURL
+                )
+                
+                viewModel.stories.value = viewModel.stories.value.map {
+                    $0.isPlaying = false
+                    if $0 == nextPlayItem {
+                        $0.isPlaying = !nextPlayItem.isPlaying
+                    }
+                    return $0
                 }
-                return $0
             }
-            
-            audioPlay(url: audioURL)
-            self.mainView.playerBottomView.updateData(
-                title: nextPlayItem.audioTitle.isEmpty ? nextPlayItem.title : nextPlayItem.audioTitle,
-                thumbnail: nextPlayItem.imageURL
-            )
         }
     }
     

@@ -87,9 +87,8 @@ final class ThemeDetailViewModel {
                 let list = self.saveStories.map(checkFavoriteStory(item:))
                 self.stories.value.append(contentsOf: list)
             case .update(_, let deletions, let insertions, let modifications):
-                self.stories.value.removeAll()
                 let list = self.saveStories.map(checkFavoriteStory(item:))
-                self.stories.value.append(contentsOf: list)
+                self.stories.value = list
             case .error(let error):
                 print("ERROR: \(error)")
             }

@@ -10,7 +10,7 @@ import Hero
 import SnapKit
 
 final class ThemeDetailView: BaseView {
-        
+    
     weak var viewModel: ThemeDetailViewModel?
     weak var themeDetailVCProtocol: ThemeDetailVCProtocol?
     
@@ -52,12 +52,13 @@ final class ThemeDetailView: BaseView {
     ).setup { view in
         view.alwaysBounceVertical = true
         view.showsVerticalScrollIndicator = false
-        view.register(ThemeDetailCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier)
         view.register(StoryCell.self, forCellWithReuseIdentifier: StoryCell.identifier)
         view.delegate = self
-        view.dataSource = self
+        //        view.dataSource = self
         view.isHidden = true
     }
+    
+    var dataSource: UICollectionViewDiffableDataSource<Int, StoryItem>! = nil
     
     let playerBottomView = PlayerBottomView().setup { view in
         view.isHidden = true
@@ -75,7 +76,22 @@ final class ThemeDetailView: BaseView {
     
     private let topViewHeight = 50
     
+    private func configureDataSource() {
+        let cellRegistraion = UICollectionView.CellRegistration<StoryCell, StoryItem> { cell, indexPath, itemIdentifier in
+            cell.configCell(row: itemIdentifier)
+            cell.heartButtonClicked = { [weak self] in
+                self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: itemIdentifier)
+            }
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+            return collectionView.dequeueConfiguredReusableCell(using: cellRegistraion, for: indexPath, item: itemIdentifier)
+        })
+        
+    }
+    
     override func configureHierarchy() {
+        configureDataSource()
         addSubview(backgroundImageView)
         backgroundImageView.addSubview(blurredEffectView)
         addSubview(emptyTopView)
@@ -87,7 +103,15 @@ final class ThemeDetailView: BaseView {
         
         addSubview(collectionView)
         addSubview(playerBottomView)
-//        vibrancyEffectView.contentView.addSubview(collectionView)
+        //        vibrancyEffectView.contentView.addSubview(collectionView)
+    }
+    
+    func configureSnapshot(items: [StoryItem]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items, toSection: 0)        
+        dataSource.applySnapshotUsingReloadData(snapshot)
+//        dataSource.apply(snapshot)
     }
     
     override func configureLayout() {
@@ -151,80 +175,23 @@ final class ThemeDetailView: BaseView {
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
         let width: CGFloat = UIScreen.main.bounds.width
-        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
+        //        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
         return UICollectionViewFlowLayout().collectionViewLayout(
             headerSize: .zero,
             itemSize: CGSize(width: width, height: 60),
-//            itemSize: CGSize(width: width, height: headerHeight / 3.4),
+            //            itemSize: CGSize(width: width, height: headerHeight / 3.4),
             sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
             minimumLineSpacing: 2,
             minimumInteritemSpacing: 0)
     }
+    
 }
 
-extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel?.stories.value.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCell.identifier, for: indexPath) as? StoryCell,
-              let row = viewModel?.stories.value[indexPath.item] else {
-            return UICollectionViewCell()
-        }
-        
-        cell.heartButtonClicked = { [weak self] storyItem in
-            self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: storyItem)
-        }
-        cell.configCell(row: row)
-        return cell
-    }
-    
+extension ThemeDetailView: UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
         guard let item = viewModel?.stories.value[indexPath.item] else { return }
         themeDetailVCProtocol?.didSelectItemAt(item: item)
     }
-    
-    // HeaderView 주석처리
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        
-//        switch kind {
-//        case UICollectionView.elementKindSectionHeader:
-//            guard let headerView = collectionView.dequeueReusableSupplementaryView(
-//                    ofKind: kind,
-//                    withReuseIdentifier: ThemeDetailCollectionHeaderView.identifier, for: indexPath) as? ThemeDetailCollectionHeaderView else {
-//                return UICollectionReusableView()
-//            }
-//            
-//            headerView.previousClicked = { [weak self] in
-//                self?.themeDetailVCProtocol?.previousButtonClicked()
-//            }
-//            
-//            headerView.nextClicked = { [weak self] in
-//                self?.themeDetailVCProtocol?.nextButtonClicked()
-//            }
-//            
-//            headerView.playAndPauseClicked = { [weak self] in
-//                self?.themeDetailVCProtocol?.playAndPauseButtonClicked()
-//            }
-//            
-//            headerView.sliderValueChanged = { [weak self] sliderValue in
-//                self?.themeDetailVCProtocol?.sliderValueChanged(value: sliderValue)
-//            }
-//            
-//            let currentItem = viewModel?.stories.value.filter { $0.isPlaying == true }.first
-//            guard let currentItem else {
-//                if let item = viewModel?.stories.value.first {
-//                    headerView.configView(item: item)
-//                }
-//                return headerView
-//            }
-//            headerView.configView(item: currentItem)
-//            return headerView
-//        default:
-//            assert(false, "Invalid element type")
-//        }
-//    }    
+ 
 }

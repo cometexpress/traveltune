@@ -37,13 +37,10 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.addGestureRecognizer(tap)
     }
     
-    private var storyItem: StoryItem?
-    var heartButtonClicked: ((StoryItem) -> Void)?
+    var heartButtonClicked: (() -> Void)?
    
     @objc private func heartClicked() {
-        if let storyItem {
-            heartButtonClicked?(storyItem)
-        }
+        heartButtonClicked?()
     }
 
     override func prepareForReuse() {
@@ -96,7 +93,6 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     }
     
     override func configCell(row: StoryItem) {
-        storyItem = row
         titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
         playTimeLabel.text = row.convertTime
         thumbImageView.addImage(url: row.imageURL)
