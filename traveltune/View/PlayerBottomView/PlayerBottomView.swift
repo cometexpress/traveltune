@@ -45,7 +45,7 @@ final class PlayerBottomView: UIView {
     
     let titleLabel = UILabel().setup { view in
         view.text = Strings.Common.selectPlayStory
-        view.textColor = .whiteOpacity50
+        view.textColor = .txtThemeStory
         view.textAlignment = .center
         view.font = .monospacedSystemFont(ofSize: 14, weight: .semibold)
     }

@@ -98,8 +98,8 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         thumbImageView.addImage(url: row.imageURL)
         heartImageView.addConfigImage(image: row.isFavorite ? .heartFill : .heart, configuration: .init(pointSize: 24, weight: .medium))
         
-        titleLabel.textColor = row.isPlaying ? .subGreen : .whiteOpacity50
-        playTimeLabel.textColor = row.isPlaying ? .subGreen : .whiteOpacity50
+        titleLabel.textColor = row.isPlaying ? .subGreen : .txtThemeStory
+        playTimeLabel.textColor = row.isPlaying ? .subGreen : .txtThemeStory
     }
     
 }
