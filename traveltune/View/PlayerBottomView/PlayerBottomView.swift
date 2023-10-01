@@ -83,14 +83,19 @@ final class PlayerBottomView: UIView {
         } else {
             thumbImageView.addImage(url: thumbnail)
         }
-        playAndPauseImageView.addConfigImage(image: .pauseFill, configuration: .init(pointSize: 50, weight: .black))
+        addPlayAndPauseImage(isPlaying: false)
     }
     
     func resetData() {
         titleLabel.text = Strings.Common.selectPlayStory
-        playAndPauseImageView.addConfigImage(image: .playFill, configuration: .init(pointSize: 50, weight: .black))
+        addPlayAndPauseImage(isPlaying: true)
         thumbImageView.image = nil
         audioSlider.value = 0
+    }
+    
+    func addPlayAndPauseImage(isPlaying: Bool) {
+        let image: UIImage = isPlaying ? .playFill : .pauseFill
+        playAndPauseImageView.addConfigImage(image: image, configuration: .init(pointSize: 50, weight: .black))
     }
     
     private func configureHierarchy() {

@@ -14,8 +14,10 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     var themeStory: ThemeStory?
     private let viewModel = ThemeDetailViewModel()
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         AVPlayerManager.shared.removePlayTimeObserver()
+        AVPlayerManager.shared.stop()
     }
     
     override func configureVC() {
@@ -74,9 +76,16 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     }
     
     func playAndPauseClicked() {
-        print("재생재생재생")
-        // TODO: 재생 중일 떄 아닐 때 구분 필요
-        
+        switch AVPlayerManager.shared.status {
+        case .playing:  // 재생중일 때 누르면 할 일
+            AVPlayerManager.shared.pause()
+            mainView.playerBottomView.addPlayAndPauseImage(isPlaying: true)
+        case .stop:     // 멈춰있을 때 누르면 할 일
+            AVPlayerManager.shared.replay()
+            mainView.playerBottomView.addPlayAndPauseImage(isPlaying: false)
+        case .waitingToPlay:
+            print("로딩 중")
+        }
     }
     
     func thumbImageClicked() {

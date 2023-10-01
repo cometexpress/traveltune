@@ -15,10 +15,22 @@ final class AVPlayerManager: NSObject {
     
     private var player: AVPlayer? = nil
     
-    // Key-value observing context
     private var playerItemContext = 0
     
     private var timeObserverToken: Any?
+    
+    var status: PlayerStauts {
+        switch player?.timeControlStatus {
+        case .paused:
+            return PlayerStauts.stop
+        case .waitingToPlayAtSpecifiedRate:
+            return PlayerStauts.waitingToPlay
+        case .playing:
+            return PlayerStauts.playing
+        default:
+            return PlayerStauts.stop
+        }
+    }
     
     func play(url: URL) {
         do {
@@ -54,6 +66,10 @@ final class AVPlayerManager: NSObject {
         player?.pause()
     }
     
+    func replay() {
+        player?.play()
+    }
+    
     func stop() {
         player?.pause()
         player = nil
@@ -80,5 +96,11 @@ final class AVPlayerManager: NSObject {
             player?.removeTimeObserver(timeObserverToken)
             self.timeObserverToken = nil
         }
+    }
+    
+    enum PlayerStauts {
+        case playing
+        case stop
+        case waitingToPlay
     }
 }
