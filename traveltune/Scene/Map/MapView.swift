@@ -19,7 +19,12 @@ final class MapView: BaseView {
         view.showsHorizontalScrollIndicator = false
     }
     
-    private let containerView = UIView()
+    private lazy var containerView = UIView().setup { view in
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapTesture))
+        tap.numberOfTapsRequired = 2
+        view.addGestureRecognizer(tap)
+    }
     
     private let mapImageView = UIImageView().setup { view in
         view.contentMode = .scaleAspectFit
@@ -36,6 +41,14 @@ final class MapView: BaseView {
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
+    
+    @objc private func doubleTapTesture() {
+        if scrollView.zoomScale < 3 {
+            scrollView.setZoomScale(3, animated: true)
+        } else {
+            scrollView.setZoomScale(1.5, animated: true)
+        }
+    }
     
     @objc func regionButtonClicked(_ sender: UIButton) {
         print(sender.titleLabel?.text)
