@@ -62,7 +62,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
-        viewModel.stories.value = viewModel.stories.value.map { 
+        viewModel.stories.value = viewModel.stories.value.map {
             $0.isPlaying = false
             return $0
         }
@@ -84,7 +84,6 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
 extension ThemeDetailVC: PlayerBottomProtocol {
     
     func previousClicked() {
-        print("이전 이야기")
         guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
@@ -97,7 +96,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
         }
         
         if currentIndex == 0 {
-            showToast(msg: "첫번째 이야기입니다")
+            showToast(msg: Strings.Common.errorFirstStory)
         } else {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = viewModel.stories.value[previousItemIndex]
@@ -115,13 +114,41 @@ extension ThemeDetailVC: PlayerBottomProtocol {
                 title: previousPlayItem.audioTitle.isEmpty ? previousPlayItem.title : previousPlayItem.audioTitle,
                 thumbnail: previousPlayItem.imageURL
             )
-            
         }
-        
     }
     
     func nextClicked() {
-        print("다음 이야기")
+        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+            AVPlayerManager.shared.stop()
+            self.mainView.playerBottomView.resetData()
+            return
+        }
+        
+        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem),
+              let audioURL = URL(string: playItem.audioURL) else {
+            return
+        }
+        
+        if currentIndex == viewModel.stories.value.count - 1 {
+            showToast(msg: Strings.Common.errorLastStory)
+        } else {
+            let nextItemIndex = currentIndex + 1
+            let nextPlayItem = viewModel.stories.value[nextItemIndex]
+            
+            viewModel.stories.value = viewModel.stories.value.map {
+                $0.isPlaying = false
+                if $0 == nextPlayItem {
+                    $0.isPlaying = !nextPlayItem.isPlaying
+                }
+                return $0
+            }
+            
+            audioPlay(url: audioURL)
+            self.mainView.playerBottomView.updateData(
+                title: nextPlayItem.audioTitle.isEmpty ? nextPlayItem.title : nextPlayItem.audioTitle,
+                thumbnail: nextPlayItem.imageURL
+            )
+        }
     }
     
     func playAndPauseClicked() {
@@ -176,12 +203,12 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         }
         
         guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first,
-            let audioURL = URL(string: playItem.audioURL) else {
+              let audioURL = URL(string: playItem.audioURL) else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
             return
         }
-    
+        
         audioPlay(url: audioURL)
         self.mainView.playerBottomView.updateData(
             title: playItem.audioTitle.isEmpty ? playItem.title : playItem.audioTitle,
