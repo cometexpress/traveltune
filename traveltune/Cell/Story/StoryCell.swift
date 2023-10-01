@@ -47,15 +47,13 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     }
     
     private lazy var playImageView = AudioImageView(frame: .zero).setup { view in
-        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
-        view.addImage(image: .playFill.withConfiguration(configuration))
+        view.addImageInCell(image: .playFill)
         let tap = UITapGestureRecognizer(target: self, action: #selector(playClicked))
         view.addGestureRecognizer(tap)
     }
     
     private lazy var heartImageView = AudioImageView(frame: .zero).setup { view in
-        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .medium)
-        view.addImage(image: .heart.withConfiguration(configuration))
+//        view.addImageInCell(image: .heart)
         let tap = UITapGestureRecognizer(target: self, action: #selector(heartClicked))
         view.addGestureRecognizer(tap)
     }
@@ -72,7 +70,7 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     @objc private func heartClicked() {
         if let storyItem {
             heartButtonClicked?(storyItem)
-        }        
+        }
     }
     
     @objc private func labelContentClicked() {
@@ -143,6 +141,8 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
                 options: [.transition(.fade(1)), .forceTransition]
             )
         }
+        print(row.audioTitle, row.isFavorite)
+        heartImageView.addImageInCell(image: row.isFavorite ? .heartFill : .heart)
     }
     
     func changePlayItemColor() {

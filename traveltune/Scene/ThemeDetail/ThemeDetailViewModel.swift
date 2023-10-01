@@ -49,8 +49,7 @@ final class ThemeDetailViewModel {
             }
         }
         storyGroup.notify(queue: .main) { [weak self] in
-            self?.stories.value.append(contentsOf: self?.saveStories ?? [])
-            
+            self?.favoriteStoryObserve()
             self?.localThemeStoryRepository.createAll(self?.saveStories ?? []) {
                 print("실패했을 때")
             }
@@ -70,29 +69,27 @@ final class ThemeDetailViewModel {
             print("데이터 없어서 새로 불러오기")
             self.updateStories(searchKeyword: keyword)
         } else {
+            print("데이터 기존꺼 불러오기")
             localStories.forEach { item in
                 self.saveStories.append(item)
             }
-            print("데이터 기존꺼 불러오기")
-            stories.value = saveStories
+            favoriteStoryObserve()
         }
     }
     
-    func favoriteStoryObserve() {
+    private func favoriteStoryObserve() {
         guard let tasks = localFavoriteStoryRepository.fetch() else { return }
         notificationToken = tasks.observe { [weak self] changes in
             guard let self else { return }
             switch changes {
             case .initial:
-                print("initial")
-                self.stories.value.forEach { item in
-                    var copyItem = copy(item) { $0.isFavorite = self.checkFavoriteStory(item: item) }
-                }
+                print("좋아요한지 체크 - init")
+                let list = self.saveStories.map(checkFavoriteStory(item:))
+                self.stories.value.append(contentsOf: list)
             case .update(_, let deletions, let insertions, let modifications):
-                print("deletions = \(deletions)")
-                print("insertions = \(insertions)")
-                print("modifications = \(modifications)")
-                
+                self.stories.value.removeAll()
+                let list = self.saveStories.map(checkFavoriteStory(item:))
+                self.stories.value.append(contentsOf: list)
             case .error(let error):
                 print("ERROR: \(error)")
             }
@@ -113,13 +110,11 @@ final class ThemeDetailViewModel {
         }
     }
     
-    private func checkFavoriteStory(item: StoryItem) -> Bool {
-        let item = localFavoriteStoryRepository.fetchFilter {
+    private func checkFavoriteStory(item: StoryItem) -> StoryItem {
+        let checkItem = localFavoriteStoryRepository.fetchFilter {
             ($0.tid == item.tid) && ($0.tlid == item.tlid) && ($0.stid == item.stid) && ($0.stlid == item.stlid) && ($0.searchKeyword == item.searchKeyword)
         }?.first
-        guard let _ = item else {
-            return false
-        }
-        return true
+        let target = copy(item){ $0.isFavorite = checkItem == nil ? false : true }
+        return target
     }
 }
