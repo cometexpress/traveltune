@@ -160,6 +160,19 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
               let row = viewModel?.stories.value[indexPath.item] else {
             return UICollectionViewCell()
         }
+        
+        cell.heartButtonClicked = { [weak self] in
+            self?.themeDetailVCProtocol?.cellHeartButtonClicked()
+        }
+        
+        cell.playButtonClicked = { [weak self] in
+            self?.themeDetailVCProtocol?.cellPlayButtonClicked()
+        }
+        
+        cell.contentClicked = { [weak self] in
+            self?.themeDetailVCProtocol?.cellContentClicked()
+        }
+        
         cell.configCell(row: row)
         return cell
     }

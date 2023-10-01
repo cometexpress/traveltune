@@ -63,5 +63,17 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         print("재생 or 일시정지 클릭")
     }
     
+    func cellHeartButtonClicked() {
+        print("셀 하트버튼")
+    }
+    
+    func cellPlayButtonClicked() {
+        print("셀 재생버튼")
+    }
+    
+    func cellContentClicked() {
+        // TODO: 스크립트 보여주기
+        print("셀 레이블 영역 클릭")
+    }
 }
 

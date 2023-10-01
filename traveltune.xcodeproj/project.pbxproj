@@ -43,6 +43,8 @@
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
 		C0BDC31B2AC8871A00D7331E /* LocalThemeStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */; };
 		C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3252AC8912200D7331E /* Copy+Extension.swift */; };
+		C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3272AC934F100D7331E /* FavoriteStory.swift */; };
+		C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */; };
 		C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */; };
 		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
 		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
@@ -128,6 +130,8 @@
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
 		C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalThemeStoryRepository.swift; sourceTree = "<group>"; };
 		C0BDC3252AC8912200D7331E /* Copy+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Copy+Extension.swift"; sourceTree = "<group>"; };
+		C0BDC3272AC934F100D7331E /* FavoriteStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStory.swift; sourceTree = "<group>"; };
+		C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteStoryRepository.swift; sourceTree = "<group>"; };
 		C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 			children = (
 				C04F9CAB2ABEF79E0058A8D0 /* Request */,
 				C04F9CAC2ABEF7A30058A8D0 /* Response */,
+				C0BDC3272AC934F100D7331E /* FavoriteStory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -330,6 +335,7 @@
 			children = (
 				C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */,
 				C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */,
+				C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -679,6 +685,7 @@
 				C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */,
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
 				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
+				C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */,
@@ -700,6 +707,7 @@
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
+				C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */,
 				C0D81A982AC55FE600CB2EF0 /* HeroID.swift in Sources */,

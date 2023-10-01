@@ -11,6 +11,8 @@ final class ThemeDetailViewModel {
     
     private let localTravelSpotRepository = LocalTravelSpotRepository()
     private let localThemeStoryRepository = LocalThemeStoryRepository()
+    private let localFavoriteStoryRepository = LocalFavoriteStoryRepository()
+    
     private let storyRepository = StoryRepository()
     
     private var saveStories: [StoryItem] = []
@@ -66,6 +68,12 @@ final class ThemeDetailViewModel {
             }
             print("데이터 기존꺼 불러오기")
             stories.value = saveStories
+        }
+    }
+    
+    func addFavoriteStory(item: FavoriteStory, error: () -> Void) {
+        localFavoriteStoryRepository.create(item) {
+            error()
         }
     }
 }

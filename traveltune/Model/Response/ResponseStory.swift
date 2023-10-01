@@ -49,6 +49,18 @@ final class StoryItem: Object, Decodable {
     @objc dynamic var modifiedtime = ""
     @objc dynamic var searchKeyword = ""
     
+    var convertTime: String {
+        guard let time = Int(playTime) else {
+            return "00:00"
+        }
+        let min = String(format: "%02d", time / 60)
+        let sec = String(format: "%02d", time % 60)
+        return "\(min):\(sec)"
+    }
+    
+    var isPlaying = false
+    var isFavorite = false
+    
     override class func primaryKey() -> String? {
         return "_id"
     }

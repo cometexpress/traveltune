@@ -13,7 +13,6 @@ final class LocalThemeStoryRepository: RealmProtocol {
     typealias T = StoryItem
     
     private let realm = try? Realm()
-    lazy var fileURL = self.realm?.configuration.fileURL
     
     func fetch() -> Results<StoryItem>? {
         return realm?.objects(StoryItem.self)

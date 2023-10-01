@@ -12,11 +12,14 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     
     private let leftView = UIView()
     
-    private let textStackView = UIStackView().setup { view in
+    private lazy var textStackView = UIStackView().setup { view in
         view.axis = .vertical
         view.alignment = .leading
         view.distribution = .equalSpacing
         view.spacing = 8
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(labelContentClicked))
+        view.addGestureRecognizer(tap)
     }
     
     private let buttonStackView = UIStackView().setup { view in
@@ -57,12 +60,20 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.addGestureRecognizer(tap)
     }
     
-    @objc func playClicked() {
-        print("아이템 재생 버튼 클릭")
+    var playButtonClicked: (() -> Void)?
+    var heartButtonClicked: (() -> Void)?
+    var contentClicked: (() -> Void)?
+    
+    @objc private func playClicked() {
+        playButtonClicked?()
     }
    
-    @objc func heartClicked() {
-        print("하트 버튼 클릭")
+    @objc private func heartClicked() {
+        heartButtonClicked?()
+    }
+    
+    @objc private func labelContentClicked() {
+        contentClicked?()
     }
     
     override func configureHierarchy() {
@@ -116,13 +127,11 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         heartImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
         }
-        
-        
     }
     
     override func configCell(row: StoryItem) {
         titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
-        playTimeLabel.text = row.playTime
+        playTimeLabel.text = row.convertTime
         if let url = URL(string: row.imageURL) {
             thumbImageView.kf.setImage(
                 with: url,
@@ -130,8 +139,11 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
                 options: [.transition(.fade(1)), .forceTransition]
             )
         }
-        
     }
     
+    func changePlayItemColor() {
+        titleLabel.textColor = .subGreen
+        playTimeLabel.textColor = .subGreen
+    }
     
 }

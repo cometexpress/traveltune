@@ -13,7 +13,6 @@ final class LocalTravelSpotRepository: RealmProtocol {
     typealias T = TravelSpotItem
     
     private let realm = try? Realm()
-    lazy var fileURL = self.realm?.configuration.fileURL
     
     func fetch() -> Results<TravelSpotItem>? {
         return realm?.objects(TravelSpotItem.self)
