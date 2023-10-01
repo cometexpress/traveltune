@@ -63,8 +63,11 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         print("재생 or 일시정지 클릭")
     }
     
-    func cellHeartButtonClicked() {
+    func cellHeartButtonClicked(item: StoryItem) {
         print("셀 하트버튼")
+        viewModel.addFavoriteStory(item: item) {
+            print("오류")
+        }
     }
     
     func cellPlayButtonClicked() {

@@ -60,8 +60,9 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.addGestureRecognizer(tap)
     }
     
+    private var storyItem: StoryItem?
     var playButtonClicked: (() -> Void)?
-    var heartButtonClicked: (() -> Void)?
+    var heartButtonClicked: ((StoryItem) -> Void)?
     var contentClicked: (() -> Void)?
     
     @objc private func playClicked() {
@@ -69,7 +70,9 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     }
    
     @objc private func heartClicked() {
-        heartButtonClicked?()
+        if let storyItem {
+            heartButtonClicked?(storyItem)
+        }        
     }
     
     @objc private func labelContentClicked() {
@@ -130,6 +133,7 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     }
     
     override func configCell(row: StoryItem) {
+        storyItem = row
         titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
         playTimeLabel.text = row.convertTime
         if let url = URL(string: row.imageURL) {

@@ -161,8 +161,8 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
             return UICollectionViewCell()
         }
         
-        cell.heartButtonClicked = { [weak self] in
-            self?.themeDetailVCProtocol?.cellHeartButtonClicked()
+        cell.heartButtonClicked = { [weak self] storyItem in
+            self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: storyItem)
         }
         
         cell.playButtonClicked = { [weak self] in

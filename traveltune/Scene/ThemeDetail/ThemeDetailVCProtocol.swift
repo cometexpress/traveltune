@@ -14,7 +14,7 @@ protocol ThemeDetailVCProtocol: AnyObject {
     func nextButtonClicked()
     func playAndPauseButtonClicked()
     func cellContentClicked()
-    func cellHeartButtonClicked()
+    func cellHeartButtonClicked(item: StoryItem)
     func cellPlayButtonClicked()
     
 }
