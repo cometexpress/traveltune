@@ -49,6 +49,9 @@
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
 		C09A697D2ACB04CD002FA468 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A697C2ACB04CD002FA468 /* SearchTextField.swift */; };
+		C09A697F2ACB34F1002FA468 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A697E2ACB34F1002FA468 /* SearchController.swift */; };
+		C09A69812ACB398F002FA468 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A69802ACB398F002FA468 /* ListCell.swift */; };
+		C09A69832ACB3A6D002FA468 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */; };
 		C0B6CA172AC994AF005A0E2A /* PlayerBottomProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6CA162AC994AF005A0E2A /* PlayerBottomProtocol.swift */; };
 		C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */; };
 		C0BDC31B2AC8871A00D7331E /* LocalThemeStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */; };
@@ -147,6 +150,9 @@
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
 		C09A697C2ACB04CD002FA468 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
+		C09A697E2ACB34F1002FA468 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
+		C09A69802ACB398F002FA468 /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		C0B6CA162AC994AF005A0E2A /* PlayerBottomProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomProtocol.swift; sourceTree = "<group>"; };
 		C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailImageView.swift; sourceTree = "<group>"; };
 		C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalThemeStoryRepository.swift; sourceTree = "<group>"; };
@@ -267,6 +273,9 @@
 			children = (
 				C02DABDE2ACADE3000F3BC42 /* SearchVC.swift */,
 				C02DABE02ACADE4700F3BC42 /* SearchView.swift */,
+				C09A697E2ACB34F1002FA468 /* SearchController.swift */,
+				C09A69802ACB398F002FA468 /* ListCell.swift */,
+				C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */,
 			);
 			path = SearchHome;
 			sourceTree = "<group>";
@@ -764,6 +773,7 @@
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */,
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
+				C09A697F2ACB34F1002FA468 /* SearchController.swift in Sources */,
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
 				C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */,
 				C002E3B12ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift in Sources */,
@@ -830,6 +840,8 @@
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
 				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
+				C09A69812ACB398F002FA468 /* ListCell.swift in Sources */,
+				C09A69832ACB3A6D002FA468 /* TitleSupplementaryView.swift in Sources */,
 				C05F921F2AC3F4C600427F6D /* ThemeDetailVC.swift in Sources */,
 				C05BB6B02AC31770007CC4A5 /* ThemeStory.swift in Sources */,
 			);
