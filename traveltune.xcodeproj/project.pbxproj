@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72431900FFBB4314210744B8 /* Pods_traveltune.framework */; };
+		C002E3B12ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E3B02ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift */; };
+		C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */; };
 		C00839F12AC5E6DE00C17BD6 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F02AC5E6DE00C17BD6 /* CircleView.swift */; };
 		C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
@@ -99,6 +101,8 @@
 /* Begin PBXFileReference section */
 		6A6C9A4659B7BEA01E36D10E /* Pods-traveltune.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-traveltune.release.xcconfig"; path = "Target Support Files/Pods-traveltune/Pods-traveltune.release.xcconfig"; sourceTree = "<group>"; };
 		72431900FFBB4314210744B8 /* Pods_traveltune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_traveltune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C002E3B02ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailInfoVC.swift; sourceTree = "<group>"; };
+		C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailInfoView.swift; sourceTree = "<group>"; };
 		C00839F02AC5E6DE00C17BD6 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
@@ -219,6 +223,15 @@
 				6A6C9A4659B7BEA01E36D10E /* Pods-traveltune.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C002E3AF2ACA7F68004C9C54 /* ThemeDetailInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C002E3B02ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift */,
+				C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */,
+			);
+			path = ThemeDetailInfo;
 			sourceTree = "<group>";
 		};
 		C0453D232AC81E7100C220A6 /* LaunchScreen */ = {
@@ -444,12 +457,13 @@
 		C0E8BA8D2ABDCC4C00B1CCA6 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				C0D81A702AC40A4E00CB2EF0 /* Splash */,
 				C0E8BA922ABDCCC900B1CCA6 /* TabBarVC.swift */,
 				C0E8BA972ABDCD1900B1CCA6 /* Map */,
 				C0E8BA982ABDCD2000B1CCA6 /* Playlist */,
+				C0D81A702AC40A4E00CB2EF0 /* Splash */,
 				C0E8BA942ABDCCFE00B1CCA6 /* Theme */,
 				C05F921D2AC3F4B200427F6D /* ThemeDetail */,
+				C002E3AF2ACA7F68004C9C54 /* ThemeDetailInfo */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -713,6 +727,7 @@
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
 				C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */,
+				C002E3B12ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift in Sources */,
 				C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */,
 				C0D81AA22AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */,
@@ -724,6 +739,7 @@
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
+				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,

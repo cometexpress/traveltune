@@ -88,18 +88,22 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }
+    
+    private func currentPlayingItemIndex() -> Int? {
+        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first,
+              let index = viewModel.stories.value.firstIndex(of: playItem) else {
+            return nil
+        }
+        return index
+    }
 }
 
 extension ThemeDetailVC: PlayerBottomProtocol {
     
     func previousClicked() {
-        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+        guard let currentIndex = currentPlayingItemIndex() else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
-            return
-        }
-        
-        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem) else {
             return
         }
         
@@ -128,13 +132,9 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     }
     
     func nextClicked() {
-        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+        guard let currentIndex = currentPlayingItemIndex() else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
-            return
-        }
-        
-        guard let currentIndex = viewModel.stories.value.firstIndex(of: playItem) else {
             return
         }
         
@@ -163,6 +163,11 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     }
     
     func playAndPauseClicked() {
+        // 재생중인 아이템이 없을 때는 실행 안되도록
+        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+            return
+        }
+        
         // StoryItem 안의 isPlaying 값은 재생시작 때 관리
         // 일시정지할 때는 viewModel.stories.value 의 StoryItem 안의 isPlaying 값 그대로 true 로 유지
         switch AVPlayerManager.shared.status {
@@ -193,7 +198,10 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     }
     
     func infoButtonClicked() {
-        print("상세 내용 보는 기능")
+        let vc = ThemeDetailInfoVC()
+        vc.themeStory = themeStory
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
     
     func cellHeartButtonClicked(item: StoryItem) {
