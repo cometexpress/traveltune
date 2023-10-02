@@ -10,11 +10,6 @@ import SnapKit
 
 final class SearchVC: BaseViewController<SearchView> {
     
-    let textField = SearchTextField().setup { view in
-        let width = UIScreen.main.bounds.width - 80
-        view.frame = .init(x: 0, y: 0, width: width, height: 40)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -28,7 +23,7 @@ final class SearchVC: BaseViewController<SearchView> {
             action: #selector(backButtonClicked)
         )
         navigationItem.leftBarButtonItem?.tintColor = .txtPrimary
-        navigationItem.titleView = textField
+        navigationItem.titleView = mainView.naviBarSearchTextField
     }
     
     @objc private func backButtonClicked() {
