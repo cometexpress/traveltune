@@ -210,7 +210,9 @@ final class ThemeDetailView: BaseView {
             make.bottom.equalTo(playerBottomView.snp.top)
             make.horizontalEdges.equalToSuperview()
         }
+        scriptView.alpha = 0
         UIView.animate(withDuration: 0.2, delay: 0, options:.curveEaseOut) {
+            self.scriptView.alpha = 1
             self.layoutIfNeeded()
         } completion: { _ in
             self.scriptView.isUserInteractionEnabled = true
@@ -224,9 +226,10 @@ final class ThemeDetailView: BaseView {
             make.top.equalTo(playerBottomView.snp.bottom)
             make.horizontalEdges.equalToSuperview()
         }
-        
+        scriptView.alpha = 1
         UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
             self.layoutIfNeeded()
+            self.scriptView.alpha = 0
         } completion: { _ in
             self.scriptView.isHidden = true
             self.playerBottomView.thumbImageView.isUserInteractionEnabled = true
@@ -238,7 +241,9 @@ final class ThemeDetailView: BaseView {
 extension ThemeDetailView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = viewModel?.stories.value[indexPath.item] else { return }
+//        guard let item = viewModel?.stories.value[indexPath.item] else { return }
+        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        collectionView.deselectItem(at: indexPath, animated: true)
         themeDetailVCProtocol?.didSelectItemAt(item: item)
     }
     

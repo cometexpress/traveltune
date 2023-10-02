@@ -39,14 +39,22 @@ final class StoryScriptView: BaseView {
     }
     
     func updateData(title: String, script: String) {
+        scriptTextView.text = nil
         audioTitleLabel.text = title
-        scriptTextView.text = script
+        scriptTextView.text = script.replacingOccurrences(of: "  ", with: "\n\n")
         
         // 데이터가 들어간 이후 세팅해줘야 적용되고 있음
         scriptTextView.setLineSpacing(spacing: 8)
         scriptTextView.textColor = .white
-        scriptTextView.textContainer.lineBreakMode = .byWordWrapping
+        scriptTextView.textContainer.lineBreakMode = .byCharWrapping
         scriptTextView.font = .monospacedSystemFont(ofSize: 14, weight: .semibold)
+        
+        // 스크립트데이터 변경 후 Top 으로 스크롤 이동
+        self.scriptTextView.setContentOffset(.zero, animated: true)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     override func configureHierarchy() {
