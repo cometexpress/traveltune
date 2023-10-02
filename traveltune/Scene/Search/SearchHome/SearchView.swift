@@ -46,7 +46,7 @@ final class SearchView: BaseView {
     }
     
     //    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    var dataSource: UICollectionViewDiffableDataSource<Section, Int>!
+    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
     
     override func configureHierarchy() {
         addSubview(collectionView)
@@ -106,10 +106,6 @@ final class SearchView: BaseView {
     //    }
     
     func headerConfigureDataSource() {
-        let cellRegistration = UICollectionView.CellRegistration<ListCell, Int> { (cell, indexPath, identifier) in
-            // Populate the cell with our item description.
-            cell.label.text = "\(indexPath.section),\(identifier)"
-        }
         
         let headerRegistration = UICollectionView.SupplementaryRegistration
         <TitleSupplementaryView>(elementKind: SearchController.sectionHeaderElementKind) {
@@ -120,8 +116,13 @@ final class SearchView: BaseView {
             supplementaryView.layer.borderWidth = 1.0
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
+        let cellRegistration = UICollectionView.CellRegistration<ListCell, String> { (cell, indexPath, identifier) in
+            // Populate the cell with our item description.
+            cell.label.text = identifier
+        }
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: identifier)
         }
         
@@ -129,13 +130,13 @@ final class SearchView: BaseView {
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: headerRegistration, for: index)
         }
-        
+    
         // initial data
         let sections = Section.allCases
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
         //        var itemOffset = 0
-        var recommendList = [1,2,3,4,5]
-        var recentList = [10,11,12,13,14,15,16,17,18,19,20]
+        var recommendList = strList
+        var recentList = strList22
         sections.forEach { section in
             snapshot.appendSections([section])
             
@@ -226,21 +227,28 @@ final class SearchView: BaseView {
             
             switch sectionKind {
             case .recommend:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+                let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
                 let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
+                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
+                
                 let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+                group.interItemSpacing = .fixed(10)
+                let spacing: CGFloat = 10
                 section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 10
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+                section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
+                section.interGroupSpacing = spacing
+                
                 let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                               heightDimension: .estimated(44))
                 let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                     layoutSize: headerFooterSize,
                     elementKind: SearchController.sectionHeaderElementKind, alignment: .top)
                 section.boundarySupplementaryItems = [sectionHeader]
+                
+//                let configuration = UICollectionViewCompositionalLayoutConfiguration()
+//                configuration.scrollDirection = .vertical
+//                let layout = UICollectionViewCompositionalLayout(section: section)
+//                layout.configuration = configuration
                 
             case .recentSearchKeyword:
                 let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -267,45 +275,45 @@ final class SearchView: BaseView {
         
     }
     
-    private func createLayout() -> UICollectionViewLayout {
-        
-        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
-            
-            let section: NSCollectionLayoutSection
-            
-            switch sectionKind {
-            case .recommend:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 10
-                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
-            case .recentSearchKeyword:
-                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                                      heightDimension: .fractionalHeight(1.0))
-                let item = NSCollectionLayoutItem(layoutSize: itemSize)
-                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .absolute(44))
-                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-                section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 20
-                section.contentInsets = NSDirectionalEdgeInsets(top: 100, leading: 10, bottom: 0, trailing: 10)
-                let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(44))
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerFooterSize,
-                    elementKind: SearchController.sectionHeaderElementKind, alignment: .top)
-                section.boundarySupplementaryItems = [sectionHeader]
-            }
-            
-            return section
-        }
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-    }
+//    private func createLayout() -> UICollectionViewLayout {
+//        
+//        let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
+//            
+//            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+//            
+//            let section: NSCollectionLayoutSection
+//            
+//            switch sectionKind {
+//            case .recommend:
+//                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+//                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//                item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+//                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.28), heightDimension: .fractionalWidth(0.2))
+//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//                section = NSCollectionLayoutSection(group: group)
+//                section.interGroupSpacing = 10
+//                section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+//                section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)
+//            case .recentSearchKeyword:
+//                let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+//                                                      heightDimension: .fractionalHeight(1.0))
+//                let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//                let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .absolute(44))
+//                let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//                section = NSCollectionLayoutSection(group: group)
+//                section.interGroupSpacing = 20
+//                section.contentInsets = NSDirectionalEdgeInsets(top: 100, leading: 10, bottom: 0, trailing: 10)
+//                let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(44))
+//                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+//                    layoutSize: headerFooterSize,
+//                    elementKind: SearchController.sectionHeaderElementKind, alignment: .top)
+//                section.boundarySupplementaryItems = [sectionHeader]
+//            }
+//            
+//            return section
+//        }
+//        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+//    }
 }
 
 extension SearchView: UICollectionViewDelegate {
