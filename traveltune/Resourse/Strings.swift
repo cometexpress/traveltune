@@ -16,6 +16,7 @@ struct Strings {
         static let selectPlayStory = "select_play_story".localized
         static let errorFirstStory = "error_first_story".localized
         static let errorLastStory = "error_last_story".localized
+        static let searchPlaceHolder = "search_place_holder".localized
     }
     
     struct ErrorMsg {

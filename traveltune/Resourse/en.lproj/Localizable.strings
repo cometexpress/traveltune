@@ -12,6 +12,7 @@
 "select_play_story" = "Select Story";
 "error_first_story" = "This is the first story";
 "error_last_story" = "This is the last story";
+"search_place_holder" = "Please enter a search word";
 
 // 에러메시지
 "error_network" = "Please check network";
