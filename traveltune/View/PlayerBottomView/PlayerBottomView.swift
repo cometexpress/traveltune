@@ -9,13 +9,12 @@ import UIKit
 import SnapKit
 import Kingfisher
 
-final class PlayerBottomView: UIView {
+final class PlayerBottomView: BaseView {
     
+    override var viewBg: UIColor { .clear }
     weak var playerBottomProtocol: PlayerBottomProtocol?
     
-    let audioSlider = AudioUISlider(frame: .zero).setup { view in
-//        view.addTarget(self, action: #selector(didChangedProgressBar(_:)), for: .valueChanged)
-    }
+    let audioSlider = AudioUISlider(frame: .zero)
     
     private let playContainerView = UIView()
     
@@ -72,10 +71,6 @@ final class PlayerBottomView: UIView {
         configureLayout()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     func updateData(title: String, thumbnail: String) {
         titleLabel.text = title
         if thumbnail.isEmpty {
@@ -98,7 +93,7 @@ final class PlayerBottomView: UIView {
         playAndPauseImageView.addConfigImage(image: image, configuration: .init(pointSize: 50, weight: .black))
     }
     
-    private func configureHierarchy() {
+    override func configureHierarchy() {
         addSubview(titleLabel)
         addSubview(audioSlider)
         addSubview(playContainerView)
@@ -108,7 +103,7 @@ final class PlayerBottomView: UIView {
         playContainerView.addSubview(thumbImageView)
     }
     
-    private func configureLayout() {
+    override func configureLayout() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
             make.horizontalEdges.equalToSuperview()

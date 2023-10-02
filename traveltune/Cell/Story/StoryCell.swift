@@ -98,8 +98,16 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         thumbImageView.addImage(url: row.imageURL)
         heartImageView.addConfigImage(image: row.isFavorite ? .heartFill : .heart, configuration: .init(pointSize: 24, weight: .medium))
         
-        titleLabel.textColor = row.isPlaying ? .subGreen : .txtThemeStory
-        playTimeLabel.textColor = row.isPlaying ? .subGreen : .txtThemeStory
+        if row.isPlaying {
+            titleLabel.font = .monospacedSystemFont(ofSize: 14, weight: .bold)
+            playTimeLabel.font = .monospacedSystemFont(ofSize: 11, weight: .bold)
+            titleLabel.textColor = .subGreen
+            playTimeLabel.textColor = .subGreen
+        } else {
+            titleLabel.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
+            playTimeLabel.font = .monospacedSystemFont(ofSize: 11, weight: .regular)
+            titleLabel.textColor = .txtThemeStory
+            playTimeLabel.textColor = .txtThemeStory
+        }
     }
-    
 }

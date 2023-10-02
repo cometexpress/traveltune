@@ -64,6 +64,12 @@ final class ThemeDetailView: BaseView {
         view.isHidden = true
     }
     
+    lazy var scriptView = StoryScriptView().setup { view in
+        view.closeClicked = {
+            self.hideScriptView()
+        }
+    }
+    
     @objc private func buttonClicked(_ sender: UIButton) {
         switch sender {
         case backButton:
@@ -103,15 +109,17 @@ final class ThemeDetailView: BaseView {
         
         addSubview(collectionView)
         addSubview(playerBottomView)
+        addSubview(scriptView)
+        
         //        vibrancyEffectView.contentView.addSubview(collectionView)
     }
     
     func configureSnapshot(items: [StoryItem]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
         snapshot.appendSections([0])
-        snapshot.appendItems(items, toSection: 0)        
+        snapshot.appendItems(items, toSection: 0)
         dataSource.applySnapshotUsingReloadData(snapshot)
-//        dataSource.apply(snapshot)
+        //        dataSource.apply(snapshot)
     }
     
     override func configureLayout() {
@@ -171,6 +179,14 @@ final class ThemeDetailView: BaseView {
             make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(self.snp.height).multipliedBy(0.13)
         }
+        
+        scriptView.snp.makeConstraints { make in
+            make.top.equalTo(playerBottomView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+            //            make.top.equalTo(emptyTopView.snp.bottom)
+            //            make.bottom.equalTo(playerBottomView.snp.top)
+            //            make.horizontalEdges.equalToSuperview()
+        }
     }
     
     private func collectionViewLayout() -> UICollectionViewFlowLayout {
@@ -185,13 +201,45 @@ final class ThemeDetailView: BaseView {
             minimumInteritemSpacing: 0)
     }
     
+    func showScriptView() {
+        playerBottomView.thumbImageView.isUserInteractionEnabled = false
+        scriptView.isHidden = false
+        scriptView.isUserInteractionEnabled = false
+        scriptView.snp.remakeConstraints { make in
+            make.top.equalTo(emptyTopView.snp.bottom)
+            make.bottom.equalTo(playerBottomView.snp.top)
+            make.horizontalEdges.equalToSuperview()
+        }
+        UIView.animate(withDuration: 0.2, delay: 0, options:.curveEaseOut) {
+            self.layoutIfNeeded()
+        } completion: { _ in
+            self.scriptView.isUserInteractionEnabled = true
+        }
+
+    }
+    
+    func hideScriptView() {
+        scriptView.isUserInteractionEnabled = false
+        scriptView.snp.remakeConstraints { make in
+            make.top.equalTo(playerBottomView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
+            self.layoutIfNeeded()
+        } completion: { _ in
+            self.scriptView.isHidden = true
+            self.playerBottomView.thumbImageView.isUserInteractionEnabled = true
+        }
+    }
+    
 }
 
 extension ThemeDetailView: UICollectionViewDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let item = viewModel?.stories.value[indexPath.item] else { return }
         themeDetailVCProtocol?.didSelectItemAt(item: item)
     }
- 
+    
 }

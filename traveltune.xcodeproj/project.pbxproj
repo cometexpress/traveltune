@@ -10,11 +10,13 @@
 		91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72431900FFBB4314210744B8 /* Pods_traveltune.framework */; };
 		C002E3B12ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E3B02ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift */; };
 		C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */; };
+		C002E3B82ACAA225004C9C54 /* StoryScriptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */; };
 		C00839F12AC5E6DE00C17BD6 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F02AC5E6DE00C17BD6 /* CircleView.swift */; };
 		C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
+		C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */; };
 		C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D182AC6A3DB00C220A6 /* RequestStory.swift */; };
 		C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */; };
 		C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */; };
@@ -103,11 +105,13 @@
 		72431900FFBB4314210744B8 /* Pods_traveltune.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_traveltune.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C002E3B02ACA7FB0004C9C54 /* ThemeDetailInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailInfoVC.swift; sourceTree = "<group>"; };
 		C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailInfoView.swift; sourceTree = "<group>"; };
+		C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryScriptView.swift; sourceTree = "<group>"; };
 		C00839F02AC5E6DE00C17BD6 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
+		C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		C0453D182AC6A3DB00C220A6 /* RequestStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStory.swift; sourceTree = "<group>"; };
 		C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStory.swift; sourceTree = "<group>"; };
 		C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
@@ -331,6 +335,7 @@
 				C00839F52AC68DB700C17BD6 /* AudioImageView.swift */,
 				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
 				C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */,
+				C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -450,6 +455,7 @@
 				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
 				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
 				C0BDC3252AC8912200D7331E /* Copy+Extension.swift */,
+				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -765,6 +771,7 @@
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
 				C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */,
 				C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */,
+				C002E3B82ACAA225004C9C54 /* StoryScriptView.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* TravelSpotRepository.swift in Sources */,
 				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,
@@ -776,6 +783,7 @@
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
+				C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */,
 				C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */,
 				C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */,
 				C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */,

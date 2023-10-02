@@ -47,20 +47,11 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         )
     }
     
-//    private func configureSnapshot(items: [StoryItem]) {
-//        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
-//        snapshot.appendSections([0])
-//        snapshot.appendItems(items)
-//        self.mainView.dataSource.apply(snapshot, animatingDifferences: true)
-//    }
-    
     private func bindData() {
         guard let themeStory else { return }
         viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
         viewModel.stories.bind { items in
             self.mainView.configureSnapshot(items: items)
-//            self.configureSnapshot(items: items)
-//            self.mainView.collectionView.reloadData()
             LoadingIndicator.hide()
         }
     }
@@ -96,6 +87,17 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         }
         return index
     }
+    
+    private func updateData(item: StoryItem) {
+        self.mainView.playerBottomView.updateData(
+            title: item.audioTitle.isEmpty ? item.title : item.audioTitle,
+            thumbnail: item.imageURL
+        )
+        self.mainView.scriptView.updateData(
+            title: item.audioTitle.isEmpty ? item.title : item.audioTitle,
+            script: item.script
+        )
+    }
 }
 
 extension ThemeDetailVC: PlayerBottomProtocol {
@@ -115,11 +117,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             
             if let audioURL = URL(string: previousPlayItem.audioURL) {
                 audioPlay(url: audioURL)
-                self.mainView.playerBottomView.updateData(
-                    title: previousPlayItem.audioTitle.isEmpty ? previousPlayItem.title : previousPlayItem.audioTitle,
-                    thumbnail: previousPlayItem.imageURL
-                )
-                
+                updateData(item: previousPlayItem)
                 viewModel.stories.value = viewModel.stories.value.map {
                     $0.isPlaying = false
                     if $0 == previousPlayItem {
@@ -146,11 +144,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             
             if let audioURL = URL(string: nextPlayItem.audioURL) {
                 audioPlay(url: audioURL)
-                self.mainView.playerBottomView.updateData(
-                    title: nextPlayItem.audioTitle.isEmpty ? nextPlayItem.title : nextPlayItem.audioTitle,
-                    thumbnail: nextPlayItem.imageURL
-                )
-                
+                updateData(item: nextPlayItem)
                 viewModel.stories.value = viewModel.stories.value.map {
                     $0.isPlaying = false
                     if $0 == nextPlayItem {
@@ -183,7 +177,11 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     }
     
     func thumbImageClicked() {
-        print("이미지 클릭")
+        if mainView.scriptView.isHidden {
+            mainView.showScriptView()
+        } else {
+            mainView.hideScriptView()
+        }        
     }
     
 }
@@ -194,6 +192,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         mainView.topView.isHidden = true
         mainView.collectionView.isHidden = true
         mainView.playerBottomView.isHidden = true
+        mainView.scriptView.isHidden = true
         dismiss(animated: true)
     }
     
@@ -229,10 +228,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
         }
         
         audioPlay(url: audioURL)
-        self.mainView.playerBottomView.updateData(
-            title: playItem.audioTitle.isEmpty ? playItem.title : playItem.audioTitle,
-            thumbnail: playItem.imageURL
-        )
+        updateData(item: playItem)
     }
 }
 
