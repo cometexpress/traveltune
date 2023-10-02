@@ -29,10 +29,13 @@ final class ThemeVC: BaseViewController<ThemeView> {
 //                    print(failure)
 //                }
 //            }
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     @objc func searchButtonClicked() {
-        print("검색버튼 클릭")
+        let vc = SearchVC()
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     override func configureVC() {
