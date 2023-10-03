@@ -46,6 +46,11 @@
 		C05F92212AC3F4F400427F6D /* ThemeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F92202AC3F4F400427F6D /* ThemeDetailView.swift */; };
 		C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F92252AC3F93B00427F6D /* ThemeVCProtocol.swift */; };
 		C06449F22ACC2D60005C8529 /* SearchRecentWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */; };
+		C06449F52ACC3742005C8529 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F42ACC3742005C8529 /* SearchResultVC.swift */; };
+		C06449F72ACC3759005C8529 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F62ACC3759005C8529 /* SearchResultView.swift */; };
+		C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */; };
+		C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */; };
+		C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */; };
 		C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */; };
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
@@ -148,6 +153,10 @@
 		C05F92202AC3F4F400427F6D /* ThemeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailView.swift; sourceTree = "<group>"; };
 		C05F92252AC3F93B00427F6D /* ThemeVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVCProtocol.swift; sourceTree = "<group>"; };
 		C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentWordCell.swift; sourceTree = "<group>"; };
+		C06449F42ACC3742005C8529 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
+		C06449F62ACC3759005C8529 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
+		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCellView.swift; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
@@ -217,6 +226,7 @@
 				C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */,
 				C0E8BA762ABC973900B1CCA6 /* Kingfisher in Frameworks */,
 				C0E8BA7C2ABC976500B1CCA6 /* Realm in Frameworks */,
+				C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */,
 				C0E8BA7E2ABC976500B1CCA6 /* RealmSwift in Frameworks */,
 				C0E8BA732ABC972D00B1CCA6 /* SnapKit in Frameworks */,
 				91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */,
@@ -256,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				C02DABDD2ACADD5400F3BC42 /* SearchHome */,
+				C06449F32ACC3727005C8529 /* SearchResult */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -276,6 +287,7 @@
 				C02DABDE2ACADE3000F3BC42 /* SearchVC.swift */,
 				C02DABE02ACADE4700F3BC42 /* SearchView.swift */,
 				C09A697E2ACB34F1002FA468 /* SearchController.swift */,
+				C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */,
 			);
 			path = SearchHome;
 			sourceTree = "<group>";
@@ -356,6 +368,15 @@
 				C0453D1E2AC7F8F500C220A6 /* ThemeDetailViewModel.swift */,
 			);
 			path = ThemeDetail;
+			sourceTree = "<group>";
+		};
+		C06449F32ACC3727005C8529 /* SearchResult */ = {
+			isa = PBXGroup;
+			children = (
+				C06449F42ACC3742005C8529 /* SearchResultVC.swift */,
+				C06449F62ACC3759005C8529 /* SearchResultView.swift */,
+			);
+			path = SearchResult;
 			sourceTree = "<group>";
 		};
 		C06C93392AC2B214006B26F6 /* ThemePager */ = {
@@ -499,6 +520,7 @@
 				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
 				C0BDC3252AC8912200D7331E /* Copy+Extension.swift */,
 				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
+				C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -626,6 +648,7 @@
 				C0E8BA7D2ABC976500B1CCA6 /* RealmSwift */,
 				C0E8BA802ABC977C00B1CCA6 /* Toast */,
 				C0D81A952AC5437800CB2EF0 /* Hero */,
+				C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */,
 			);
 			productName = traveltune;
 			productReference = C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */;
@@ -663,6 +686,7 @@
 				C0E8BA7A2ABC976500B1CCA6 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				C0E8BA7F2ABC977C00B1CCA6 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */,
+				C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = C0E8BA482ABC8B7600B1CCA6 /* Products */;
 			projectDirPath = "";
@@ -786,6 +810,7 @@
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
+				C06449F72ACC3759005C8529 /* SearchResultView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
@@ -800,6 +825,7 @@
 				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
+				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,
 				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
@@ -809,11 +835,13 @@
 				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
+				C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */,
 				C09A697D2ACB04CD002FA468 /* SearchTextField.swift in Sources */,
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
 				C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */,
 				C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */,
 				C002E3B82ACAA225004C9C54 /* StoryScriptView.swift in Sources */,
+				C06449F52ACC3742005C8529 /* SearchResultVC.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* TravelSpotRepository.swift in Sources */,
 				C0D81A8F2AC4966F00CB2EF0 /* Date+Extension.swift in Sources */,
@@ -1075,6 +1103,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.13;
+			};
+		};
 		C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
@@ -1126,6 +1162,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		C0D81A952AC5437800CB2EF0 /* Hero */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */;

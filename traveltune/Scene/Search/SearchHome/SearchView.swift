@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import IQKeyboardManagerSwift
 import SnapKit
 
 final class SearchView: BaseView {
@@ -13,9 +14,15 @@ final class SearchView: BaseView {
     let recommendWords = ["이모티콘", "새싹", "추석", "고든램지", "햄버거", "피자", "긴긴긴1텍스트","긴긴긴2텍스트", "긴긴긴3텍스트", "긴긴긴4텍스트", "wow"]
     let recentSearchKeywords = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
     
-    let naviBarSearchTextField = SearchTextField().setup { view in
+    weak var searchVCProtocol: SearchVCProtocol?
+    
+    lazy var naviBarSearchTextField = SearchTextField().setup { view in
         let width = UIScreen.main.bounds.width - 80
         view.frame = .init(x: 0, y: 0, width: width, height: 40)
+        view.returnKeyType = .search
+        view.addDoneOnKeyboardWithTarget(self, action: #selector(toolBarDoneClicked), titleText: nil)
+        //        view.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(keyboardDoneClicked))
+        view.delegate = self
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
@@ -25,7 +32,13 @@ final class SearchView: BaseView {
     
     var dataSource: UICollectionViewDiffableDataSource<SearchController.Section, SearchController.Item>!
     
+    @objc private func toolBarDoneClicked() {
+        naviBarSearchTextField.resignFirstResponder()
+    }
+    
     override func configureHierarchy() {
+        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = Strings.Common.searchButton
+        
         addSubview(collectionView)
         configureDataSource()
         configureSnapShot(recommendItems: recommendWords, recentItems: recentSearchKeywords)
@@ -85,16 +98,27 @@ final class SearchView: BaseView {
     }
 }
 
+extension SearchView: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchVCProtocol?.textfieldDoneClicked(searchText: textField.text ?? "")
+        return true
+    }
+}
+
 extension SearchView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let recommendItem = self.dataSource.itemIdentifier(for: indexPath)?.recommendItem {
-            print(#function, "추천 클릭 \(recommendItem.title)")
+            searchVCProtocol?.recommendWordClicked(searchText: recommendItem.title)
         }
         
         if let recentSearchItem = self.dataSource.itemIdentifier(for: indexPath)?.recentSearchItem {
-            print(#function, "최근 클릭 \(recentSearchItem.keyword)")
+            searchVCProtocol?.recentWordClicked(searchText: recentSearchItem.keyword)
         }
         collectionView.deselectItem(at: indexPath, animated: true)
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        naviBarSearchTextField.resignFirstResponder()
     }
 }
 
@@ -110,12 +134,11 @@ extension SearchView {
     
     private func createRecommendCellRegistration() -> UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> {
         return UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> { (cell, indexPath, identifier) in
-
-//            var background = UIBackgroundConfiguration.listPlainCell()
-//            background.cornerRadius = 8
-//            background.strokeColor = .systemGray3
-//            background.strokeWidth = 1.0 / cell.traitCollection.displayScale
-//            cell.backgroundConfiguration = background
+            //            var background = UIBackgroundConfiguration.listPlainCell()
+            //            background.cornerRadius = 8
+            //            background.strokeColor = .systemGray3
+            //            background.strokeWidth = 1.0 / cell.traitCollection.displayScale
+            //            cell.backgroundConfiguration = background
             if let recommendItem = identifier.recommendItem {
                 cell.configCell(row: recommendItem.title)
             }
@@ -125,8 +148,8 @@ extension SearchView {
     private func createRecentSearchCellRegistration() -> UICollectionView.CellRegistration<SearchRecentWordCell, SearchController.Item> {
         return UICollectionView.CellRegistration<SearchRecentWordCell, SearchController.Item> { (cell, indexPath, identifier) in
             if let recentSearchItem = identifier.recentSearchItem {
-                cell.deleteClicked = {
-                    print("삭제 버튼")
+                cell.deleteClicked = { [weak self] in
+                    self?.searchVCProtocol?.deleteRecentWordClicked()
                 }
                 cell.configCell(row: recentSearchItem.keyword)
             }
@@ -162,7 +185,7 @@ extension SearchView {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-//        group.interItemSpacing = .fixed(50)
+        //        group.interItemSpacing = .fixed(50)
         group.edgeSpacing = .init(leading: .fixed(16), top: .fixed(0), trailing: .fixed(0), bottom: .fixed(0)) // 그룹 spacing
         
         section = NSCollectionLayoutSection(group: group)
