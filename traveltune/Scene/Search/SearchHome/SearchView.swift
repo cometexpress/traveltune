@@ -11,9 +11,7 @@ import SnapKit
 
 final class SearchView: BaseView {
     
-    let recommendWords = SearchRecommendWord.list
-    let recentSearchKeywords = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
-    
+    weak var viewModel: SearchViewModel?
     weak var searchVCProtocol: SearchVCProtocol?
     
     lazy var naviBarSearchTextField = SearchTextField().setup { view in
@@ -39,7 +37,7 @@ final class SearchView: BaseView {
     override func configureHierarchy() {
         addSubview(collectionView)
         configureDataSource()
-        configureSnapShot(recommendItems: recommendWords, recentItems: nil)
+//        configureSnapShot(recommendItems: viewModel?.recommendWords, recentItems: nil)
     }
     
     override func configureLayout() {

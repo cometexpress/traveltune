@@ -10,9 +10,10 @@ import SnapKit
 
 final class SearchVC: BaseViewController<SearchView> {
     
+    private let viewModel = SearchViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.searchVCProtocol = self
         navigationItem.backButtonDisplayMode = .minimal
     }
     
@@ -22,6 +23,9 @@ final class SearchVC: BaseViewController<SearchView> {
     }
     
     override func configureVC() {
+        mainView.viewModel = viewModel
+        mainView.searchVCProtocol = self
+        
         navigationController?.interactivePopGestureRecognizer?.delegate = self
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             image: .chevronBackward,
@@ -31,14 +35,30 @@ final class SearchVC: BaseViewController<SearchView> {
         )
         navigationItem.leftBarButtonItem?.tintColor = .txtPrimary
         navigationItem.titleView = mainView.naviBarSearchTextField
+        
+        viewModel.fetchWords()
+        bindData()
     }
     
     @objc private func backButtonClicked() {
         navigationController?.popViewController(animated: true)
     }
     
-    private func checkSearchText(searchText: String) -> Bool {
-        return searchText.isEmpty ? false : true
+    private func bindData() {
+        viewModel.words.bind { [weak self] words in
+            self?.mainView.configureSnapShot(recommendItems: words.recommendWords, recentItems: words.recentSearchKeywords)
+        }
+        
+        viewModel.isExistSearchText.bind { [weak self] status in
+            switch status {
+            case .initial:
+                print("init")
+            case .empty:
+                self?.showToast(msg: Strings.Common.searchPlaceHolder, position: .center)
+            case .exist(let searchText):
+                self?.moveSearchResult(searchText: searchText)
+            }
+        }
     }
     
     private func moveSearchResult(searchText: String) {
@@ -50,11 +70,7 @@ final class SearchVC: BaseViewController<SearchView> {
 
 extension SearchVC: SearchVCProtocol {
     func textfieldDoneClicked(searchText: String) {
-        if checkSearchText(searchText: searchText) {
-            moveSearchResult(searchText: searchText)
-        } else {
-            showToast(msg: Strings.Common.searchPlaceHolder, position: .center)
-        }
+        viewModel.checkSearchText(searchText: searchText)
     }
     
     func recommendWordClicked(searchText: String) {
