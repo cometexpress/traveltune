@@ -110,21 +110,26 @@ extension SearchView {
     
     private func createRecommendCellRegistration() -> UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> {
         return UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> { (cell, indexPath, identifier) in
-//            cell.wordClicked = {
-//                print("클릭되고 있니?")
-//            }
+
 //            var background = UIBackgroundConfiguration.listPlainCell()
 //            background.cornerRadius = 8
 //            background.strokeColor = .systemGray3
 //            background.strokeWidth = 1.0 / cell.traitCollection.displayScale
 //            cell.backgroundConfiguration = background
-            cell.configCell(row: identifier.recommendItem?.title ?? "")
+            if let recommendItem = identifier.recommendItem {
+                cell.configCell(row: recommendItem.title)
+            }
         }
     }
     
-    private func createRecentSearchCellRegistration() -> UICollectionView.CellRegistration<ListCell, SearchController.Item> {
-        return UICollectionView.CellRegistration<ListCell, SearchController.Item> { (cell, indexPath, identifier) in
-            cell.label.text = identifier.recentSearchItem?.keyword
+    private func createRecentSearchCellRegistration() -> UICollectionView.CellRegistration<SearchRecentWordCell, SearchController.Item> {
+        return UICollectionView.CellRegistration<SearchRecentWordCell, SearchController.Item> { (cell, indexPath, identifier) in
+            if let recentSearchItem = identifier.recentSearchItem {
+                cell.deleteClicked = {
+                    print("삭제 버튼")
+                }
+                cell.configCell(row: recentSearchItem.keyword)
+            }
         }
     }
     
@@ -133,8 +138,8 @@ extension SearchView {
         let section: NSCollectionLayoutSection
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
         
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(10) // 그룹 내 아이템 간의 간격
         group.edgeSpacing = .init(leading: .fixed(16), top: .fixed(0), trailing: .fixed(16), bottom: .fixed(0)) // 그룹 spacing
@@ -154,11 +159,15 @@ extension SearchView {
         let section: NSCollectionLayoutSection
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(44))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+//        group.interItemSpacing = .fixed(50)
+        group.edgeSpacing = .init(leading: .fixed(16), top: .fixed(0), trailing: .fixed(0), bottom: .fixed(0)) // 그룹 spacing
+        
         section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 5
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
         
         let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(

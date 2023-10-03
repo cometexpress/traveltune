@@ -21,6 +21,11 @@ final class SearchTagCell: BaseCollectionViewCell<String> {
         view.layer.borderColor = UIColor.txtSecondary.cgColor
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        wordButton.setTitle(nil, for: .normal)
+    }
+    
     override func configureHierarchy() {
         contentView.addSubview(containerView)
         containerView.addSubview(wordButton)
