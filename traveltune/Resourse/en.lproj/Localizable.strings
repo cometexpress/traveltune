@@ -77,3 +77,16 @@
 "jeonnam" = "jeonnam";
 "gwangju" = "gwangju";
 "jeju" = "jeju";
+
+// 검색 추천 단어
+"search_recommend_seokguram" = "Seokguram";
+"search_recommend_tourist_taxi" = "TouristTaxi";
+"search_recommend_bridge" = "Bridge";
+"search_recommend_beach" = "Beach";
+"search_recommend_cheong_wa_dae" = "Cheong Wa Dae";
+"search_recommend_island" = "Island";
+"search_recommend_history" = "History";
+"search_recommend_cultural" = "Cultural";
+"search_recommend_street" = "Street";
+"search_recommend_trail" = "Trail";
+"search_recommend_observatory" = "Observatory";

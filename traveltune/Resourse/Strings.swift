@@ -55,6 +55,20 @@ struct Strings {
         static let bukchonContent = "theme_bukchon_content".localized
     }
     
+    struct SearchRecommend {
+        static let Seokguram = "search_recommend_seokguram".localized
+        static let TouristTaxi = "search_recommend_tourist_taxi".localized
+        static let Bridge = "search_recommend_bridge".localized
+        static let Beach = "search_recommend_beach".localized
+        static let CheongWaDae = "search_recommend_cheong_wa_dae".localized
+        static let Island = "search_recommend_island".localized
+        static let History = "search_recommend_history".localized
+        static let Cultural = "search_recommend_cultural".localized
+        static let Street = "search_recommend_street".localized
+        static let Trail = "search_recommend_trail".localized
+        static let Observatory = "search_recommend_observatory".localized
+    }
+    
     struct Region {
         static let seoul = "seoul".localized
         static let gyeonggi = "gyeonggi".localized

@@ -77,3 +77,16 @@
 "jeonnam" = "전남";
 "gwangju" = "광주";
 "jeju" = "제주";
+
+// 검색 추천 단어
+"search_recommend_seokguram" = "석굴암";
+"search_recommend_tourist_taxi" = "관광택시";
+"search_recommend_bridge" = "다리";
+"search_recommend_beach" = "해수욕장";
+"search_recommend_cheong_wa_dae" = "청와대";
+"search_recommend_island" = "섬";
+"search_recommend_history" = "역사";
+"search_recommend_cultural" = "문화";
+"search_recommend_street" = "거리";
+"search_recommend_trail" = "옛길";
+"search_recommend_observatory" = "전망대";

@@ -11,7 +11,7 @@ import SnapKit
 
 final class SearchView: BaseView {
     
-    let recommendWords = ["이모티콘", "새싹", "추석", "고든램지", "햄버거", "피자", "긴긴긴1텍스트","긴긴긴2텍스트", "긴긴긴3텍스트", "긴긴긴4텍스트", "wow"]
+    let recommendWords = SearchRecommendWord.list
     let recentSearchKeywords = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
     
     weak var searchVCProtocol: SearchVCProtocol?
