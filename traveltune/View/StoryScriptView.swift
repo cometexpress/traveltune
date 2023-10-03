@@ -30,7 +30,10 @@ final class StoryScriptView: BaseView {
         view.textAlignment = .center
     }
     
-    let scriptTextView = UITextView()
+    let scriptTextView = UITextView().setup { view in
+        view.isEditable = false
+        view.isSelectable = false
+    }
     
     var closeClicked: (() -> Void)?
     
