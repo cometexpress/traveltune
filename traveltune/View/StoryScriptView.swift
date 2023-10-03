@@ -56,10 +56,6 @@ final class StoryScriptView: BaseView {
         self.scriptTextView.setContentOffset(.zero, animated: true)
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
     override func configureHierarchy() {
         clipsToBounds = true
         layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
