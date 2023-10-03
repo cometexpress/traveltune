@@ -13,6 +13,8 @@
 "error_first_story" = "첫번째 이야기에요";
 "error_last_story" = "마지막 이야기에요";
 "search_place_holder" = "검색어를 입력해주세요";
+"recommend_keyword" = "추천 검색어";
+"recent_search_keyword" = "최근 검색어";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";

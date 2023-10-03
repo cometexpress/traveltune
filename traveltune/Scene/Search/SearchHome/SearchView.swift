@@ -8,33 +8,10 @@
 import UIKit
 import SnapKit
 
-//struct Item: Hashable {
-//    private let identifier = UUID()
-//    let sectionTitle: String?
-//    let recommendItem: RecommendItem?
-//    let recentSearchItem: RecentSearchItem?
-//
-//    init(sectionTitle: String? = nil, recommendItem: RecommendItem? = nil, recentSearchItem: RecentSearchItem? = nil) {
-//        self.sectionTitle = sectionTitle
-//        self.recommendItem = recommendItem
-//        self.recentSearchItem = recentSearchItem
-//    }
-//}
-
 final class SearchView: BaseView {
     
-    enum Section: Int, Hashable, CaseIterable {
-        case recommend, recentSearchKeyword
-        var description: String {
-            switch self {
-            case .recommend: return "추천 검색어"
-            case .recentSearchKeyword: return "최근 검색어"
-            }
-        }
-    }
-    
-    let strList = ["이모티콘", "새싹", "추석", "고든램지", "햄버거", "피자", "긴긴긴1텍스트","긴긴긴2텍스트", "긴긴긴3텍스트", "긴긴긴4텍스트", "wow"]
-    let strList22 = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
+    let recommendWords = ["이모티콘", "새싹", "추석", "고든램지", "햄버거", "피자", "긴긴긴1텍스트","긴긴긴2텍스트", "긴긴긴3텍스트", "긴긴긴4텍스트", "wow"]
+    let recentSearchKeywords = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
     
     let naviBarSearchTextField = SearchTextField().setup { view in
         let width = UIScreen.main.bounds.width - 80
@@ -42,57 +19,34 @@ final class SearchView: BaseView {
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
+        view.showsVerticalScrollIndicator = false
         view.delegate = self
     }
     
-    //    var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    var dataSource: UICollectionViewDiffableDataSource<Section, String>!
+    var dataSource: UICollectionViewDiffableDataSource<SearchController.Section, SearchController.Item>!
     
     override func configureHierarchy() {
         addSubview(collectionView)
-        headerConfigureDataSource()
-        
+        configureDataSource()
+        configureSnapShot(recommendItems: recommendWords, recentItems: recentSearchKeywords)
     }
     
     override func configureLayout() {
         collectionView.snp.makeConstraints { make in
-            make.verticalEdges.equalTo(safeAreaLayoutGuide)
+            make.top.equalTo(safeAreaLayoutGuide).offset(20)
+            make.bottom.equalTo(safeAreaLayoutGuide)
             make.horizontalEdges.equalToSuperview()
         }
     }
     
-    private func createHeaderRegistration() -> UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
-        return UICollectionView.SupplementaryRegistration
-        <TitleSupplementaryView>(elementKind: SearchController.sectionHeaderElementKind) {
-            (supplementaryView, string, indexPath) in
-            supplementaryView.label.text = Section(rawValue: indexPath.section)?.description
-            supplementaryView.backgroundColor = .lightGray
-            supplementaryView.layer.borderColor = UIColor.black.cgColor
-            supplementaryView.layer.borderWidth = 1.0
-        }
-    }
-    
-    private func createRecommendCellRegistration() -> UICollectionView.CellRegistration<ListCell, String> {
-        return UICollectionView.CellRegistration<ListCell, String> { (cell, indexPath, identifier) in
-            cell.label.text = identifier
-        }
-    }
-    
-    private func createRecentSearchCellRegistration() -> UICollectionView.CellRegistration<ListCell, String> {
-        return UICollectionView.CellRegistration<ListCell, String> { (cell, indexPath, identifier) in
-            cell.label.text = identifier
-        }
-    }
-    
-    private func headerConfigureDataSource() {
-        
+    private func configureDataSource() {
         let headerRegistration = createHeaderRegistration()
         let recommendRegistration = createRecommendCellRegistration()
         let recentSearchKeywordRegistration = createRecentSearchCellRegistration()
         
-        dataSource = UICollectionViewDiffableDataSource<Section, String>(collectionView: collectionView) {
+        dataSource = UICollectionViewDiffableDataSource<SearchController.Section, SearchController.Item>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
-            guard let section = Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
+            guard let section = SearchController.Section(rawValue: indexPath.section) else { fatalError("Unknown section") }
             switch section {
             case .recommend:
                 return collectionView.dequeueConfiguredReusableCell(using: recommendRegistration, for: indexPath, item: item)
@@ -105,43 +59,94 @@ final class SearchView: BaseView {
             return self.collectionView.dequeueConfiguredReusableSupplementary(
                 using: headerRegistration, for: index)
         }
+    }
+    
+    func configureSnapShot(recommendItems: [String]? = nil, recentItems: [String]? = nil) {
+        let sections = SearchController.Section.allCases
+        var snapshot = NSDiffableDataSourceSnapshot<SearchController.Section, SearchController.Item>()
         
-        let sections = Section.allCases
-        var snapshot = NSDiffableDataSourceSnapshot<Section, String>()
-        var recommendList = strList
-        var recentList = strList22
+        let recommendList = recentItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
+        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(keyword: $0)) }
         
         sections.forEach { section in
             snapshot.appendSections([section])
             switch section {
             case .recommend:
-                snapshot.appendItems(recommendList, toSection: section)
+                if let recommendList {
+                    snapshot.appendItems(recommendList, toSection: section)
+                }
             case .recentSearchKeyword:
-                snapshot.appendItems(recentList, toSection: section)
+                if let recentList {
+                    snapshot.appendItems(recentList, toSection: section)
+                }
             }
         }
         dataSource.apply(snapshot, animatingDifferences: false)
+    }
+}
+
+extension SearchView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let recommendItem = self.dataSource.itemIdentifier(for: indexPath)?.recommendItem {
+            print(#function, "추천 클릭 \(recommendItem.title)")
+        }
         
+        if let recentSearchItem = self.dataSource.itemIdentifier(for: indexPath)?.recentSearchItem {
+            print(#function, "최근 클릭 \(recentSearchItem.keyword)")
+        }
+        collectionView.deselectItem(at: indexPath, animated: true)
+    }
+}
+
+extension SearchView {
+    
+    private func createHeaderRegistration() -> UICollectionView.SupplementaryRegistration<TitleSupplementaryView> {
+        return UICollectionView.SupplementaryRegistration
+        <TitleSupplementaryView>(elementKind: SearchController.sectionHeaderElementKind) {
+            (supplementaryView, string, indexPath) in
+            supplementaryView.titleLabel.text = SearchController.Section(rawValue: indexPath.section)?.description
+        }
+    }
+    
+    private func createRecommendCellRegistration() -> UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> {
+        return UICollectionView.CellRegistration<SearchTagCell, SearchController.Item> { (cell, indexPath, identifier) in
+//            cell.wordClicked = {
+//                print("클릭되고 있니?")
+//            }
+//            var background = UIBackgroundConfiguration.listPlainCell()
+//            background.cornerRadius = 8
+//            background.strokeColor = .systemGray3
+//            background.strokeWidth = 1.0 / cell.traitCollection.displayScale
+//            cell.backgroundConfiguration = background
+            cell.configCell(row: identifier.recommendItem?.title ?? "")
+        }
+    }
+    
+    private func createRecentSearchCellRegistration() -> UICollectionView.CellRegistration<ListCell, SearchController.Item> {
+        return UICollectionView.CellRegistration<ListCell, SearchController.Item> { (cell, indexPath, identifier) in
+            cell.label.text = identifier.recentSearchItem?.keyword
+        }
     }
     
     private func recommendSection() -> NSCollectionLayoutSection {
+        let spacing: CGFloat = 10
         let section: NSCollectionLayoutSection
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(10)
-        let spacing: CGFloat = 10
-        section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
-        section.interGroupSpacing = spacing
+        group.interItemSpacing = .fixed(10) // 그룹 내 아이템 간의 간격
+        group.edgeSpacing = .init(leading: .fixed(16), top: .fixed(0), trailing: .fixed(16), bottom: .fixed(0)) // 그룹 spacing
         
+        section = NSCollectionLayoutSection(group: group)
         let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),heightDimension: .estimated(44))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerFooterSize,
             elementKind: SearchController.sectionHeaderElementKind, alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: spacing, trailing: spacing)
+        section.interGroupSpacing = spacing
         return section
     }
     
@@ -165,7 +170,7 @@ final class SearchView: BaseView {
     
     private func createLayout() -> UICollectionViewLayout {
         let sectionProvider = { (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionKind = Section(rawValue: sectionIndex) else { return nil }
+            guard let sectionKind = SearchController.Section(rawValue: sectionIndex) else { return nil }
             let section: NSCollectionLayoutSection
             switch sectionKind {
             case .recommend:
@@ -175,12 +180,12 @@ final class SearchView: BaseView {
             }
             return section
         }
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
-    }
-}
-
-extension SearchView: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let configuration = UICollectionViewCompositionalLayoutConfiguration()
+        configuration.scrollDirection = .vertical
+        configuration.interSectionSpacing = 20 // 섹션간 스페이싱
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider)
+        layout.configuration = configuration
+        return layout
     }
 }

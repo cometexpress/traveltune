@@ -56,11 +56,15 @@ final class ThemeVC: BaseViewController<ThemeView> {
             action: #selector(searchButtonClicked)
         )
         
-        navigationController?.navigationBar.topItem?.title = Strings.Common.logoTitle
-        navigationController?.navigationBar.titleTextAttributes = [
+        let navigationBarAppearance = UINavigationBarAppearance()
+        navigationBarAppearance.configureWithTransparentBackground()  // 네비바 라인 제거 및 기존 백그라운드 색 사용
+        navigationBarAppearance.titleTextAttributes = [
             .foregroundColor: UIColor.txtPrimary,
             NSAttributedString.Key.font: UIFont(name: Constant.Fonts.logo, size: 12)!
         ]
+        navigationController?.navigationBar.topItem?.title = Strings.Common.logoTitle
+        navigationController?.navigationBar.scrollEdgeAppearance = navigationBarAppearance
+        navigationController?.navigationBar.standardAppearance = navigationBarAppearance
     }
 }
 
