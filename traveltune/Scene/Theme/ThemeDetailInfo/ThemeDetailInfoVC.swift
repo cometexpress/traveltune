@@ -29,6 +29,7 @@ final class ThemeDetailInfoVC: BaseViewController<ThemeDetailInfoView> {
         mainView.mainThumbImageView.image = themeStory.thumbnail
         mainView.titleLabel.text = themeStory.title
         mainView.contentLabel.text = themeStory.content
+        mainView.contentLabel.setLineSpacing(spacing: 8)
     }
 
 }
