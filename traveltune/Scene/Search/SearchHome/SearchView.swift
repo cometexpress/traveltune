@@ -37,11 +37,9 @@ final class SearchView: BaseView {
     }
     
     override func configureHierarchy() {
-        IQKeyboardManager.shared.toolbarDoneBarButtonItemText = Strings.Common.searchButton
-        
         addSubview(collectionView)
         configureDataSource()
-        configureSnapShot(recommendItems: recommendWords, recentItems: recentSearchKeywords)
+        configureSnapShot(recommendItems: recommendWords, recentItems: nil)
     }
     
     override func configureLayout() {
@@ -78,18 +76,19 @@ final class SearchView: BaseView {
         let sections = SearchController.Section.allCases
         var snapshot = NSDiffableDataSourceSnapshot<SearchController.Section, SearchController.Item>()
         
-        let recommendList = recentItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
+        let recommendList = recommendItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
         let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(keyword: $0)) }
         
         sections.forEach { section in
-            snapshot.appendSections([section])
             switch section {
             case .recommend:
                 if let recommendList {
+                    snapshot.appendSections([section])
                     snapshot.appendItems(recommendList, toSection: section)
                 }
             case .recentSearchKeyword:
                 if let recentList {
+                    snapshot.appendSections([section])
                     snapshot.appendItems(recentList, toSection: section)
                 }
             }
