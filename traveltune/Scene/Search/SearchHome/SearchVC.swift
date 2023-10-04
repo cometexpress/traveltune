@@ -15,6 +15,7 @@ final class SearchVC: BaseViewController<SearchView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.backButtonDisplayMode = .minimal
+        viewModel.fetchWords()
     }
     
     override func configureVC() {
@@ -36,7 +37,7 @@ final class SearchVC: BaseViewController<SearchView> {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.fetchWords()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -85,8 +86,8 @@ extension SearchVC: SearchVCProtocol {
         moveSearchResult(searchText: searchText)
     }
     
-    func deleteRecentWordClicked() {
-        print(#function)
+    func deleteRecentWordClicked(item: SearchController.RecentSearchItem) {
+        viewModel.deleteSearchKeyword(id: item.id)
     }
 }
 

@@ -75,9 +75,7 @@ final class SearchView: BaseView {
         var snapshot = NSDiffableDataSourceSnapshot<SearchController.Section, SearchController.Item>()
         
         let recommendList = recommendItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
-        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchKeyword(text: $0.text)) }
-        
-//        recentItems?.map { SearchController.Item(recentSearchItem: SearchController.SearchKeyword(text: $0)) }
+        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(id: String(describing: $0._id), keyword: $0.text)) }
         
         sections.forEach { section in
             switch section {
@@ -88,8 +86,10 @@ final class SearchView: BaseView {
                 }
             case .recentSearchKeyword:
                 if let recentList {
-                    snapshot.appendSections([section])
-                    snapshot.appendItems(recentList, toSection: section)
+                    if !recentList.isEmpty {
+                        snapshot.appendSections([section])
+                        snapshot.appendItems(recentList, toSection: section)
+                    }                    
                 }
             }
         }
@@ -111,7 +111,7 @@ extension SearchView: UICollectionViewDelegate {
         }
         
         if let recentSearchItem = self.dataSource.itemIdentifier(for: indexPath)?.recentSearchItem {
-            searchVCProtocol?.recentWordClicked(searchText: recentSearchItem.text)
+            searchVCProtocol?.recentWordClicked(searchText: recentSearchItem.keyword)
         }
         collectionView.deselectItem(at: indexPath, animated: true)
     }
@@ -148,9 +148,9 @@ extension SearchView {
         return UICollectionView.CellRegistration<SearchRecentWordCell, SearchController.Item> { (cell, indexPath, identifier) in
             if let recentSearchItem = identifier.recentSearchItem {
                 cell.deleteClicked = { [weak self] in
-                    self?.searchVCProtocol?.deleteRecentWordClicked()
+                    self?.searchVCProtocol?.deleteRecentWordClicked(item: recentSearchItem)
                 }
-                cell.configCell(row: recentSearchItem.text)
+                cell.configCell(row: recentSearchItem.keyword)
             }
         }
     }
@@ -158,7 +158,7 @@ extension SearchView {
     private func recommendSection() -> NSCollectionLayoutSection {
         let spacing: CGFloat = 10
         let section: NSCollectionLayoutSection
-        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(50), heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(120), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(30))

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class SearchViewModel {
     
@@ -16,11 +17,17 @@ final class SearchViewModel {
     
     private let localSearchKeywordRepository = LocalSearchKeywordRepository()
     
+    private var notificationToken: NotificationToken?
+    
+    deinit {
+        notificationToken?.invalidate()
+    }
+    
     var words: Observable<Words> = Observable(Words())
     
     func fetchWords() {
         words.value.recommendWords = SearchRecommendWord.list
-        words.value.recentSearchKeywords = fetchSearchKeyword()
+        searchKeywordObserve()
     }
     
     enum SearchStatus {
@@ -46,6 +53,30 @@ final class SearchViewModel {
     
     private func fetchSearchKeyword() -> [SearchKeyword]? {
         return localSearchKeywordRepository.fetch()?.sorted(byKeyPath: "date").toArray()
+    }
+    
+    func deleteSearchKeyword(id: String) {
+        guard let deleteItem = localSearchKeywordRepository.objectByPrimaryKey(primaryKey: id) else { return }
+        localSearchKeywordRepository.delete(deleteItem) {
+            print("\(id) 삭제 실패")
+        }
+    }
+    
+    private func searchKeywordObserve() {
+        guard let tasks = localSearchKeywordRepository.fetch() else { return }
+        notificationToken = tasks.observe { [weak self] changes in
+            guard let self else { return }
+            switch changes {
+            case .initial:
+                print("검색어있는지 체크 - init")
+                words.value.recentSearchKeywords = fetchSearchKeyword()
+            case .update(_, let deletions, let insertions, let modifications):
+                print("검색어 delete")
+                words.value.recentSearchKeywords = fetchSearchKeyword()
+            case .error(let error):
+                print("ERROR: \(error.localizedDescription)")
+            }
+        }
     }
     
 }

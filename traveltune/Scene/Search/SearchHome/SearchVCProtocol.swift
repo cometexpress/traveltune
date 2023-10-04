@@ -11,5 +11,5 @@ protocol SearchVCProtocol: AnyObject {
     func textfieldDoneClicked(searchText: String)
     func recommendWordClicked(searchText: String)
     func recentWordClicked(searchText: String)
-    func deleteRecentWordClicked()
+    func deleteRecentWordClicked(item: SearchController.RecentSearchItem)
 }

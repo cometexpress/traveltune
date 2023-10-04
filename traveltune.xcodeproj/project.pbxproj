@@ -17,6 +17,7 @@
 		C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3C822ACC8A3C00B89928 /* RegionType.swift */; };
 		C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */; };
 		C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */; };
+		C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
@@ -129,6 +130,7 @@
 		C00C3C822ACC8A3C00B89928 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
 		C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchKeywordRepository.swift; sourceTree = "<group>"; };
 		C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Results+Extension.swift"; sourceTree = "<group>"; };
+		C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeyword.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				C04F9CAB2ABEF79E0058A8D0 /* Request */,
 				C04F9CAC2ABEF7A30058A8D0 /* Response */,
 				C0BDC3272AC934F100D7331E /* FavoriteStory.swift */,
+				C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
+				C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
 				C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */,
 				C09A697D2ACB04CD002FA468 /* SearchTextField.swift in Sources */,

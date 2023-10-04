@@ -6,27 +6,6 @@
 //
 
 import Foundation
-import RealmSwift
-
-final class SearchKeyword: Object {
-    @Persisted(primaryKey: true) var _id: ObjectId
-    @Persisted var text: String
-    @Persisted var date: Date
-    
-    convenience init(text: String) {
-        self.init()
-        self.text = text
-        self.date = .now
-    }
-    
-    override var hash: Int {
-        return _id.hashValue
-    }
-    
-    static func == (lhs: SearchKeyword, rhs: SearchKeyword) -> Bool {
-        return lhs._id == rhs._id
-    }
-}
 
 final class SearchController {
     
@@ -46,9 +25,9 @@ final class SearchController {
         private let identifier = UUID()
         let sectionTitle: String?
         let recommendItem: RecommendItem?
-        let recentSearchItem: SearchKeyword?
+        let recentSearchItem: RecentSearchItem?
     
-        init(sectionTitle: String? = nil, recommendItem: RecommendItem? = nil, recentSearchItem: SearchKeyword? = nil) {
+        init(sectionTitle: String? = nil, recommendItem: RecommendItem? = nil, recentSearchItem: RecentSearchItem? = nil) {
             self.sectionTitle = sectionTitle
             self.recommendItem = recommendItem
             self.recentSearchItem = recentSearchItem
@@ -67,13 +46,13 @@ final class SearchController {
         }
     }
     
-//    struct RecentSearchItem: Hashable {
-//        private let identifier = UUID()
-//        let keyword: String
-//        func hash(into hasher: inout Hasher) {
-//            hasher.combine(identifier)
-//        }
-//    }
+    struct RecentSearchItem: Hashable {
+        var id: String
+        let keyword: String
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    }
     
     
     
