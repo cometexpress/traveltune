@@ -69,6 +69,11 @@ struct Strings {
         static let Observatory = "search_recommend_observatory".localized
     }
     
+    struct SearchTabTitle {
+        static let TravelSpot = "search_tab_travel_spot".localized
+        static let Story = "search_tab_story".localized
+    }
+    
     struct Region {
         static var seoul = "seoul".localized
         static var gyeonggi = "gyeonggi".localized

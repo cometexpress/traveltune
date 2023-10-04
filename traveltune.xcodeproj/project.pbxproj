@@ -28,6 +28,11 @@
 		C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03019412ACC713C00926451 /* SearchViewModel.swift */; };
 		C03592812ACD79D700AA3D36 /* SearchResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03592802ACD79D700AA3D36 /* SearchResultVC.swift */; };
 		C03592832ACD987A00AA3D36 /* CommonTabPagingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03592822ACD987A00AA3D36 /* CommonTabPagingVC.swift */; };
+		C03592852ACD9E9800AA3D36 /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03592842ACD9E9800AA3D36 /* SearchResultView.swift */; };
+		C03592892ACDA03700AA3D36 /* SearchResultTabStoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03592882ACDA03700AA3D36 /* SearchResultTabStoryVC.swift */; };
+		C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035928A2ACDA05100AA3D36 /* SearchResultTabStoryView.swift */; };
+		C035928D2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035928C2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift */; };
+		C035928F2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C035928E2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift */; };
 		C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D182AC6A3DB00C220A6 /* RequestStory.swift */; };
 		C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */; };
 		C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */; };
@@ -141,6 +146,11 @@
 		C03019412ACC713C00926451 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		C03592802ACD79D700AA3D36 /* SearchResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultVC.swift; sourceTree = "<group>"; };
 		C03592822ACD987A00AA3D36 /* CommonTabPagingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTabPagingVC.swift; sourceTree = "<group>"; };
+		C03592842ACD9E9800AA3D36 /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		C03592882ACDA03700AA3D36 /* SearchResultTabStoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryVC.swift; sourceTree = "<group>"; };
+		C035928A2ACDA05100AA3D36 /* SearchResultTabStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryView.swift; sourceTree = "<group>"; };
+		C035928C2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabTravelSpotVC.swift; sourceTree = "<group>"; };
+		C035928E2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabTravelSpotView.swift; sourceTree = "<group>"; };
 		C0453D182AC6A3DB00C220A6 /* RequestStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStory.swift; sourceTree = "<group>"; };
 		C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStory.swift; sourceTree = "<group>"; };
 		C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
@@ -306,6 +316,24 @@
 			path = SearchHome;
 			sourceTree = "<group>";
 		};
+		C03592862ACD9FFF00AA3D36 /* TabTravelSpot */ = {
+			isa = PBXGroup;
+			children = (
+				C035928C2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift */,
+				C035928E2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift */,
+			);
+			path = TabTravelSpot;
+			sourceTree = "<group>";
+		};
+		C03592872ACDA01200AA3D36 /* TabStory */ = {
+			isa = PBXGroup;
+			children = (
+				C03592882ACDA03700AA3D36 /* SearchResultTabStoryVC.swift */,
+				C035928A2ACDA05100AA3D36 /* SearchResultTabStoryView.swift */,
+			);
+			path = TabStory;
+			sourceTree = "<group>";
+		};
 		C0453D232AC81E7100C220A6 /* LaunchScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,7 +417,10 @@
 		C06449F32ACC3727005C8529 /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
+				C03592862ACD9FFF00AA3D36 /* TabTravelSpot */,
+				C03592872ACDA01200AA3D36 /* TabStory */,
 				C03592802ACD79D700AA3D36 /* SearchResultVC.swift */,
+				C03592842ACD9E9800AA3D36 /* SearchResultView.swift */,
 			);
 			path = SearchResult;
 			sourceTree = "<group>";
@@ -832,19 +863,23 @@
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
+				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */,
 				C03592812ACD79D700AA3D36 /* SearchResultVC.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */,
+				C03592852ACD9E9800AA3D36 /* SearchResultView.swift in Sources */,
 				C0D81A982AC55FE600CB2EF0 /* HeroID.swift in Sources */,
 				C02DABE12ACADE4700F3BC42 /* SearchView.swift in Sources */,
 				C02DABDF2ACADE3000F3BC42 /* SearchVC.swift in Sources */,
 				C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */,
 				C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */,
 				C03592832ACD987A00AA3D36 /* CommonTabPagingVC.swift in Sources */,
+				C03592892ACDA03700AA3D36 /* SearchResultTabStoryVC.swift in Sources */,
 				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
+				C035928D2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift in Sources */,
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
@@ -856,6 +891,7 @@
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
 				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
+				C035928F2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,

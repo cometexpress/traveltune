@@ -46,5 +46,12 @@ final class SearchTextField: UITextField {
         clipsToBounds = true
         layer.cornerRadius = 8
         clearButtonMode = .whileEditing
+        returnKeyType = .search
+        addDoneOnKeyboardWithTarget(self, action: #selector(toolBarDoneClicked), titleText: nil)
+        //        view.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(keyboardDoneClicked))
+    }
+    
+    @objc private func toolBarDoneClicked() {
+        self.resignFirstResponder()
     }
 }

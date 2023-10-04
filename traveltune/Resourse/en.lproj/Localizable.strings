@@ -90,3 +90,7 @@
 "search_recommend_street" = "Street";
 "search_recommend_trail" = "Trail";
 "search_recommend_observatory" = "Observatory";
+
+// 검색 탭 메뉴 타이틀
+"search_tab_travel_spot" = "Spot";
+"search_tab_story" = "Story";

@@ -9,43 +9,33 @@ import UIKit
 import Parchment
 import SnapKit
 
-final class SearchResultVC: UIViewController {
+final class SearchResultVC: BaseViewController<SearchResultView> {
     
     var searchKeyword: String?
     
-    private lazy var commonTabPaingVC = CommonTabPagingVC(
-        viewControllers: [UIViewController(), UIViewController()],
-        tabTitles: ["관광지","이야기"]
-    )
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .background
+    }
+    
+    override func configureVC() {
+//        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            image: .chevronBackward,
+            style: .plain,
+            target: self,
+            action: #selector(backButtonClicked)
+        )
+        mainView.naviBarSearchTextField.text = searchKeyword
+        navigationItem.leftBarButtonItem?.tintColor = .txtPrimary
+        navigationItem.titleView = mainView.naviBarSearchTextField
         
-        addChild(commonTabPaingVC)
-        view.addSubview(commonTabPaingVC.view)
-        commonTabPaingVC.didMove(toParent: self)
-        
-        commonTabPaingVC.view.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide)
-            make.horizontalEdges.bottom.equalToSuperview()
-        }
-        commonTabPaingVC.dataSource = self
-        //        commonTabPaingVC.sizeDelegate = self
+        addChild(mainView.commonTabPaingVC)
+        mainView.commonTabPaingVC.didMove(toParent: self)
+    }
+    
+    @objc private func backButtonClicked() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
-extension SearchResultVC: PagingViewControllerDataSource {
-    
-    func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
-        return commonTabPaingVC.tabTitles.count
-    }
-    
-    func pagingViewController(_: PagingViewController, viewControllerAt index: Int) -> UIViewController {
-        return commonTabPaingVC.tabViewControllers[index]
-    }
-    
-    func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
-        return PagingIndexItem(index: index, title: commonTabPaingVC.tabTitles[index])
-    }
-}
+

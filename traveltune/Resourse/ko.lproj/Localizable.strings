@@ -90,3 +90,7 @@
 "search_recommend_street" = "거리";
 "search_recommend_trail" = "옛길";
 "search_recommend_observatory" = "전망대";
+
+// 검색 탭 메뉴 타이틀
+"search_tab_travel_spot" = "관광지";
+"search_tab_story" = "이야기";

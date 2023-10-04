@@ -17,9 +17,6 @@ final class SearchView: BaseView {
     lazy var naviBarSearchTextField = SearchTextField().setup { view in
         let width = UIScreen.main.bounds.width - 80
         view.frame = .init(x: 0, y: 0, width: width, height: 40)
-        view.returnKeyType = .search
-        view.addDoneOnKeyboardWithTarget(self, action: #selector(toolBarDoneClicked), titleText: nil)
-        //        view.keyboardToolbar.doneBarButton.setTarget(self, action: #selector(keyboardDoneClicked))
         view.delegate = self
     }
     
@@ -29,10 +26,6 @@ final class SearchView: BaseView {
     }
     
     var dataSource: UICollectionViewDiffableDataSource<SearchController.Section, SearchController.Item>!
-    
-    @objc private func toolBarDoneClicked() {
-        naviBarSearchTextField.resignFirstResponder()
-    }
     
     override func configureHierarchy() {
         addSubview(collectionView)
