@@ -9,8 +9,16 @@ import UIKit
 
 final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView> {
     
+    var viewModel: SearchResultViewModel?
+    
+    convenience init(viewModel: SearchResultViewModel) {
+        self.init()
+        self.viewModel = viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("이야기 = ", viewModel?.searchKeyword)
     }
     
     override func configureVC() {
