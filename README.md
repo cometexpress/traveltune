@@ -36,20 +36,20 @@
 |  프로젝트 세팅 | 0 | 6  |  12 | <ul><li>[x] </li></ul> | 다국어, 다크모드, 라이브러리, Base 등 세팅 |
 |  홈 메인 UI  |  1  | 8  |  12 | <ul><li>[x] </li></ul> | Cocoapods 오류 처리로 지연 |
 |  Splash UI & 기능 |  1  | 8  |  13 | <ul><li>[x] </li></ul> | 기획단계에서 생각만 했던 것을 개발하며 기획을 같이해서 지연 |
-|  테마 상세 UI |  1  |  8  | - 16 | <ul><li>[x] </li></ul> | hero 라이브러리 기능 개발 지연, UIVisualEffectView 안 객체 터치 안되는 이슈로 지연 HitTest 로 해결 |
-|  테마 상세 기능 |  2  |  10  | - 20 | <ul><li>[x] </li></ul> | 테마상세로 이동시 api 최초 한번만 호출 데이터 캐시 기능 구현으로 지연, 좋아요, 재생 관련기능이 생각보다 처리할게 많아 지연 |
+|  테마 상세 UI |  1  |  8  | 16 | <ul><li>[x] </li></ul> | hero 라이브러리 기능 개발 지연, UIVisualEffectView 안 객체 터치 안되는 이슈로 지연 HitTest 로 해결 |
+|  테마 상세 기능 |  2  |  10  | 20 | <ul><li>[x] </li></ul> | 테마상세로 이동시 api 최초 한번만 호출 데이터 캐시 기능 구현으로 지연, 좋아요, 재생 관련기능이 생각보다 처리할게 많아 지연 |
 |  테마 상세 지도모드 UI |  2  | 4 |  - h  | <ul><li>[ ] </li></ul> | 보류 |
+|  (공통)하단 재생 UI - minimalSize  |  2  |  2  |  3 | <ul><li>[ ] </li></ul> | 없음 |
+|  (공통)하단 재생 기능 - minimalSize  |  2  |  8  |  6 | <ul><li>[ ] </li></ul> | 없음 |
 |  검색 메인 UI  |  2  | 6 | 22 | <ul><li>[x] </li></ul> | DiffableDataSource, CompositionalLayout 학습 지연 |
-|  검색 메인 기능  |  2  | 10 |  - h | <ul><li>[ ] </li></ul> | - |
-|  검색 결과 UI  |  2  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
-|  검색 결과 기능  |  2  | 8 |  - h | <ul><li>[ ] </li></ul> | - |
+|  검색 메인 기능  |  3  | 10 |  - h | <ul><li>[ ] </li></ul> | - |
+|  검색 결과 UI  |  3  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
+|  검색 결과 기능  |  3  | 8 |  - h | <ul><li>[ ] </li></ul> | - |
 |  관광지 상세 UI  |  3  |  4  |  - h  | <ul><li>[ ] </li></ul> | - |
 |  관광지 상세 기능 UI  |  3  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
-|  이야기 상세 UI  |  3  |  4  |  - h | <ul><li>[ ] </li></ul> | - |
-|  이야기 상세 기능 UI  |  3  |  6  |  - h | <ul><li>[ ] </li></ul> | - |
+|  이야기 상세 UI  |  4  |  4  |  - h | <ul><li>[ ] </li></ul> | - |
+|  이야기 상세 기능 UI  |  4  |  6  |  - h | <ul><li>[ ] </li></ul> | - |
 |  플레이 목록 메인 UI  |  4  |  8  | - h | <ul><li>[ ] </li></ul> | - |
-|  (공통)하단 재생 UI - minimalSize  |  4  |  2  |  - h | <ul><li>[ ] </li></ul> | - |
-|  (공통)하단 재생 기능 - minimalSize  |  4  |  8  |  - h | <ul><li>[ ] </li></ul> | - |
 |  (공통)하단 재생 UI - fullSize  |  4  |  8  |  - h | <ul><li>[ ] </li></ul> | - |
 |  (공통)하단 재생 기능 - fullSize |  4  |  8  |  - h | <ul><li>[ ] </li></ul> | - |
 |  지도 메인 UI  |  5  |  3  |  - h | <ul><li>[ ] </li></ul> | - |
