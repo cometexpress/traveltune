@@ -10,9 +10,17 @@ import RealmSwift
 
 final class SearchViewModel {
     
+    
+    
+    
+//    struct Words {
+//        var recommendWords: [String]? = nil
+//        var recentSearchKeywords: [SearchKeyword]? = nil
+//    }
+    
     struct Words {
-        var recommendWords: [String]? = nil
-        var recentSearchKeywords: [SearchKeyword]? = nil
+        var recommendWords: [SearchController.Item]? = nil
+        var recentSearchKeywords: [SearchController.Item]? = nil
     }
     
     private let localSearchKeywordRepository = LocalSearchKeywordRepository()
@@ -26,7 +34,8 @@ final class SearchViewModel {
     var words: Observable<Words> = Observable(Words())
     
     func fetchWords() {
-        words.value.recommendWords = SearchRecommendWord.list
+        let recommends = SearchRecommendWord.list.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
+        words.value.recommendWords = recommends
         searchKeywordObserve()
     }
     
@@ -51,8 +60,11 @@ final class SearchViewModel {
         }
     }
     
-    private func fetchSearchKeyword() -> [SearchKeyword]? {
-        return localSearchKeywordRepository.fetch()?.sorted(byKeyPath: "date").toArray()
+    private func fetchSearchKeyword() -> [SearchController.Item]? {
+        let searchWords =  localSearchKeywordRepository.fetch()?.sorted(byKeyPath: "date").toArray()
+        return searchWords?.map {
+            SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(id: String(describing: $0._id), keyword: $0.text))
+        }
     }
     
     func deleteSearchKeyword(id: String) {

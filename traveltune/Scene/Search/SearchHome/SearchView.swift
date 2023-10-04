@@ -70,26 +70,23 @@ final class SearchView: BaseView {
         }
     }
     
-    func configureSnapShot(recommendItems: [String]? = nil, recentItems: [SearchKeyword]? = nil) {
+    func applySnapShot(recommendItems: [SearchController.Item]? = nil, recentItems: [SearchController.Item]? = nil) {
         let sections = SearchController.Section.allCases
         var snapshot = NSDiffableDataSourceSnapshot<SearchController.Section, SearchController.Item>()
-        
-        let recommendList = recommendItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
-        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(id: String(describing: $0._id), keyword: $0.text)) }
         
         sections.forEach { section in
             switch section {
             case .recommend:
-                if let recommendList {
+                if let recommendItems {
                     snapshot.appendSections([section])
-                    snapshot.appendItems(recommendList, toSection: section)
+                    snapshot.appendItems(recommendItems, toSection: section)
                 }
             case .recentSearchKeyword:
-                if let recentList {
-                    if !recentList.isEmpty {
+                if let recentItems {
+                    if !recentItems.isEmpty {
                         snapshot.appendSections([section])
-                        snapshot.appendItems(recentList, toSection: section)
-                    }                    
+                        snapshot.appendItems(recentItems, toSection: section)
+                    }
                 }
             }
         }

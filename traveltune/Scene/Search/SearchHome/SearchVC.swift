@@ -51,7 +51,10 @@ final class SearchVC: BaseViewController<SearchView> {
     
     private func bindData() {
         viewModel.words.bind { [weak self] words in
-            self?.mainView.configureSnapShot(recommendItems: words.recommendWords, recentItems: words.recentSearchKeywords)
+            self?.mainView.applySnapShot(
+                recommendItems: words.recommendWords,
+                recentItems: words.recentSearchKeywords
+            )
         }
         
         viewModel.isExistSearchText.bind { [weak self] status in
@@ -60,15 +63,16 @@ final class SearchVC: BaseViewController<SearchView> {
                 print("init")
             case .empty:
                 self?.showToast(msg: Strings.Common.searchPlaceHolder, position: .center)
-            case .exist(let searchText):                
-                self?.moveSearchResult(searchText: searchText)
+            case .exist(let searchText):
+                self?.successSearch(text: searchText)
             }
         }
     }
     
-    private func moveSearchResult(searchText: String) {
+    private func successSearch(text: String) {
+        mainView.naviBarSearchTextField.text = text
         let vc = SearchResultVC()
-        vc.searchKeyword = searchText
+        vc.searchKeyword = text
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -79,11 +83,11 @@ extension SearchVC: SearchVCProtocol {
     }
     
     func recommendWordClicked(searchText: String) {
-        moveSearchResult(searchText: searchText)
+        successSearch(text: searchText)
     }
     
     func recentWordClicked(searchText: String) {
-        moveSearchResult(searchText: searchText)
+        successSearch(text: searchText)
     }
     
     func deleteRecentWordClicked(item: SearchController.RecentSearchItem) {
