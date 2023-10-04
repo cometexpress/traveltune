@@ -9,6 +9,8 @@ target 'traveltune' do
   pod 'FSPagerView'
   pod 'Firebase/Analytics'
   pod 'Firebase/Crashlytics'
+  pod 'Parchment', '~> 3.2'
+
  end
   post_install do |installer|
       installer.generated_projects.each do |project|

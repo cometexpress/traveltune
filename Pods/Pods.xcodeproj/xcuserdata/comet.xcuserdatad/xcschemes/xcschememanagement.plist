@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Parchment.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-traveltune.xcscheme</key>
 		<dict>
 			<key>isShown</key>
