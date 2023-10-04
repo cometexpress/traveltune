@@ -14,6 +14,7 @@
 		C00839F12AC5E6DE00C17BD6 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F02AC5E6DE00C17BD6 /* CircleView.swift */; };
 		C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
+		C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3C822ACC8A3C00B89928 /* RegionType.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
@@ -123,6 +124,7 @@
 		C00839F02AC5E6DE00C17BD6 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
+		C00C3C822ACC8A3C00B89928 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 		C05BB6AE2AC31748007CC4A5 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
+				C00C3C822ACC8A3C00B89928 /* RegionType.swift */,
 				C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */,
 				C0D81A972AC55FE600CB2EF0 /* HeroID.swift */,
 			);
@@ -869,6 +872,7 @@
 				C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */,
 				C0E8BAB02ABDDD9700B1CCA6 /* PlaylistView.swift in Sources */,
 				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
+				C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */,
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
