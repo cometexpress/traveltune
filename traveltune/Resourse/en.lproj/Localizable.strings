@@ -16,6 +16,7 @@
 "search_place_holder" = "Please enter a search word";
 "recommend_keyword" = "Recommend Words";
 "recent_search_keyword" = "Recent Search Words";
+"search_no_data" = "There's no search result";
 
 // 에러메시지
 "error_network" = "Please check network";

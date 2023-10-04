@@ -20,6 +20,7 @@ struct Strings {
         static let searchPlaceHolder = "search_place_holder".localized
         static let recommendKeyword = "recommend_keyword".localized
         static let recentSearchKeyword = "recent_search_keyword".localized
+        static let searchNoData = "search_no_data".localized
         
     }
     

@@ -22,4 +22,8 @@ final class StoryRepository {
             }
     }
     
+    func requestSearchStory() {
+        
+    }
+    
 }
