@@ -22,8 +22,15 @@ final class StoryRepository {
             }
     }
     
-    func requestSearchStory() {
-        
+    func requestSearchStory(
+        keyword: String,
+        completion: @escaping (Result<ResponseStory, Error>) -> Void
+    ) {
+        Network.shared.request(
+            api: .searchStories(request: RequestSearchStory(keyword: keyword)),
+            type: ResponseStory.self) { response in
+                completion(response)
+            }
     }
     
 }

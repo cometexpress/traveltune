@@ -15,7 +15,7 @@ enum Router: URLRequestConvertible {
     case searchSpots(request: RequestSearchTravelSpots)        // 관광지 키워드 검색 조회
     case baseStories(request: RequestStory)                 // 이야기 기본 정보 목록 조회
     case locationStories     // 이야기 위치 기반 목록 조회 - WGS84 좌표
-    case searchStories      // 이야기 키워드 검색 조회
+    case searchStories(request: RequestSearchStory)          // 이야기 키워드 검색 조회
     
     case checkVisitorsInMetro(request: RequestCheckVisitorsInMetro)       // 광역 지차체 방문자 수 조회
     
@@ -68,8 +68,8 @@ enum Router: URLRequestConvertible {
             return request.toEncodable
         case .locationStories:
             return ["": ""]
-        case .searchStories:
-            return ["": ""]
+        case .searchStories(let request):
+            return request.toEncodable
         case .checkVisitorsInMetro(let request):
             return request.toEncodable
         }
