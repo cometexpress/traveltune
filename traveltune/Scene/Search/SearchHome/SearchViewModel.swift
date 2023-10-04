@@ -11,16 +11,16 @@ final class SearchViewModel {
     
     struct Words {
         var recommendWords: [String]? = nil
-        var recentSearchKeywords: [String]? = nil
+        var recentSearchKeywords: [SearchKeyword]? = nil
     }
     
-    let testRecentSearchKeywords = ["감자", "고구마", "설날", "고깃덩어리", "햄", "국자", "1텍스트","2텍스트", "3텍스트", "4텍스트", "wow???"]
+    private let localSearchKeywordRepository = LocalSearchKeywordRepository()
     
     var words: Observable<Words> = Observable(Words())
     
     func fetchWords() {
         words.value.recommendWords = SearchRecommendWord.list
-        words.value.recentSearchKeywords = testRecentSearchKeywords
+        words.value.recentSearchKeywords = fetchSearchKeyword()
     }
     
     enum SearchStatus {
@@ -33,8 +33,19 @@ final class SearchViewModel {
         if searchText.isEmpty {
             isExistSearchText.value = .empty
         } else {
+            saveSearchKeyword(text: searchText)
             isExistSearchText.value = .exist(searchText)
         }
+    }
+    
+    private func saveSearchKeyword(text: String) {
+        localSearchKeywordRepository.create(SearchKeyword(text: text)) {
+            print(#function, "검색단어 저장 실패")
+        }
+    }
+    
+    private func fetchSearchKeyword() -> [SearchKeyword]? {
+        return localSearchKeywordRepository.fetch()?.sorted(byKeyPath: "date").toArray()
     }
     
 }

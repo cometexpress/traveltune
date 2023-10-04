@@ -17,11 +17,6 @@ final class SearchVC: BaseViewController<SearchView> {
         navigationItem.backButtonDisplayMode = .minimal
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        mainView.naviBarSearchTextField.resignFirstResponder()
-    }
-    
     override func configureVC() {
         mainView.viewModel = viewModel
         mainView.searchVCProtocol = self
@@ -36,8 +31,17 @@ final class SearchVC: BaseViewController<SearchView> {
         navigationItem.leftBarButtonItem?.tintColor = .txtPrimary
         navigationItem.titleView = mainView.naviBarSearchTextField
         
-        viewModel.fetchWords()
         bindData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.fetchWords()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mainView.naviBarSearchTextField.resignFirstResponder()
     }
     
     @objc private func backButtonClicked() {
@@ -55,7 +59,7 @@ final class SearchVC: BaseViewController<SearchView> {
                 print("init")
             case .empty:
                 self?.showToast(msg: Strings.Common.searchPlaceHolder, position: .center)
-            case .exist(let searchText):
+            case .exist(let searchText):                
                 self?.moveSearchResult(searchText: searchText)
             }
         }

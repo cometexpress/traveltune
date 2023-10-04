@@ -15,6 +15,8 @@
 		C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */; };
 		C00839F62AC68DB700C17BD6 /* AudioImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00839F52AC68DB700C17BD6 /* AudioImageView.swift */; };
 		C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3C822ACC8A3C00B89928 /* RegionType.swift */; };
+		C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */; };
+		C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
@@ -125,6 +127,8 @@
 		C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioUISlider.swift; sourceTree = "<group>"; };
 		C00839F52AC68DB700C17BD6 /* AudioImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioImageView.swift; sourceTree = "<group>"; };
 		C00C3C822ACC8A3C00B89928 /* RegionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionType.swift; sourceTree = "<group>"; };
+		C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchKeywordRepository.swift; sourceTree = "<group>"; };
+		C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Results+Extension.swift"; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
@@ -447,6 +451,7 @@
 				C0D81A7E2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift */,
 				C0BDC31A2AC8871A00D7331E /* LocalThemeStoryRepository.swift */,
 				C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */,
+				C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -530,6 +535,7 @@
 				C0BDC3252AC8912200D7331E /* Copy+Extension.swift */,
 				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
 				C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */,
+				C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */,
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
+				C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */,
 				C09A697F2ACB34F1002FA468 /* SearchController.swift in Sources */,
 				C06449F22ACC2D60005C8529 /* SearchRecentWordCell.swift in Sources */,
 				C04F9CAE2ABEF8320058A8D0 /* ResponseTravelSpots.swift in Sources */,
@@ -835,6 +842,7 @@
 				C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */,
 				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
+				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
 				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,

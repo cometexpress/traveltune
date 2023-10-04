@@ -70,12 +70,14 @@ final class SearchView: BaseView {
         }
     }
     
-    func configureSnapShot(recommendItems: [String]? = nil, recentItems: [String]? = nil) {
+    func configureSnapShot(recommendItems: [String]? = nil, recentItems: [SearchKeyword]? = nil) {
         let sections = SearchController.Section.allCases
         var snapshot = NSDiffableDataSourceSnapshot<SearchController.Section, SearchController.Item>()
         
         let recommendList = recommendItems?.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
-        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchController.RecentSearchItem(keyword: $0)) }
+        let recentList = recentItems?.map { SearchController.Item(recentSearchItem: SearchKeyword(text: $0.text)) }
+        
+//        recentItems?.map { SearchController.Item(recentSearchItem: SearchController.SearchKeyword(text: $0)) }
         
         sections.forEach { section in
             switch section {
@@ -109,7 +111,7 @@ extension SearchView: UICollectionViewDelegate {
         }
         
         if let recentSearchItem = self.dataSource.itemIdentifier(for: indexPath)?.recentSearchItem {
-            searchVCProtocol?.recentWordClicked(searchText: recentSearchItem.keyword)
+            searchVCProtocol?.recentWordClicked(searchText: recentSearchItem.text)
         }
         collectionView.deselectItem(at: indexPath, animated: true)
     }
@@ -148,7 +150,7 @@ extension SearchView {
                 cell.deleteClicked = { [weak self] in
                     self?.searchVCProtocol?.deleteRecentWordClicked()
                 }
-                cell.configCell(row: recentSearchItem.keyword)
+                cell.configCell(row: recentSearchItem.text)
             }
         }
     }
