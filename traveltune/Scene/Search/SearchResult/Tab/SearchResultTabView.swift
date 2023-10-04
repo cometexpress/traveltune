@@ -1,5 +1,5 @@
 //
-//  SearchResultView.swift
+//  SearchResultTabView.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/10/03.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchResultView: BaseView {
+final class SearchResultTabView: BaseView {
     
     lazy var naviBarSearchTextField = SearchTextField().setup { view in
         let width = UIScreen.main.bounds.width - 80
@@ -31,7 +31,7 @@ final class SearchResultView: BaseView {
     }
 }
 
-extension SearchResultView: UITextFieldDelegate {
+extension SearchResultTabView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         print("키보드 검색 버튼 클릭")
         return true

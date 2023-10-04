@@ -20,9 +20,9 @@ final class LoadingIndicator {
             if let existedView = window.subviews.first(where: { $0 is UIActivityIndicatorView } ) as? UIActivityIndicatorView {
                 indicatorView = existedView
             } else {
-                indicatorView = UIActivityIndicatorView(style: .medium)
+                indicatorView = UIActivityIndicatorView(style: .large)
                 indicatorView.frame = window.frame
-                indicatorView.color = .primary
+                indicatorView.color = .txtSecondary
                 window.addSubview(indicatorView)
             }
             

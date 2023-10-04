@@ -1,5 +1,5 @@
 //
-//  SearchResultVC.swift
+//  SearchResultTabVC.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/10/03.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchResultVC: BaseViewController<SearchResultView> {
+final class SearchResultTabVC: BaseViewController<SearchResultTabView> {
     
     var searchKeyword: String?
     
