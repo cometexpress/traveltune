@@ -29,7 +29,9 @@ final class ThemeDetailViewModel {
     }
     
     private func updateStories(searchKeyword: String) {
-        let localThemeSpots = localTravelSpotRepository.fetch()?.filter("themeCategory CONTAINS '\(searchKeyword)' OR title CONTAINS '\(searchKeyword)'")
+        let localThemeSpots = localTravelSpotRepository.fetch()?
+            .filter("themeCategory CONTAINS '\(searchKeyword)' OR title CONTAINS '\(searchKeyword)'")
+        
         localThemeSpots?.forEach { localItem in
             storyGroup.enter()
             storyRepository.requestBasedStory(item: localItem) { response in
@@ -60,7 +62,7 @@ final class ThemeDetailViewModel {
     func fetchThemeStoriesData(keyword: String) {
         let localStories = localThemeStoryRepository.fetchFilter {
             $0.searchKeyword.equals(keyword)
-        }?.sorted(byKeyPath: "_id")
+        }?.sorted(byKeyPath: "imageURL", ascending: false)
         
         guard let localStories else { return }
         
@@ -84,10 +86,10 @@ final class ThemeDetailViewModel {
             switch changes {
             case .initial:
                 print("좋아요한지 체크 - init")
-                let list = self.saveStories.map(checkFavoriteStory(item:))
+                let list = self.saveStories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
                 self.stories.value.append(contentsOf: list)
             case .update(_, let deletions, let insertions, let modifications):
-                let list = self.saveStories.map(checkFavoriteStory(item:))
+                let list = self.saveStories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
                 self.stories.value = list
             case .error(let error):
                 print("ERROR: \(error)")
