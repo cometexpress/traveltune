@@ -117,7 +117,7 @@ extension SearchResultTabTravelSpotView {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.5))
+                                               heightDimension: .fractionalWidth(0.48))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
         let spacing: CGFloat = 10
         group.interItemSpacing = .fixed(spacing)

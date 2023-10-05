@@ -9,12 +9,12 @@ import Foundation
 
 final class SearchResultTabStoryViewModel: BaseViewModel {
     
-//    var searchKeyword: String?
-//    
-//    init() { }
-//    
-//    convenience init(searchKeyword: String?) {
-//        self.init()
-//        self.searchKeyword = searchKeyword
-//    }
+    var keyword: String?
+    private var storyRepository: StoryRepository?
+    
+    convenience init(keyword: String?, storyRepository: StoryRepository) {
+        self.init()
+        self.storyRepository = storyRepository
+        self.keyword = keyword
+    }
 }

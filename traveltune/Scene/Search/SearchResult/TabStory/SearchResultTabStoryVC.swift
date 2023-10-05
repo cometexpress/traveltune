@@ -18,10 +18,9 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView>
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print("이야기 = ", viewModel?.searchKeyword)
     }
     
     override func configureVC() {
-        
+        print("이야기 = ", viewModel?.keyword)
     }
 }

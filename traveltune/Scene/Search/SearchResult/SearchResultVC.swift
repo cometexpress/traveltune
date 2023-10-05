@@ -31,9 +31,19 @@ final class SearchResultVC: UIViewController {
         view.backgroundColor = .background
         
         // 최초 검색키워드 전달을 위해 이때 초기화
+        tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(
+            keyword: searchKeyword,
+            travelSportRepository: TravelSpotRepository()
+        )
+        
+        tabStoryViewModel = SearchResultTabStoryViewModel(
+            keyword: searchKeyword,
+            storyRepository: StoryRepository()
+        )
+        
         commonTabPaingVC = CommonTabPagingVC(
             viewControllers: [
-                SearchResultTabTravelSpotVC(keyword: searchKeyword),
+                SearchResultTabTravelSpotVC(viewModel: tabTravelSpotViewModel),
                 SearchResultTabStoryVC(viewModel: tabStoryViewModel)
             ],
             tabTitles: [Strings.SearchTabTitle.TravelSpot, Strings.SearchTabTitle.Story]
@@ -46,6 +56,7 @@ final class SearchResultVC: UIViewController {
     
     private func configureHierarchy() {
         commonTabPaingVC.dataSource = self
+        commonTabPaingVC.delegate = self
         //        commonTabPaingVC.sizeDelegate = self
         view.addSubview(commonTabPaingVC.view)
     }
@@ -70,6 +81,13 @@ final class SearchResultVC: UIViewController {
         
         addChild(commonTabPaingVC)
         commonTabPaingVC.didMove(toParent: self)
+        
+        switch commonTabPaingVC.state {
+        case .empty: Void()
+        case .selected(let pagingItem):
+            print(pagingItem.identifier)
+        case .scrolling: Void()
+        }
     }
     
     @objc private func backButtonClicked() {
@@ -79,13 +97,29 @@ final class SearchResultVC: UIViewController {
 
 extension SearchResultVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let selectedVC = commonTabPaingVC.state.currentPagingItem
-        print(selectedVC)
+        // 현재 선택되어진 아이템
+        if let selectedPagingItem = commonTabPaingVC.state.currentPagingItem {
+            if selectedPagingItem.isEqual(to: PagingIndexItem(index: 0, title: Strings.SearchTabTitle.TravelSpot)) {
+                print("관광지 뷰모델 데이터 업데이트")
+                let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
+                print("뷰모델 있냐?", travelSpotVC?.viewModel)
+//                travelSpotVC?.mainView.page = 1
+//                travelSpotVC?.viewModel?.searchSpots(page: 1)
+            } else {
+                print("이야기 뷰모델 데이터 업데이트")
+                let storyVC = commonTabPaingVC.tabViewControllers[1] as? SearchResultTabStoryVC
+                print("뷰모델 있냐?", storyVC?.viewModel)
+            }
+        }
         return true
     }
 }
 
-extension SearchResultVC: PagingViewControllerDataSource {
+extension SearchResultVC: PagingViewControllerDataSource, PagingViewControllerDelegate {
+    
+    func pagingViewController(_ pagingViewController: PagingViewController, didSelectItem pagingItem: PagingItem) {
+        dump(pagingItem)
+    }
     
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
         return commonTabPaingVC.tabTitles.count
@@ -98,4 +132,5 @@ extension SearchResultVC: PagingViewControllerDataSource {
     func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
         return PagingIndexItem(index: index, title: commonTabPaingVC.tabTitles[index])
     }
+
 }

@@ -9,29 +9,34 @@ import UIKit
 
 final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTravelSpotView> {
     
-    var keyword: String?
+//    var keyword: String?
+//    
+//    convenience init(keyword: String?) {
+//        self.init()
+//        self.keyword = keyword
+//    }
     
-    convenience init(keyword: String?) {
+    var viewModel: SearchResultTabTravelSpotViewModel?
+    
+    convenience init(viewModel: SearchResultTabTravelSpotViewModel) {
         self.init()
-        self.keyword = keyword
+        self.viewModel = viewModel
     }
-    
-    let viewModel = SearchResultTabTravelSpotViewModel(travelSportRepository: TravelSpotRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.viewModel = viewModel
-        mainView.searchResultTabTravelSpotVCProtocol = self
     }
     
     override func configureVC() {
-        guard let keyword else { return }
-        viewModel.searchSpots(searchKeyword: keyword, page: mainView.page)
+        guard let viewModel else { return }
+        mainView.viewModel = viewModel
+        mainView.searchResultTabTravelSpotVCProtocol = self
+        viewModel.searchSpots(page: mainView.page)
         bindData()
     }
     
     private func bindData() {
-        viewModel.state.bind { [weak self] state in
+        viewModel?.state.bind { [weak self] state in
             guard let self else { return }
             switch state {
             case .initValue: Void()
@@ -73,6 +78,6 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
 extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
     
     func willDisplay(page: Int) {
-        viewModel.searchSpots(searchKeyword: viewModel.keyword, page: page)
+        viewModel?.searchSpots(page: page)
     }
 }
