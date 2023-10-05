@@ -12,7 +12,15 @@ import CoreMedia
 final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     
     var themeStory: ThemeStory?
-    private let viewModel = ThemeDetailViewModel()
+    
+    private let viewModel = ThemeDetailViewModel(
+        localTravelSpotRepository: LocalTravelSpotRepository(),
+        localThemeStoryRepository: LocalThemeStoryRepository(),
+        localFavoriteStoryRepository: LocalFavoriteStoryRepository(),
+        storyRepository: StoryRepository()
+    )
+    
+    private var themeStoryItems: [StoryItem] = []
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -50,10 +58,31 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     private func bindData() {
         guard let themeStory else { return }
         viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
-        viewModel.stories.bind { items in
-            self.mainView.configureSnapshot(items: items)
-            LoadingIndicator.hide()
+        
+        viewModel.state.bind { [weak self] state in
+            switch state {
+            case .initValue: Void()
+            case .loading: LoadingIndicator.show()
+            case .success(let data):
+                self?.mainView.configureSnapshot(items: data)
+                LoadingIndicator.hide()
+            case .singleDataError:
+                LoadingIndicator.hide()
+                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+            case .localDataLoadError:
+                LoadingIndicator.hide()
+                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+            case .error(let msg):
+                print("error : ", msg)
+                LoadingIndicator.hide()
+                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+            }
         }
+        
+//        viewModel.stories.bind { items in
+//            
+//            LoadingIndicator.hide()
+//        }
     }
     
     //현재 진행중인 PlayerItem이 EndTime에 도달하면 호출
@@ -62,7 +91,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
-        viewModel.stories.value = viewModel.stories.value.map {
+        themeStoryItems = themeStoryItems.map {
             $0.isPlaying = false
             return $0
         }
@@ -72,8 +101,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.play(url: url)
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
-            let seconds = String(format: "%02d", Int(playTime) % 60)
-            let minutes = String(format: "%02d", Int(playTime / 60))
+//            let seconds = String(format: "%02d", Int(playTime) % 60)
+//            let minutes = String(format: "%02d", Int(playTime / 60))
 //            print("interval = \(interval)")
 //            print("\(minutes):\(seconds)")
             self.mainView.playerBottomView.audioSlider.value = interval
@@ -81,8 +110,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     }
     
     private func currentPlayingItemIndex() -> Int? {
-        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first,
-              let index = viewModel.stories.value.firstIndex(of: playItem) else {
+        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first,
+              let index = themeStoryItems.firstIndex(of: playItem) else {
             return nil
         }
         return index
@@ -113,12 +142,12 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             showToast(msg: Strings.Common.errorFirstStory)
         } else {
             let previousItemIndex = currentIndex - 1
-            let previousPlayItem = viewModel.stories.value[previousItemIndex]
+            let previousPlayItem = themeStoryItems[previousItemIndex]
             
             if let audioURL = URL(string: previousPlayItem.audioURL) {
                 audioPlay(url: audioURL)
                 updateData(item: previousPlayItem)
-                viewModel.stories.value = viewModel.stories.value.map {
+                themeStoryItems = themeStoryItems.map {
                     $0.isPlaying = false
                     if $0 == previousPlayItem {
                         $0.isPlaying = !previousPlayItem.isPlaying
@@ -136,16 +165,16 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             return
         }
         
-        if currentIndex == viewModel.stories.value.count - 1 {
+        if currentIndex == themeStoryItems.count - 1 {
             showToast(msg: Strings.Common.errorLastStory)
         } else {
             let nextItemIndex = currentIndex + 1
-            let nextPlayItem = viewModel.stories.value[nextItemIndex]
+            let nextPlayItem = themeStoryItems[nextItemIndex]
             
             if let audioURL = URL(string: nextPlayItem.audioURL) {
                 audioPlay(url: audioURL)
                 updateData(item: nextPlayItem)
-                viewModel.stories.value = viewModel.stories.value.map {
+                themeStoryItems = themeStoryItems.map {
                     $0.isPlaying = false
                     if $0 == nextPlayItem {
                         $0.isPlaying = !nextPlayItem.isPlaying
@@ -158,7 +187,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
     
     func playAndPauseClicked() {
         // 재생중인 아이템이 없을 때는 실행 안되도록
-        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first else {
+        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first else {
             return
         }
         
@@ -212,7 +241,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     }
     
     func didSelectItemAt(item: StoryItem) {
-        viewModel.stories.value = viewModel.stories.value.map {
+        themeStoryItems = themeStoryItems.map {
             $0.isPlaying = false
             if $0 == item {
                 $0.isPlaying = !item.isPlaying
@@ -220,7 +249,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             return $0
         }
         
-        guard let playItem = viewModel.stories.value.filter({ $0.isPlaying == true }).first,
+        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first,
               let audioURL = URL(string: playItem.audioURL) else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()

@@ -11,7 +11,7 @@ import Toast
 
 final class SplashVC: BaseViewController<SplashView> {
     
-    private let viewModel = SplashViewModel()
+    private let viewModel = SplashViewModel(remoteTravelSpotRepository: TravelSpotRepository(), localTravelSpotRepository: LocalTravelSpotRepository())
     
     override func viewDidLoad() {
         super.viewDidLoad()

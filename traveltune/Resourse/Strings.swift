@@ -27,6 +27,7 @@ struct Strings {
     struct ErrorMsg {
         static let errorNetwork = "error_network".localized
         static let errorRestartApp = "error_restart_app".localized
+        static let errorLoadingData = "error_loading_data".localized
     }
     
     struct TabMap {

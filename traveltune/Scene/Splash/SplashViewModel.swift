@@ -16,8 +16,17 @@ final class SplashViewModel: BaseViewModel {
         case error(msg: String)
     }
     
-    private let remoteTravelSpotRepository = TravelSpotRepository()
-    private let localTravelSpotRepository = LocalTravelSpotRepository()
+    private var remoteTravelSpotRepository: TravelSpotRepository?
+    private var localTravelSpotRepository: LocalTravelSpotRepository?
+    
+    convenience init(
+        remoteTravelSpotRepository: TravelSpotRepository,
+        localTravelSpotRepository: LocalTravelSpotRepository
+    ) {
+        self.init()
+        self.remoteTravelSpotRepository = remoteTravelSpotRepository
+        self.localTravelSpotRepository = localTravelSpotRepository
+    }
     
     private var koPage = 1
     private var koTotalCount = 0
@@ -70,7 +79,7 @@ final class SplashViewModel: BaseViewModel {
         group.enter()
         let language = Network.LangCode.ko
         
-        remoteTravelSpotRepository.requestTravelSpots(page: koPage, language: language) { [weak self] response in
+        remoteTravelSpotRepository?.requestTravelSpots(page: koPage, language: language) { [weak self] response in
             guard let self else {
                 print("self error")
                 errorHandler()
@@ -84,7 +93,7 @@ final class SplashViewModel: BaseViewModel {
                 if self.koPage == 1 {
                     self.koTotalCount = result.body.totalCount
                 }
-  
+                
                 self.koTravelSpots.append(contentsOf: result.body.items.item)
                 
                 let travelSpotsCnt = self.koTravelSpots.count
@@ -109,7 +118,7 @@ final class SplashViewModel: BaseViewModel {
         group.enter()
         let language = Network.LangCode.en
         
-        remoteTravelSpotRepository.requestTravelSpots(page: enPage, language: language) { [weak self] response in
+        remoteTravelSpotRepository?.requestTravelSpots(page: enPage, language: language) { [weak self] response in
             guard let self else {
                 print("self error")
                 errorHandler()
@@ -123,7 +132,7 @@ final class SplashViewModel: BaseViewModel {
                 if self.enPage == 1 {
                     self.enTotalCount = result.body.totalCount
                 }
-  
+                
                 self.enTravelSpots.append(contentsOf: result.body.items.item)
                 
                 let travelSpotsCnt = self.enTravelSpots.count
@@ -144,7 +153,7 @@ final class SplashViewModel: BaseViewModel {
     
     // Realm 에 저장하기
     private func saveTravelSpots() {
-        localTravelSpotRepository.createAll(baseTravelSpots) {
+        localTravelSpotRepository?.createAll(baseTravelSpots) {
             isCompleteAllLanguageUpdateSpots.value = .success(data: true)
         }
     }
@@ -166,7 +175,7 @@ final class SplashViewModel: BaseViewModel {
     }
     
     private func removeAllSpot(isSuccess: (Bool) -> Void) {
-        localTravelSpotRepository.deleteAll { isComplete in
+        localTravelSpotRepository?.deleteAll { isComplete in
             isSuccess(isComplete)
         }
     }
