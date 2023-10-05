@@ -94,6 +94,10 @@ final class ThemeDetailView: BaseView {
             return collectionView.dequeueConfiguredReusableCell(using: cellRegistraion, for: indexPath, item: itemIdentifier)
         })
         
+        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
+        snapshot.appendSections([0])
+        snapshot.appendItems([], toSection: 0)
+        dataSource.apply(snapshot, animatingDifferences: false)
     }
     
     override func configureHierarchy() {
@@ -114,12 +118,11 @@ final class ThemeDetailView: BaseView {
         //        vibrancyEffectView.contentView.addSubview(collectionView)
     }
     
-    func configureSnapshot(items: [StoryItem]) {
+    func applySnapshot(items: [StoryItem]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
         snapshot.appendSections([0])
         snapshot.appendItems(items, toSection: 0)
         dataSource.applySnapshotUsingReloadData(snapshot)
-        //        dataSource.apply(snapshot)
     }
     
     override func configureLayout() {

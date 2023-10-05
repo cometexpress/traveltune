@@ -64,11 +64,13 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             case .initValue: Void()
             case .loading: LoadingIndicator.show()
             case .success(let data):
-                self?.mainView.configureSnapshot(items: data)
+                self?.themeStoryItems.append(contentsOf: data)
+                self?.mainView.applySnapshot(items: data)
                 LoadingIndicator.hide()
             case .singleDataError:
                 LoadingIndicator.hide()
-                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+                // 데이터중 몇개씩 오류 발생할 때 어떻게 할지?
+//                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
             case .localDataLoadError:
                 LoadingIndicator.hide()
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
@@ -79,10 +81,6 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             }
         }
         
-//        viewModel.stories.bind { items in
-//            
-//            LoadingIndicator.hide()
-//        }
     }
     
     //현재 진행중인 PlayerItem이 EndTime에 도달하면 호출
@@ -95,6 +93,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             $0.isPlaying = false
             return $0
         }
+        mainView.applySnapshot(items: themeStoryItems)
     }
     
     private func audioPlay(url: URL) {
@@ -255,7 +254,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             self.mainView.playerBottomView.resetData()
             return
         }
-        
+        self.mainView.applySnapshot(items: themeStoryItems)
         audioPlay(url: audioURL)
         updateData(item: playItem)
     }
