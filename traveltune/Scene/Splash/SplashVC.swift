@@ -15,6 +15,7 @@ final class SplashVC: BaseViewController<SplashView> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindData()
     }
     
     override func configureVC() {
@@ -31,36 +32,18 @@ final class SplashVC: BaseViewController<SplashView> {
                     // 관광지 기본정보 모든 데이터 불러올 때까지 반복 Request 요청
                     // 한국어, 영어 모두 불러오기
                     // 모든 정보 불러왔으면 Realm 에 저장
+                    self?.viewModel.updateAllLangTravelSpots()
                     UserDefaults.visitDate = Date().basic
-                    self?.updateBindData()
+                    
                 } else {
                     // 2. 기존 유저
                     // 유저가 앱에 들어온 시간 비교해서 2주 지났을 때만 기존 데이터 삭제 후 데이터 업데이트 시키기
                     let today = Date().basic
                     print("오늘 날짜 = ", today)
                     print("방문했던 날짜 = ", UserDefaults.visitDate)
-                    
                     let testEndDate = "2025-12-12"
-                    
                     self?.viewModel.compareToDateTheDay(start: UserDefaults.visitDate, end: today)
                     UserDefaults.visitDate = Date().basic
-                    
-                    self?.viewModel.compareDay.bind { [weak self] days in
-                        if days <= self?.viewModel.maximumDays ?? 0 {
-                            self?.moveTabBarVC()
-                        } else {
-                            print("데이터 업데이트 필요")
-                            self?.viewModel.removeAllSpot()
-                        }
-                    }
-                    
-                    self?.viewModel.isDelete.bind { [weak self] isSuccess in
-                        if isSuccess {
-                            self?.updateBindData()
-                        } else {
-                            self?.showToast(msg: Strings.ErrorMsg.errorRestartApp)
-                        }
-                    }
                 }
                 
             case .unsatisfied, .requiresConnection:
@@ -70,30 +53,22 @@ final class SplashVC: BaseViewController<SplashView> {
             }
             
         })
-        
-        
-        
     }
     
-    private func updateBindData() {
-        viewModel.updateAllLangTravelSpots()
-        viewModel.isLoading.bind { [weak self] loading in
-            if loading {
-                self?.mainView.indicatorView.startAnimating()
-            } else {
-                self?.viewModel.saveTravelSpots()
-            }
-        }
-        viewModel.updateKoreaData.bind { isKoreaData in
-            UserDefaults.updateKoreaTravelSpots = isKoreaData
-        }
-        viewModel.updateEnglishData.bind { isEnglishData in
-            UserDefaults.updateKoreaTravelSpots = isEnglishData
-        }
-        viewModel.isComplete.bind { [weak self] complete in
-            if complete {
+    private func bindData() {
+        viewModel.isCompleteAllLanguageUpdateSpots.bind { [weak self] state in
+            switch state {
+            case .initValue: Void()
+            case .loading: self?.mainView.indicatorView.startAnimating()
+            case .success(let data):
                 self?.mainView.indicatorView.stopAnimating()
-                self?.moveTabBarVC()
+                if data {
+                    self?.moveTabBarVC()
+                }
+            case .error(let msg):
+                print(msg)
+                self?.mainView.indicatorView.stopAnimating()
+                self?.showToast(msg: Strings.ErrorMsg.errorRestartApp)
             }
         }
     }

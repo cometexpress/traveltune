@@ -9,6 +9,13 @@ import Foundation
 
 final class SplashViewModel {
     
+    enum SplashUIState<T> {
+        case initValue
+        case loading
+        case success(data: T)
+        case error(msg: String)
+    }
+    
     private let remoteTravelSpotRepository = TravelSpotRepository()
     private let localTravelSpotRepository = LocalTravelSpotRepository()
     
@@ -22,29 +29,24 @@ final class SplashViewModel {
     
     private var baseTravelSpots = [TravelSpotItem]()
     
-    var isLoading: Observable<Bool> = Observable(true)
-    var updateKoreaData: Observable<Bool> = Observable(true)
-    var updateEnglishData: Observable<Bool> = Observable(true)
-    
-    var isComplete: Observable<Bool> = Observable(false)
-    
-    var compareDay: Observable<Int> = Observable(-1)
     var maximumDays = 14
     
-    var isDelete: Observable<Bool> = Observable(false)
+    var isCompleteAllLanguageUpdateSpots: Observable<SplashUIState<Bool>> = Observable(.initValue)
     
     func updateAllLangTravelSpots() {
         requestGroup { group in
-            updateKoTravelSpots(group: group) { self.updateKoreaData.value = false }
-            updateEnTravelSpots(group: group) { self.updateEnglishData.value = false }
+            updateKoTravelSpots(group: group) { UserDefaults.updateKoreaTravelSpots = false }
+            updateEnTravelSpots(group: group) { UserDefaults.updateEnglishTravelSpots = false }
         } start: {
             print("시작한다잇")
-            isLoading.value = true
+            isCompleteAllLanguageUpdateSpots.value = .loading
         } notify: {
             print("종료됫다잇")
+            UserDefaults.updateKoreaTravelSpots = true
+            UserDefaults.updateEnglishTravelSpots = true
             self.baseTravelSpots.append(contentsOf: self.koTravelSpots)
             self.baseTravelSpots.append(contentsOf: self.enTravelSpots)
-            self.isLoading.value = false
+            self.saveTravelSpots()
         }
     }
     
@@ -141,20 +143,31 @@ final class SplashViewModel {
     }
     
     // Realm 에 저장하기
-    func saveTravelSpots() {
+    private func saveTravelSpots() {
         localTravelSpotRepository.createAll(baseTravelSpots) {
-            isComplete.value = true
+            isCompleteAllLanguageUpdateSpots.value = .success(data: true)
         }
     }
     
     func compareToDateTheDay(start: String, end: String) {
         let days = DateManager.shared.compareToDateByTheDay(start: start, end: end)
-        compareDay.value = days
+        if days <= maximumDays {
+            isCompleteAllLanguageUpdateSpots.value = .success(data: true)
+        } else {
+            print("데이터 업데이트 필요")
+            removeAllSpot { isSuccess in
+                if isSuccess {
+                    updateAllLangTravelSpots()
+                } else {
+                    isCompleteAllLanguageUpdateSpots.value = .error(msg: "데이터 업데이트를 위한 realm 기존 데이터 삭제 작업 실패")
+                }
+            }
+        }
     }
     
-    func removeAllSpot() {
-        localTravelSpotRepository.deleteAll { isSuccess in
-            isDelete.value = isSuccess
+    private func removeAllSpot(isSuccess: (Bool) -> Void) {
+        localTravelSpotRepository.deleteAll { isComplete in
+            isSuccess(isComplete)
         }
     }
 }
