@@ -9,12 +9,31 @@ import Foundation
 
 final class SearchResultTabTravelSpotViewModel {
     
-    var searchKeyword: String?
+    private var travelSportRepository: TravelSpotRepository?
     
     init() { }
     
-    convenience init(searchKeyword: String?) {
+    convenience init(travelSportRepository: TravelSpotRepository) {
         self.init()
-        self.searchKeyword = searchKeyword
+        self.travelSportRepository = travelSportRepository
+    }
+    
+    var state: Observable<UIState<[TravelSpotItem]>> = Observable(.initValue)
+    
+    func searchSpots(
+        searchKeyword: String,
+        page: Int
+    ){
+        guard let travelSportRepository else { return }
+        state.value = .loading
+        travelSportRepository.requestSearchTravelSpots(page: page, searchKeyword: searchKeyword) { response in
+            switch response {
+            case .success(let success):
+                let result = success.response.body.items.item
+                self.state.value = .success(data: result)
+            case .failure(let failure):
+                self.state.value = .error(msg: failure.localizedDescription)
+            }
+        }
     }
 }

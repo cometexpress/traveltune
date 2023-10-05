@@ -9,12 +9,12 @@ import Foundation
 
 final class SearchResultTabStoryViewModel {
     
-    var searchKeyword: String?
-    
-    init() { }
-    
-    convenience init(searchKeyword: String?) {
-        self.init()
-        self.searchKeyword = searchKeyword
-    }
+//    var searchKeyword: String?
+//    
+//    init() { }
+//    
+//    convenience init(searchKeyword: String?) {
+//        self.init()
+//        self.searchKeyword = searchKeyword
+//    }
 }

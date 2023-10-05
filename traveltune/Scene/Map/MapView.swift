@@ -128,6 +128,12 @@ final class MapView: BaseView {
                 btn.isSelected = true
                 btn.selectedBackground()
                 
+                /**
+                 1. 현재 중심 위치 좌표
+                 2. 현재 선택한 버튼의 위치 좌표
+                 3. 1, 2번을 이용해서 계산..?
+                 */
+                
                 print("scrollView center x = ", scrollView.contentSize.width / 2)
                 print("scrollView center y = ", scrollView.contentSize.height / 2)
                 

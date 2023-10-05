@@ -18,13 +18,7 @@ final class SearchResultVC: UIViewController {
     private var tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel()
     private var tabStoryViewModel = SearchResultTabStoryViewModel()
     
-    private lazy var commonTabPaingVC = CommonTabPagingVC(
-        viewControllers: [
-            SearchResultTabTravelSpotVC(viewModel: tabTravelSpotViewModel),
-            SearchResultTabStoryVC(viewModel: tabStoryViewModel)
-        ],
-        tabTitles: [Strings.SearchTabTitle.TravelSpot, Strings.SearchTabTitle.Story]
-    )
+    private var commonTabPaingVC = CommonTabPagingVC()
     
     private lazy var naviBarSearchTextField = SearchTextField().setup { view in
         let width = UIScreen.main.bounds.width - 80
@@ -35,9 +29,15 @@ final class SearchResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
-        // commonTabPaingVC 사용되기 전에 viewModel 에 검색단어 넣은 뷰모델로 다시 초기화해서 값 넘겨주기
-        tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(searchKeyword: searchKeyword)
-        tabStoryViewModel = SearchResultTabStoryViewModel(searchKeyword: searchKeyword)
+        
+        // 최초 검색키워드 전달을 위해 이때 초기화
+        commonTabPaingVC = CommonTabPagingVC(
+            viewControllers: [
+                SearchResultTabTravelSpotVC(keyword: searchKeyword),
+                SearchResultTabStoryVC(viewModel: tabStoryViewModel)
+            ],
+            tabTitles: [Strings.SearchTabTitle.TravelSpot, Strings.SearchTabTitle.Story]
+        )
         
         configureHierarchy()
         configureLayout()
@@ -79,7 +79,8 @@ final class SearchResultVC: UIViewController {
 
 extension SearchResultVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print(#function)
+        let selectedVC = commonTabPaingVC.state.currentPagingItem
+        print(selectedVC)
         return true
     }
 }

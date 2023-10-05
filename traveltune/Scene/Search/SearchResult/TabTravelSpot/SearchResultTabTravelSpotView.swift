@@ -10,29 +10,33 @@ import SnapKit
 
 final class SearchResultTabTravelSpotView: BaseView {
     
+    var spotItems: [TravelSpotItem] = []
+    
     enum Section {
         case main
     }
 
-    var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
+    lazy var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
     
-    private let emptyLabel = UILabel().setup { view in
+    let emptyLabel = UILabel().setup { view in
         view.textColor = .txtDisabled
         view.font = .monospacedSystemFont(ofSize: 16, weight: .medium)
         view.text = Strings.Common.searchNoData
         view.textAlignment = .center
+        view.isHidden = true
     }
     
     // 데이터 있을 때
-    private let containerView = UIView()
+    let containerView = UIView().setup { view in
+        view.isHidden = true
+    }
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
     
     override func configureHierarchy() {
         addSubview(containerView)
         containerView.addSubview(collectionView)
         addSubview(emptyLabel)
-        
         configureDataSource()
     }
     
@@ -71,10 +75,17 @@ extension SearchResultTabTravelSpotView {
     }
     
     private func configureDataSource() {
+        let spotRegistration = createCellRegistration()
+        
         dataSource = UICollectionViewDiffableDataSource<Section, TravelSpotItem>(collectionView: collectionView) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: TravelSpotItem) -> UICollectionViewCell? in
-            return collectionView.dequeueConfiguredReusableCell(using: self.createCellRegistration(), for: indexPath, item: identifier)
+            return collectionView.dequeueConfiguredReusableCell(using: spotRegistration, for: indexPath, item: identifier)
         }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, TravelSpotItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems([])
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func createLayout() -> UICollectionViewLayout {
