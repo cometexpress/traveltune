@@ -11,9 +11,6 @@ final class TravelSpotRepository {
     
     private let network = Network.shared
     
-    private let baseSpotsNumOfRows = "1000"
-    private let searchSpotsNumOfRows = "20"
-    
     func requestTravelSpots(
         page: Int,
         language: Network.LangCode? = nil,
@@ -22,7 +19,7 @@ final class TravelSpotRepository {
         network.request(
             api: .baseSpots(
                 request: RequestTravelSpots(
-                    numOfRows: baseSpotsNumOfRows,
+                    numOfRows: String(Network.numOfRowsByAllData),
                     pageNo: String(page)
                 )
             ),
@@ -38,7 +35,13 @@ final class TravelSpotRepository {
         completion: @escaping (Result<ResponseTravelSpots, Error>) -> Void
     ) {
         network.request(
-            api: .searchSpots(request: RequestSearchTravelSpots(keyword: searchKeyword, numOfRows: searchSpotsNumOfRows)),
+            api: .searchSpots(
+                request: RequestSearchTravelSpots(
+                    keyword: searchKeyword,
+                    pageNo: String(page),
+                    numOfRows: String(Network.numOfRows)
+                )
+            ),
             type: ResponseTravelSpots.self) { response in
                 completion(response)
             }

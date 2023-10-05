@@ -23,6 +23,7 @@ final class ThumbnailImageView: UIImageView {
         contentMode = .scaleAspectFill
         clipsToBounds = true
         layer.cornerRadius = 8
+        image = UIImage(named: "default_img")
     }
     
     func addImage(url: String) {

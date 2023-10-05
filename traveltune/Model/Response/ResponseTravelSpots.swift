@@ -46,6 +46,10 @@ final class TravelSpotItem: Object, Decodable {
     @objc dynamic var createdtime = ""
     @objc dynamic var modifiedtime = ""
     
+    var fullAddr: String {
+        return addr1 + " " + addr2
+    }
+    
     override class func primaryKey() -> String? {
         return "_id"
     }

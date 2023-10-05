@@ -10,12 +10,17 @@ import SnapKit
 
 final class SearchResultTabTravelSpotView: BaseView {
     
+    weak var viewModel: SearchResultTabTravelSpotViewModel?
+    weak var searchResultTabTravelSpotVCProtocol: SearchResultTabTravelSpotVCProtocol?
+    
     var spotItems: [TravelSpotItem] = []
+    
+    var page = 1
     
     enum Section {
         case main
     }
-
+    
     lazy var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
     
     let emptyLabel = UILabel().setup { view in
@@ -31,7 +36,9 @@ final class SearchResultTabTravelSpotView: BaseView {
         view.isHidden = true
     }
     
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout())
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
+        view.delegate = self
+    }
     
     override func configureHierarchy() {
         addSubview(containerView)
@@ -58,6 +65,22 @@ final class SearchResultTabTravelSpotView: BaseView {
     }
 }
 
+extension SearchResultTabTravelSpotView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let viewModel else { return }
+        if !viewModel.isLoading
+            && viewModel.totalPage > page
+            && dataSource.snapshot().numberOfSections - 1 == indexPath.section {
+            let currentSection = dataSource.snapshot().sectionIdentifiers[indexPath.section]
+            if dataSource.snapshot().numberOfItems(inSection: currentSection) - 1 == indexPath.item {
+                page += 1
+                searchResultTabTravelSpotVCProtocol?.willDisplay(page: page)
+            }
+        }
+    }
+}
+
 extension SearchResultTabTravelSpotView {
     
     func applySnapShot(items: [TravelSpotItem]) {
@@ -69,7 +92,6 @@ extension SearchResultTabTravelSpotView {
     
     private func createCellRegistration() -> UICollectionView.CellRegistration<SearchResultSpotCell, TravelSpotItem> {
         return UICollectionView.CellRegistration<SearchResultSpotCell, TravelSpotItem> { (cell, indexPath, identifier) in
-            cell.contentView.backgroundColor = .link
             cell.configCell(row: identifier)
         }
     }
@@ -89,21 +111,21 @@ extension SearchResultTabTravelSpotView {
     }
     
     private func createLayout() -> UICollectionViewLayout {
-
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
-                                             heightDimension: .fractionalHeight(1.0))
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-
+        
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                heightDimension: .fractionalWidth(0.5))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 2)
         let spacing: CGFloat = 10
         group.interItemSpacing = .fixed(spacing)
-
+        
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = spacing
         section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: spacing, bottom: 0, trailing: spacing)
-
+        
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }

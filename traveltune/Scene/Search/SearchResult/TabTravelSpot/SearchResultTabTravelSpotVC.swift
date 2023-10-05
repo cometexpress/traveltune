@@ -11,8 +11,6 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
     
     var keyword: String?
     
-    var page = 1
-    
     convenience init(keyword: String?) {
         self.init()
         self.keyword = keyword
@@ -22,11 +20,13 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.viewModel = viewModel
+        mainView.searchResultTabTravelSpotVCProtocol = self
     }
     
     override func configureVC() {
         guard let keyword else { return }
-        viewModel.searchSpots(searchKeyword: keyword, page: page)
+        viewModel.searchSpots(searchKeyword: keyword, page: mainView.page)
         bindData()
     }
     
@@ -38,7 +38,7 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
             case .loading:
                 LoadingIndicator.show()
             case .success(let data):
-                if self.page == 1 {
+                if self.mainView.page == 1 {
                     self.mainView.spotItems.removeAll()
                 }
                 self.mainView.spotItems.append(contentsOf: data)
@@ -51,6 +51,10 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
             case .error(let msg):
                 print(msg)
                 LoadingIndicator.hide()
+                if self.mainView.page == 1 {
+                    self.mainView.containerView.isHidden = self.mainView.spotItems.isEmpty
+                    self.mainView.emptyLabel.isHidden = !self.mainView.spotItems.isEmpty
+                }
             }
         }
     }
@@ -63,5 +67,12 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("관광지 OFF")
+    }
+}
+
+extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
+    
+    func willDisplay(page: Int) {
+        viewModel.searchSpots(searchKeyword: viewModel.keyword, page: page)
     }
 }
