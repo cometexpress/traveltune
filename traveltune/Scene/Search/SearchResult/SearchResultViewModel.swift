@@ -9,9 +9,5 @@ import Foundation
 
 final class SearchResultViewModel {
     
-    var searchKeyword: String?
     
-    init(searchKeyword: String?) {
-        self.searchKeyword = searchKeyword
-    }
 }

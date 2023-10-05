@@ -78,6 +78,9 @@
 		C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3272AC934F100D7331E /* FavoriteStory.swift */; };
 		C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */; };
 		C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */; };
+		C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */; };
+		C0D615342ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */; };
+		C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */; };
 		C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */; };
 		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
 		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
@@ -197,6 +200,9 @@
 		C0BDC3272AC934F100D7331E /* FavoriteStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStory.swift; sourceTree = "<group>"; };
 		C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteStoryRepository.swift; sourceTree = "<group>"; };
 		C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomView.swift; sourceTree = "<group>"; };
+		C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSpotCell.swift; sourceTree = "<group>"; };
+		C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabTravelSpotViewModel.swift; sourceTree = "<group>"; };
+		C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryViewModel.swift; sourceTree = "<group>"; };
 		C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
@@ -325,6 +331,7 @@
 			children = (
 				C035928C2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift */,
 				C035928E2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift */,
+				C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */,
 			);
 			path = TabTravelSpot;
 			sourceTree = "<group>";
@@ -334,6 +341,7 @@
 			children = (
 				C03592882ACDA03700AA3D36 /* SearchResultTabStoryVC.swift */,
 				C035928A2ACDA05100AA3D36 /* SearchResultTabStoryView.swift */,
+				C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */,
 			);
 			path = TabStory;
 			sourceTree = "<group>";
@@ -672,6 +680,7 @@
 				C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */,
 				C0EF78802AC5D60B0098D091 /* StoryCell.swift */,
 				C06C93392AC2B214006B26F6 /* ThemePager */,
+				C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -869,6 +878,7 @@
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
+				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
 				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
@@ -894,6 +904,7 @@
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,
 				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
+				C0D615342ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift in Sources */,
 				C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
@@ -922,6 +933,7 @@
 				C03592952ACDDC2600AA3D36 /* SearchResultViewModel.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */,
+				C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */,
 				C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */,
 				C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */,
 				C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */,

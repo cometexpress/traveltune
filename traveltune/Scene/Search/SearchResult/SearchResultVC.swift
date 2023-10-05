@@ -13,12 +13,15 @@ final class SearchResultVC: UIViewController {
     
     var searchKeyword: String?
     
-    private var viewModel = SearchResultViewModel(searchKeyword: "")
+    private var viewModel = SearchResultViewModel()
+    
+    private var tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel()
+    private var tabStoryViewModel = SearchResultTabStoryViewModel()
     
     private lazy var commonTabPaingVC = CommonTabPagingVC(
         viewControllers: [
-            SearchResultTabTravelSpotVC(viewModel: viewModel),
-            SearchResultTabStoryVC(viewModel: viewModel)
+            SearchResultTabTravelSpotVC(viewModel: tabTravelSpotViewModel),
+            SearchResultTabStoryVC(viewModel: tabStoryViewModel)
         ],
         tabTitles: [Strings.SearchTabTitle.TravelSpot, Strings.SearchTabTitle.Story]
     )
@@ -33,7 +36,9 @@ final class SearchResultVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .background
         // commonTabPaingVC 사용되기 전에 viewModel 에 검색단어 넣은 뷰모델로 다시 초기화해서 값 넘겨주기
-        viewModel = SearchResultViewModel(searchKeyword: searchKeyword)
+        tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(searchKeyword: searchKeyword)
+        tabStoryViewModel = SearchResultTabStoryViewModel(searchKeyword: searchKeyword)
+        
         configureHierarchy()
         configureLayout()
         configureVC()

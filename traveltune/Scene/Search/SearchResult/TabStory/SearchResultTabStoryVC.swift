@@ -9,9 +9,9 @@ import UIKit
 
 final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView> {
     
-    var viewModel: SearchResultViewModel?
+    var viewModel: SearchResultTabStoryViewModel?
     
-    convenience init(viewModel: SearchResultViewModel) {
+    convenience init(viewModel: SearchResultTabStoryViewModel) {
         self.init()
         self.viewModel = viewModel
     }
