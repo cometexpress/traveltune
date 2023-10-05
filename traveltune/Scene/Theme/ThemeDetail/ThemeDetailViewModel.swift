@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class ThemeDetailViewModel {
+final class ThemeDetailViewModel: BaseViewModel {
     
     private let localTravelSpotRepository = LocalTravelSpotRepository()
     private let localThemeStoryRepository = LocalThemeStoryRepository()

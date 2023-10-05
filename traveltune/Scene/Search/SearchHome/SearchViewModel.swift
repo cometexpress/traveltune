@@ -8,15 +8,7 @@
 import Foundation
 import RealmSwift
 
-final class SearchViewModel {
-    
-    
-    
-    
-//    struct Words {
-//        var recommendWords: [String]? = nil
-//        var recentSearchKeywords: [SearchKeyword]? = nil
-//    }
+final class SearchViewModel: BaseViewModel {
     
     struct Words {
         var recommendWords: [SearchController.Item]? = nil

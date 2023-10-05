@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SearchResultViewModel {
+final class SearchResultViewModel: BaseViewModel {
     
     
 }

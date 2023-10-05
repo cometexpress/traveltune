@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SplashViewModel {
+final class SplashViewModel: BaseViewModel {
     
     enum SplashUIState<T> {
         case initValue

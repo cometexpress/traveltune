@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class SearchResultTabStoryViewModel {
+final class SearchResultTabStoryViewModel: BaseViewModel {
     
 //    var searchKeyword: String?
 //    

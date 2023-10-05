@@ -7,18 +7,23 @@
 
 import Foundation
 
-final class SearchResultTabTravelSpotViewModel {
+final class SearchResultTabTravelSpotViewModel: BaseViewModel {
+    
+    enum SearchResultTabSpotUIState<T> {
+        case initValue
+        case loading
+        case success(data: T)
+        case error(msg: String)
+    }
     
     private var travelSportRepository: TravelSpotRepository?
-    
-    init() { }
     
     convenience init(travelSportRepository: TravelSpotRepository) {
         self.init()
         self.travelSportRepository = travelSportRepository
     }
     
-    var state: Observable<UIState<[TravelSpotItem]>> = Observable(.initValue)
+    var state: Observable<SearchResultTabSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
     
     func searchSpots(
         searchKeyword: String,

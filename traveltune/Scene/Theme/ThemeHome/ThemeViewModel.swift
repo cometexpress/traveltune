@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ThemeViewModel {
+final class ThemeViewModel: BaseViewModel {
     
     var themes: Observable<[ThemeStory]> = Observable([])
     
