@@ -7,7 +7,14 @@
 
 import UIKit
 
-class BaseViewController<T: BaseView>: UIViewController {
+typealias BaseViewController<T: BaseView, U: BaseViewModel> = ViewController<T, U> & BaseViewContollerProtocol
+
+protocol BaseViewContollerProtocol {
+    func bindViewModel()
+    func configureVC()
+}
+
+class ViewController<T: BaseView, U: BaseViewModel>: UIViewController {
     
     var isShowDeinit: Bool { false }
     
@@ -15,16 +22,29 @@ class BaseViewController<T: BaseView>: UIViewController {
         return view as! T
     }
     
+    var viewModel: U? = nil
+    
+    init(viewModel: U?) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    init?(coder: NSCoder, viewModel: U) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func loadView() {
         view = T.init()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureVC()
     }
-    
-    func configureVC() { }
     
     deinit {
         if isShowDeinit {

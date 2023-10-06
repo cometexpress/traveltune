@@ -8,17 +8,16 @@
 import UIKit
 import SnapKit
 
-final class SearchVC: BaseViewController<SearchView> {
-    
-    private let viewModel = SearchViewModel()
+final class SearchVC: BaseViewController<SearchView, SearchViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.backButtonDisplayMode = .minimal
-        viewModel.fetchWords()
+        configureVC()
+        bindViewModel()
+        viewModel?.fetchWords()
     }
     
-    override func configureVC() {
+    func configureVC() {
         mainView.viewModel = viewModel
         mainView.searchVCProtocol = self
         
@@ -31,33 +30,18 @@ final class SearchVC: BaseViewController<SearchView> {
         )
         navigationItem.leftBarButtonItem?.tintColor = .txtPrimary
         navigationItem.titleView = mainView.naviBarSearchTextField
-        
-        bindData()
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        mainView.naviBarSearchTextField.resignFirstResponder()
-    }
-    
-    @objc private func backButtonClicked() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    private func bindData() {
-        viewModel.words.bind { [weak self] words in
+    func bindViewModel() {
+        viewModel?.words.bind { [weak self] words in
             self?.mainView.applySnapShot(
                 recommendItems: words.recommendWords,
                 recentItems: words.recentSearchKeywords
             )
         }
         
-        viewModel.isExistSearchText.bind { [weak self] status in
+        viewModel?.isExistSearchText.bind { [weak self] status in
             switch status {
             case .initial:
                 print("init")
@@ -67,6 +51,15 @@ final class SearchVC: BaseViewController<SearchView> {
                 self?.successSearch(text: searchText)
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        mainView.naviBarSearchTextField.resignFirstResponder()
+    }
+    
+    @objc private func backButtonClicked() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func successSearch(text: String) {
@@ -79,7 +72,7 @@ final class SearchVC: BaseViewController<SearchView> {
 
 extension SearchVC: SearchVCProtocol {
     func textfieldDoneClicked(searchText: String) {
-        viewModel.checkSearchText(searchText: searchText)
+        viewModel?.checkSearchText(searchText: searchText)
     }
     
     func recommendWordClicked(searchText: String) {
@@ -91,7 +84,7 @@ extension SearchVC: SearchVCProtocol {
     }
     
     func deleteRecentWordClicked(item: SearchController.RecentSearchItem) {
-        viewModel.deleteSearchKeyword(id: item.id)
+        viewModel?.deleteSearchKeyword(id: item.id)
     }
 }
 

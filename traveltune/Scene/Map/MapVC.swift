@@ -7,16 +7,18 @@
 
 import UIKit
 
-final class MapVC: BaseViewController<MapView> {
+final class MapVC: BaseViewController<MapView, MapViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue.main.async { [weak self] in
             self?.mainView.scrollView.setZoomScale(2, animated: true)
         }
+        configureVC()
+        bindViewModel()
     }
     
-    override func configureVC() {
+    func configureVC() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = UIColor.background
@@ -28,5 +30,9 @@ final class MapVC: BaseViewController<MapView> {
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.topItem?.title = Strings.TabMap.title
+    }
+    
+    func bindViewModel() {
+        
     }
 }

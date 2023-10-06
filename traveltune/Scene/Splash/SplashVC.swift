@@ -9,16 +9,15 @@ import UIKit
 import RealmSwift
 import Toast
 
-final class SplashVC: BaseViewController<SplashView> {
-    
-    private let viewModel = SplashViewModel(remoteTravelSpotRepository: TravelSpotRepository(), localTravelSpotRepository: LocalTravelSpotRepository())
+final class SplashVC: BaseViewController<SplashView, SplashViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindData()
+        configureVC()
+        bindViewModel()
     }
     
-    override func configureVC() {
+    func configureVC() {
         let fileURL = Realm.Configuration.defaultConfiguration.fileURL
         print(fileURL)
         
@@ -32,7 +31,7 @@ final class SplashVC: BaseViewController<SplashView> {
                     // 관광지 기본정보 모든 데이터 불러올 때까지 반복 Request 요청
                     // 한국어, 영어 모두 불러오기
                     // 모든 정보 불러왔으면 Realm 에 저장
-                    self?.viewModel.updateAllLangTravelSpots()
+                    self?.viewModel?.updateAllLangTravelSpots()
                     UserDefaults.visitDate = Date().basic
                     
                 } else {
@@ -42,7 +41,7 @@ final class SplashVC: BaseViewController<SplashView> {
                     print("오늘 날짜 = ", today)
                     print("방문했던 날짜 = ", UserDefaults.visitDate)
                     let testEndDate = "2025-12-12"
-                    self?.viewModel.compareToDateTheDay(start: UserDefaults.visitDate, end: today)
+                    self?.viewModel?.compareToDateTheDay(start: UserDefaults.visitDate, end: today)
                     UserDefaults.visitDate = Date().basic
                 }
                 
@@ -55,8 +54,8 @@ final class SplashVC: BaseViewController<SplashView> {
         })
     }
     
-    private func bindData() {
-        viewModel.isCompleteAllLanguageUpdateSpots.bind { [weak self] state in
+    func bindViewModel() {
+        viewModel?.isCompleteAllLanguageUpdateSpots.bind { [weak self] state in
             switch state {
             case .initValue: Void()
             case .loading: self?.mainView.indicatorView.startAnimating()

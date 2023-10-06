@@ -9,18 +9,17 @@ import UIKit
 import Hero
 import CoreMedia
 
-final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
+final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewModel> {
     
     var themeStory: ThemeStory?
     
-    private let viewModel = ThemeDetailViewModel(
-        localTravelSpotRepository: LocalTravelSpotRepository(),
-        localThemeStoryRepository: LocalThemeStoryRepository(),
-        localFavoriteStoryRepository: LocalFavoriteStoryRepository(),
-        storyRepository: StoryRepository()
-    )
-    
     private var themeStoryItems: [StoryItem] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureVC()
+        bindViewModel()
+    }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -28,7 +27,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         AVPlayerManager.shared.stop()
     }
     
-    override func configureVC() {
+    func configureVC() {
         LoadingIndicator.show()
         mainView.themeDetailVCProtocol = self
         mainView.playerBottomView.playerBottomProtocol = self
@@ -44,8 +43,6 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
             self.mainView.playerBottomView.isHidden = false
         }
         
-        bindData()
-        
         // 재생완료시점 확인용
         NotificationCenter.default.addObserver(
             self,
@@ -55,11 +52,11 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
         )
     }
     
-    private func bindData() {
+    func bindViewModel() {
         guard let themeStory else { return }
-        viewModel.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
+        viewModel?.fetchThemeStoriesData(keyword: themeStory.searchKeyword)
         
-        viewModel.state.bind { [weak self] state in
+        viewModel?.state.bind { [weak self] state in
             switch state {
             case .initValue: Void()
             case .loading: LoadingIndicator.show()
@@ -117,6 +114,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView> {
     }
     
     private func updateData(item: StoryItem) {
+        mainView.playerBottomView.thumbImageView.isHidden = false
         self.mainView.playerBottomView.updateData(
             title: item.audioTitle.isEmpty ? item.title : item.audioTitle,
             thumbnail: item.imageURL
@@ -225,7 +223,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     }
     
     func infoButtonClicked() {
-        let vc = ThemeDetailInfoVC()
+        let vc = ThemeDetailInfoVC(viewModel: nil)
         vc.themeStory = themeStory
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
@@ -233,9 +231,9 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     
     func cellHeartButtonClicked(item: StoryItem) {
         if item.isFavorite {
-            viewModel.deleteFavoriteStory(item: item)
+            viewModel?.deleteFavoriteStory(item: item)
         } else {
-            viewModel.addFavoriteStory(item: item)
+            viewModel?.addFavoriteStory(item: item)
         }
     }
     

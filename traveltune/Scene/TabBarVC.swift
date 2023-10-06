@@ -12,7 +12,7 @@ final class TabBarVC: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         selectedIndex = 0
-        let viewControllers = [tapVC(type: .home), tapVC(type: .map), tapVC(type: .playlist)]
+        let viewControllers = [tapVC(type: .home), tapVC(type: .map), tapVC(type: .setting)]
         setViewControllers(viewControllers, animated: true)
         
         tabBar.barTintColor = .background
@@ -37,19 +37,18 @@ extension TabBarVC {
     enum TabType {
         case home
         case map
-        case playlist
+        case setting
         
         var vc: UIViewController {
             switch self {
             case .home:
-                return ThemeVC()
+                return ThemeVC(viewModel: ThemeViewModel())
             case .map:
-                return MapVC()
-            case .playlist:
-                return PlaylistVC()
+                return MapVC(viewModel: MapViewModel())
+            case .setting:
+                return SettingVC(viewModel: SettingViewModel())
             }
         }
-        
         
         var icon: UIImage {
             switch self {
@@ -57,8 +56,8 @@ extension TabBarVC {
                 return .tapHome
             case .map:
                 return .tapMap
-            case .playlist:
-                return .tapPlaylist
+            case .setting:
+                return .tapSetting
             }
         }
     }

@@ -17,12 +17,11 @@ final class SearchResultTabTravelSpotViewModel: BaseViewModel {
     }
     
     var keyword: String?
-    private var travelSportRepository: TravelSpotRepository?
-
-    convenience init(keyword: String?, travelSportRepository: TravelSpotRepository) {
-        self.init()
-        self.travelSportRepository = travelSportRepository
+    private var travelSportRepository: TravelSpotRepository
+    
+    init(keyword: String?, travelSportRepository: TravelSpotRepository) {
         self.keyword = keyword
+        self.travelSportRepository = travelSportRepository
     }
     
     var state: Observable<SearchResultTabSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
@@ -33,7 +32,7 @@ final class SearchResultTabTravelSpotViewModel: BaseViewModel {
     func searchSpots(
         page: Int
     ){
-        guard let travelSportRepository, let keyword else { return }
+        guard let keyword else { return }
         state.value = .loading
         isLoading = true
         travelSportRepository.requestSearchTravelSpots(page: page, searchKeyword: keyword) { response in

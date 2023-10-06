@@ -7,7 +7,4 @@
 
 import Foundation
 
-class BaseViewModel {
-    
-    init() { }
-}
+class BaseViewModel { }

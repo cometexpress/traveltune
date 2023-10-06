@@ -7,35 +7,22 @@
 
 import UIKit
 
-final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTravelSpotView> {
-    
-//    var keyword: String?
-//    
-//    convenience init(keyword: String?) {
-//        self.init()
-//        self.keyword = keyword
-//    }
-    
-    var viewModel: SearchResultTabTravelSpotViewModel?
-    
-    convenience init(viewModel: SearchResultTabTravelSpotViewModel) {
-        self.init()
-        self.viewModel = viewModel
-    }
+final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTravelSpotView, SearchResultTabTravelSpotViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVC()
+        bindViewModel()
     }
     
-    override func configureVC() {
-        guard let viewModel else { return }
+    func configureVC() {
         mainView.viewModel = viewModel
         mainView.searchResultTabTravelSpotVCProtocol = self
-        viewModel.searchSpots(page: mainView.page)
-        bindData()
+        bindViewModel()
+        viewModel?.searchSpots(page: mainView.page)
     }
     
-    private func bindData() {
+    func bindViewModel() {
         viewModel?.state.bind { [weak self] state in
             guard let self else { return }
             switch state {

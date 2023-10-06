@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PlaylistView: BaseView {
+final class SettingView: BaseView {
     
     override func configureHierarchy() {
         

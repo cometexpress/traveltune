@@ -37,6 +37,7 @@ final class PlayerBottomView: BaseView {
     }
     
     lazy var thumbImageView = ThumbnailImageView(frame: .zero).setup { view in
+        view.isHidden = true
         view.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(thumbImageViewClicked))
         view.addGestureRecognizer(tap)

@@ -1,13 +1,13 @@
 //
-//  SearchResultTabStoryVC.swift
+//  SettingVC.swift
 //  traveltune
 //
-//  Created by 장혜성 on 2023/10/04.
+//  Created by 장혜성 on 2023/09/22.
 //
 
 import UIKit
 
-final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView, SearchResultTabStoryViewModel> {
+final class SettingVC: BaseViewController<SettingView, SettingViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +16,7 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
     }
     
     func configureVC() {
-        print("이야기 = ", viewModel?.keyword)
+        
     }
     
     func bindViewModel() {

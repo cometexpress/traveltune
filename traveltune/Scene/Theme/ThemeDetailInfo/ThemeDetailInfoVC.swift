@@ -7,12 +7,14 @@
 
 import UIKit
 
-final class ThemeDetailInfoVC: BaseViewController<ThemeDetailInfoView> {
-
+final class ThemeDetailInfoVC: BaseViewController<ThemeDetailInfoView, BaseViewModel> {
+    
     var themeStory: ThemeStory?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVC()
+        bindViewModel()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -20,7 +22,7 @@ final class ThemeDetailInfoVC: BaseViewController<ThemeDetailInfoView> {
         mainView.backgroundColor = .backgroundDim
     }
     
-    override func configureVC() {
+    func configureVC() {
         mainView.closeClicked = { [weak self] in
             self?.dismiss(animated: true)
         }
@@ -32,4 +34,5 @@ final class ThemeDetailInfoVC: BaseViewController<ThemeDetailInfoView> {
         mainView.contentLabel.setLineSpacing(spacing: 8)
     }
 
+    func bindViewModel() { }
 }

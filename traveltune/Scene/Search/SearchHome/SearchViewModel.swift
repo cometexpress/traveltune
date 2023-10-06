@@ -75,7 +75,8 @@ final class SearchViewModel: BaseViewModel {
                 print("검색어있는지 체크 - init")
                 words.value.recentSearchKeywords = fetchSearchKeyword()
             case .update(_, let deletions, let insertions, let modifications):
-                print("검색어 delete")
+                print("검색어 insert = \(insertions)")
+                print("검색어 delete = \(deletions)")
                 words.value.recentSearchKeywords = fetchSearchKeyword()
             case .error(let error):
                 print("ERROR: \(error.localizedDescription)")

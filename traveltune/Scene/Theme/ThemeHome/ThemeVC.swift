@@ -8,12 +8,12 @@
 import UIKit
 import Hero
 
-final class ThemeVC: BaseViewController<ThemeView> {
-    
-    private let viewModel = ThemeViewModel()
+final class ThemeVC: BaseViewController<ThemeView, ThemeViewModel> {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureVC()
+        bindViewModel()
         
 //        Network.shared.requestVisitorInfo(
 //            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
@@ -29,26 +29,29 @@ final class ThemeVC: BaseViewController<ThemeView> {
 //                    print(failure)
 //                }
 //            }
-        navigationItem.backButtonDisplayMode = .minimal
+        
     }
     
     @objc func searchButtonClicked() {
-        let vc = SearchVC()
+        let vc = SearchVC(viewModel: SearchViewModel())
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
-    override func configureVC() {
+    func bindViewModel() {
+        viewModel?.themes.bind { [weak self] themes in
+            self?.mainView.pagerView.reloadData()
+        }
+        
+        viewModel?.fetchThemes()
+    }
+    
+    func configureVC() {
         mainView.hero.isEnabled = true
         mainView.themeVCProtocol = self
         mainView.viewModel = viewModel
         
-        viewModel.themes.bind { [weak self] themes in
-            self?.mainView.pagerView.reloadData()
-        }
-        
-        viewModel.fetchThemes()
-        
+        navigationItem.backButtonDisplayMode = .minimal
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: .magnifyingglass.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal),
             style: .plain,
@@ -71,7 +74,15 @@ final class ThemeVC: BaseViewController<ThemeView> {
 extension ThemeVC: ThemeVCProtocol {
     
     func moveDetailThemeClicked(theme: ThemeStory) {
-        let vc = ThemeDetailVC()
+        
+        let vc = ThemeDetailVC(
+            viewModel: ThemeDetailViewModel(
+                localTravelSpotRepository: LocalTravelSpotRepository(),
+                localThemeStoryRepository: LocalThemeStoryRepository(),
+                localFavoriteStoryRepository: LocalFavoriteStoryRepository(),
+                storyRepository: StoryRepository()
+            )
+        )
         vc.hero.isEnabled = true
         vc.themeStory = theme
         vc.modalPresentationStyle = .fullScreen

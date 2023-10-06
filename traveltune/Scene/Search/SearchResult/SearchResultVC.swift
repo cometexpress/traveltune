@@ -15,8 +15,15 @@ final class SearchResultVC: UIViewController {
     
     private var viewModel = SearchResultViewModel()
     
-    private var tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel()
-    private var tabStoryViewModel = SearchResultTabStoryViewModel()
+    private lazy var tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(
+        keyword: searchKeyword,
+        travelSportRepository: TravelSpotRepository()
+    )
+    
+    private lazy var tabStoryViewModel = SearchResultTabStoryViewModel(
+        keyword: searchKeyword,
+        storyRepository: StoryRepository()
+    )
     
     private var commonTabPaingVC = CommonTabPagingVC()
     
@@ -39,16 +46,6 @@ final class SearchResultVC: UIViewController {
         view.backgroundColor = .background
         
         // 최초 검색키워드 전달을 위해 이때 초기화
-        tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(
-            keyword: searchKeyword,
-            travelSportRepository: TravelSpotRepository()
-        )
-        
-        tabStoryViewModel = SearchResultTabStoryViewModel(
-            keyword: searchKeyword,
-            storyRepository: StoryRepository()
-        )
-        
         commonTabPaingVC = CommonTabPagingVC(
             viewControllers: [
                 SearchResultTabTravelSpotVC(viewModel: tabTravelSpotViewModel),
@@ -109,6 +106,7 @@ extension SearchResultVC: UITextFieldDelegate {
         
         // 검색버튼 눌렀을 때 관광지 와 이야기 탭 모두 업데이트 해줘야 하지 않을까?
         // TODO: 검색버튼 눌렀을 때 관광지 이야기 탭 모두 업데이트 시키기
+        
         
         // TODO: 현재 선택되어진 아이템만 업데이트 시키고 있는 코드 모두 업데이트 시키도록 수정필요
         if let selectedPagingItem = commonTabPaingVC.state.currentPagingItem {
