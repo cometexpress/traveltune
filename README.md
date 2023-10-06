@@ -42,8 +42,8 @@
 |  (공통)하단 재생 UI - minimalSize  |  2  |  2  |  3 | <ul><li>[x] </li></ul> | 없음 |
 |  (공통)하단 재생 기능 - minimalSize  |  2  |  8  |  6 | <ul><li>[x] </li></ul> | 없음 |
 |  검색 메인 UI  |  2  | 6 | 22 | <ul><li>[x] </li></ul> | DiffableDataSource, CompositionalLayout 학습 지연 |
-|  검색 메인 기능  |  3  | 10 |  - h | <ul><li>[ ] </li></ul> | - |
-|  검색 결과 UI  |  3  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
+|  검색 메인 기능  |  3  | 10 |  6  | <ul><li>[x] </li></ul> | 없음 |
+|  검색 결과 UI  |  3  | 6 |  12  | <ul><li>[x] </li></ul> | tabMan -> parchment 라이브러리 변경 |
 |  검색 결과 기능  |  3  | 8 |  - h | <ul><li>[ ] </li></ul> | - |
 |  관광지 상세 UI  |  3  |  4  |  - h  | <ul><li>[ ] </li></ul> | - |
 |  관광지 상세 기능 UI  |  3  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
