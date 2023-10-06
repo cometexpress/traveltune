@@ -32,8 +32,8 @@ final class ThumbnailImageView: UIImageView {
                 with: url,
                 placeholder: UIImage(named: "default_img"),
                 options: [
-                    .transition(.fade(0.3)),
-                    .processor(DownsamplingImageProcessor(size: CGSize(width: 120, height: 120))),
+                    .transition(.fade(0.2)),
+                    .processor(DownsamplingImageProcessor(size: CGSize(width: 100, height: 100))),
                     .scaleFactor(UIScreen.main.scale),
                     .cacheOriginalImage
                 ]

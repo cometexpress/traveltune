@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,6 +30,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="primary"/>
+                        <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="yiA-zX-TDh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="fGh-qK-pL7"/>
                             <constraint firstItem="yiA-zX-TDh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="uCq-4B-Yyv"/>
@@ -41,9 +43,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_screen.png" width="180" height="180"/>
+        <image name="launch_screen.png" width="512" height="512"/>
         <namedColor name="primary">
-            <color red="0.71764705882352942" green="0.20392156862745098" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.30196078431372547" green="0.58431372549019611" blue="0.93725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
