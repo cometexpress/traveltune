@@ -66,6 +66,12 @@ final class SearchResultTabStoryView: BaseView {
 
 extension SearchResultTabStoryView: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        collectionView.deselectItem(at: indexPath, animated: true)
+        searchResultTabStoryVCProtocol?.didSelectItemAt(item: item)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let viewModel else { return }
         if !viewModel.isLoading && viewModel.totalPage > page {

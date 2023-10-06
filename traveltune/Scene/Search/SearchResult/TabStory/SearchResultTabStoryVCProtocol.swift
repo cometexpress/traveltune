@@ -8,6 +8,7 @@
 import Foundation
 
 protocol SearchResultTabStoryVCProtocol: AnyObject {
+    func didSelectItemAt(item: StoryItem)
     func willDisplay(page: Int)
     func scrollBeginDragging()
 }

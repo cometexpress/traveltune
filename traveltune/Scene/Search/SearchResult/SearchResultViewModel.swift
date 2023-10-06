@@ -8,6 +8,16 @@
 import Foundation
 
 final class SearchResultViewModel: BaseViewModel {
+
+    private var localSearchKeywordRepository: LocalSearchKeywordRepository
     
+    init(localSearchKeywordRepository: LocalSearchKeywordRepository) {
+        self.localSearchKeywordRepository = localSearchKeywordRepository
+    }
     
+    func saveSearchKeyword(text: String) {
+        localSearchKeywordRepository.create(SearchKeyword(text: text)) {
+            print(#function, "검색단어 저장 실패")
+        }
+    }
 }

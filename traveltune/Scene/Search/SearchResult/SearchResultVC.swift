@@ -13,7 +13,7 @@ final class SearchResultVC: UIViewController {
     
     var searchKeyword: String?
     
-    private var viewModel = SearchResultViewModel()
+    private var viewModel = SearchResultViewModel(localSearchKeywordRepository: LocalSearchKeywordRepository())
     
     private lazy var tabTravelSpotViewModel = SearchResultTabTravelSpotViewModel(
         keyword: searchKeyword,
@@ -44,6 +44,8 @@ final class SearchResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .background
+        commonTabPaingVC.dataSource = self
+        commonTabPaingVC.delegate = self
         
         // 최초 검색키워드 전달을 위해 이때 초기화
         commonTabPaingVC = CommonTabPagingVC(
@@ -67,19 +69,20 @@ final class SearchResultVC: UIViewController {
         )
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        naviBarSearchTextField.resignFirstResponder()
+    }
+    
     @objc func beginScrollObserver(notification: NSNotification) {
         // 노티피케이션센터로 데이터 전달 받을 때
         //           if let title = notification.userInfo?["title"] as? String {
         //               print(title)
         //           }
         naviBarSearchTextField.resignFirstResponder()
-        
     }
     
     private func configureHierarchy() {
-        commonTabPaingVC.dataSource = self
-        commonTabPaingVC.delegate = self
-        //        commonTabPaingVC.sizeDelegate = self
         view.addSubview(commonTabPaingVC.view)
     }
     
@@ -103,6 +106,9 @@ final class SearchResultVC: UIViewController {
         
         addChild(commonTabPaingVC)
         commonTabPaingVC.didMove(toParent: self)
+        commonTabPaingVC.dataSource = self
+        commonTabPaingVC.delegate = self
+        //        commonTabPaingVC.sizeDelegate = self
     }
     
     @objc private func backButtonClicked() {
@@ -114,7 +120,9 @@ extension SearchResultVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // TODO: 검색버튼 눌렀을 때 최근검색 Realm 에 저장하기
+        guard let text = textField.text else { return false }
+        viewModel.saveSearchKeyword(text: text)
+        
         let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
         travelSpotVC?.mainView.page = 1
         travelSpotVC?.viewModel?.searchSpots(page: 1)

@@ -244,7 +244,6 @@ final class ThemeDetailView: BaseView {
 extension ThemeDetailView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let item = viewModel?.stories.value[indexPath.item] else { return }
         guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
         collectionView.deselectItem(at: indexPath, animated: true)
         themeDetailVCProtocol?.didSelectItemAt(item: item)

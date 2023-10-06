@@ -10,12 +10,25 @@ import RealmSwift
 
 final class SearchViewModel: BaseViewModel {
     
+    enum SearchUIState<T> {
+        case initValue
+        case loading
+        case success(data: T)
+        case emptySearchText
+        case existSearchText(String)
+        case error(msg: String)
+    }
+    
     struct Words {
         var recommendWords: [SearchController.Item]? = nil
         var recentSearchKeywords: [SearchController.Item]? = nil
     }
     
-    private let localSearchKeywordRepository = LocalSearchKeywordRepository()
+    private var localSearchKeywordRepository: LocalSearchKeywordRepository
+    
+    init(localSearchKeywordRepository: LocalSearchKeywordRepository) {
+        self.localSearchKeywordRepository = localSearchKeywordRepository
+    }
     
     private var notificationToken: NotificationToken?
     
@@ -23,30 +36,27 @@ final class SearchViewModel: BaseViewModel {
         notificationToken?.invalidate()
     }
     
-    var words: Observable<Words> = Observable(Words())
+    private var words = Words()
+    
+    var state: Observable<SearchUIState<Words>> = Observable(.initValue)
     
     func fetchWords() {
+        state.value = .loading
         let recommends = SearchRecommendWord.list.map { SearchController.Item(recommendItem: SearchController.RecommendItem(title: $0)) }
-        words.value.recommendWords = recommends
+        words.recommendWords = recommends
         searchKeywordObserve()
     }
     
-    enum SearchStatus {
-        case initial, empty, exist(String)
-    }
-    
-    var isExistSearchText: Observable<SearchStatus> = Observable(.initial)
-    
     func checkSearchText(searchText: String) {
+//        state.value = .initValue
         if searchText.isEmpty {
-            isExistSearchText.value = .empty
+            state.value = .emptySearchText
         } else {
-            saveSearchKeyword(text: searchText)
-            isExistSearchText.value = .exist(searchText)
+            state.value = .existSearchText(searchText)
         }
     }
     
-    private func saveSearchKeyword(text: String) {
+    func saveSearchKeyword(text: String) {
         localSearchKeywordRepository.create(SearchKeyword(text: text)) {
             print(#function, "검색단어 저장 실패")
         }
@@ -73,13 +83,16 @@ final class SearchViewModel: BaseViewModel {
             switch changes {
             case .initial:
                 print("검색어있는지 체크 - init")
-                words.value.recentSearchKeywords = fetchSearchKeyword()
+                words.recentSearchKeywords = fetchSearchKeyword()
+                state.value = .success(data: words)
             case .update(_, let deletions, let insertions, let modifications):
                 print("검색어 insert = \(insertions)")
                 print("검색어 delete = \(deletions)")
-                words.value.recentSearchKeywords = fetchSearchKeyword()
+                words.recentSearchKeywords = fetchSearchKeyword()
+                state.value = .success(data: words)
             case .error(let error):
                 print("ERROR: \(error.localizedDescription)")
+                state.value = .error(msg: error.localizedDescription)
             }
         }
     }

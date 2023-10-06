@@ -62,6 +62,10 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
 
 extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
     
+    func didSelectItemAt(item: StoryItem) {
+        print(item.title)
+    }
+    
     func willDisplay(page: Int) {
         viewModel?.searchStories(page: page)
     }

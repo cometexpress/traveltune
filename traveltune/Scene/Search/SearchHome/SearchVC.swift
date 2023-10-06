@@ -34,21 +34,24 @@ final class SearchVC: BaseViewController<SearchView, SearchViewModel> {
     }
     
     func bindViewModel() {
-        viewModel?.words.bind { [weak self] words in
-            self?.mainView.applySnapShot(
-                recommendItems: words.recommendWords,
-                recentItems: words.recentSearchKeywords
-            )
-        }
-        
-        viewModel?.isExistSearchText.bind { [weak self] status in
-            switch status {
-            case .initial:
-                print("init")
-            case .empty:
+        viewModel?.state.bind { [weak self] state in
+            switch state {
+            case .initValue: Void()
+            case .loading:
+                LoadingIndicator.show()
+            case .success(let data):
+                self?.mainView.applySnapShot(
+                    recommendItems: data.recommendWords,
+                    recentItems: data.recentSearchKeywords
+                )
+                LoadingIndicator.hide()
+            case .emptySearchText:
                 self?.showToast(msg: Strings.Common.searchPlaceHolder, position: .center)
-            case .exist(let searchText):
+            case .existSearchText(let searchText):
+                self?.viewModel?.saveSearchKeyword(text: searchText)
                 self?.successSearch(text: searchText)
+            case .error(let msg):
+                LoadingIndicator.hide()
             }
         }
     }

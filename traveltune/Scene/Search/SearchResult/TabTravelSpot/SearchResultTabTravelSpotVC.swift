@@ -62,6 +62,10 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
 
 extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
     
+    func didSelectItemAt(item: TravelSpotItem) {
+        print(item.title)
+    }
+    
     func willDisplay(page: Int) {
         viewModel?.searchSpots(page: page)
     }

@@ -33,7 +33,7 @@ final class ThemeVC: BaseViewController<ThemeView, ThemeViewModel> {
     }
     
     @objc func searchButtonClicked() {
-        let vc = SearchVC(viewModel: SearchViewModel())
+        let vc = SearchVC(viewModel: SearchViewModel(localSearchKeywordRepository: LocalSearchKeywordRepository()))
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }

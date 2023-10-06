@@ -10,6 +10,7 @@ import UIKit
 final class LoadingIndicator {
     
     static func show() {
+        LoadingIndicator.hide()
         DispatchQueue.main.async {
 //            guard let window = UIApplication.shared.windows.last else { return }
             guard let window = UIApplication.shared.connectedScenes.map({ $0 as? UIWindowScene }).compactMap({ $0 }).first?.windows.first else { return }
