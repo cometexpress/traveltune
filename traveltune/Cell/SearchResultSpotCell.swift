@@ -17,13 +17,18 @@ final class SearchResultSpotCell: BaseCollectionViewCell<TravelSpotItem> {
     private let textContainerView = UIView()
     
     private let titleLabel = UILabel().setup { view in
-        view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .bold)
         view.textColor = .txtPrimary
     }
     
     private let addrLabel = UILabel().setup { view in
-        view.font = .italicSystemFont(ofSize: 11)
+        view.font = .monospacedSystemFont(ofSize: 11, weight: .light)
         view.textColor = .txtSecondary
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbImageView.image = .defaultImg
     }
     
     override func configureHierarchy() {
