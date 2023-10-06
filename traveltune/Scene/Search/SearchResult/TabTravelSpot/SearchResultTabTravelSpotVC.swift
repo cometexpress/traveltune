@@ -54,16 +54,6 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
             }
         }
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("관광지 ON")
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        print("관광지 OFF")
-    }
 }
 
 extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {

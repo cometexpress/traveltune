@@ -57,7 +57,6 @@ final class SearchResultTabTravelSpotView: BaseView {
             make.edges.equalToSuperview()
         }
         
-        emptyLabel.isHidden = true
         emptyLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.verticalEdges.equalTo(safeAreaLayoutGuide)

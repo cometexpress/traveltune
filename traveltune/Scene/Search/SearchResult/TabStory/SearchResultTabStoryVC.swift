@@ -17,9 +17,17 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
     
     func configureVC() {
         print("이야기 = ", viewModel?.keyword)
+        mainView.viewModel = viewModel
+        mainView.searchResultTabStoryVCProtocol = self
     }
     
     func bindViewModel() {
+        
+    }
+}
+
+extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
+    func willDisplay(page: Int) {
         
     }
 }

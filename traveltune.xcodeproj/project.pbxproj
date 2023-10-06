@@ -36,6 +36,8 @@
 		C03592952ACDDC2600AA3D36 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03592942ACDDC2600AA3D36 /* SearchResultViewModel.swift */; };
 		C03FE0372ACFDB2800D02385 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FE0362ACFDB2800D02385 /* MapViewModel.swift */; };
 		C03FE0392ACFDB6600D02385 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FE0382ACFDB6600D02385 /* SettingViewModel.swift */; };
+		C03FE03B2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FE03A2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift */; };
+		C03FE03D2ACFEB0400D02385 /* SearchResultStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C03FE03C2ACFEB0400D02385 /* SearchResultStoryCell.swift */; };
 		C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D182AC6A3DB00C220A6 /* RequestStory.swift */; };
 		C0453D1B2AC6A49900C220A6 /* ResponseStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */; };
 		C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */; };
@@ -162,6 +164,8 @@
 		C03592942ACDDC2600AA3D36 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
 		C03FE0362ACFDB2800D02385 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		C03FE0382ACFDB6600D02385 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		C03FE03A2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryVCProtocol.swift; sourceTree = "<group>"; };
+		C03FE03C2ACFEB0400D02385 /* SearchResultStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultStoryCell.swift; sourceTree = "<group>"; };
 		C0453D182AC6A3DB00C220A6 /* RequestStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStory.swift; sourceTree = "<group>"; };
 		C0453D1A2AC6A49900C220A6 /* ResponseStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseStory.swift; sourceTree = "<group>"; };
 		C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
@@ -349,6 +353,7 @@
 				C03592882ACDA03700AA3D36 /* SearchResultTabStoryVC.swift */,
 				C035928A2ACDA05100AA3D36 /* SearchResultTabStoryView.swift */,
 				C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */,
+				C03FE03A2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift */,
 			);
 			path = TabStory;
 			sourceTree = "<group>";
@@ -690,6 +695,7 @@
 				C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */,
 				C0EF78802AC5D60B0098D091 /* StoryCell.swift */,
 				C06C93392AC2B214006B26F6 /* ThemePager */,
+				C03FE03C2ACFEB0400D02385 /* SearchResultStoryCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -910,6 +916,7 @@
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
+				C03FE03D2ACFEB0400D02385 /* SearchResultStoryCell.swift in Sources */,
 				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C03FE0392ACFDB6600D02385 /* SettingViewModel.swift in Sources */,
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,
@@ -919,6 +926,7 @@
 				C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
+				C03FE03B2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift in Sources */,
 				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
 				C035928F2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift in Sources */,
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
