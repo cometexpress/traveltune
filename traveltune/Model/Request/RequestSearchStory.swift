@@ -9,4 +9,6 @@ import Foundation
 
 struct RequestSearchStory: Encodable {
     let keyword: String
+    let pageNo: String    
+    let numOfRows: String
 }

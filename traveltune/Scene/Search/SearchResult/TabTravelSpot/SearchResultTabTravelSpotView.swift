@@ -65,16 +65,16 @@ final class SearchResultTabTravelSpotView: BaseView {
 }
 
 extension SearchResultTabTravelSpotView: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         guard let viewModel else { return }
-        if !viewModel.isLoading
-            && viewModel.totalPage > page
-            && dataSource.snapshot().numberOfSections - 1 == indexPath.section {
-            let currentSection = dataSource.snapshot().sectionIdentifiers[indexPath.section]
-            if dataSource.snapshot().numberOfItems(inSection: currentSection) - 1 == indexPath.item {
-                page += 1
-                searchResultTabTravelSpotVCProtocol?.willDisplay(page: page)
+        if !viewModel.isLoading && viewModel.totalPage > page {
+            if dataSource.snapshot().numberOfSections - 1 == indexPath.section {
+                let currentSection = dataSource.snapshot().sectionIdentifiers[indexPath.section]
+                if dataSource.snapshot().numberOfItems(inSection: currentSection) - 1 == indexPath.item {
+                    page += 1
+                    searchResultTabTravelSpotVCProtocol?.willDisplay(page: page)
+                }
             }
         }
     }

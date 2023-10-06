@@ -86,13 +86,6 @@ final class SearchResultVC: UIViewController {
         
         addChild(commonTabPaingVC)
         commonTabPaingVC.didMove(toParent: self)
-        
-        switch commonTabPaingVC.state {
-        case .empty: Void()
-        case .selected(let pagingItem):
-            print(pagingItem.identifier)
-        case .scrolling: Void()
-        }
     }
     
     @objc private func backButtonClicked() {
@@ -128,7 +121,7 @@ extension SearchResultVC: UITextFieldDelegate {
 extension SearchResultVC: PagingViewControllerDataSource, PagingViewControllerDelegate {
     
     func pagingViewController(_ pagingViewController: PagingViewController, didSelectItem pagingItem: PagingItem) {
-        print(pagingItem)
+//        print(pagingItem)
     }
     
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {

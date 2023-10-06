@@ -21,9 +21,9 @@ final class SearchResultTabStoryView: BaseView {
         case main
     }
     
-    lazy var dataSource: UICollectionViewDiffableDataSource<Section, Int>! = nil
+    lazy var dataSource: UICollectionViewDiffableDataSource<Section, StoryItem>! = nil
     
-    private let emptyLabel = UILabel().setup { view in
+    let emptyLabel = UILabel().setup { view in
         view.textColor = .txtDisabled
         view.font = .monospacedSystemFont(ofSize: 16, weight: .medium)
         view.text = Strings.Common.searchNoData
@@ -32,7 +32,7 @@ final class SearchResultTabStoryView: BaseView {
     }
     
     // 데이터 있을 때
-    private let containerView = UIView().setup { view in
+    let containerView = UIView().setup { view in
         view.isHidden = true
     }
     
@@ -66,31 +66,30 @@ final class SearchResultTabStoryView: BaseView {
 
 extension SearchResultTabStoryView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        
         guard let viewModel else { return }
-//        if !viewModel.isLoading
-//            && viewModel.totalPage > page
-//            && dataSource.snapshot().numberOfSections - 1 == indexPath.section {
-//            let currentSection = dataSource.snapshot().sectionIdentifiers[indexPath.section]
-//            if dataSource.snapshot().numberOfItems(inSection: currentSection) - 1 == indexPath.item {
-//                page += 1
-//                searchResultTabTravelSpotVCProtocol?.willDisplay(page: page)
-//            }
-//        }
+        if !viewModel.isLoading && viewModel.totalPage > page {
+            if dataSource.snapshot().numberOfSections - 1 == indexPath.section {
+                let currentSection = dataSource.snapshot().sectionIdentifiers[indexPath.section]
+                if dataSource.snapshot().numberOfItems(inSection: currentSection) - 1 == indexPath.item {
+                    page += 1
+                    searchResultTabStoryVCProtocol?.willDisplay(page: page)
+                }
+            }
+        }
     }
 }
 
 extension SearchResultTabStoryView {
     
-    func applySnapShot(items: [Int]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+    func applySnapShot(items: [StoryItem]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, StoryItem>()
         snapshot.appendSections([.main])
         snapshot.appendItems(items)
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    private func createCellRegistration() -> UICollectionView.CellRegistration<SearchResultStoryCell, Int> {
-        return UICollectionView.CellRegistration<SearchResultStoryCell, Int> { (cell, indexPath, identifier) in
+    private func createCellRegistration() -> UICollectionView.CellRegistration<SearchResultStoryCell, StoryItem> {
+        return UICollectionView.CellRegistration<SearchResultStoryCell, StoryItem> { (cell, indexPath, identifier) in
             cell.configCell(row: identifier)
         }
     }
@@ -98,14 +97,14 @@ extension SearchResultTabStoryView {
     private func configureDataSource() {
         let storyRegistration = createCellRegistration()
         
-        dataSource = UICollectionViewDiffableDataSource<Section, Int>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: Int) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Section, StoryItem>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: StoryItem) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: storyRegistration, for: indexPath, item: identifier)
         }
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Int>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, StoryItem>()
         snapshot.appendSections([.main])
-        snapshot.appendItems([1,2,3,4,5,6,7,8,9,10])
+        snapshot.appendItems([])
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     

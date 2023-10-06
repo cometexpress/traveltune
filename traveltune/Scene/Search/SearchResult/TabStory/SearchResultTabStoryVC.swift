@@ -16,18 +16,48 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
     }
     
     func configureVC() {
-        print("이야기 = ", viewModel?.keyword)
         mainView.viewModel = viewModel
         mainView.searchResultTabStoryVCProtocol = self
+        bindViewModel()
+        viewModel?.searchStories(page: mainView.page)
     }
     
     func bindViewModel() {
-        
+        viewModel?.state.bind { [weak self] state in
+            guard let self else { return }
+            switch state {
+            case .initValue: Void()
+            case .loading:
+                LoadingIndicator.show()
+                if self.mainView.page == 1 {
+                    self.mainView.storyItems.removeAll()
+                    self.mainView.applySnapShot(items: self.mainView.storyItems)
+                }
+            case .success(let data):
+                if self.mainView.page == 1 {
+                    self.mainView.storyItems.removeAll()
+                }
+                self.mainView.storyItems.append(contentsOf: data)
+                self.mainView.applySnapShot(items: self.mainView.storyItems)
+                
+                self.mainView.containerView.isHidden = self.mainView.storyItems.isEmpty
+                self.mainView.emptyLabel.isHidden = !self.mainView.storyItems.isEmpty
+
+                LoadingIndicator.hide()
+            case .error(let msg):
+                print(msg)
+                LoadingIndicator.hide()
+                if self.mainView.page == 1 {
+                    self.mainView.containerView.isHidden = self.mainView.storyItems.isEmpty
+                    self.mainView.emptyLabel.isHidden = !self.mainView.storyItems.isEmpty
+                }
+            }
+        }
     }
 }
 
 extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
     func willDisplay(page: Int) {
-        
+        viewModel?.searchStories(page: page)
     }
 }

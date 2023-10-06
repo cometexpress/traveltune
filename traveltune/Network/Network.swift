@@ -40,7 +40,7 @@ final class Network {
                 result = "실패"
                 completion(.failure(error))
             }
-            print("========= \(response.request?.url) - \(result) =========")
+//            print("========= \(response.request?.url) - \(result) =========")
         }
     }
     
@@ -62,7 +62,7 @@ final class Network {
                 result = "실패"
                 completion(.failure(error))
             }
-            print("========= \(response.request?.url) - \(result) =========")
+//            print("========= \(response.request?.url) - \(result) =========")
             
         }
     }

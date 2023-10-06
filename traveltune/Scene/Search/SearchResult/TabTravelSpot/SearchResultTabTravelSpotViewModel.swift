@@ -24,10 +24,10 @@ final class SearchResultTabTravelSpotViewModel: BaseViewModel {
         self.travelSportRepository = travelSportRepository
     }
     
-    var state: Observable<SearchResultTabSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
-    
     var totalPage = 0
     var isLoading = false
+    
+    var state: Observable<SearchResultTabSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
     
     func searchSpots(
         page: Int
@@ -47,17 +47,14 @@ final class SearchResultTabTravelSpotViewModel: BaseViewModel {
                     } else {
                         self.totalPage = (totalCount / Network.numOfRows)
                     }
-                    print("전체페이지 = \(self.totalPage)")
+                    print("관광지 전체페이지 = \(self.totalPage)")
                 }
-                
                 let result = success.response.body.items.item
-                
                 self.state.value = .success(data: result)
-                self.isLoading = false
             case .failure(let failure):
                 self.state.value = .error(msg: failure.localizedDescription)
-                self.isLoading = false
             }
+            self.isLoading = false
         }
     }
 }

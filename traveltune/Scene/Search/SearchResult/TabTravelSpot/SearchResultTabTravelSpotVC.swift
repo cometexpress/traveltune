@@ -39,7 +39,7 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
                 }
                 self.mainView.spotItems.append(contentsOf: data)
                 self.mainView.applySnapShot(items: self.mainView.spotItems)
-                
+
                 self.mainView.containerView.isHidden = self.mainView.spotItems.isEmpty
                 self.mainView.emptyLabel.isHidden = !self.mainView.spotItems.isEmpty
                 
