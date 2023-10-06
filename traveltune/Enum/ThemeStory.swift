@@ -8,7 +8,7 @@
 import UIKit
 
 enum ThemeStory: CaseIterable {
-    case cheonggyecheon      // 청계천
+    case hangang            // 한강
     case market             // 전통시장
     case history            // 한국 역사마을
     case museum             // 박물관
@@ -17,8 +17,8 @@ enum ThemeStory: CaseIterable {
     
     var searchKeyword: String {
         switch self {
-        case .cheonggyecheon:
-            Strings.ThemeStory.cheonggyecheonSearchKeyword
+        case .hangang:
+            Strings.ThemeStory.hangangSearchKeyword
         case .market:
             Strings.ThemeStory.marketSearchKeyword
         case .history:
@@ -34,8 +34,8 @@ enum ThemeStory: CaseIterable {
     
     var title: String {
         switch self {
-        case .cheonggyecheon:
-            Strings.ThemeStory.cheonggyecheon
+        case .hangang:
+            Strings.ThemeStory.hangang
         case .market:
             Strings.ThemeStory.market
         case .history:
@@ -51,8 +51,8 @@ enum ThemeStory: CaseIterable {
     
     var content: String {
         switch self {
-        case .cheonggyecheon:
-            Strings.ThemeStory.cheonggyecheonContent
+        case .hangang:
+            Strings.ThemeStory.hangangContent
         case .market:
             Strings.ThemeStory.marketContent
         case .history:
@@ -68,8 +68,8 @@ enum ThemeStory: CaseIterable {
     
     var thumbnail: UIImage {
         switch self {
-        case .cheonggyecheon:
-                .themeCheonggyecheon
+        case .hangang:
+                .themeHangang
         case .history:
                 .themeHistory
         case .market:
@@ -85,8 +85,8 @@ enum ThemeStory: CaseIterable {
     
     var miniThumbnail: UIImage {
         switch self {
-        case .cheonggyecheon:
-                .themeMiniCheonggyecheon
+        case .hangang:
+                .themeMiniHangang
         case .history:
                 .themeMiniHistory
         case .market:

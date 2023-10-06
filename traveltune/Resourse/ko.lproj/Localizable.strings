@@ -30,7 +30,7 @@
 "tab_map_title" = "지역선택";
 
 // 홈 테마 타이틀
-"theme_cheonggyecheon" = "청계천";
+"theme_hangang" = "한강";
 "theme_market" = "전통시장";
 "theme_history" = "한국역사마을";
 "theme_museum" = "박물관";
@@ -38,7 +38,7 @@
 "theme_bukchon" = "북촌골목여행";
 
 // 테마에서 단어만 떼서 사용 - 최대한 많이 검색되게하기 위해 단어 최대한 줄이기
-"theme_cheonggyecheon_search_keyword" = "청계천";
+"theme_hangang_search_keyword" = "한강";
 "theme_market_search_keyword" = "시장";
 "theme_history_search_keyword" = "마을";
 "theme_museum_search_keyword" = "박물관";
@@ -46,7 +46,7 @@
 "theme_bukchon_search_keyword" = "북촌";
 
 // 테마와 완전히 똑같은 것
-//"theme_cheonggyecheon_search_keyword" = "청계천 다리";
+//"theme_hangang_search_keyword" = "한강";
 //"theme_market_search_keyword" = "전통시장나들이";
 //"theme_history_search_keyword" = "한국의 역사마을";
 //"theme_museum_search_keyword" = "박물관";
@@ -54,7 +54,7 @@
 //"theme_bukchon_search_keyword" = "북촌 골목여행";
 
 // 홈 테마 컨텐츠
-"theme_cheonggyecheon_content" = "청계천은 경복궁 서북 인왕산의 골짜기 백운동천에서 발원해 백악산, 남산 등을 유역 경계로 해 서울 도심부를 관통하여 중랑천에 이르는 하천으로 길이는 약 10.84km 이다.";
+"theme_hangang_content" = "비옥한 한강 하류지역은 고대부터 문화발달의 터전이었고, 삼국시대에는 중국과의 교통로로서 쟁패의 요지였다. 조선이 한성에 도읍을 정한 이래로는 수상 교통로로서도 중요한 기능을 했다. 홍수조절과 수력발전을 위해 많은 댐이 건설되어 교통로의 기능은 잃었으나 수도권의 생활·공업 용수의 공급원으로서 막대한 기여를 하고 있다.";
 "theme_market_content" = "가게 한 집에서 취급하는 품목은 대형마트와 비교를 할 수 있을 정도가 아니지만, 시장 전체를 기준으로 삼는다면 어느 규모 이상의 전통시장은 웬만한 대형마트나 백화점도 명함을 쉽게 내밀기 어려울 정도로 다양한 품목을 취급한다.";
 "theme_history_content" = "한국의 역사마을에는 씨족마을, 읍성마을 등의 다양한 유형이 있으나 그 중에서 씨족마을은 전체 역사마을의 약 80%를 차지하는 한국의 대표적인 역사마을 유형이다.";
 "theme_museum_content" = "과거 박물관의 역할은 전시품을 보존하고 이용객들이 관람할 수 있도록 전시하는 기능에 한정되기 마련이었다. 그러나 오늘날 박물관은 전시와 관련된 프로그램을 체험하거나 휴식을 취하기도 하고 다양한 컨텐츠를 즐길 수 있는 공간으로 변모하고 있다.";

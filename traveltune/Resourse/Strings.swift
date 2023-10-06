@@ -35,21 +35,21 @@ struct Strings {
     }
     
     struct ThemeStory {
-        static let cheonggyecheon = "theme_cheonggyecheon".localized
+        static let hangang = "theme_hangang".localized
         static let market = "theme_market".localized
         static let history = "theme_history".localized
         static let museum = "theme_museum".localized
         static let temple = "theme_temple".localized
         static let bukchon = "theme_bukchon".localized
         
-        static let cheonggyecheonSearchKeyword = "theme_cheonggyecheon_search_keyword".localized
+        static let hangangSearchKeyword = "theme_hangang_search_keyword".localized
         static let marketSearchKeyword = "theme_market_search_keyword".localized
         static let historySearchKeyword = "theme_history_search_keyword".localized
         static let museumSearchKeyword = "theme_museum_search_keyword".localized
         static let templeSearchKeyword = "theme_temple_search_keyword".localized
         static let bukchonSearchKeyword = "theme_bukchon_search_keyword".localized
         
-        static let cheonggyecheonContent = "theme_cheonggyecheon_content".localized
+        static let hangangContent = "theme_hangang_content".localized
         static let marketContent = "theme_market_content".localized
         static let historyContent = "theme_history_content".localized
         static let museumContent = "theme_museum_content".localized
