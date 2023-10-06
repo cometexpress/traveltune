@@ -78,6 +78,10 @@ extension SearchResultTabTravelSpotView: UICollectionViewDelegate {
             }
         }
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchResultTabTravelSpotVCProtocol?.scrollBeginDragging()
+    }
 }
 
 extension SearchResultTabTravelSpotView {

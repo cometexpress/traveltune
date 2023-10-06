@@ -9,4 +9,5 @@ import Foundation
 
 protocol SearchResultTabTravelSpotVCProtocol: AnyObject {
     func willDisplay(page: Int)
+    func scrollBeginDragging()
 }

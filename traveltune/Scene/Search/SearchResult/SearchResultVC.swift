@@ -57,6 +57,23 @@ final class SearchResultVC: UIViewController {
         configureHierarchy()
         configureLayout()
         configureVC()
+        
+        // ChildVC 의 컬렉션뷰 스크롤 감지
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(beginScrollObserver),
+            name: .beginScroll,
+            object: nil
+        )
+    }
+    
+    @objc func beginScrollObserver(notification: NSNotification) {
+        // 노티피케이션센터로 데이터 전달 받을 때
+        //           if let title = notification.userInfo?["title"] as? String {
+        //               print(title)
+        //           }
+        naviBarSearchTextField.resignFirstResponder()
+        
     }
     
     private func configureHierarchy() {
@@ -94,26 +111,26 @@ final class SearchResultVC: UIViewController {
 }
 
 extension SearchResultVC: UITextFieldDelegate {
- 
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // 검색버튼 눌렀을 때 관광지 와 이야기 탭 모두 업데이트 해줘야 하지 않을까?
         // TODO: 검색버튼 눌렀을 때 관광지 이야기 탭 모두 업데이트 시키기
+        let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
+        travelSpotVC?.mainView.page = 1
+        travelSpotVC?.viewModel?.searchSpots(page: 1)
         
+        let storyVC = commonTabPaingVC.tabViewControllers[1] as? SearchResultTabStoryVC
+        storyVC?.mainView.page = 1
+        storyVC?.viewModel?.searchStories(page: 1)
         
-        // TODO: 현재 선택되어진 아이템만 업데이트 시키고 있는 코드 모두 업데이트 시키도록 수정필요
-        if let selectedPagingItem = commonTabPaingVC.state.currentPagingItem {
-            if selectedPagingItem.isEqual(to: PagingIndexItem(index: 0, title: Strings.SearchTabTitle.TravelSpot)) {
-                print("관광지 뷰모델 데이터 업데이트")
-                let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
-                travelSpotVC?.mainView.page = 1
-                travelSpotVC?.viewModel?.searchSpots(page: 1)
-            } else {
-                print("이야기 뷰모델 데이터 업데이트")
-                let storyVC = commonTabPaingVC.tabViewControllers[1] as? SearchResultTabStoryVC
-                
-            }
-        }
+        // 선택한 탭이 어떤건지 확인할 떄
+        //        if let selectedPagingItem = commonTabPaingVC.state.currentPagingItem {
+        //            if selectedPagingItem.isEqual(to: PagingIndexItem(index: 0, title: Strings.SearchTabTitle.TravelSpot)) {
+        //                print("관광지 탭")
+        //            } else {
+        //                print("이야기 탭")
+        //            }
+        //        }
         return true
     }
 }
@@ -121,7 +138,7 @@ extension SearchResultVC: UITextFieldDelegate {
 extension SearchResultVC: PagingViewControllerDataSource, PagingViewControllerDelegate {
     
     func pagingViewController(_ pagingViewController: PagingViewController, didSelectItem pagingItem: PagingItem) {
-//        print(pagingItem)
+        //        print(pagingItem)
     }
     
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {

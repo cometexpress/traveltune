@@ -61,4 +61,13 @@ extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
     func willDisplay(page: Int) {
         viewModel?.searchSpots(page: page)
     }
+    
+    func scrollBeginDragging() {
+        NotificationCenter.default.post(
+                name: .beginScroll,
+                object: nil,
+                userInfo: nil
+            )
+//    userInfo: ["title" : "SecondTitle"]
+    }
 }

@@ -65,6 +65,7 @@ final class SearchResultTabStoryView: BaseView {
 }
 
 extension SearchResultTabStoryView: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let viewModel else { return }
         if !viewModel.isLoading && viewModel.totalPage > page {
@@ -76,6 +77,10 @@ extension SearchResultTabStoryView: UICollectionViewDelegate {
                 }
             }
         }
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchResultTabStoryVCProtocol?.scrollBeginDragging()
     }
 }
 

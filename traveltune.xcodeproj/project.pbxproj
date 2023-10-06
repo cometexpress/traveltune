@@ -68,6 +68,7 @@
 		C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */; };
 		C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */; };
 		C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */; };
+		C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D8B152AD00D4800267C8B /* Notification+Extension.swift */; };
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
@@ -195,6 +196,7 @@
 		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCellView.swift; sourceTree = "<group>"; };
+		C07D8B152AD00D4800267C8B /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
@@ -584,17 +586,18 @@
 		C0E8BA6E2ABC939E00B1CCA6 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				C0E8BA8B2ABC997800B1CCA6 /* String+Extension.swift */,
-				C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */,
-				C05F92192AC3494F00427F6D /* UILabel+Extension.swift */,
-				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
-				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
-				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
-				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
 				C0BDC3252AC8912200D7331E /* Copy+Extension.swift */,
-				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
-				C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */,
+				C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */,
+				C04F9CA82ABEF6320058A8D0 /* Encodable+Extension.swift */,
+				C07D8B152AD00D4800267C8B /* Notification+Extension.swift */,
 				C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */,
+				C0E8BA8B2ABC997800B1CCA6 /* String+Extension.swift */,
+				C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */,
+				C05F92192AC3494F00427F6D /* UILabel+Extension.swift */,
+				C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */,
+				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
+				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
+				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -896,6 +899,7 @@
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
+				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
 				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,

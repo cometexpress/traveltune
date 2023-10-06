@@ -57,7 +57,17 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
 }
 
 extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
+    
     func willDisplay(page: Int) {
         viewModel?.searchStories(page: page)
+    }
+    
+    func scrollBeginDragging() {
+        NotificationCenter.default.post(
+                name: .beginScroll,
+                object: nil,
+                userInfo: nil
+            )
+//    userInfo: ["title" : "SecondTitle"]
     }
 }
