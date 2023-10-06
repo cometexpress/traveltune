@@ -42,6 +42,10 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
             case .initValue: Void()
             case .loading:
                 LoadingIndicator.show()
+                if self.mainView.page == 1 {
+                    self.mainView.spotItems.removeAll()
+                    self.mainView.applySnapShot(items: self.mainView.spotItems)
+                }
             case .success(let data):
                 if self.mainView.page == 1 {
                     self.mainView.spotItems.removeAll()

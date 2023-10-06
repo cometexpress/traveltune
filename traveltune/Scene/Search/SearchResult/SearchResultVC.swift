@@ -24,6 +24,14 @@ final class SearchResultVC: UIViewController {
         let width = UIScreen.main.bounds.width - 80
         view.frame = .init(x: 0, y: 0, width: width, height: 40)
         view.delegate = self
+        view.addTarget(self, action: #selector(self.naviBarSearchTextFieldChanged(_:)), for: .editingChanged)
+    }
+    
+    @objc func naviBarSearchTextFieldChanged(_ sender: UITextField) {
+        // 하위 뷰컨트롤러 뷰모델 searchKeyword 값에 전달해주기
+        guard let text = sender.text else { return }
+        tabTravelSpotViewModel.keyword = text
+        tabStoryViewModel.keyword = text
     }
     
     override func viewDidLoad() {
@@ -96,19 +104,23 @@ final class SearchResultVC: UIViewController {
 }
 
 extension SearchResultVC: UITextFieldDelegate {
+ 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        // 현재 선택되어진 아이템
+        
+        // 검색버튼 눌렀을 때 관광지 와 이야기 탭 모두 업데이트 해줘야 하지 않을까?
+        // TODO: 검색버튼 눌렀을 때 관광지 이야기 탭 모두 업데이트 시키기
+        
+        // TODO: 현재 선택되어진 아이템만 업데이트 시키고 있는 코드 모두 업데이트 시키도록 수정필요
         if let selectedPagingItem = commonTabPaingVC.state.currentPagingItem {
             if selectedPagingItem.isEqual(to: PagingIndexItem(index: 0, title: Strings.SearchTabTitle.TravelSpot)) {
                 print("관광지 뷰모델 데이터 업데이트")
                 let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
-                print("뷰모델 있냐?", travelSpotVC?.viewModel)
-//                travelSpotVC?.mainView.page = 1
-//                travelSpotVC?.viewModel?.searchSpots(page: 1)
+                travelSpotVC?.mainView.page = 1
+                travelSpotVC?.viewModel?.searchSpots(page: 1)
             } else {
                 print("이야기 뷰모델 데이터 업데이트")
                 let storyVC = commonTabPaingVC.tabViewControllers[1] as? SearchResultTabStoryVC
-                print("뷰모델 있냐?", storyVC?.viewModel)
+                
             }
         }
         return true
@@ -118,7 +130,7 @@ extension SearchResultVC: UITextFieldDelegate {
 extension SearchResultVC: PagingViewControllerDataSource, PagingViewControllerDelegate {
     
     func pagingViewController(_ pagingViewController: PagingViewController, didSelectItem pagingItem: PagingItem) {
-        dump(pagingItem)
+        print(pagingItem)
     }
     
     func numberOfViewControllers(in pagingViewController: PagingViewController) -> Int {
@@ -132,5 +144,5 @@ extension SearchResultVC: PagingViewControllerDataSource, PagingViewControllerDe
     func pagingViewController(_: PagingViewController, pagingItemAt index: Int) -> PagingItem {
         return PagingIndexItem(index: index, title: commonTabPaingVC.tabTitles[index])
     }
-
+    
 }
