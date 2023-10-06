@@ -12,6 +12,10 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         bindViewModel()
     }
     

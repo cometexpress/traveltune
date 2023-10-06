@@ -114,7 +114,7 @@ extension SearchResultVC: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        // TODO: 검색버튼 눌렀을 때 관광지 이야기 탭 모두 업데이트 시키기
+        // TODO: 검색버튼 눌렀을 때 최근검색 Realm 에 저장하기
         let travelSpotVC = commonTabPaingVC.tabViewControllers[0] as? SearchResultTabTravelSpotVC
         travelSpotVC?.mainView.page = 1
         travelSpotVC?.viewModel?.searchSpots(page: 1)
