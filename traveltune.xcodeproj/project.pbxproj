@@ -62,6 +62,9 @@
 		C05F921F2AC3F4C600427F6D /* ThemeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F921E2AC3F4C600427F6D /* ThemeDetailVC.swift */; };
 		C05F92212AC3F4F400427F6D /* ThemeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F92202AC3F4F400427F6D /* ThemeDetailView.swift */; };
 		C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F92252AC3F93B00427F6D /* ThemeVCProtocol.swift */; };
+		C0607D8B2AD27C44002E4CBD /* DetailTravelSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */; };
+		C0607D8D2AD27C64002E4CBD /* DetailTravelSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */; };
+		C0607D8F2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */; };
 		C06449F22ACC2D60005C8529 /* SearchRecentWordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */; };
 		C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */; };
 		C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */; };
@@ -191,6 +194,9 @@
 		C05F921E2AC3F4C600427F6D /* ThemeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVC.swift; sourceTree = "<group>"; };
 		C05F92202AC3F4F400427F6D /* ThemeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailView.swift; sourceTree = "<group>"; };
 		C05F92252AC3F93B00427F6D /* ThemeVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVCProtocol.swift; sourceTree = "<group>"; };
+		C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotVC.swift; sourceTree = "<group>"; };
+		C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotView.swift; sourceTree = "<group>"; };
+		C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotViewModel.swift; sourceTree = "<group>"; };
 		C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentWordCell.swift; sourceTree = "<group>"; };
 		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
@@ -441,6 +447,16 @@
 			path = ThemeDetail;
 			sourceTree = "<group>";
 		};
+		C0607D892AD27AAB002E4CBD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */,
+				C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */,
+				C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		C06449F32ACC3727005C8529 /* SearchResult */ = {
 			isa = PBXGroup;
 			children = (
@@ -606,9 +622,10 @@
 			isa = PBXGroup;
 			children = (
 				C0E8BA922ABDCCC900B1CCA6 /* TabBarVC.swift */,
+				C0607D892AD27AAB002E4CBD /* Detail */,
 				C0E8BA972ABDCD1900B1CCA6 /* Map */,
-				C0E8BA982ABDCD2000B1CCA6 /* Setting */,
 				C02DABDB2ACADC9300F3BC42 /* Search */,
+				C0E8BA982ABDCD2000B1CCA6 /* Setting */,
 				C0D81A702AC40A4E00CB2EF0 /* Splash */,
 				C02DABDC2ACADD2100F3BC42 /* Theme */,
 			);
@@ -898,6 +915,7 @@
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
+				C0607D8B2AD27C44002E4CBD /* DetailTravelSpotVC.swift in Sources */,
 				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
 				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
@@ -923,6 +941,7 @@
 				C03FE03D2ACFEB0400D02385 /* SearchResultStoryCell.swift in Sources */,
 				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C03FE0392ACFDB6600D02385 /* SettingViewModel.swift in Sources */,
+				C0607D8F2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift in Sources */,
 				C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */,
 				C04F9CA22ABEEF610058A8D0 /* Network.swift in Sources */,
 				C0E8BA8C2ABC997800B1CCA6 /* String+Extension.swift in Sources */,
@@ -967,6 +986,7 @@
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
+				C0607D8D2AD27C64002E4CBD /* DetailTravelSpotView.swift in Sources */,
 				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
 				C0D6153D2ACEE8AA00EC5EE9 /* BaseViewModel.swift in Sources */,
 				C09A69832ACB3A6D002FA468 /* TitleSupplementaryView.swift in Sources */,

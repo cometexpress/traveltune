@@ -172,11 +172,9 @@ final class ThemeDetailViewModel: BaseViewModel {
             case .initial:
                 print("좋아요한지 체크 - init")
                 let list = self.saveStories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
-                //                self.stories.value.append(contentsOf: list)
                 self.state.value = .success(data: list)
             case .update(_, let deletions, let insertions, let modifications):
                 let list = self.saveStories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
-                //                self.stories.value = list
                 self.state.value = .success(data: list)
             case .error(let error):
                 self.state.value = .error(msg: error.localizedDescription)

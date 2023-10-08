@@ -63,7 +63,11 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
 extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
     
     func didSelectItemAt(item: TravelSpotItem) {
-        print(item.title)
+        // 상세로 이동시키기
+        let vc = DetailTravelSpotVC(viewModel: DetailTravelSpotViewModel())
+        vc.viewModel?.detailTravelSpot.value = item
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     func willDisplay(page: Int) {
