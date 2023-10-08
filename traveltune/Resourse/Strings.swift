@@ -24,6 +24,7 @@ struct Strings {
         static let searchNoData = "search_no_data".localized
         static let locationNoData = "location_no_data".localized
         static let getDirection = "get_direction".localized
+        static let nearbyAttractions = "nearby_attractions".localized
     }
     
     struct ErrorMsg {

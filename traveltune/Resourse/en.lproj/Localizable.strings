@@ -20,6 +20,7 @@
 "search_no_data" = "There's no search result";
 "location_no_data" = "No location information";
 "get_direction" = "Get direction";
+"nearby_attractions" = "Nearby attractions";
 
 // 에러메시지
 "error_network" = "Please check network";

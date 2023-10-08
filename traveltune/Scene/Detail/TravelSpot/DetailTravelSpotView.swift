@@ -83,7 +83,7 @@ final class DetailTravelSpotView: BaseView {
     }
     
     private let mapNodataLabel = UILabel().setup { view in
-        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .light)
         view.textColor = .white
         view.backgroundColor = .backgroundDim
         view.text = Strings.Common.locationNoData
@@ -106,6 +106,12 @@ final class DetailTravelSpotView: BaseView {
         view.configuration = config
     }
     
+    private let neaybyTravelSpot = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .regular)
+        view.textColor = .txtPrimary
+        view.text = Strings.Common.nearbyAttractions
+    }
+    
     @objc func backButtonClicked() {
         detailTravelSpotProtocol?.backButtonClicked()
     }
@@ -113,7 +119,6 @@ final class DetailTravelSpotView: BaseView {
     func fetchData(item: TravelSpotItem) {
         
         customAnnotaionImageUrl = item.imageURL
-        
         titleLabel.text = item.title
         addrLabel.text = item.fullAddr
         categoryLabel.isHidden = item.themeCategory.isEmpty
@@ -194,6 +199,7 @@ final class DetailTravelSpotView: BaseView {
 
         containerView.addSubview(mapView)
         containerView.addSubview(mapNodataLabel)
+        containerView.addSubview(neaybyTravelSpot)
     }
     
     override func configureLayout() {
@@ -269,6 +275,11 @@ final class DetailTravelSpotView: BaseView {
         
         mapNodataLabel.snp.makeConstraints { make in
             make.edges.equalTo(mapView)
+        }
+        
+        neaybyTravelSpot.snp.makeConstraints { make in
+            make.top.equalTo(mapView.snp.bottom).offset(20)
+            make.leading.equalTo(labelStackView)
         }
     }
 
