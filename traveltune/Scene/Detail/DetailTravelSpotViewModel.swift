@@ -11,5 +11,4 @@ final class DetailTravelSpotViewModel: BaseViewModel {
     
     var detailTravelSpot: Observable<TravelSpotItem?> = Observable(nil)
     
-    
 }

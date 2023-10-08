@@ -9,6 +9,7 @@
 // 공통
 "common_play" = "play";
 "common_ok" = "OK";
+"common_cancel" = "cancel";
 "select_play_story" = "Select Story";
 "error_first_story" = "This is the first story";
 "error_last_story" = "This is the last story";

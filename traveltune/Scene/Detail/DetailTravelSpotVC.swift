@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailTravelSpotViewModel> {
     
@@ -28,7 +29,39 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
         mainView.mapView.delegate = self
         mainView.detailTravelSpotProtocol = self
     }
-        
+    
+    private func showAlertModal(
+        type: [SchemeType],
+        no: String? = Strings.Common.cancel,
+        lat: Double,
+        lng: Double,
+        arrivalPoint: String,
+        handler: ((UIAlertAction) -> Void)? = nil
+    ) {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        type.forEach { type in
+            let action = UIAlertAction(title: type.title, style: .default) { _ in
+                switch type {
+                case .kakao:
+                    URLSchemeManager.shared.showURLScemeMap(type: .kakao(lat: lat, lng: lng))
+                case .naver:
+                    URLSchemeManager.shared.showURLScemeMap(type: .naver(lat: lat, lng: lng, dname: arrivalPoint))
+                case .tmap:
+                    URLSchemeManager.shared.showURLScemeMap(type: .naver(lat: lat, lng: lng, dname: arrivalPoint))
+                case .apple:
+                    URLSchemeManager.shared.convertCoordnatesToAddress(lat: lat, lng: lng) { address in
+                        print(address)
+                        let endPoint = address.isEmpty ? arrivalPoint : address
+                        URLSchemeManager.shared.showURLScemeMap(type: .apple(arrivalPoint: endPoint))
+                    }
+                }
+            }
+            alert.addAction(action)
+        }
+        let noAction = UIAlertAction(title: no, style: .cancel)
+        alert.addAction(noAction)
+        present(alert, animated: true)
+    }
 }
 
 extension DetailTravelSpotVC: DetailTravelSpotProtocol {
@@ -41,7 +74,7 @@ extension DetailTravelSpotVC: DetailTravelSpotProtocol {
 extension DetailTravelSpotVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard !(annotation is MKUserLocation) else { return nil }
+        //        guard !(annotation is MKUserLocation) else { return nil }
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         if annotationView == nil {
@@ -73,8 +106,7 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //        print(mapView.annotations.first?.title)
-        print(view.annotation?.title, "clicked")
+//        print(view.annotation?.title, "clicked")
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
@@ -84,6 +116,18 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("123232")
+        if let viewModel, let data = viewModel.detailTravelSpot.value {
+            let lat = Double(data.mapY)
+            let lng = Double(data.mapX)
+            if let lat, let lng {
+                showAlertModal(
+                    type: SchemeType.allCases,
+                    lat: lat,
+                    lng: lng,
+                    arrivalPoint: data.title
+                )
+            }
+        }
+        
     }
 }

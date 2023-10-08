@@ -72,6 +72,7 @@
 		C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */; };
 		C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */; };
 		C073F6512AD2D5B500EEE107 /* CustomAnnotaionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */; };
+		C073F6542AD3074300EEE107 /* URLSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6532AD3074300EEE107 /* URLSchemeManager.swift */; };
 		C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D8B152AD00D4800267C8B /* Notification+Extension.swift */; };
 		C07D8B182AD0358B00267C8B /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = C07D8B172AD0358B00267C8B /* launch_screen.png */; };
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
@@ -105,7 +106,6 @@
 		C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */; };
 		C0D81A932AC4A5B300CB2EF0 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */; };
 		C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */ = {isa = PBXBuildFile; productRef = C0D81A952AC5437800CB2EF0 /* Hero */; };
-		C0D81A982AC55FE600CB2EF0 /* HeroID.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A972AC55FE600CB2EF0 /* HeroID.swift */; };
 		C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A992AC5609800CB2EF0 /* Constant.swift */; };
 		C0D81AA22AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */; };
 		C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */; };
@@ -205,6 +205,7 @@
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCellView.swift; sourceTree = "<group>"; };
 		C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotaionView.swift; sourceTree = "<group>"; };
+		C073F6532AD3074300EEE107 /* URLSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeManager.swift; sourceTree = "<group>"; };
 		C07D8B152AD00D4800267C8B /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		C07D8B172AD0358B00267C8B /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_screen.png; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
@@ -237,7 +238,6 @@
 		C0D81A8E2AC4966F00CB2EF0 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		C0D81A902AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorDataInfoRequestInterceptor.swift; sourceTree = "<group>"; };
 		C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
-		C0D81A972AC55FE600CB2EF0 /* HeroID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroID.swift; sourceTree = "<group>"; };
 		C0D81A992AC5609800CB2EF0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
 		C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVCProtocol.swift; sourceTree = "<group>"; };
@@ -427,7 +427,6 @@
 			children = (
 				C00C3C822ACC8A3C00B89928 /* RegionType.swift */,
 				C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */,
-				C0D81A972AC55FE600CB2EF0 /* HeroID.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -690,6 +689,7 @@
 				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
 				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
 				C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */,
+				C073F6532AD3074300EEE107 /* URLSchemeManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -933,7 +933,6 @@
 				C03592812ACD79D700AA3D36 /* SearchResultVC.swift in Sources */,
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */,
-				C0D81A982AC55FE600CB2EF0 /* HeroID.swift in Sources */,
 				C02DABE12ACADE4700F3BC42 /* SearchView.swift in Sources */,
 				C02DABDF2ACADE3000F3BC42 /* SearchVC.swift in Sources */,
 				C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */,
@@ -963,6 +962,7 @@
 				C04F9CB02ABEF8950058A8D0 /* RequestTravelSpots.swift in Sources */,
 				C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */,
 				C0D81A7F2AC4143A00CB2EF0 /* LocalTravelSpotRepository.swift in Sources */,
+				C073F6542AD3074300EEE107 /* URLSchemeManager.swift in Sources */,
 				C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */,
 				C09A697D2ACB04CD002FA468 /* SearchTextField.swift in Sources */,
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,

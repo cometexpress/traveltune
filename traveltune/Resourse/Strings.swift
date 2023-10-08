@@ -13,6 +13,7 @@ struct Strings {
         static let logoTitle = "home_nav_title".localized
         static let play = "common_play".localized
         static let ok = "common_ok".localized
+        static let cancel = "common_cancel".localized
         static let selectPlayStory = "select_play_story".localized
         static let errorFirstStory = "error_first_story".localized
         static let errorLastStory = "error_last_story".localized

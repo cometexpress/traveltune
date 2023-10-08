@@ -10,7 +10,7 @@ import AVFoundation
 
 final class AVPlayerManager: NSObject {
     
-    static var shared = AVPlayerManager()
+    static let shared = AVPlayerManager()
     private override init() {}
     
     private var player: AVPlayer? = nil
