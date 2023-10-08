@@ -97,4 +97,11 @@ struct Strings {
         static var gwangju = "gwangju".localized
         static var jeju = "jeju".localized
     }
+    
+    struct SchemeMapType {
+        static var mapKakao = "map_kakao".localized
+        static var mapNaver = "map_naver".localized
+        static var mapTmap = "map_tmap".localized
+        static var mapApple = "map_apple".localized
+    }
 }

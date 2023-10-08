@@ -98,3 +98,9 @@
 // 검색 탭 메뉴 타이틀
 "search_tab_travel_spot" = "Spot";
 "search_tab_story" = "Story";
+
+// 관광지 상세 - 길찾기 지도 종류
+"map_kakao" = "Kakao Map"
+"map_naver" = "Naver Map"
+"map_tmap" = "T Map"
+"map_apple" = "Apple Map"

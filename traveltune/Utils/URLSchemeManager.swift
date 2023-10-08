@@ -24,10 +24,10 @@ enum SchemeType: CaseIterable {
     
     var title: String {
         switch self {
-        case .kakao: "카카오맵"
-        case .naver: "네이버지도"
-        case .tmap: "티맵"
-        case .apple: "애플지도"
+        case .kakao: Strings.SchemeMapType.mapKakao
+        case .naver: Strings.SchemeMapType.mapNaver
+        case .tmap: Strings.SchemeMapType.mapTmap
+        case .apple: Strings.SchemeMapType.mapApple
         }
     }
     
