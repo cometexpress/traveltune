@@ -453,10 +453,7 @@
 		C0607D892AD27AAB002E4CBD /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */,
-				C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */,
-				C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */,
-				C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */,
+				C091AA692AD31AD800A450E7 /* TravelSpot */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -497,6 +494,17 @@
 				C0B6CA152AC99494005A0E2A /* PlayerBottomView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C091AA692AD31AD800A450E7 /* TravelSpot */ = {
+			isa = PBXGroup;
+			children = (
+				C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */,
+				C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */,
+				C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */,
+				C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */,
+			);
+			path = TravelSpot;
 			sourceTree = "<group>";
 		};
 		C0B6CA152AC99494005A0E2A /* PlayerBottomView */ = {

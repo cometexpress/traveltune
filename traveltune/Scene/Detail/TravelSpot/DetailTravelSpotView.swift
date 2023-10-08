@@ -92,6 +92,20 @@ final class DetailTravelSpotView: BaseView {
         view.layer.cornerRadius = 12
     }
     
+    let findDirectionButton = UIButton().setup { view in
+        var attString = AttributedString(Strings.Common.getDirection)
+        attString.font = .systemFont(ofSize: 16, weight: .bold)
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = attString
+        config.contentInsets = .init(top: 0, leading: 0, bottom: 24, trailing: 0)
+        config.image = .locationArrow
+        config.imagePadding = 8
+        config.imagePlacement = .leading
+        config.baseBackgroundColor = .primary
+        config.baseForegroundColor = .white
+        view.configuration = config
+    }
+    
     @objc func backButtonClicked() {
         detailTravelSpotProtocol?.backButtonClicked()
     }
@@ -149,18 +163,6 @@ final class DetailTravelSpotView: BaseView {
         }
     }
     
-    //    private func createAnnotaion(item: TravelSpotItem) {
-    //
-    //        if let x = Double(item.mapX), let y = Double(item.mapY) {
-    //            let annotation = MKPointAnnotation()
-    //            let center = CLLocationCoordinate2D(latitude: y, longitude: x)
-    //            annotation.title = item.title
-    ////            annotation.subtitle = item.fullAddr
-    //            annotation.coordinate = center
-    //            mapView.addAnnotation(annotation)
-    //        }
-    //    }
-    
     private func setRegionAndAnnotation(center: CLLocationCoordinate2D, item: TravelSpotItem) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
         mapView.setRegion(region, animated: false)
@@ -174,6 +176,7 @@ final class DetailTravelSpotView: BaseView {
     
     override func configureHierarchy() {
         addSubview(scrollView)
+        addSubview(findDirectionButton)
         scrollView.addSubview(imageContainerView)
         scrollView.addSubview(backBlurImageView)
         
@@ -196,7 +199,15 @@ final class DetailTravelSpotView: BaseView {
     override func configureLayout() {
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+//            make.edges.equalToSuperview()
+            make.top.horizontalEdges.equalToSuperview()
+            make.bottom.equalTo(findDirectionButton.snp.top)
+        }
+        
+        findDirectionButton.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.height.equalTo(80)
+            make.horizontalEdges.equalToSuperview()
         }
         
         imageContainerView.snp.makeConstraints { make in
@@ -227,7 +238,7 @@ final class DetailTravelSpotView: BaseView {
         }
         
         topView.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.equalTo(70)
             make.horizontalEdges.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide)
         }

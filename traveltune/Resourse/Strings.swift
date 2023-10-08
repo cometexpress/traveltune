@@ -23,7 +23,7 @@ struct Strings {
         static let recentSearchKeyword = "recent_search_keyword".localized
         static let searchNoData = "search_no_data".localized
         static let locationNoData = "location_no_data".localized
-        
+        static let getDirection = "get_direction".localized
     }
     
     struct ErrorMsg {

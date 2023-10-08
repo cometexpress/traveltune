@@ -28,6 +28,27 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
     func configureVC() {
         mainView.mapView.delegate = self
         mainView.detailTravelSpotProtocol = self
+        mainView.findDirectionButton.addTarget(self, action: #selector(findDerectionButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc private func findDerectionButtonClicked() {
+        
+        if let viewModel, let data = viewModel.detailTravelSpot.value {
+            let lat = Double(data.mapY)
+            let lng = Double(data.mapX)
+            
+            guard let lat, let lng else {
+                showAlert(title: "", msg: Strings.Common.locationNoData, ok: Strings.Common.ok)
+                return
+            }
+
+            showAlertModal(
+                type: SchemeType.allCases,
+                lat: lat,
+                lng: lng,
+                arrivalPoint: data.title
+            )
+        }
     }
     
     private func showAlertModal(
@@ -106,7 +127,7 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-//        print(view.annotation?.title, "clicked")
+        //        print(view.annotation?.title, "clicked")
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
@@ -116,18 +137,6 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if let viewModel, let data = viewModel.detailTravelSpot.value {
-            let lat = Double(data.mapY)
-            let lng = Double(data.mapX)
-            if let lat, let lng {
-                showAlertModal(
-                    type: SchemeType.allCases,
-                    lat: lat,
-                    lng: lng,
-                    arrivalPoint: data.title
-                )
-            }
-        }
-        
+        findDerectionButtonClicked()
     }
 }

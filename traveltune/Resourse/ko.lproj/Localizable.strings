@@ -19,6 +19,7 @@
 "recent_search_keyword" = "최근 검색어";
 "search_no_data" = "검색 결과가 없어요";
 "location_no_data" = "위치 정보가 없어요";
+"get_direction" = "길찾기";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";
@@ -100,7 +101,7 @@
 "search_tab_story" = "이야기";
 
 // 관광지 상세 - 길찾기 지도 종류
-"map_kakao" = "카카오맵"
-"map_naver" = "네이버지도"
-"map_tmap" = "티맵"
-"map_apple" = "애플지도"
+"map_kakao" = "카카오맵";
+"map_naver" = "네이버지도";
+"map_tmap" = "티맵";
+"map_apple" = "애플지도";
