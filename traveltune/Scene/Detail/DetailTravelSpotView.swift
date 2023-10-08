@@ -8,8 +8,11 @@
 import UIKit
 import SnapKit
 import Kingfisher
+import MapKit
 
 final class DetailTravelSpotView: BaseView {
+    
+    weak var detailTravelSpotProtocol: DetailTravelSpotProtocol?
     
     private lazy var scrollView = UIScrollView().setup { view in
         view.showsVerticalScrollIndicator = false
@@ -57,15 +60,59 @@ final class DetailTravelSpotView: BaseView {
         view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
     }
     
+    private var customAnnotaionImageUrl = ""
+    
+    let mapView = MKMapView().setup { view in
+        view.preferredConfiguration = MKStandardMapConfiguration()
+        view.isZoomEnabled = false           // 줌
+        view.isScrollEnabled = false         // 이동
+        view.isPitchEnabled = false         // 각도 조절
+        view.isRotateEnabled = false        // 회전
+        view.showsCompass = false           // 나침반
+        view.showsScale = false             // 축척
+        view.showsUserLocation = false       // 유저 위치
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+    }
+    
+    private let mapNodataLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
+        view.textColor = .white
+        view.backgroundColor = .backgroundDim
+        view.text = Strings.Common.locationNoData
+        view.textAlignment = .center
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+    }
+    
     @objc func backButtonClicked() {
-        print(#function)
+        detailTravelSpotProtocol?.backButtonClicked()
     }
     
     func fetchData(item: TravelSpotItem) {
+        
+        customAnnotaionImageUrl = item.imageURL
+        
         titleLabel.text = item.title
         addrLabel.text = item.fullAddr
         categoryLabel.isHidden = item.themeCategory.isEmpty
         categoryLabel.text = "#\(item.themeCategory)"
+        
+        let defulatCenter = CLLocationCoordinate2D(latitude: RegionType.seoul.latitude, longitude: RegionType.seoul.longitude)
+        let region = MKCoordinateRegion(
+            center: defulatCenter,
+            latitudinalMeters: 5000,
+            longitudinalMeters: 5000
+        )
+        mapView.setRegion(region, animated: true)
+        
+        if let x = Double(item.mapX), let y = Double(item.mapY) {
+            mapNodataLabel.isHidden = true
+            let center = CLLocationCoordinate2D(latitude: y, longitude: x)
+            setRegionAndAnnotation(center: center, item: item)
+            mapView.isZoomEnabled = true           // 줌
+            mapView.isScrollEnabled = true         // 이동
+        }
         
         if item.imageURL.isEmpty {
             circleImageView.image = .defaultImg
@@ -95,22 +142,46 @@ final class DetailTravelSpotView: BaseView {
         }
     }
     
+    //    private func createAnnotaion(item: TravelSpotItem) {
+    //
+    //        if let x = Double(item.mapX), let y = Double(item.mapY) {
+    //            let annotation = MKPointAnnotation()
+    //            let center = CLLocationCoordinate2D(latitude: y, longitude: x)
+    //            annotation.title = item.title
+    ////            annotation.subtitle = item.fullAddr
+    //            annotation.coordinate = center
+    //            mapView.addAnnotation(annotation)
+    //        }
+    //    }
+    
+    private func setRegionAndAnnotation(center: CLLocationCoordinate2D, item: TravelSpotItem) {
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapView.setRegion(region, animated: false)
+        
+        // 지도에 어노테이션 추가
+        let annotation = MKPointAnnotation()
+        annotation.title = item.title
+        annotation.coordinate = center
+        mapView.addAnnotation(annotation)
+    }
+    
     override func configureHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(imageContainerView)
         scrollView.addSubview(backBlurImageView)
-
+        
         backBlurImageView.addSubview(blurredEffectView)
         addSubview(vibrancyEffectView)
         vibrancyEffectView.contentView.addSubview(topView)
         topView.addSubview(backButton)
+        scrollView.addSubview(circleImageView)
         
         scrollView.addSubview(containerView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(addrLabel)
         containerView.addSubview(categoryLabel)
-        
-        scrollView.addSubview(circleImageView)
+        containerView.addSubview(mapView)
+        containerView.addSubview(mapNodataLabel)
     }
     
     override func configureLayout() {
@@ -122,7 +193,7 @@ final class DetailTravelSpotView: BaseView {
         imageContainerView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self) // superview로 할 경우 horizontal scroll 영역 존재
             make.top.equalToSuperview()
-//            make.height.equalTo(imageContainerView.snp.width).multipliedBy(0.7)
+            //            make.height.equalTo(imageContainerView.snp.width).multipliedBy(0.7)
             make.height.equalTo(300)
         }
         
@@ -171,13 +242,25 @@ final class DetailTravelSpotView: BaseView {
         }
         
         addrLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(12)
-            make.horizontalEdges.equalTo(titleLabel).offset(4)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(titleLabel)
         }
         
         categoryLabel.snp.makeConstraints { make in
             make.top.equalTo(addrLabel.snp.bottom).offset(12)
             make.horizontalEdges.equalTo(addrLabel)
         }
+        
+        mapView.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(self).inset(20)
+            make.top.equalTo(categoryLabel.snp.bottom).offset(16)
+            make.height.equalTo(self.snp.width).multipliedBy(0.5)
+        }
+        
+        mapNodataLabel.snp.makeConstraints { make in
+            make.edges.equalTo(mapView)
+        }
     }
+
 }
+

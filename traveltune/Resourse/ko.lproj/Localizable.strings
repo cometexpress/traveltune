@@ -17,6 +17,7 @@
 "recommend_keyword" = "추천 검색어";
 "recent_search_keyword" = "최근 검색어";
 "search_no_data" = "검색 결과가 없어요";
+"location_no_data" = "위치 정보가 없어요";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";

@@ -18,6 +18,7 @@
 		C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */; };
 		C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */; };
 		C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */; };
+		C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
@@ -70,6 +71,7 @@
 		C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */; };
 		C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */; };
 		C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */; };
+		C073F6512AD2D5B500EEE107 /* CustomAnnotaionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */; };
 		C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D8B152AD00D4800267C8B /* Notification+Extension.swift */; };
 		C07D8B182AD0358B00267C8B /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = C07D8B172AD0358B00267C8B /* launch_screen.png */; };
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
@@ -150,6 +152,7 @@
 		C00C3CB02ACD28DC00B89928 /* LocalSearchKeywordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalSearchKeywordRepository.swift; sourceTree = "<group>"; };
 		C00C3CB32ACD2D2D00B89928 /* Results+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Results+Extension.swift"; sourceTree = "<group>"; };
 		C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeyword.swift; sourceTree = "<group>"; };
+		C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotProtocol.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
@@ -201,6 +204,7 @@
 		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCellView.swift; sourceTree = "<group>"; };
+		C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotaionView.swift; sourceTree = "<group>"; };
 		C07D8B152AD00D4800267C8B /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		C07D8B172AD0358B00267C8B /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_screen.png; sourceTree = "<group>"; };
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
@@ -453,6 +457,7 @@
 				C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */,
 				C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */,
 				C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */,
+				C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -484,6 +489,7 @@
 				C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */,
 				C00839F02AC5E6DE00C17BD6 /* CircleView.swift */,
 				C03592822ACD987A00AA3D36 /* CommonTabPagingVC.swift */,
+				C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */,
 				C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */,
 				C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */,
 				C09A697C2ACB04CD002FA468 /* SearchTextField.swift */,
@@ -888,6 +894,7 @@
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
 				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
 				C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */,
+				C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */,
@@ -938,6 +945,7 @@
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
+				C073F6512AD2D5B500EEE107 /* CustomAnnotaionView.swift in Sources */,
 				C03FE03D2ACFEB0400D02385 /* SearchResultStoryCell.swift in Sources */,
 				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C03FE0392ACFDB6600D02385 /* SettingViewModel.swift in Sources */,

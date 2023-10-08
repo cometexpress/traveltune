@@ -21,6 +21,7 @@ struct Strings {
         static let recommendKeyword = "recommend_keyword".localized
         static let recentSearchKeyword = "recent_search_keyword".localized
         static let searchNoData = "search_no_data".localized
+        static let locationNoData = "location_no_data".localized
         
     }
     
