@@ -44,6 +44,13 @@ final class DetailTravelSpotView: BaseView {
         view.contentMode = .scaleAspectFill
     }
     
+    private let labelStackView = UIStackView().setup { view in
+        view.alignment = .leading
+        view.distribution = .equalSpacing
+        view.axis = .vertical
+        view.spacing = 4
+    }
+    
     private let titleLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
         view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
@@ -177,9 +184,11 @@ final class DetailTravelSpotView: BaseView {
         scrollView.addSubview(circleImageView)
         
         scrollView.addSubview(containerView)
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(addrLabel)
-        containerView.addSubview(categoryLabel)
+        labelStackView.addArrangedSubview(titleLabel)
+        labelStackView.addArrangedSubview(addrLabel)
+        labelStackView.addArrangedSubview(categoryLabel)
+        containerView.addSubview(labelStackView)
+
         containerView.addSubview(mapView)
         containerView.addSubview(mapNodataLabel)
     }
@@ -235,25 +244,15 @@ final class DetailTravelSpotView: BaseView {
             make.bottom.equalToSuperview()
             make.height.equalTo(600)
         }
-        
-        titleLabel.snp.makeConstraints { make in
+       
+        labelStackView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
             make.horizontalEdges.equalToSuperview().inset(20)
         }
         
-        addrLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.horizontalEdges.equalTo(titleLabel)
-        }
-        
-        categoryLabel.snp.makeConstraints { make in
-            make.top.equalTo(addrLabel.snp.bottom).offset(12)
-            make.horizontalEdges.equalTo(addrLabel)
-        }
-        
         mapView.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(self).inset(20)
-            make.top.equalTo(categoryLabel.snp.bottom).offset(16)
+            make.top.equalTo(labelStackView.snp.bottom).offset(8)
             make.height.equalTo(self.snp.width).multipliedBy(0.5)
         }
         
