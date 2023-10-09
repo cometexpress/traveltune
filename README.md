@@ -45,8 +45,8 @@
 |  검색 메인 기능  |  3  | 10 |  6  | <ul><li>[x] </li></ul> | 없음 |
 |  검색 결과 UI  |  3  | 6 |  12  | <ul><li>[x] </li></ul> | tabMan -> parchment 라이브러리 변경 |
 |  검색 결과 기능  |  3  | 8 |  12 | <ul><li>[x] </li></ul> | 부모ViewController 와 자식ViewController 간의 데이터 전달 지연 |
-|  관광지 상세 UI  |  3  |  4  |  - h  | <ul><li>[ ] </li></ul> | - |
-|  관광지 상세 기능 UI  |  3  | 6 |  - h | <ul><li>[ ] </li></ul> | - |
+|  관광지 상세 UI  |  3  |  4  |  20  | <ul><li>[x] </li></ul> | 개인 일정으로 개발 진행 못함 |
+|  관광지 상세 기능 UI  |  3  | 6 |  6 | <ul><li>[x] </li></ul> | 없음 |
 |  이야기 상세 UI  |  4  |  4  |  - h | <ul><li>[ ] </li></ul> | - |
 |  이야기 상세 기능 UI  |  4  |  6  |  - h | <ul><li>[ ] </li></ul> | - |
 |  설정 메인 UI  |  4  |  8  | - h | <ul><li>[ ] </li></ul> | - |
