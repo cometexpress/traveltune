@@ -32,6 +32,8 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
                 LoadingIndicator.show()
             case .success(let data):
                 print(data)
+//                self.mainView.spotItems.append(contentsOf: data)
+                self.mainView.applySnapShot(items: data)
                 LoadingIndicator.hide()
             case .error(let msg):
                 print(msg)

@@ -101,16 +101,26 @@ final class DetailTravelSpotView: BaseView {
         config.image = .locationArrow
         config.imagePadding = 8
         config.imagePlacement = .leading
-        config.baseBackgroundColor = .primary
+        config.baseBackgroundColor = .backgroundButton
         config.baseForegroundColor = .white
         view.configuration = config
     }
     
-    private let neaybyTravelSpot = UILabel().setup { view in
+    private let nearbyTravelSpotLabel = UILabel().setup { view in
         view.font = .monospacedSystemFont(ofSize: 16, weight: .regular)
         view.textColor = .txtPrimary
         view.text = Strings.Common.nearbyAttractions
     }
+    
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
+        view.delegate = self
+    }
+    
+    enum Section {
+        case main
+    }
+    
+    var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
     
     @objc func backButtonClicked() {
         detailTravelSpotProtocol?.backButtonClicked()
@@ -199,7 +209,10 @@ final class DetailTravelSpotView: BaseView {
 
         containerView.addSubview(mapView)
         containerView.addSubview(mapNodataLabel)
-        containerView.addSubview(neaybyTravelSpot)
+        containerView.addSubview(nearbyTravelSpotLabel)
+        containerView.addSubview(collectionView)
+        
+        configureDataSource()
     }
     
     override func configureLayout() {
@@ -277,11 +290,71 @@ final class DetailTravelSpotView: BaseView {
             make.edges.equalTo(mapView)
         }
         
-        neaybyTravelSpot.snp.makeConstraints { make in
+        nearbyTravelSpotLabel.snp.makeConstraints { make in
             make.top.equalTo(mapView.snp.bottom).offset(20)
             make.leading.equalTo(labelStackView)
         }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(nearbyTravelSpotLabel.snp.bottom)
+            make.horizontalEdges.equalTo(self)
+            make.height.equalTo(240)
+        }
     }
 
+}
+
+extension DetailTravelSpotView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//        searchResultTabTravelSpotVCProtocol?.didSelectItemAt(item: item)
+    }
+}
+
+extension DetailTravelSpotView {
+    
+    func applySnapShot(items: [TravelSpotItem]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, TravelSpotItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems(items)
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func createCellRegistration() -> UICollectionView.CellRegistration<SearchResultSpotCell, TravelSpotItem> {
+        return UICollectionView.CellRegistration<SearchResultSpotCell, TravelSpotItem> { (cell, indexPath, identifier) in
+            cell.configCell(row: identifier)
+        }
+    }
+    
+    private func configureDataSource() {
+        let spotRegistration = createCellRegistration()
+        
+        dataSource = UICollectionViewDiffableDataSource<Section, TravelSpotItem>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: TravelSpotItem) -> UICollectionViewCell? in
+            return collectionView.dequeueConfiguredReusableCell(using: spotRegistration, for: indexPath, item: identifier)
+        }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<Section, TravelSpotItem>()
+        snapshot.appendSections([.main])
+        snapshot.appendItems([])
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.3))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)
+        
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
+    }
 }
 
