@@ -55,6 +55,7 @@
 		C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */; };
 		C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */; };
 		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
+		C05824A82AD3F17200E34DF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C05824AA2AD3F17200E34DF0 /* InfoPlist.strings */; };
 		C05BB6B02AC31770007CC4A5 /* ThemeStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */; };
 		C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */; };
 		C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */; };
@@ -194,6 +195,8 @@
 		C04F9CF52AC0919B0058A8D0 /* BaseRequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestInterceptor.swift; sourceTree = "<group>"; };
 		C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
 		C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
+		C05824A92AD3F17200E34DF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C05824AB2AD3F17300E34DF0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStory.swift; sourceTree = "<group>"; };
 		C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
 		C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pavelt 400.otf"; sourceTree = "<group>"; };
@@ -603,15 +606,16 @@
 				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
 				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
 				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
+				C05824AA2AD3F17200E34DF0 /* InfoPlist.strings */,
 				C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */,
 				C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */,
 				C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */,
-				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
 				C0E8BA912ABDCCB100B1CCA6 /* Base */,
 				C0EF78822AC5D6190098D091 /* Cell */,
 				C0EF787F2AC5D54A0098D091 /* CellHeaderView */,
 				C05BB6AE2AC31748007CC4A5 /* Enum */,
 				C0E8BA6E2ABC939E00B1CCA6 /* Extension */,
+				C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */,
 				C04F9CAA2ABEF7970058A8D0 /* Model */,
 				C04F9C9C2ABEEDDD0058A8D0 /* Network */,
 				C0E8BAA82ABDDC3500B1CCA6 /* Protocol */,
@@ -839,6 +843,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E8BA852ABC98F800B1CCA6 /* Localizable.strings in Resources */,
+				C05824A82AD3F17200E34DF0 /* InfoPlist.strings in Resources */,
 				C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */,
 				C0E8BA572ABC8B7700B1CCA6 /* LaunchScreen.storyboard in Resources */,
 				C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */,
@@ -1042,6 +1047,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		C05824AA2AD3F17200E34DF0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C05824A92AD3F17200E34DF0 /* en */,
+				C05824AB2AD3F17300E34DF0 /* ko */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		C0E8BA552ABC8B7700B1CCA6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
