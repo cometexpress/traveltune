@@ -56,6 +56,7 @@
 		C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CF92AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift */; };
 		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
 		C05824A82AD3F17200E34DF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C05824AA2AD3F17200E34DF0 /* InfoPlist.strings */; };
+		C05824AD2AD419C700E34DF0 /* CircleImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */; };
 		C05BB6B02AC31770007CC4A5 /* ThemeStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */; };
 		C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */; };
 		C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */; };
@@ -197,6 +198,7 @@
 		C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCheckVisitorsInMetro.swift; sourceTree = "<group>"; };
 		C05824A92AD3F17200E34DF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C05824AB2AD3F17300E34DF0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButtonView.swift; sourceTree = "<group>"; };
 		C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStory.swift; sourceTree = "<group>"; };
 		C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
 		C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pavelt 400.otf"; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */,
 				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
 				C0B6CA152AC99494005A0E2A /* PlayerBottomView */,
+				C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				C00839F12AC5E6DE00C17BD6 /* CircleView.swift in Sources */,
 				C0E8BAAC2ABDDCC800B1CCA6 /* ThemeView.swift in Sources */,
 				C03019402ACC6BFF00926451 /* SearchRecommendWord.swift in Sources */,
+				C05824AD2AD419C700E34DF0 /* CircleImageButtonView.swift in Sources */,
 				C091AA722AD3DC4300A450E7 /* DetailStoryViewModel.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,

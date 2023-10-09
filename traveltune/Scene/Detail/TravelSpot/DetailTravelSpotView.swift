@@ -44,6 +44,13 @@ final class DetailTravelSpotView: BaseView {
         view.contentMode = .scaleAspectFill
     }
     
+    private let topRoundView = UIView().setup { view in
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 12
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        view.backgroundColor = .background
+    }
+    
     private let labelStackView = UIStackView().setup { view in
         view.alignment = .leading
         view.distribution = .equalSpacing
@@ -201,6 +208,7 @@ final class DetailTravelSpotView: BaseView {
         addSubview(findDirectionButton)
         scrollView.addSubview(imageContainerView)
         scrollView.addSubview(backBlurImageView)
+        scrollView.addSubview(topRoundView)
         
         backBlurImageView.addSubview(blurredEffectView)
         addSubview(vibrancyEffectView)
@@ -249,6 +257,12 @@ final class DetailTravelSpotView: BaseView {
             make.height.greaterThanOrEqualTo(imageContainerView.snp.height)
         }
         
+        topRoundView.snp.makeConstraints { make in
+            make.bottom.equalTo(backBlurImageView.snp.bottom)
+            make.horizontalEdges.equalTo(self)
+            make.height.equalTo(20)
+        }
+        
         circleImageView.snp.makeConstraints { make in
             make.size.equalTo(160)
             make.bottom.equalTo(blurredEffectView).inset(54)
@@ -283,7 +297,7 @@ final class DetailTravelSpotView: BaseView {
         }
        
         labelStackView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
+            make.top.equalToSuperview()
             make.horizontalEdges.equalToSuperview().inset(20)
         }
         

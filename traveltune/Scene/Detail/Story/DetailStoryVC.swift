@@ -35,4 +35,15 @@ extension DetailStoryVC: DetailStoryProtocol {
         dismiss(animated: true)
     }
     
+    func playViewClicked() {
+        print("재생 클릭")
+    }
+    
+    func likeViewClicked() {
+        print("좋아요 클릭")
+    }
+    
+    func shareViewClicked() {
+        print("공유 클릭")
+    }
 }

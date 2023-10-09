@@ -43,16 +43,75 @@ final class DetailStoryView: BaseView {
         view.contentMode = .scaleAspectFill
     }
     
+    private let buttonStackView = UIStackView().setup { view in
+        view.alignment = .center
+        view.axis = .horizontal
+        view.distribution = .equalSpacing
+        view.spacing = 16
+    }
+    
+    private lazy var playView = CircleImageButtonView().setup { view in
+        view.setView(backgroundColor: .backgroundButton, image: .playFill)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playViewClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private lazy var likeView = CircleImageButtonView().setup { view in
+        view.setView(backgroundColor: .backgroundButton, image: .heart)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(likeViewClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private lazy var shareView = CircleImageButtonView().setup { view in
+        view.setView(backgroundColor: .backgroundButton, image: .share)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(shareViewClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    private let titleLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.textAlignment = .center
+    }
+    
+    private let audioTitleLabel = UILabel().setup { view in
+        view.textColor = .txtPrimary
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.numberOfLines = 0
+    }
+    
+    private let playTimeLabel = UILabel().setup { view in
+        view.textColor = .txtSecondary
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
+    }
+    
+    private let scriptLabel = UILabel().setup { view in
+        view.textColor = .txtSecondary
+        view.font = .monospacedSystemFont(ofSize: 13, weight: .regular)
+        view.numberOfLines = 0
+    }
+    
+    @objc private func playViewClicked() {
+        detailStoryProtocol?.playViewClicked()
+    }
+    
+    @objc private func likeViewClicked() {
+        detailStoryProtocol?.likeViewClicked()
+    }
+    
+    @objc private func shareViewClicked() {
+        detailStoryProtocol?.shareViewClicked()
+    }
+    
     @objc private func backDetailStoryButtonClicked() {
         detailStoryProtocol?.backButtonClicked()
     }
     
     func fetchData(item: StoryItem) {
-        
-//        titleLabel.text = item.title
-//        addrLabel.text = item.fullAddr
-//        categoryLabel.isHidden = item.themeCategory.isEmpty
-//        categoryLabel.text = "#\(item.themeCategory)"
+        titleLabel.text = item.title
+        audioTitleLabel.text = item.audioTitle
+        playTimeLabel.text = item.convertTime
+        scriptLabel.text = item.script.replacingOccurrences(of: "  ", with: "\n\n")
+        scriptLabel.setLineSpacing(spacing: 6)
 
         if item.imageURL.isEmpty {
             circleImageView.image = .defaultImg
@@ -90,10 +149,20 @@ final class DetailStoryView: BaseView {
         backBlurImageView.addSubview(blurredEffectView)
         addSubview(vibrancyEffectView)
         vibrancyEffectView.contentView.addSubview(topView)
+        vibrancyEffectView.contentView.addSubview(titleLabel)
         topView.addSubview(backButton)
         scrollView.addSubview(circleImageView)
         
         scrollView.addSubview(containerView)
+        
+        containerView.addSubview(buttonStackView)
+        buttonStackView.addArrangedSubview(playView)
+        buttonStackView.addArrangedSubview(likeView)
+        buttonStackView.addArrangedSubview(shareView)
+        
+        containerView.addSubview(audioTitleLabel)
+        containerView.addSubview(playTimeLabel)
+        containerView.addSubview(scriptLabel)
     }
     
     override func configureLayout() {
@@ -120,6 +189,11 @@ final class DetailStoryView: BaseView {
             make.centerX.equalToSuperview()
         }
         
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(circleImageView.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(self).inset(30)
+        }
+        
         blurredEffectView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -144,7 +218,41 @@ final class DetailStoryView: BaseView {
             make.top.equalTo(imageContainerView.snp.bottom)
             make.horizontalEdges.equalTo(self)
             make.bottom.equalToSuperview()
-            make.height.equalTo(600)
+//            make.height.equalTo(800)
+        }
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(20)
+            make.centerX.equalTo(self)
+            make.height.equalTo(50)
+        }
+        
+        playView.snp.makeConstraints { make in
+            make.size.equalTo(50)
+        }
+        
+        likeView.snp.makeConstraints { make in
+            make.size.equalTo(50)
+        }
+        
+        shareView.snp.makeConstraints { make in
+            make.size.equalTo(50)
+        }
+        
+        audioTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(buttonStackView.snp.bottom).offset(20)
+            make.horizontalEdges.equalTo(self).inset(20)
+        }
+        
+        playTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(audioTitleLabel.snp.bottom).offset(8)
+            make.leading.equalTo(audioTitleLabel)
+        }
+        
+        scriptLabel.snp.makeConstraints { make in
+            make.top.equalTo(playTimeLabel.snp.bottom).offset(8)
+            make.horizontalEdges.equalTo(audioTitleLabel)
+            make.bottom.equalToSuperview().inset(40)
         }
     }
 }
