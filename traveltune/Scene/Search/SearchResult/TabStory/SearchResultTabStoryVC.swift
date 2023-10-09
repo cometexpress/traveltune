@@ -63,7 +63,11 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
 extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
     
     func didSelectItemAt(item: StoryItem) {
-        print(item.title)
+        // 상세로 이동시키기
+        let vc = DetailStoryVC(viewModel: DetailStoryViewModel(storyRepository: StoryRepository()))
+        vc.viewModel?.detailStory.value = item
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     func willDisplay(page: Int) {

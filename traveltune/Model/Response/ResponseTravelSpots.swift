@@ -59,4 +59,14 @@ final class TravelSpotItem: Object, Decodable {
         case imageURL = "imageUrl"
         case createdtime, modifiedtime
     }
+    
+//    static func == (lhs: TravelSpotItem, rhs: TravelSpotItem) -> Bool {
+//        return lhs._id == rhs._id && lhs.tid == rhs.tid
+//    }
+    
+//    func hash(into hasher: inout TravelSpotItem) {
+//        hasher.combine(_id)
+//        hasher.combine(tid)
+//    }
 }
+
