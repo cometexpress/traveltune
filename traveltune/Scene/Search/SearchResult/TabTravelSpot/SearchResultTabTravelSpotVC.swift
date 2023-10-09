@@ -64,7 +64,7 @@ extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
     
     func didSelectItemAt(item: TravelSpotItem) {
         // 상세로 이동시키기
-        let vc = DetailTravelSpotVC(viewModel: DetailTravelSpotViewModel())
+        let vc = DetailTravelSpotVC(viewModel: DetailTravelSpotViewModel(travelSportRepository: TravelSpotRepository()))
         vc.viewModel?.detailTravelSpot.value = item
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)

@@ -15,6 +15,7 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
         super.viewDidLoad()
         bindViewModel()
         configureVC()
+        viewModel?.searchNearbySpots()
     }
     
     func bindViewModel() {
@@ -22,6 +23,20 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
             guard let item else { return }
             self?.mainView.fetchData(item: item)
             print(item)
+        }
+        
+        viewModel?.state.bind { state in
+            switch state {
+            case .initValue: Void()
+            case .loading: 
+                LoadingIndicator.show()
+            case .success(let data):
+                print(data)
+                LoadingIndicator.hide()
+            case .error(let msg):
+                print(msg)
+                LoadingIndicator.hide()
+            }
         }
     }
     

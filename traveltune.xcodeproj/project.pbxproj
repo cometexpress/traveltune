@@ -78,6 +78,7 @@
 		C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */; };
 		C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */; };
 		C08B37AC2AC2AAAB007FF39F /* BaseCellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */; };
+		C091AA6B2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C091AA6A2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift */; };
 		C09A697D2ACB04CD002FA468 /* SearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A697C2ACB04CD002FA468 /* SearchTextField.swift */; };
 		C09A697F2ACB34F1002FA468 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A697E2ACB34F1002FA468 /* SearchController.swift */; };
 		C09A69832ACB3A6D002FA468 /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */; };
@@ -211,6 +212,7 @@
 		C08B37A22AC2A627007FF39F /* ThemePagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCell.swift; sourceTree = "<group>"; };
 		C08B37A72AC2A761007FF39F /* ReusableViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableViewProtocol.swift; sourceTree = "<group>"; };
 		C08B37AB2AC2AAAB007FF39F /* BaseCellProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCellProtocol.swift; sourceTree = "<group>"; };
+		C091AA6A2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTravelSpotsByLocation.swift; sourceTree = "<group>"; };
 		C09A697C2ACB04CD002FA468 /* SearchTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextField.swift; sourceTree = "<group>"; };
 		C09A697E2ACB34F1002FA468 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 				C05F921B2AC3F33000427F6D /* RequestSearchTravelSpots.swift */,
 				C0453D182AC6A3DB00C220A6 /* RequestStory.swift */,
 				C03592902ACDCD1200AA3D36 /* RequestSearchStory.swift */,
+				C091AA6A2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
 				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
 				C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */,
+				C091AA6B2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift in Sources */,
 				C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */,
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,

@@ -212,7 +212,7 @@ final class DetailTravelSpotView: BaseView {
         
         findDirectionButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
-            make.height.equalTo(80)
+            make.height.equalTo(90)
             make.horizontalEdges.equalToSuperview()
         }
         

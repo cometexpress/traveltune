@@ -46,4 +46,26 @@ final class TravelSpotRepository {
                 completion(response)
             }
     }
+    
+    func requestTravelSpotsByLocation(
+        page: Int,
+        mapX: String,
+        mapY: String,
+        radius: String,
+        completion: @escaping (Result<ResponseTravelSpots, Error>) -> Void
+    ) {
+        network.request(
+            api: .locationSpots(
+                request: RequestTravelSpotsByLocation(
+                    pageNo: String(page),
+                    numOfRows: String(Network.numOfRows),
+                    mapX: mapX,
+                    mapY: mapY,
+                    radius: radius)
+            ),
+            type: ResponseTravelSpots.self) { response in
+                completion(response)
+            }
+    }
+
 }

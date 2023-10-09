@@ -10,12 +10,12 @@ import Alamofire
 
 enum Router: URLRequestConvertible {
     
-    case baseSpots(request: RequestTravelSpots)          // 관광지 기본 정보 목록 조회
-    case locationSpots      // 관광지 위치 기반 목록 조회 - WGS84 좌표
-    case searchSpots(request: RequestSearchTravelSpots)        // 관광지 키워드 검색 조회
-    case baseStories(request: RequestStory)                 // 이야기 기본 정보 목록 조회
+    case baseSpots(request: RequestTravelSpots)                  // 관광지 기본 정보 목록 조회
+    case locationSpots(request: RequestTravelSpotsByLocation)      // 관광지 위치 기반 목록 조회 - WGS84 좌표
+    case searchSpots(request: RequestSearchTravelSpots)           // 관광지 키워드 검색 조회
+    case baseStories(request: RequestStory)                     // 이야기 기본 정보 목록 조회
     case locationStories     // 이야기 위치 기반 목록 조회 - WGS84 좌표
-    case searchStories(request: RequestSearchStory)          // 이야기 키워드 검색 조회
+    case searchStories(request: RequestSearchStory)              // 이야기 키워드 검색 조회
     
     case checkVisitorsInMetro(request: RequestCheckVisitorsInMetro)       // 광역 지차체 방문자 수 조회
     
@@ -60,8 +60,8 @@ enum Router: URLRequestConvertible {
         switch self {
         case .baseSpots(let request):
             return request.toEncodable
-        case .locationSpots:
-            return ["": ""]
+        case .locationSpots(let request):
+            return request.toEncodable
         case .searchSpots(let request):
             return request.toEncodable
         case .baseStories(let request):
