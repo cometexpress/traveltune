@@ -52,7 +52,7 @@ final class DetailStoryView: BaseView {
     
     private lazy var playView = CircleImageButtonView().setup { view in
         view.setView(backgroundColor: .backgroundButton, image: .playFill)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(playViewClicked))
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseClicked))
         view.addGestureRecognizer(tap)
     }
     
@@ -79,9 +79,17 @@ final class DetailStoryView: BaseView {
         view.numberOfLines = 0
     }
     
+    let audioSlider = AudioUISlider()
+    
+    let intervalTimeLabel = UILabel().setup { view in
+        view.textColor = .txtSecondary
+        view.font = .monospacedSystemFont(ofSize: 11, weight: .regular)
+        view.text = "00:00"
+    }
+    
     private let playTimeLabel = UILabel().setup { view in
         view.textColor = .txtSecondary
-        view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
+        view.font = .monospacedSystemFont(ofSize: 11, weight: .regular)
     }
     
     private let scriptLabel = UILabel().setup { view in
@@ -90,8 +98,8 @@ final class DetailStoryView: BaseView {
         view.numberOfLines = 0
     }
     
-    @objc private func playViewClicked() {
-        detailStoryProtocol?.playViewClicked()
+    @objc private func playAndPauseClicked() {
+        detailStoryProtocol?.playAndPauseClicked()
     }
     
     @objc private func likeViewClicked() {
@@ -141,6 +149,16 @@ final class DetailStoryView: BaseView {
         }
     }
     
+    func resetAudio() {
+        audioSlider.value = 0
+        intervalTimeLabel.text = "00:00"
+        playView.setView(backgroundColor: .backgroundButton, image: .playFill)
+    }
+    
+    func setPlayImageInAudio() {
+        playView.setView(backgroundColor: .backgroundButton, image: .pauseFill)
+    }
+    
     override func configureHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(imageContainerView)
@@ -155,13 +173,15 @@ final class DetailStoryView: BaseView {
         
         scrollView.addSubview(containerView)
         
+        containerView.addSubview(audioSlider)
+        containerView.addSubview(intervalTimeLabel)
+        containerView.addSubview(playTimeLabel)
+        
         containerView.addSubview(buttonStackView)
         buttonStackView.addArrangedSubview(playView)
         buttonStackView.addArrangedSubview(likeView)
         buttonStackView.addArrangedSubview(shareView)
-        
         containerView.addSubview(audioTitleLabel)
-        containerView.addSubview(playTimeLabel)
         containerView.addSubview(scriptLabel)
     }
     
@@ -221,8 +241,23 @@ final class DetailStoryView: BaseView {
 //            make.height.equalTo(800)
         }
         
-        buttonStackView.snp.makeConstraints { make in
+        audioSlider.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(20)
+            make.horizontalEdges.equalTo(self).inset(40)
+        }
+        
+        intervalTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(audioSlider.snp.bottom).offset(4)
+            make.leading.equalTo(audioSlider)
+        }
+        
+        playTimeLabel.snp.makeConstraints { make in
+            make.top.equalTo(audioSlider.snp.bottom).offset(4)
+            make.trailing.equalTo(audioSlider)
+        }
+        
+        buttonStackView.snp.makeConstraints { make in
+            make.top.equalTo(audioSlider.snp.bottom).offset(20)
             make.centerX.equalTo(self)
             make.height.equalTo(50)
         }
@@ -243,14 +278,9 @@ final class DetailStoryView: BaseView {
             make.top.equalTo(buttonStackView.snp.bottom).offset(20)
             make.horizontalEdges.equalTo(self).inset(20)
         }
-        
-        playTimeLabel.snp.makeConstraints { make in
-            make.top.equalTo(audioTitleLabel.snp.bottom).offset(8)
-            make.leading.equalTo(audioTitleLabel)
-        }
-        
+
         scriptLabel.snp.makeConstraints { make in
-            make.top.equalTo(playTimeLabel.snp.bottom).offset(8)
+            make.top.equalTo(audioTitleLabel.snp.bottom).offset(8)
             make.horizontalEdges.equalTo(audioTitleLabel)
             make.bottom.equalToSuperview().inset(40)
         }

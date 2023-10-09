@@ -21,6 +21,7 @@
 "location_no_data" = "위치 정보가 없어요";
 "get_direction" = "길찾기";
 "nearby_attractions" = "주변 관광지";
+"error_no_file" = "파일을 준비중이에요";
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";

@@ -32,6 +32,10 @@ final class AVPlayerManager: NSObject {
         }
     }
     
+    func isFirstPlay() -> Bool {
+        return player == nil ? true : false
+    }
+    
     func play(url: URL) {
         do {
             player?.pause()

@@ -24,4 +24,5 @@ final class DetailStoryViewModel: BaseViewModel {
         self.storyRepository = storyRepository
     }
     
+    
 }

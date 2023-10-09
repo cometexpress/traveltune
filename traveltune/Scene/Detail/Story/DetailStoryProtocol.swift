@@ -9,7 +9,7 @@ import Foundation
 
 protocol DetailStoryProtocol: AnyObject {
     func backButtonClicked()
-    func playViewClicked()
+    func playAndPauseClicked()
     func likeViewClicked()
     func shareViewClicked()
 }
