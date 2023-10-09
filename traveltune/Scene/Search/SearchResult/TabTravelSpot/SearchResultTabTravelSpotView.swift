@@ -21,7 +21,7 @@ final class SearchResultTabTravelSpotView: BaseView {
         case main
     }
     
-    lazy var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
+    var dataSource: UICollectionViewDiffableDataSource<Section, TravelSpotItem>! = nil
     
     let emptyLabel = UILabel().setup { view in
         view.textColor = .txtDisabled

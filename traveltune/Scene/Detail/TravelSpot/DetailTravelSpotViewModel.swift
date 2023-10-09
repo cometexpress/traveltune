@@ -28,12 +28,9 @@ final class DetailTravelSpotViewModel: BaseViewModel {
     
     private let nearbyRadius = "5000"
     
-    func searchNearbySpots(){
+    func searchNearbySpots() {
         guard let mapX = detailTravelSpot.value?.mapX, let mapY = detailTravelSpot.value?.mapY else { return }
         if mapX.isEmpty || mapY.isEmpty { return }
-        
-        print("mapX = \(mapX)")
-        print("mapY = \(mapY)")
         
         state.value = .loading
         travelSportRepository.requestTravelSpotsByLocation(page: 1, mapX: mapX, mapY: mapY, radius: nearbyRadius) { response in

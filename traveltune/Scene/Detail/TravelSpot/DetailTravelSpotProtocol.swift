@@ -9,4 +9,5 @@ import Foundation
 
 protocol DetailTravelSpotProtocol: AnyObject {
     func backButtonClicked()
+    func didSelectItemAt(item: TravelSpotItem)
 }

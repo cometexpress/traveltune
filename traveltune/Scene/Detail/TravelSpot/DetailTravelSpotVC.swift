@@ -7,7 +7,6 @@
 
 import UIKit
 import MapKit
-import CoreLocation
 
 final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailTravelSpotViewModel> {
     
@@ -22,18 +21,19 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
         viewModel?.detailTravelSpot.bind { [weak self] item in
             guard let item else { return }
             self?.mainView.fetchData(item: item)
-            print(item)
         }
         
-        viewModel?.state.bind { state in
+        viewModel?.state.bind { [weak self] state in
             switch state {
             case .initValue: Void()
             case .loading: 
                 LoadingIndicator.show()
             case .success(let data):
-                print(data)
-//                self.mainView.spotItems.append(contentsOf: data)
-                self.mainView.applySnapShot(items: data)
+                if data.isEmpty {
+                    self?.mainView.hideNearbyCollectionView()
+                } else {
+                    self?.mainView.applySnapShot(items: data)
+                }
                 LoadingIndicator.hide()
             case .error(let msg):
                 print(msg)
@@ -106,6 +106,13 @@ extension DetailTravelSpotVC: DetailTravelSpotProtocol {
     
     func backButtonClicked() {
         dismiss(animated: true)
+    }
+    
+    func didSelectItemAt(item: TravelSpotItem) {
+        let vc = DetailTravelSpotVC(viewModel: DetailTravelSpotViewModel(travelSportRepository: TravelSpotRepository()))
+        vc.viewModel?.detailTravelSpot.value = item
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
 }
 

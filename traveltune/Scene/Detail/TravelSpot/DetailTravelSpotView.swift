@@ -114,6 +114,8 @@ final class DetailTravelSpotView: BaseView {
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
         view.delegate = self
+        view.alwaysBounceVertical = false
+        view.showsVerticalScrollIndicator = false
     }
     
     enum Section {
@@ -176,6 +178,11 @@ final class DetailTravelSpotView: BaseView {
                 )
             }
         }
+    }
+    
+    func hideNearbyCollectionView() {
+        nearbyTravelSpotLabel.isHidden = true
+        collectionView.isHidden = true
     }
     
     private func setRegionAndAnnotation(center: CLLocationCoordinate2D, item: TravelSpotItem) {
@@ -298,7 +305,7 @@ final class DetailTravelSpotView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nearbyTravelSpotLabel.snp.bottom)
             make.horizontalEdges.equalTo(self)
-            make.height.equalTo(240)
+            make.height.equalTo(160)
         }
     }
 
@@ -307,9 +314,9 @@ final class DetailTravelSpotView: BaseView {
 extension DetailTravelSpotView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
-//        collectionView.deselectItem(at: indexPath, animated: true)
-//        searchResultTabTravelSpotVCProtocol?.didSelectItemAt(item: item)
+        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
+        collectionView.deselectItem(at: indexPath, animated: true)
+        detailTravelSpotProtocol?.didSelectItemAt(item: item)
     }
 }
 
@@ -346,14 +353,17 @@ extension DetailTravelSpotView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.3))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .fractionalWidth(0.4))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)
         
+        let configuration = UICollectionViewCompositionalLayoutConfiguration()
+        configuration.scrollDirection = .vertical
         let layout = UICollectionViewCompositionalLayout(section: section)
+        layout.configuration = configuration
         return layout
     }
 }
