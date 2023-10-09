@@ -12,11 +12,14 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+        bindViewModel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        bindViewModel()
+        // 오류 발생
+        // 페이징 - 상세페이지 - 뒤로가기 하면 identifier 오류 발생
+//        bindViewModel()
     }
     
     func configureVC() {
