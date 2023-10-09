@@ -151,6 +151,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
                     }
                     return $0
                 }
+                mainView.applySnapshot(items: themeStoryItems)
             }
         }
     }
@@ -178,6 +179,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
                     }
                     return $0
                 }
+                mainView.applySnapshot(items: themeStoryItems)
             }
         }
     }

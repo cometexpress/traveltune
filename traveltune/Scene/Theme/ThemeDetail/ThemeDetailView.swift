@@ -101,7 +101,6 @@ final class ThemeDetailView: BaseView {
     }
     
     override func configureHierarchy() {
-        configureDataSource()
         addSubview(backgroundImageView)
         backgroundImageView.addSubview(blurredEffectView)
         addSubview(emptyTopView)
@@ -116,6 +115,8 @@ final class ThemeDetailView: BaseView {
         addSubview(scriptView)
         
         //        vibrancyEffectView.contentView.addSubview(collectionView)
+        
+        configureDataSource()
     }
     
     func applySnapshot(items: [StoryItem]) {
