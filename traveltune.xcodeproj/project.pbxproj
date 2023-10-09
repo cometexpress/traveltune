@@ -57,6 +57,7 @@
 		C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9CFB2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift */; };
 		C05824A82AD3F17200E34DF0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C05824AA2AD3F17200E34DF0 /* InfoPlist.strings */; };
 		C05824AD2AD419C700E34DF0 /* CircleImageButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */; };
+		C05824AF2AD459A500E34DF0 /* ShareableLinkPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05824AE2AD459A500E34DF0 /* ShareableLinkPresentation.swift */; };
 		C05BB6B02AC31770007CC4A5 /* ThemeStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */; };
 		C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */; };
 		C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */ = {isa = PBXBuildFile; fileRef = C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */; };
@@ -199,6 +200,7 @@
 		C05824A92AD3F17200E34DF0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C05824AB2AD3F17300E34DF0 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImageButtonView.swift; sourceTree = "<group>"; };
+		C05824AE2AD459A500E34DF0 /* ShareableLinkPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareableLinkPresentation.swift; sourceTree = "<group>"; };
 		C05BB6AF2AC31770007CC4A5 /* ThemeStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeStory.swift; sourceTree = "<group>"; };
 		C05BB6B12AC31D2A007CC4A5 /* ThemeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeViewModel.swift; sourceTree = "<group>"; };
 		C05BB6B52AC335D5007CC4A5 /* Pavelt 400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pavelt 400.otf"; sourceTree = "<group>"; };
@@ -724,10 +726,11 @@
 				C04F9CF32AC0772C0058A8D0 /* AVPlayerManager.swift */,
 				C0D81A992AC5609800CB2EF0 /* Constant.swift */,
 				C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */,
+				C05824AE2AD459A500E34DF0 /* ShareableLinkPresentation.swift */,
 				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
 				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
-				C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */,
 				C073F6532AD3074300EEE107 /* URLSchemeManager.swift */,
+				C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
+				C05824AF2AD459A500E34DF0 /* ShareableLinkPresentation.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0607D8B2AD27C44002E4CBD /* DetailTravelSpotVC.swift in Sources */,

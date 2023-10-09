@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LinkPresentation
 
 final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewModel> {
     
@@ -58,6 +59,33 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         }
     }
     
+//    private func showShareSheet(metaData: LPLinkMetadata) {
+//        let shareText: String = "share text test!"
+//        var shareObject = [Any]()
+//        
+//        shareObject.append(shareText)
+//        
+//        let activityViewController = UIActivityViewController(activityItems : [metaData], applicationActivities: nil)
+//        activityViewController.popoverPresentationController?.sourceView = self.view
+//        
+//        activityViewController.excludedActivityTypes = [
+//            .airDrop,
+//            .postToFacebook,
+//            .postToTwitter,
+//            .markupAsPDF
+//        ]
+//        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+//            if success {
+//                self.showToast(msg: "성공")
+//            } else {
+//                print(error?.localizedDescription)
+//                self.showToast(msg: "오류")
+//            }
+//        }
+//        self.present(activityViewController, animated: true, completion: nil)
+//    }
+    
+    
     @objc func playingMusicFinish(_ notification: Notification) {
         //필요한 정보나 객체가 있으면 object를 통해서 받아서 이용
         print("재생이 완료되었어요")
@@ -104,6 +132,8 @@ extension DetailStoryVC: DetailStoryProtocol {
     }
     
     func shareViewClicked() {
-        print("공유 클릭")
+        let shareLinkPresentation = ShareableLinkPresentation(image: .logo, title: Constant.productName, subtitle: "Test")
+        let shareVC = UIActivityViewController(activityItems: [shareLinkPresentation], applicationActivities: nil)
+        present(shareVC, animated: true)
     }
 }

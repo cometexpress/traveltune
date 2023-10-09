@@ -8,6 +8,8 @@
 import Foundation
 
 struct Constant {
+
+    static let productName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
     
     struct HeroID {
         static let themeThumnail = "themeThumnail"
