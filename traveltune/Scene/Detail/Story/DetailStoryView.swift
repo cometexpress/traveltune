@@ -159,6 +159,11 @@ final class DetailStoryView: BaseView {
         playView.setView(backgroundColor: .backgroundButton, image: .pauseFill)
     }
     
+    func setLikeImage(isLike: Bool) {        
+        let heartImage: UIImage = isLike == true ? .heartFill : .heart
+        likeView.setView(backgroundColor: .backgroundButton, image: heartImage)
+    }
+    
     override func configureHierarchy() {
         addSubview(scrollView)
         scrollView.addSubview(imageContainerView)

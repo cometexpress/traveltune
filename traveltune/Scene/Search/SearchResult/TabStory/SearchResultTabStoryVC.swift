@@ -67,7 +67,12 @@ extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
     
     func didSelectItemAt(item: StoryItem) {
         // 상세로 이동시키기
-        let vc = DetailStoryVC(viewModel: DetailStoryViewModel(storyRepository: StoryRepository()))
+        let vc = DetailStoryVC(
+            viewModel: DetailStoryViewModel(
+                storyRepository: StoryRepository(),
+                localFavoriteStoryRepository: LocalFavoriteStoryRepository()
+            )
+        )
         vc.viewModel?.detailStory.value = item
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)

@@ -26,6 +26,11 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
             guard let item else { return }
             print(item)
             self?.mainView.fetchData(item: item)
+            self?.viewModel?.favoriteStoryObserve()
+        }
+        
+        viewModel?.likeStatus.bind { [weak self] isLike in
+            self?.mainView.setLikeImage(isLike: isLike)
         }
     }
     
@@ -91,7 +96,11 @@ extension DetailStoryVC: DetailStoryProtocol {
     }
     
     func likeViewClicked() {
-        print("좋아요 클릭")
+        if viewModel?.likeStatus.value == true {
+            viewModel?.deleteFavoriteStory()
+        } else {
+            viewModel?.addFavoriteStory()
+        }
     }
     
     func shareViewClicked() {
