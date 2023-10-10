@@ -26,82 +26,81 @@ enum RegionType: CaseIterable {
     case gwangju
     case jeju
     
-    // 지역 검색할 때 사용할 좌표 저장
     var latitude: Double {
         switch self {
         case .seoul:
-            37.541
+            37.5666612
         case .gyeonggi:
-            0
+            37.2893525
         case .incheon:
-            0
+            37.4562557
         case .gangwon:
-            0
+            37.8853984
         case .chungbuk:
-            0
+            36.6358093
         case .chungnam:
-            0
+            36.6013022
         case .sejong:
-            0
+            36.4799919
         case .daejeon:
-            0
+            36.3504567
         case .gyeongbuk:
-            0
+            36.5760207
         case .gyeongnam:
-            0
+            35.2394594
         case .daegu:
-            0
+            35.8715411
         case .ulsan:
-            0
+            35.5396224
         case .busan:
-            0
+            35.179665
         case .jeonbuk:
-            0
+            35.8203799
         case .jeonnam:
-            0
+            34.8162186
         case .gwangju:
-            0
+            35.1599785
         case .jeju:
-            0
+            33.499597
         }
     }
     
     var longitude: Double {
         switch self {
         case .seoul:
-            126.986
+            126.9783785
         case .gyeonggi:
-            0
+            127.0535312
         case .incheon:
-            0
+            126.7052062
         case .gangwon:
-            0
+            127.7297758
         case .chungbuk:
-            0
+            127.4913338
         case .chungnam:
-            0
+            126.6608855
         case .sejong:
-            0
+            127.2890511
         case .daejeon:
-            0
+            127.3848187
         case .gyeongbuk:
-            0
+            128.5055956
         case .gyeongnam:
-            0
+            128.6942885
         case .daegu:
-            0
+            128.601505
         case .ulsan:
-            0
+            129.3115276
         case .busan:
-            0
+            129.0747635
         case .jeonbuk:
-            0
+            127.1086669
         case .jeonnam:
-            0
+            126.4629242
         case .gwangju:
-            0
+            126.8513072
         case .jeju:
-            0
+            126.531254
         }
     }
 }
