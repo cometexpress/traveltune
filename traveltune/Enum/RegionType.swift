@@ -26,6 +26,45 @@ enum RegionType: CaseIterable {
     case gwangju
     case jeju
     
+    var name: String {
+        switch self {
+        case .seoul:
+            Strings.Region.seoul
+        case .gyeonggi:
+            Strings.Region.gyeonggi
+        case .incheon:
+            Strings.Region.incheon
+        case .gangwon:
+            Strings.Region.gangwon
+        case .chungbuk:
+            Strings.Region.chungbuk
+        case .chungnam:
+            Strings.Region.chungnam
+        case .sejong:
+            Strings.Region.sejong
+        case .daejeon:
+            Strings.Region.daejeon
+        case .gyeongbuk:
+            Strings.Region.gyeongbuk
+        case .gyeongnam:
+            Strings.Region.gyeongnam
+        case .daegu:
+            Strings.Region.daegu
+        case .ulsan:
+            Strings.Region.ulsan
+        case .busan:
+            Strings.Region.busan
+        case .jeonbuk:
+            Strings.Region.jeonbuk
+        case .jeonnam:
+            Strings.Region.jeonnam
+        case .gwangju:
+            Strings.Region.gwangju
+        case .jeju:
+            Strings.Region.jeju
+        }
+    }
+    
     var latitude: Double {
         switch self {
         case .seoul:

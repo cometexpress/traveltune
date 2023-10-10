@@ -21,13 +21,5 @@ extension String {
         let upper = self[self.startIndex].uppercased()
         self.removeFirst(1)
         return upper + self
-        
-//        for _ in 0..<n {
-//          var input = readLine()!
-//          let upper = input[input.startIndex].uppercased()
-//          input.removeFirst(1)
-//          print(upper + input)
-//        }
-        
     }
 }

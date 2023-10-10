@@ -38,71 +38,71 @@ final class MapView: BaseView {
         view.image = .koreaMap.withTintColor(.koreaMapTint, renderingMode: .alwaysOriginal)
     }
     
-    private lazy var seoulButton = RegionButton(title: Strings.Region.seoul.firstCharUppercased(), type: .seoul).setup { view in
+    private lazy var seoulButton = RegionButton(type: .seoul).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var gyeonggiButton = RegionButton(title: Strings.Region.gyeonggi.firstCharUppercased(), type: .gyeonggi).setup { view in
+    private lazy var gyeonggiButton = RegionButton(type: .gyeonggi).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var incheonButton = RegionButton(title: Strings.Region.incheon.firstCharUppercased(), type: .incheon).setup { view in
+    private lazy var incheonButton = RegionButton(type: .incheon).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var gangwonButton = RegionButton(title: Strings.Region.gangwon.firstCharUppercased(), type: .gangwon).setup { view in
+    private lazy var gangwonButton = RegionButton(type: .gangwon).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var chungbukButton = RegionButton(title: Strings.Region.chungbuk.firstCharUppercased(), type: .chungbuk).setup { view in
+    private lazy var chungbukButton = RegionButton(type: .chungbuk).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var chungnamButton = RegionButton(title: Strings.Region.chungnam.firstCharUppercased(), type: .chungnam).setup { view in
+    private lazy var chungnamButton = RegionButton(type: .chungnam).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var sejongButton = RegionButton(title: Strings.Region.sejong.firstCharUppercased(), type: .sejong).setup { view in
+    private lazy var sejongButton = RegionButton(type: .sejong).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var daejeonButton = RegionButton(title: Strings.Region.daejeon.firstCharUppercased(), type: .daejeon).setup { view in
+    private lazy var daejeonButton = RegionButton(type: .daejeon).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var gyeongbukButton = RegionButton(title: Strings.Region.gyeongbuk.firstCharUppercased(), type: .gyeongbuk).setup { view in
+    private lazy var gyeongbukButton = RegionButton(type: .gyeongbuk).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var gyeongnamButton = RegionButton(title: Strings.Region.gyeongnam.firstCharUppercased(), type: .gyeongnam).setup { view in
+    private lazy var gyeongnamButton = RegionButton(type: .gyeongnam).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var daeguButton = RegionButton(title: Strings.Region.daegu.firstCharUppercased(), type: .daegu).setup { view in
+    private lazy var daeguButton = RegionButton(type: .daegu).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var ulsanButton = RegionButton(title: Strings.Region.ulsan.firstCharUppercased(), type: .ulsan).setup { view in
+    private lazy var ulsanButton = RegionButton(type: .ulsan).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var busanButton = RegionButton(title: Strings.Region.busan.firstCharUppercased(), type: .busan).setup { view in
+    private lazy var busanButton = RegionButton(type: .busan).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var jeonbukButton = RegionButton(title: Strings.Region.jeonbuk.firstCharUppercased(), type: .jeonbuk).setup { view in
+    private lazy var jeonbukButton = RegionButton(type: .jeonbuk).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var jeonnamButton = RegionButton(title: Strings.Region.jeonnam.firstCharUppercased(), type: .jeonnam).setup { view in
+    private lazy var jeonnamButton = RegionButton(type: .jeonnam).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var gwangjuButton = RegionButton(title: Strings.Region.gwangju.firstCharUppercased(), type: .gwangju).setup { view in
+    private lazy var gwangjuButton = RegionButton(type: .gwangju).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
     
-    private lazy var jejuButton = RegionButton(title: Strings.Region.jeju.firstCharUppercased(), type: .jeju).setup { view in
+    private lazy var jejuButton = RegionButton(type: .jeju).setup { view in
         view.addTarget(self, action: #selector(regionButtonClicked( _:)), for: .touchUpInside)
     }
 
@@ -126,7 +126,7 @@ final class MapView: BaseView {
     @objc func regionButtonClicked(_ sender: RegionButton) {
         guard let name = sender.titleLabel?.text else { return }
         print(name)
-        mapVCProtocol?.regionButtonClicked(regionName: name)
+        mapVCProtocol?.regionButtonClicked(type: sender.type)
         for btn in arrRegionButton {
             if btn == sender {
                 btn.isSelected = true

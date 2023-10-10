@@ -11,8 +11,7 @@ final class RegionButton: UIButton {
     
     private var config = UIButton.Configuration.filled()
     
-    private var title = ""
-    private var type: RegionType = .seoul
+    var type: RegionType = .seoul
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,10 +22,10 @@ final class RegionButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(title: String, type: RegionType) {
+    convenience init(type: RegionType) {
         self.init(frame: .zero)
         self.type = type
-        var attString = AttributedString(title)
+        var attString = AttributedString(type.name)
         attString.font = .monospacedSystemFont(ofSize: 8, weight: .light)
         config.attributedTitle = attString
         configuration = config

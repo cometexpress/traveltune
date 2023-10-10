@@ -119,6 +119,8 @@
 		C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */; };
 		C0E203BF2AD57C7F00607534 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = C0E203BE2AD57C7F00607534 /* FloatingPanel */; };
 		C0E203C12AD5885300607534 /* MapVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C02AD5885300607534 /* MapVCProtocol.swift */; };
+		C0E203C32AD5984C00607534 /* MapSpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C22AD5984C00607534 /* MapSpotCell.swift */; };
+		C0E203C92AD59B7200607534 /* MapFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -261,6 +263,8 @@
 		C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
 		C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVCProtocol.swift; sourceTree = "<group>"; };
 		C0E203C02AD5885300607534 /* MapVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCProtocol.swift; sourceTree = "<group>"; };
+		C0E203C22AD5984C00607534 /* MapSpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSpotCell.swift; sourceTree = "<group>"; };
+		C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelVC.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -590,6 +594,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		C0E203C72AD59B4300607534 /* FloatingPanelVC */ = {
+			isa = PBXGroup;
+			children = (
+				C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */,
+			);
+			path = FloatingPanelVC;
+			sourceTree = "<group>";
+		};
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
@@ -707,6 +719,7 @@
 		C0E8BA972ABDCD1900B1CCA6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				C0E203C72AD59B4300607534 /* FloatingPanelVC */,
 				C0E8BA9B2ABDCD5B00B1CCA6 /* MapVC.swift */,
 				C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */,
 				C03FE0362ACFDB2800D02385 /* MapViewModel.swift */,
@@ -768,6 +781,7 @@
 				C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */,
 				C0EF78802AC5D60B0098D091 /* StoryCell.swift */,
 				C06C93392AC2B214006B26F6 /* ThemePager */,
+				C0E203C22AD5984C00607534 /* MapSpotCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1049,8 +1063,10 @@
 				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
 				C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */,
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,
+				C0E203C92AD59B7200607534 /* MapFloatingPanelVC.swift in Sources */,
 				C04F9CF42AC0772C0058A8D0 /* AVPlayerManager.swift in Sources */,
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
+				C0E203C32AD5984C00607534 /* MapSpotCell.swift in Sources */,
 				C0607D8D2AD27C64002E4CBD /* DetailTravelSpotView.swift in Sources */,
 				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
 				C0D6153D2ACEE8AA00EC5EE9 /* BaseViewModel.swift in Sources */,

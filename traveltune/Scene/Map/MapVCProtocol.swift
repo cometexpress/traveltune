@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MapVCProtocol: AnyObject {
-    func regionButtonClicked(regionName: String)
+    func regionButtonClicked(type: RegionType)
 }

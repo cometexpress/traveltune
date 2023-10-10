@@ -11,13 +11,6 @@ import FloatingPanel
 final class MapVC: BaseViewController<MapView, MapViewModel> {
     
     private lazy var fpc = FloatingPanelController(delegate: self).setup { view in
-        let contentVC = TableViewController()
-        contentVC.didSelect = { [weak self] item in
-            self?.selectItem = item
-            print("선택 아이템 ", self?.selectItem)
-        }
-        view.set(contentViewController: contentVC)
-        view.track(scrollView: contentVC.tableView)
         view.isRemovalInteractionEnabled = false
         view.surfaceView.backgroundColor = .backgroundPlaceholder
         view.surfaceView.appearance.cornerRadius = 24.0
@@ -67,41 +60,6 @@ final class MapVC: BaseViewController<MapView, MapViewModel> {
     }
 }
 
-class TableViewController: UITableViewController {
-    
-    var didSelect: ((String) -> Void)?
-    
-    private let items: [String] = [
-        "option A",
-        "option B",
-        "option C",
-        "option D",
-        "option E",
-        "option F",
-        "option G"
-    ]
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = items[indexPath.row]
-//        cell.contentView.backgroundColor = indexPath.row % 2 == 0 ? .systemGray6 : .systemGray3
-        return cell
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelect?(items[indexPath.row])
-    }
-
-}
-
 class MapFloatingPanelLayout: FloatingPanelLayout {
     let position: FloatingPanelPosition = .bottom
     let initialState: FloatingPanelState = .tip
@@ -129,9 +87,9 @@ extension MapVC: FloatingPanelControllerDelegate {
 }
 
 extension MapVC: MapVCProtocol {
-    func regionButtonClicked(regionName: String) {
+    func regionButtonClicked(type: RegionType) {
         
-        if currentRegion == regionName {
+        if currentRegion == type.name {
             switch fpc.state {
             case .half:
                 fpc.move(to: .tip, animated: true)
@@ -142,9 +100,19 @@ extension MapVC: MapVCProtocol {
             default: break
             }
         } else {
+            
+            let contentVC = MapFloatingPanelVC()
+            contentVC.selectedRegionType = type
+            contentVC.didSelect = { [weak self] item in
+                self?.selectItem = item
+                print("선택 아이템 ", self?.selectItem)
+            }
+            fpc.set(contentViewController: contentVC)
+            fpc.track(scrollView: contentVC.collectionView)
+            
             fpc.move(to: .half, animated: true)
         }
-        currentRegion = regionName
+        currentRegion = type.name
         
 //        switch fpc.state {
 //        case .half:
