@@ -15,5 +15,6 @@ extension ConfigurableViewProtocol {
         return self
     }
 }
+extension UIViewController: ConfigurableViewProtocol { }
 extension UIView: ConfigurableViewProtocol { }
 extension UICollectionViewLayout: ConfigurableViewProtocol { }

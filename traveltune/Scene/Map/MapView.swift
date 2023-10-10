@@ -15,6 +15,8 @@ struct RegionButtonItems {
 
 final class MapView: BaseView {
     
+    weak var mapVCProtocol: MapVCProtocol?
+    
     lazy var scrollView = UIScrollView().setup { view in
         view.delegate = self
         view.backgroundColor = .clear
@@ -122,7 +124,9 @@ final class MapView: BaseView {
     }
     
     @objc func regionButtonClicked(_ sender: RegionButton) {
-        print(sender.titleLabel?.text)
+        guard let name = sender.titleLabel?.text else { return }
+        print(name)
+        mapVCProtocol?.regionButtonClicked(regionName: name)
         for btn in arrRegionButton {
             if btn == sender {
                 btn.isSelected = true
@@ -134,20 +138,20 @@ final class MapView: BaseView {
                  3. 1, 2번을 이용해서 계산..?
                  */
                 
-                print("scrollView center x = ", scrollView.contentSize.width / 2)
-                print("scrollView center y = ", scrollView.contentSize.height / 2)
-                
-                print("device center x = ", deviceCenterX)
-                print("device center y = ", deviceCenterY)
-                
-                print("maxX = ", btn.frame.maxX)
-                print("maxY = ", btn.frame.maxY)
-                
-                print("midX = ", btn.frame.midX)
-                print("midY = ", btn.frame.midY)
-                
-                print("minX = ", btn.frame.minX)
-                print("minY = ", btn.frame.minY)
+//                print("scrollView center x = ", scrollView.contentSize.width / 2)
+//                print("scrollView center y = ", scrollView.contentSize.height / 2)
+//                
+//                print("device center x = ", deviceCenterX)
+//                print("device center y = ", deviceCenterY)
+//                
+//                print("maxX = ", btn.frame.maxX)
+//                print("maxY = ", btn.frame.maxY)
+//                
+//                print("midX = ", btn.frame.midX)
+//                print("midY = ", btn.frame.midY)
+//                
+//                print("minX = ", btn.frame.minX)
+//                print("minY = ", btn.frame.minY)
                 
                 
 //                scrollView.setZoomScale(1.5, animated: true)

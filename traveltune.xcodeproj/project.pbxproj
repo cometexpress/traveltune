@@ -117,6 +117,8 @@
 		C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A992AC5609800CB2EF0 /* Constant.swift */; };
 		C0D81AA22AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */; };
 		C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */; };
+		C0E203BF2AD57C7F00607534 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = C0E203BE2AD57C7F00607534 /* FloatingPanel */; };
+		C0E203C12AD5885300607534 /* MapVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C02AD5885300607534 /* MapVCProtocol.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -258,6 +260,7 @@
 		C0D81A992AC5609800CB2EF0 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		C0D81AA12AC56D7000CB2EF0 /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
 		C0D81AA42AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVCProtocol.swift; sourceTree = "<group>"; };
+		C0E203C02AD5885300607534 /* MapVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCProtocol.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -293,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E8BA812ABC977C00B1CCA6 /* Toast in Frameworks */,
+				C0E203BF2AD57C7F00607534 /* FloatingPanel in Frameworks */,
 				C0E8BA792ABC974900B1CCA6 /* Alamofire in Frameworks */,
 				C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */,
 				C0E8BA762ABC973900B1CCA6 /* Kingfisher in Frameworks */,
@@ -706,6 +710,7 @@
 				C0E8BA9B2ABDCD5B00B1CCA6 /* MapVC.swift */,
 				C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */,
 				C03FE0362ACFDB2800D02385 /* MapViewModel.swift */,
+				C0E203C02AD5885300607534 /* MapVCProtocol.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -795,6 +800,7 @@
 				C0E8BA802ABC977C00B1CCA6 /* Toast */,
 				C0D81A952AC5437800CB2EF0 /* Hero */,
 				C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */,
+				C0E203BE2AD57C7F00607534 /* FloatingPanel */,
 			);
 			productName = traveltune;
 			productReference = C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */;
@@ -833,6 +839,7 @@
 				C0E8BA7F2ABC977C00B1CCA6 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */,
 				C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				C0E203BD2AD57C7F00607534 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 			);
 			productRefGroup = C0E8BA482ABC8B7600B1CCA6 /* Products */;
 			projectDirPath = "";
@@ -961,6 +968,7 @@
 				C03019402ACC6BFF00926451 /* SearchRecommendWord.swift in Sources */,
 				C05824AD2AD419C700E34DF0 /* CircleImageButtonView.swift in Sources */,
 				C091AA722AD3DC4300A450E7 /* DetailStoryViewModel.swift in Sources */,
+				C0E203C12AD5885300607534 /* MapVCProtocol.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
@@ -1309,6 +1317,14 @@
 				minimumVersion = 1.6.2;
 			};
 		};
+		C0E203BD2AD57C7F00607534 /* XCRemoteSwiftPackageReference "FloatingPanel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scenee/FloatingPanel.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
 		C0E8BA712ABC972D00B1CCA6 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -1361,6 +1377,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */;
 			productName = Hero;
+		};
+		C0E203BE2AD57C7F00607534 /* FloatingPanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0E203BD2AD57C7F00607534 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
+			productName = FloatingPanel;
 		};
 		C0E8BA722ABC972D00B1CCA6 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
