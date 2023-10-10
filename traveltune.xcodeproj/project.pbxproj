@@ -21,6 +21,7 @@
 		C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
+		C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */; };
 		C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */; };
 		C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */; };
 		C02DABDF2ACADE3000F3BC42 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02DABDE2ACADE3000F3BC42 /* SearchVC.swift */; };
@@ -170,6 +171,7 @@
 		C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotProtocol.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelProtocol.swift; sourceTree = "<group>"; };
 		C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVisualEffectView+Extension.swift"; sourceTree = "<group>"; };
 		C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extension.swift"; sourceTree = "<group>"; };
 		C02DABDE2ACADE3000F3BC42 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 				C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */,
 				C0E203CC2AD5A8CA00607534 /* MapFloatingPanelView.swift */,
 				C0E203CE2AD5A8D200607534 /* MapFloatingPanelViewModel.swift */,
+				C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */,
 			);
 			path = FloatingPanelVC;
 			sourceTree = "<group>";
@@ -971,6 +974,7 @@
 				C04F9CA92ABEF6320058A8D0 /* Encodable+Extension.swift in Sources */,
 				C04F9CFA2AC09C0E0058A8D0 /* RequestCheckVisitorsInMetro.swift in Sources */,
 				C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */,
+				C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */,
 				C03FE0372ACFDB2800D02385 /* MapViewModel.swift in Sources */,
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
 				C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */,

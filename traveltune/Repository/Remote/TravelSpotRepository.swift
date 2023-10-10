@@ -49,6 +49,7 @@ final class TravelSpotRepository {
     
     func requestTravelSpotsByLocation(
         page: Int,
+        numOfRows: Int? = nil,
         mapX: String,
         mapY: String,
         radius: String,
@@ -58,7 +59,7 @@ final class TravelSpotRepository {
             api: .locationSpots(
                 request: RequestTravelSpotsByLocation(
                     pageNo: String(page),
-                    numOfRows: String(Network.numOfRows),
+                    numOfRows: String(numOfRows ?? Network.numOfRows),
                     mapX: mapX,
                     mapY: mapY,
                     radius: radius)

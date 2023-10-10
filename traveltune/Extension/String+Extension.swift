@@ -20,6 +20,7 @@ extension String {
     mutating func firstCharUppercased() -> String {
         let upper = self[self.startIndex].uppercased()
         self.removeFirst(1)
-        return upper + self
+        self = upper + self
+        return self
     }
 }

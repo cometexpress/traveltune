@@ -15,8 +15,6 @@ struct Strings {
         static let ok = "common_ok".localized
         static let cancel = "common_cancel".localized
         static let selectPlayStory = "select_play_story".localized
-        static let errorFirstStory = "error_first_story".localized
-        static let errorLastStory = "error_last_story".localized
         static let searchButton = "search_button".localized
         static let searchPlaceHolder = "search_place_holder".localized
         static let recommendKeyword = "recommend_keyword".localized
@@ -25,13 +23,17 @@ struct Strings {
         static let locationNoData = "location_no_data".localized
         static let getDirection = "get_direction".localized
         static let nearbyAttractions = "nearby_attractions".localized
-        static let errorNoFile = "error_no_file".localized
+        static let storyItemsCount = "story_items_count".localized
+        static let touristDestination = "tourist_destination".localized
     }
     
     struct ErrorMsg {
         static let errorNetwork = "error_network".localized
         static let errorRestartApp = "error_restart_app".localized
         static let errorLoadingData = "error_loading_data".localized
+        static let errorFirstStory = "error_first_story".localized
+        static let errorLastStory = "error_last_story".localized
+        static let errorNoFile = "error_no_file".localized
     }
     
     struct TabMap {

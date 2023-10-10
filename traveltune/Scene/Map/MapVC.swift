@@ -101,13 +101,15 @@ extension MapVC: MapVCProtocol {
             }
         } else {
             
+            // 지역에 데이터 불러올 떄
+            LoadingIndicator.show()
             let contentVC = MapFloatingPanelVC(
                 viewModel: MapFloatingPanelViewModel(
+                    regionType: type,
                     travelSpotRepository: TravelSpotRepository(),
                     storyRepository: StoryRepository()
                 )
             )
-            contentVC.selectedRegionType = type
             contentVC.didSelect = { [weak self] item in
                 self?.selectItem = item
                 dump(self?.selectItem)

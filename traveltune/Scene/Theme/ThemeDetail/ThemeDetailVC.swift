@@ -136,7 +136,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
         }
         
         if currentIndex == 0 {
-            showToast(msg: Strings.Common.errorFirstStory)
+            showToast(msg: Strings.ErrorMsg.errorFirstStory)
         } else {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = themeStoryItems[previousItemIndex]
@@ -164,7 +164,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
         }
         
         if currentIndex == themeStoryItems.count - 1 {
-            showToast(msg: Strings.Common.errorLastStory)
+            showToast(msg: Strings.ErrorMsg.errorLastStory)
         } else {
             let nextItemIndex = currentIndex + 1
             let nextPlayItem = themeStoryItems[nextItemIndex]

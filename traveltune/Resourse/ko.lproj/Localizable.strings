@@ -11,8 +11,6 @@
 "common_ok" = "확인";
 "common_cancel" = "취소";
 "select_play_story" = "이야기를 선택해주세요";
-"error_first_story" = "첫번째 이야기에요";
-"error_last_story" = "마지막 이야기에요";
 "search_button" = "검색";
 "search_place_holder" = "검색어를 입력해주세요";
 "recommend_keyword" = "추천 검색어";
@@ -21,12 +19,17 @@
 "location_no_data" = "위치 정보가 없어요";
 "get_direction" = "길찾기";
 "nearby_attractions" = "주변 관광지";
-"error_no_file" = "파일을 준비중이에요";
+"story_items_count" = "이야기 %d개";
+"tourist_destination" = "관광지";
+
 
 // 에러메시지
 "error_network" = "네크워크 연결을 확인해주세요";
 "error_restart_app" = "앱을 재실행 해주세요";
 "error_loading_data" = "데이터를 불러오는 중에 오류가 발생했어요";
+"error_no_file" = "파일을 준비중이에요";
+"error_first_story" = "첫번째 이야기에요";
+"error_last_story" = "마지막 이야기에요";
 
 // 홈 네비 타이틀
 "home_nav_title" = "travel tune";

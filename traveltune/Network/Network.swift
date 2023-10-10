@@ -15,6 +15,7 @@ final class Network {
     
     static let numOfRowsByAllData = 1000
     static let numOfRows = 20
+    static let maxRadius = "20000"
     
     enum LangCode: String {
         case ko

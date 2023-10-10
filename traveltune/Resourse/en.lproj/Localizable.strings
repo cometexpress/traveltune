@@ -11,8 +11,6 @@
 "common_ok" = "OK";
 "common_cancel" = "Cancel";
 "select_play_story" = "Select Story";
-"error_first_story" = "This is the first story";
-"error_last_story" = "This is the last story";
 "search_button" = "Search";
 "search_place_holder" = "Please enter a search word";
 "recommend_keyword" = "Recommend Words";
@@ -21,13 +19,17 @@
 "location_no_data" = "No location information";
 "get_direction" = "Get direction";
 "nearby_attractions" = "Nearby attractions";
-"error_no_file" = "Be preparing a file";
+"story_items_count" = "%d stories";
+"tourist_destination" = "Tourist spot";
 
 
 // 에러메시지
 "error_network" = "Please check network";
 "error_restart_app" = "Please restart app";
 "error_loading_data" = "Error trying to load data";
+"error_no_file" = "Be preparing a file";
+"error_first_story" = "This is the first story";
+"error_last_story" = "This is the last story";
 
 // 홈 네비 타이틀
 "home_nav_title" = "travel tune";

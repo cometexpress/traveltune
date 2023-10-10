@@ -66,13 +66,13 @@ final class MapSpotCell: BaseCollectionViewCell<MapSpotItem> {
             make.horizontalEdges.equalToSuperview()
         }
         
-        addrLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(2)
-            make.horizontalEdges.equalToSuperview()
-        }
+//        addrLabel.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(2)
+//            make.horizontalEdges.equalToSuperview()
+//        }
         
         storieLabel.snp.makeConstraints { make in
-            make.top.equalTo(addrLabel.snp.bottom).offset(4)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalToSuperview()
         }
     }
@@ -84,11 +84,12 @@ final class MapSpotCell: BaseCollectionViewCell<MapSpotItem> {
         
         storieLabel.isHidden = row.stories.isEmpty
         
-        if row.stories.count == 1 {
-            storieLabel.text = row.stories.first?.audioTitle
-        } else {
-            storieLabel.text = "\(row.stories.first?.audioTitle ?? "") 외 \(row.stories.count) 이야기"
-        }
+        storieLabel.text =  Strings.Common.storyItemsCount.localized(with: [row.stories.count])
         
+//        if row.stories.count == 1 {
+//            storieLabel.text = row.stories.first?.audioTitle
+//        } else {
+//            storieLabel.text = "\(row.stories.first?.audioTitle ?? "") 외 \(row.stories.count) 이야기"
+//        }
     }
 }

@@ -135,7 +135,7 @@ extension DetailStoryVC: DetailStoryProtocol {
         
         if AVPlayerManager.shared.isFirstPlay() {
             guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
-                showAlert(title: "", msg: Strings.Common.errorNoFile, ok: Strings.Common.ok)
+                showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
                 return
             }
             audioPlay(url: url)
@@ -164,7 +164,7 @@ extension DetailStoryVC: DetailStoryProtocol {
     
     func shareViewClicked() {
         guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
-            showAlert(title: "", msg: Strings.Common.errorNoFile, ok: Strings.Common.ok)
+            showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
             return
         }
         shareAudio(audioURL: url)

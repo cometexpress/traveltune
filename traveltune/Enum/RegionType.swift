@@ -29,39 +29,39 @@ enum RegionType: CaseIterable {
     var name: String {
         switch self {
         case .seoul:
-            Strings.Region.seoul
+            Strings.Region.seoul.firstCharUppercased()
         case .gyeonggi:
-            Strings.Region.gyeonggi
+            Strings.Region.gyeonggi.firstCharUppercased()
         case .incheon:
-            Strings.Region.incheon
+            Strings.Region.incheon.firstCharUppercased()
         case .gangwon:
-            Strings.Region.gangwon
+            Strings.Region.gangwon.firstCharUppercased()
         case .chungbuk:
-            Strings.Region.chungbuk
+            Strings.Region.chungbuk.firstCharUppercased()
         case .chungnam:
-            Strings.Region.chungnam
+            Strings.Region.chungnam.firstCharUppercased()
         case .sejong:
-            Strings.Region.sejong
+            Strings.Region.sejong.firstCharUppercased()
         case .daejeon:
-            Strings.Region.daejeon
+            Strings.Region.daejeon.firstCharUppercased()
         case .gyeongbuk:
-            Strings.Region.gyeongbuk
+            Strings.Region.gyeongbuk.firstCharUppercased()
         case .gyeongnam:
-            Strings.Region.gyeongnam
+            Strings.Region.gyeongnam.firstCharUppercased()
         case .daegu:
-            Strings.Region.daegu
+            Strings.Region.daegu.firstCharUppercased()
         case .ulsan:
-            Strings.Region.ulsan
+            Strings.Region.ulsan.firstCharUppercased()
         case .busan:
-            Strings.Region.busan
+            Strings.Region.busan.firstCharUppercased()
         case .jeonbuk:
-            Strings.Region.jeonbuk
+            Strings.Region.jeonbuk.firstCharUppercased()
         case .jeonnam:
-            Strings.Region.jeonnam
+            Strings.Region.jeonnam.firstCharUppercased()
         case .gwangju:
-            Strings.Region.gwangju
+            Strings.Region.gwangju.firstCharUppercased()
         case .jeju:
-            Strings.Region.jeju
+            Strings.Region.jeju.firstCharUppercased()
         }
     }
     

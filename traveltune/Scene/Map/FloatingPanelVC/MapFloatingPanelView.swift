@@ -10,6 +10,10 @@ import SnapKit
 
 final class MapFloatingPanelView: BaseView {
     
+    override var viewBg: UIColor { .backgroundPlaceholder }
+    
+    weak var mapFloatingPanelProtocol: MapFloatingPanelProtocol?
+    
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
         view.showsVerticalScrollIndicator = false
         view.register(
@@ -19,18 +23,38 @@ final class MapFloatingPanelView: BaseView {
     }
     
     var regionLabel = UILabel().setup { view in
-        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
         view.textColor = .txtPrimary
+        view.adjustsFontSizeToFitWidth = true
+        view.minimumScaleFactor = 0.5
+    }
+    
+    private lazy var moveMapView = CircleImageButtonView().setup { view in
+        view.setView(backgroundColor: .backgroundButton, image: .enterMap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(moveMapClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func moveMapClicked() {
+        mapFloatingPanelProtocol?.moveMapButtonClicked()
     }
     
     override func configureHierarchy() {
-        [regionLabel,collectionView].forEach(addSubview(_:))
+        [regionLabel,collectionView,moveMapView].forEach(addSubview(_:))
     }
     
     override func configureLayout() {
         regionLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(30)
-            make.horizontalEdges.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
+            make.trailing.equalTo(moveMapView.snp.leading).offset(8)
+        }
+        
+        moveMapView.snp.makeConstraints { make in
+            make.top.equalTo(regionLabel)
+            make.bottom.equalTo(regionLabel)
+            make.trailing.equalToSuperview().inset(20)
+            make.size.equalTo(38)
         }
         
         collectionView.snp.makeConstraints { make in
