@@ -151,10 +151,11 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //        print(view.annotation?.title, "clicked")
+//        print(view.annotation?.title, "clicked")
     }
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        // 현재 항상 클릭되어있어서 어노테이션 클릭이 한번만 허락 되는 중
         if let annotation = views.first(where: { $0.reuseIdentifier == CustomAnnotationView.identifier })?.annotation {
             mapView.selectAnnotation(annotation, animated: true)
         }

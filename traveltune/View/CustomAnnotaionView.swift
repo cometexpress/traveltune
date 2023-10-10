@@ -15,14 +15,21 @@ class CustomAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
-        frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+//        frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         setUI()
     }
     
     @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // MKAnnotationView 크기를 backgroundView 크기 만큼 정해줌.
+        bounds.size = CGSize(width: 50, height: 50)
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
     }
 
     private func setUI() {

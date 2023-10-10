@@ -59,31 +59,62 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         }
     }
     
-//    private func showShareSheet(metaData: LPLinkMetadata) {
-//        let shareText: String = "share text test!"
-//        var shareObject = [Any]()
-//        
-//        shareObject.append(shareText)
-//        
-//        let activityViewController = UIActivityViewController(activityItems : [metaData], applicationActivities: nil)
-//        activityViewController.popoverPresentationController?.sourceView = self.view
-//        
-//        activityViewController.excludedActivityTypes = [
-//            .airDrop,
-//            .postToFacebook,
-//            .postToTwitter,
-//            .markupAsPDF
-//        ]
-//        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
-//            if success {
-//                self.showToast(msg: "성공")
-//            } else {
-//                print(error?.localizedDescription)
-//                self.showToast(msg: "오류")
-//            }
-//        }
-//        self.present(activityViewController, animated: true, completion: nil)
-//    }
+    // Link Presentation 공유
+    private func showShareLinkPresentation(url: URL) {
+//        let imgURL = URL(string: "......")
+//        let shareLinkPresentation = ShareableLinkPresentation(title: Constant.productName, shareURL: url, imgURL: imgURL)
+//        let shareVC = UIActivityViewController(activityItems: [shareLinkPresentation], applicationActivities: nil)
+//        present(shareVC, animated: true)
+    }
+    
+    private func shareImage(imgURL: URL) {
+        let shareVC = UIActivityViewController(activityItems: [imgURL], applicationActivities: nil)
+        shareVC.excludedActivityTypes = [
+            .airDrop,
+            .postToFacebook,
+            .postToTwitter,
+            .markupAsPDF
+        ]
+        present(shareVC, animated: true)
+    }
+    
+    private func shareAudio(audioURL: URL) {
+        let shareVC = UIActivityViewController(activityItems: [audioURL], applicationActivities: nil)
+        shareVC.popoverPresentationController?.sourceView = self.view
+        shareVC.excludedActivityTypes = [
+            .airDrop,
+            .postToFacebook,
+            .postToTwitter,
+            .markupAsPDF
+        ]
+        present(shareVC, animated: true)
+    }
+    
+    //    private func showShareSheet(metaData: LPLinkMetadata) {
+    //        let shareText: String = "share text test!"
+    //        var shareObject = [Any]()
+    //
+    //        shareObject.append(shareText)
+    //
+    //        let activityViewController = UIActivityViewController(activityItems : [metaData], applicationActivities: nil)
+    //        activityViewController.popoverPresentationController?.sourceView = self.view
+    //
+    //        activityViewController.excludedActivityTypes = [
+    //            .airDrop,
+    //            .postToFacebook,
+    //            .postToTwitter,
+    //            .markupAsPDF
+    //        ]
+    //        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
+    //            if success {
+    //                self.showToast(msg: "성공")
+    //            } else {
+    //                print(error?.localizedDescription)
+    //                self.showToast(msg: "오류")
+    //            }
+    //        }
+    //        self.present(activityViewController, animated: true, completion: nil)
+    //    }
     
     
     @objc func playingMusicFinish(_ notification: Notification) {
@@ -132,8 +163,10 @@ extension DetailStoryVC: DetailStoryProtocol {
     }
     
     func shareViewClicked() {
-        let shareLinkPresentation = ShareableLinkPresentation(image: .logo, title: Constant.productName, subtitle: "Test")
-        let shareVC = UIActivityViewController(activityItems: [shareLinkPresentation], applicationActivities: nil)
-        present(shareVC, animated: true)
+        guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
+            showAlert(title: "", msg: Strings.Common.errorNoFile, ok: Strings.Common.ok)
+            return
+        }
+        shareAudio(audioURL: url)
     }
 }
