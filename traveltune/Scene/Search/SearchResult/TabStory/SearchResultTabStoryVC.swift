@@ -35,7 +35,7 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
             switch state {
             case .initValue: Void()
             case .loading:
-                LoadingIndicator.show()
+                mainView.showLoading()
                 if self.mainView.page == 1 {
                     self.mainView.storyItems.removeAll()
                     self.mainView.applySnapShot(items: self.mainView.storyItems)
@@ -50,10 +50,10 @@ final class SearchResultTabStoryVC: BaseViewController<SearchResultTabStoryView,
                 self.mainView.containerView.isHidden = self.mainView.storyItems.isEmpty
                 self.mainView.emptyLabel.isHidden = !self.mainView.storyItems.isEmpty
 
-                LoadingIndicator.hide()
+                mainView.hideLoading()
             case .error(let msg):
                 print(msg)
-                LoadingIndicator.hide()
+                mainView.hideLoading()
                 if self.mainView.page == 1 {
                     self.mainView.containerView.isHidden = self.mainView.storyItems.isEmpty
                     self.mainView.emptyLabel.isHidden = !self.mainView.storyItems.isEmpty

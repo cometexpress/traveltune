@@ -35,7 +35,7 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
             switch state {
             case .initValue: Void()
             case .loading:
-                LoadingIndicator.show()
+                mainView.showLoading()
                 if self.mainView.page == 1 {
                     self.mainView.spotItems.removeAll()
                     self.mainView.applySnapShot(items: self.mainView.spotItems)
@@ -50,10 +50,10 @@ final class SearchResultTabTravelSpotVC: BaseViewController<SearchResultTabTrave
                 self.mainView.containerView.isHidden = self.mainView.spotItems.isEmpty
                 self.mainView.emptyLabel.isHidden = !self.mainView.spotItems.isEmpty
                 
-                LoadingIndicator.hide()
+                mainView.hideLoading()
             case .error(let msg):
                 print(msg)
-                LoadingIndicator.hide()
+                mainView.hideLoading()
                 if self.mainView.page == 1 {
                     self.mainView.containerView.isHidden = self.mainView.spotItems.isEmpty
                     self.mainView.emptyLabel.isHidden = !self.mainView.spotItems.isEmpty

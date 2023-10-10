@@ -40,10 +40,29 @@ final class SearchResultTabStoryView: BaseView {
         view.delegate = self
     }
     
+    private let loadingView = UIView().setup { view in
+        view.isUserInteractionEnabled = false
+    }
+    
+    private let indicatorView = UIActivityIndicatorView(style: .large).setup { view in
+        view.color = .primary
+        view.startAnimating()
+    }
+    
+    func showLoading() {
+        loadingView.isHidden = false
+    }
+    
+    func hideLoading() {
+        loadingView.isHidden = true
+    }
+    
     override func configureHierarchy() {
         addSubview(containerView)
         containerView.addSubview(collectionView)
         addSubview(emptyLabel)
+        addSubview(loadingView)
+        loadingView.addSubview(indicatorView)
         configureDataSource()
     }
     
@@ -60,6 +79,15 @@ final class SearchResultTabStoryView: BaseView {
         emptyLabel.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview()
             make.verticalEdges.equalTo(safeAreaLayoutGuide)
+        }
+        
+        loadingView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.verticalEdges.equalTo(safeAreaLayoutGuide)
+        }
+        
+        indicatorView.snp.makeConstraints { make in
+            make.center.equalToSuperview()
         }
     }
 }
