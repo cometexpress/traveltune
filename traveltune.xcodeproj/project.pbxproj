@@ -121,6 +121,9 @@
 		C0E203C12AD5885300607534 /* MapVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C02AD5885300607534 /* MapVCProtocol.swift */; };
 		C0E203C32AD5984C00607534 /* MapSpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C22AD5984C00607534 /* MapSpotCell.swift */; };
 		C0E203C92AD59B7200607534 /* MapFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */; };
+		C0E203CB2AD5A4AC00607534 /* MapSpotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203CA2AD5A4AC00607534 /* MapSpotItem.swift */; };
+		C0E203CD2AD5A8CA00607534 /* MapFloatingPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203CC2AD5A8CA00607534 /* MapFloatingPanelView.swift */; };
+		C0E203CF2AD5A8D200607534 /* MapFloatingPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E203CE2AD5A8D200607534 /* MapFloatingPanelViewModel.swift */; };
 		C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */; };
 		C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */; };
 		C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8BA532ABC8B7700B1CCA6 /* Assets.xcassets */; };
@@ -265,6 +268,9 @@
 		C0E203C02AD5885300607534 /* MapVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVCProtocol.swift; sourceTree = "<group>"; };
 		C0E203C22AD5984C00607534 /* MapSpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSpotCell.swift; sourceTree = "<group>"; };
 		C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelVC.swift; sourceTree = "<group>"; };
+		C0E203CA2AD5A4AC00607534 /* MapSpotItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSpotItem.swift; sourceTree = "<group>"; };
+		C0E203CC2AD5A8CA00607534 /* MapFloatingPanelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelView.swift; sourceTree = "<group>"; };
+		C0E203CE2AD5A8D200607534 /* MapFloatingPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelViewModel.swift; sourceTree = "<group>"; };
 		C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = traveltune.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E8BA4A2ABC8B7600B1CCA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E8BA4C2ABC8B7600B1CCA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -417,9 +423,10 @@
 		C04F9CAA2ABEF7970058A8D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0BDC3272AC934F100D7331E /* FavoriteStory.swift */,
+				C0E203CA2AD5A4AC00607534 /* MapSpotItem.swift */,
 				C04F9CAB2ABEF79E0058A8D0 /* Request */,
 				C04F9CAC2ABEF7A30058A8D0 /* Response */,
-				C0BDC3272AC934F100D7331E /* FavoriteStory.swift */,
 				C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */,
 			);
 			path = Model;
@@ -598,6 +605,8 @@
 			isa = PBXGroup;
 			children = (
 				C0E203C82AD59B7200607534 /* MapFloatingPanelVC.swift */,
+				C0E203CC2AD5A8CA00607534 /* MapFloatingPanelView.swift */,
+				C0E203CE2AD5A8D200607534 /* MapFloatingPanelViewModel.swift */,
 			);
 			path = FloatingPanelVC;
 			sourceTree = "<group>";
@@ -994,6 +1003,7 @@
 				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
 				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
+				C0E203CF2AD5A8D200607534 /* MapFloatingPanelViewModel.swift in Sources */,
 				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
 				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
@@ -1011,6 +1021,7 @@
 				C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */,
 				C091AA702AD3DC3900A450E7 /* DetailStoryView.swift in Sources */,
 				C035928D2ACDA07900AA3D36 /* SearchResultTabTravelSpotVC.swift in Sources */,
+				C0E203CD2AD5A8CA00607534 /* MapFloatingPanelView.swift in Sources */,
 				C00839F32AC67EBB00C17BD6 /* AudioUISlider.swift in Sources */,
 				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
@@ -1069,6 +1080,7 @@
 				C0E203C32AD5984C00607534 /* MapSpotCell.swift in Sources */,
 				C0607D8D2AD27C64002E4CBD /* DetailTravelSpotView.swift in Sources */,
 				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
+				C0E203CB2AD5A4AC00607534 /* MapSpotItem.swift in Sources */,
 				C0D6153D2ACEE8AA00EC5EE9 /* BaseViewModel.swift in Sources */,
 				C09A69832ACB3A6D002FA468 /* TitleSupplementaryView.swift in Sources */,
 				C05F921F2AC3F4C600427F6D /* ThemeDetailVC.swift in Sources */,

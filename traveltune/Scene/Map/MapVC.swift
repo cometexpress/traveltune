@@ -26,7 +26,7 @@ final class MapVC: BaseViewController<MapView, MapViewModel> {
     var currentRegion = ""
     
     // 선택한 아이템 상세페이지로 이동시키기
-    var selectItem = ""
+    var selectItem: MapSpotItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,14 +101,19 @@ extension MapVC: MapVCProtocol {
             }
         } else {
             
-            let contentVC = MapFloatingPanelVC()
+            let contentVC = MapFloatingPanelVC(
+                viewModel: MapFloatingPanelViewModel(
+                    travelSpotRepository: TravelSpotRepository(),
+                    storyRepository: StoryRepository()
+                )
+            )
             contentVC.selectedRegionType = type
             contentVC.didSelect = { [weak self] item in
                 self?.selectItem = item
-                print("선택 아이템 ", self?.selectItem)
+                dump(self?.selectItem)
             }
             fpc.set(contentViewController: contentVC)
-            fpc.track(scrollView: contentVC.collectionView)
+            fpc.track(scrollView: contentVC.mainView.collectionView)
             
             fpc.move(to: .half, animated: true)
         }
