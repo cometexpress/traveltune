@@ -113,7 +113,7 @@ extension MapVC: MapVCProtocol {
             contentVC.didSelect = { [weak self] item in
                 self?.selectItem = item
                 
-                let vc = DetailMapSpotVC(viewModel: DetailMapSpotViewModel())
+                let vc = DetailMapSpotVC(viewModel: DetailMapSpotViewModel(localFavoriteStoryRepository: LocalFavoriteStoryRepository()))
                 vc.modalPresentationStyle = .fullScreen
                 vc.viewModel?.mapSpotItem = item
                 self?.present(vc, animated: false)

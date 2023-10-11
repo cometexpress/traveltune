@@ -13,7 +13,7 @@ final class DetailMapSpotView: BaseView {
     weak var viewModel: DetailMapSpotViewModel?
     weak var detailMapSpotVCProtocol: DetailMapSpotVCProtocol?
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
         view.contentInsetAdjustmentBehavior = .never
         view.delegate = self
         view.dataSource = self

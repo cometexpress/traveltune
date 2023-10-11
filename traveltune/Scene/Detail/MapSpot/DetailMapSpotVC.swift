@@ -21,7 +21,16 @@ final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpot
     }
     
     func bindViewModel() {
-        
+        viewModel?.favoriteStoryObserve()
+        viewModel?.state.bind { state in
+            switch state {
+            case .initValue: Void()
+            case .likeUpdateSuccess:
+                self.mainView.collectionView.reloadData()
+            case .error(let msg):
+                print(msg)
+            }
+        }
     }
 }
 
@@ -39,11 +48,14 @@ extension DetailMapSpotVC: DetailMapSpotVCProtocol {
     }
     
     func cellHeartButtonClicked(item: StoryItem) {
-        print("하트 클릭")
-//        if item.isFavorite {
-//            viewModel?.deleteFavoriteStory(item: item)
-//        } else {
-//            viewModel?.addFavoriteStory(item: item)
-//        }
+        guard let url = URL(string: item.audioURL) else {
+            showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
+            return
+        }
+        if item.isFavorite {
+            viewModel?.deleteFavoriteStory(item: item)
+        } else {
+            viewModel?.addFavoriteStory(item: item)
+        }
     }
 }

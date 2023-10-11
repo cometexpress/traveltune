@@ -161,6 +161,11 @@ extension DetailStoryVC: DetailStoryProtocol {
     }
     
     func likeViewClicked() {
+        guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
+            showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
+            return
+        }
+        
         if viewModel?.likeStatus.value == true {
             viewModel?.deleteFavoriteStory()
         } else {
