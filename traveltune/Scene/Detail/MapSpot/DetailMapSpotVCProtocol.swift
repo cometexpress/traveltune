@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DetailMapSpotVCProtocol: AnyObject {
-    
+    func backClicked()
 }

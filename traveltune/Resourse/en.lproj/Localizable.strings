@@ -21,6 +21,7 @@
 "nearby_attractions" = "Nearby attractions";
 "story_items_count" = "%d stories";
 "tourist_destination" = "Tourist spot";
+"story_list" = "List of stories";
 
 
 // 에러메시지

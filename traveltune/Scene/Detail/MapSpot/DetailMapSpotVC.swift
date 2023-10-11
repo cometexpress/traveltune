@@ -8,7 +8,7 @@
 import UIKit
 
 final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpotViewModel> {
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -16,10 +16,18 @@ final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpot
     }
     
     func configureVC() {
-        
+        mainView.viewModel = viewModel
+        mainView.detailMapSpotVCProtocol = self
     }
     
     func bindViewModel() {
         
+    }
+}
+
+extension DetailMapSpotVC: DetailMapSpotVCProtocol {
+    
+    func backClicked() {
+        dismiss(animated: false)
     }
 }

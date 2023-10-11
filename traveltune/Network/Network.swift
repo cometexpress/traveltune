@@ -13,7 +13,7 @@ final class Network {
     static let shared = Network()
     private init() { }
     
-    static let numOfRowsByAllData = 1000
+    static let numOfRowsByAllData = 2000
     static let numOfRows = 20
     static let maxRadius = "20000"
     

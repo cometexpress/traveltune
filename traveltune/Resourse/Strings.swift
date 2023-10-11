@@ -25,6 +25,7 @@ struct Strings {
         static let nearbyAttractions = "nearby_attractions".localized
         static let storyItemsCount = "story_items_count".localized
         static let touristDestination = "tourist_destination".localized
+        static let storyList = "story_list".localized
     }
     
     struct ErrorMsg {

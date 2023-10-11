@@ -41,7 +41,7 @@ final class MapFloatingPanelViewModel: BaseViewModel {
     func fetchMapSpotItems() {
         travelSpotRepository.requestTravelSpotsByLocation(
             page: 1,
-            numOfRows: 50,
+            numOfRows: Network.numOfRowsByAllData,
             mapX: String(regionType.longitude),
             mapY: String(regionType.latitude),
             radius: "15000"
@@ -75,10 +75,14 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             switch response {
             case .success(let success):
                 let stories = success.response.body.items.item
-                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
+                if !stories.isEmpty {
+                    print("이야기 없는 아이템 패스")
+                    self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
+                }
+                
             case .failure:
-                print("값 추가 오류")
-                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: []))
+                print("값 추가 오류일 때 값 추가 패스")
+//                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: []))
             }
             dispatchGroup.leave()
         }
