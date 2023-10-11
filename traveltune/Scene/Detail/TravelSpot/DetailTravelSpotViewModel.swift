@@ -36,7 +36,7 @@ final class DetailTravelSpotViewModel: BaseViewModel {
         travelSportRepository.requestTravelSpotsByLocation(page: 1, mapX: mapX, mapY: mapY, radius: nearbyRadius) { response in
             switch response {
             case .success(let success):
-                let result = success.response.body.items.item
+                let result = success.response.body.items.item.filter { $0.title != self.detailTravelSpot.value?.title ?? "" }
                 self.state.value = .success(data: result)
             case .failure(let failure):
                 self.state.value = .error(msg: failure.localizedDescription)
