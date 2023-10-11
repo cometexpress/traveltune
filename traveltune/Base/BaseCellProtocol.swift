@@ -9,5 +9,7 @@ import Foundation
 
 protocol BaseCellProtocol {
     associatedtype T
+    func configureHierarchy()
+    func configureLayout()
     func configCell(row: T)
 }

@@ -112,7 +112,11 @@ extension MapVC: MapVCProtocol {
             )
             contentVC.didSelect = { [weak self] item in
                 self?.selectItem = item
-                dump(self?.selectItem)
+                
+                let vc = DetailMapSpotVC(viewModel: DetailMapSpotViewModel())
+                vc.modalPresentationStyle = .fullScreen
+                vc.viewModel?.mapSpotItem = item
+                self?.present(vc, animated: false)
             }
             fpc.set(contentViewController: contentVC)
             fpc.track(scrollView: contentVC.mainView.collectionView)

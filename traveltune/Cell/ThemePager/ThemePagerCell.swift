@@ -21,10 +21,8 @@ final class ThemePagerCell: FSPagerViewCell, BaseCellProtocol {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(containerView)
-        containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        configureHierarchy()
+        configureLayout()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,6 +32,16 @@ final class ThemePagerCell: FSPagerViewCell, BaseCellProtocol {
     override func prepareForReuse() {
         super.prepareForReuse()
         containerView.moveButton.removeTarget(nil, action: nil, for: .allEvents)
+    }
+    
+    func configureHierarchy() {
+        contentView.addSubview(containerView)
+    }
+    
+    func configureLayout() {
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func configCell(row: ThemeStory) {
