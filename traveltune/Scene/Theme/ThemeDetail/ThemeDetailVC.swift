@@ -13,8 +13,6 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
     
     var themeStory: ThemeStory?
     
-    private var themeStoryItems: [StoryItem] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -61,8 +59,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
             case .initValue: Void()
             case .loading: LoadingIndicator.show()
             case .success(let data):
-                self?.themeStoryItems.append(contentsOf: data)
-                self?.mainView.applySnapshot(items: data)
+                self?.mainView.themeStoryItems = data
+//                self?.mainView.applySnapshot(items: data)
                 LoadingIndicator.hide()
             case .singleDataError:
                 LoadingIndicator.hide()
@@ -86,11 +84,11 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
-        themeStoryItems = themeStoryItems.map {
+        mainView.themeStoryItems = mainView.themeStoryItems.map {
             $0.isPlaying = false
             return $0
         }
-        mainView.applySnapshot(items: themeStoryItems)
+//        mainView.applySnapshot(items: themeStoryItems)
     }
     
     private func audioPlay(url: URL) {
@@ -106,8 +104,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
     }
     
     private func currentPlayingItemIndex() -> Int? {
-        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first,
-              let index = themeStoryItems.firstIndex(of: playItem) else {
+        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first,
+              let index = mainView.themeStoryItems.firstIndex(of: playItem) else {
             return nil
         }
         return index
@@ -139,19 +137,19 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             showToast(msg: Strings.ErrorMsg.errorFirstStory)
         } else {
             let previousItemIndex = currentIndex - 1
-            let previousPlayItem = themeStoryItems[previousItemIndex]
+            let previousPlayItem = mainView.themeStoryItems[previousItemIndex]
             
             if let audioURL = URL(string: previousPlayItem.audioURL) {
                 audioPlay(url: audioURL)
                 updateData(item: previousPlayItem)
-                themeStoryItems = themeStoryItems.map {
+                mainView.themeStoryItems = mainView.themeStoryItems.map {
                     $0.isPlaying = false
                     if $0 == previousPlayItem {
                         $0.isPlaying = !previousPlayItem.isPlaying
                     }
                     return $0
                 }
-                mainView.applySnapshot(items: themeStoryItems)
+//                mainView.applySnapshot(items: themeStoryItems)
             }
         }
     }
@@ -163,30 +161,30 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             return
         }
         
-        if currentIndex == themeStoryItems.count - 1 {
+        if currentIndex == mainView.themeStoryItems.count - 1 {
             showToast(msg: Strings.ErrorMsg.errorLastStory)
         } else {
             let nextItemIndex = currentIndex + 1
-            let nextPlayItem = themeStoryItems[nextItemIndex]
+            let nextPlayItem = mainView.themeStoryItems[nextItemIndex]
             
             if let audioURL = URL(string: nextPlayItem.audioURL) {
                 audioPlay(url: audioURL)
                 updateData(item: nextPlayItem)
-                themeStoryItems = themeStoryItems.map {
+                mainView.themeStoryItems = mainView.themeStoryItems.map {
                     $0.isPlaying = false
                     if $0 == nextPlayItem {
                         $0.isPlaying = !nextPlayItem.isPlaying
                     }
                     return $0
                 }
-                mainView.applySnapshot(items: themeStoryItems)
+//                mainView.applySnapshot(items: themeStoryItems)
             }
         }
     }
     
     func playAndPauseClicked() {
         // 재생중인 아이템이 없을 때는 실행 안되도록
-        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first else {
+        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first else {
             return
         }
         
@@ -233,14 +231,16 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
     
     func cellHeartButtonClicked(item: StoryItem) {
         if item.isFavorite {
+            print("delete 실행")
             viewModel?.deleteFavoriteStory(item: item)
         } else {
+            print("add 실행")
             viewModel?.addFavoriteStory(item: item)
         }
     }
     
     func didSelectItemAt(item: StoryItem) {
-        themeStoryItems = themeStoryItems.map {
+        mainView.themeStoryItems = mainView.themeStoryItems.map {
             $0.isPlaying = false
             if $0 == item {
                 $0.isPlaying = !item.isPlaying
@@ -248,13 +248,13 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             return $0
         }
         
-        guard let playItem = themeStoryItems.filter({ $0.isPlaying == true }).first,
+        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first,
               let audioURL = URL(string: playItem.audioURL) else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
             return
         }
-        self.mainView.applySnapshot(items: themeStoryItems)
+//        self.mainView.applySnapshot(items: themeStoryItems)
         audioPlay(url: audioURL)
         updateData(item: playItem)
     }

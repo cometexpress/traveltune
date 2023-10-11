@@ -157,7 +157,6 @@
 		C0E8BAAE2ABDDD7700B1CCA6 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */; };
 		C0E8BAB02ABDDD9700B1CCA6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAAF2ABDDD9700B1CCA6 /* SettingView.swift */; };
 		C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */; };
-		C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EF787D2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift */; };
 		C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EF78802AC5D60B0098D091 /* StoryCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -309,7 +308,6 @@
 		C0E8BAAD2ABDDD7700B1CCA6 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		C0E8BAAF2ABDDD9700B1CCA6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionButton.swift; sourceTree = "<group>"; };
-		C0EF787D2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C0EF78802AC5D60B0098D091 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		EE2DB048C391D5CB1AF9994E /* Pods-traveltune.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-traveltune.debug.xcconfig"; path = "Target Support Files/Pods-traveltune/Pods-traveltune.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -804,7 +802,6 @@
 			isa = PBXGroup;
 			children = (
 				C09A69822ACB3A6D002FA468 /* TitleSupplementaryView.swift */,
-				C0EF787D2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift */,
 				C02AA1222AD69093007BA3AD /* DetailMapSpotHeaderView.swift */,
 			);
 			path = CellHeaderView;
@@ -1037,7 +1034,6 @@
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
 				C0E203CF2AD5A8D200607534 /* MapFloatingPanelViewModel.swift in Sources */,
 				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
-				C0EF787E2AC5D4470098D091 /* ThemeDetailCollectionHeaderView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */,
 				C03592812ACD79D700AA3D36 /* SearchResultVC.swift in Sources */,

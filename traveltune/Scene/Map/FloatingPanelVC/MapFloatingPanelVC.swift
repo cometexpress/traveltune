@@ -12,7 +12,11 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
     
     var didSelect: ((MapSpotItem) -> Void)?
     
-    private var mapSpotItems: [MapSpotItem] = []
+    private var mapSpotItems: [MapSpotItem] = [] {
+        didSet {
+            mainView.collectionView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +43,7 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
             case .loading:
                 LoadingIndicator.show()
             case .success(let data):
-                self?.mapSpotItems.append(contentsOf: data)
-                self?.mainView.collectionView.reloadData()
+                self?.mapSpotItems = data.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL})
                 LoadingIndicator.hide()
             case .error(let msg):
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)

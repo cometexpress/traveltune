@@ -14,6 +14,12 @@ final class ThemeDetailView: BaseView {
     weak var viewModel: ThemeDetailViewModel?
     weak var themeDetailVCProtocol: ThemeDetailVCProtocol?
     
+    var themeStoryItems: [StoryItem] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     private let blurredEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     private let vibrancyEffectView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .regular)))
     
@@ -48,17 +54,17 @@ final class ThemeDetailView: BaseView {
     
     lazy var collectionView = UICollectionView(
         frame: .zero,
-        collectionViewLayout: self.collectionViewLayout()
+        collectionViewLayout: self.createLayout()
     ).setup { view in
         view.alwaysBounceVertical = true
         view.showsVerticalScrollIndicator = false
         view.register(StoryCell.self, forCellWithReuseIdentifier: StoryCell.identifier)
         view.delegate = self
-        //        view.dataSource = self
+        view.dataSource = self
         view.isHidden = true
     }
     
-    var dataSource: UICollectionViewDiffableDataSource<Int, StoryItem>! = nil
+//    var dataSource: UICollectionViewDiffableDataSource<Int, StoryItem>! = nil
     
     let playerBottomView = PlayerBottomView().setup { view in
         view.isHidden = true
@@ -82,23 +88,7 @@ final class ThemeDetailView: BaseView {
     
     private let topViewHeight = 50
     
-    private func configureDataSource() {
-        let cellRegistraion = UICollectionView.CellRegistration<StoryCell, StoryItem> { cell, indexPath, itemIdentifier in
-            cell.configCell(row: itemIdentifier)
-            cell.heartButtonClicked = { [weak self] in
-                self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: itemIdentifier)
-            }
-        }
-        
-        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistraion, for: indexPath, item: itemIdentifier)
-        })
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
-        snapshot.appendSections([0])
-        snapshot.appendItems([], toSection: 0)
-        dataSource.apply(snapshot, animatingDifferences: false)
-    }
+    
     
     override func configureHierarchy() {
         addSubview(backgroundImageView)
@@ -115,15 +105,7 @@ final class ThemeDetailView: BaseView {
         addSubview(scriptView)
         
         //        vibrancyEffectView.contentView.addSubview(collectionView)
-        
-        configureDataSource()
-    }
-    
-    func applySnapshot(items: [StoryItem]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(items, toSection: 0)
-        dataSource.applySnapshotUsingReloadData(snapshot)
+//        configureDataSource()
     }
     
     override func configureLayout() {
@@ -193,18 +175,6 @@ final class ThemeDetailView: BaseView {
         }
     }
     
-    private func collectionViewLayout() -> UICollectionViewFlowLayout {
-        let width: CGFloat = UIScreen.main.bounds.width
-        //        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
-        return UICollectionViewFlowLayout().collectionViewLayout(
-            headerSize: .zero,
-            itemSize: CGSize(width: width, height: 60),
-            //            itemSize: CGSize(width: width, height: headerHeight / 3.4),
-            sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
-            minimumLineSpacing: 2,
-            minimumInteritemSpacing: 0)
-    }
-    
     func showScriptView() {
         playerBottomView.thumbImageView.isUserInteractionEnabled = false
         scriptView.isHidden = false
@@ -242,12 +212,86 @@ final class ThemeDetailView: BaseView {
     
 }
 
-extension ThemeDetailView: UICollectionViewDelegate {
+extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
-        collectionView.deselectItem(at: indexPath, animated: true)
-        themeDetailVCProtocol?.didSelectItemAt(item: item)
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return themeStoryItems.count
     }
     
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StoryCell.identifier, for: indexPath) as? StoryCell else {
+            return UICollectionViewCell()
+        }
+        
+        let item = themeStoryItems[indexPath.item]
+        cell.configCell(row: item)
+        cell.heartButtonClicked = { [weak self] in
+            self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: item)
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        themeDetailVCProtocol?.didSelectItemAt(item: themeStoryItems[indexPath.item])
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let item = self.dataSource.itemIdentifier(for: indexPath) else { return }
+//        collectionView.deselectItem(at: indexPath, animated: true)
+//        themeDetailVCProtocol?.didSelectItemAt(item: item)
+//    }
+    
+}
+
+extension ThemeDetailView {
+    
+    private func createLayout() -> UICollectionViewLayout {
+        // 비율 계산해서 디바이스 별로 UI 설정
+        let layout = StretchableUICollectionViewFlowLayout()
+        let spacing: CGFloat = 8
+        let width: CGFloat = UIScreen.main.bounds.width
+        
+        layout.itemSize = CGSize(width: width, height: 60)
+        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
+        layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
+        layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격
+        return layout
+    }
+    
+//    private func configureDataSource() {
+//        let cellRegistraion = UICollectionView.CellRegistration<StoryCell, StoryItem> { cell, indexPath, itemIdentifier in
+//            cell.configCell(row: itemIdentifier)
+//            cell.heartButtonClicked = { [weak self] in
+//                self?.themeDetailVCProtocol?.cellHeartButtonClicked(item: itemIdentifier)
+//            }
+//        }
+//        
+//        dataSource = UICollectionViewDiffableDataSource(collectionView: collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
+//            return collectionView.dequeueConfiguredReusableCell(using: cellRegistraion, for: indexPath, item: itemIdentifier)
+//        })
+//        
+//        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
+//        snapshot.appendSections([0])
+//        snapshot.appendItems([], toSection: 0)
+//        dataSource.apply(snapshot, animatingDifferences: false)
+//    }
+//    
+//    func applySnapshot(items: [StoryItem]) {
+//        var snapshot = NSDiffableDataSourceSnapshot<Int, StoryItem>()
+//        snapshot.appendSections([0])
+//        snapshot.appendItems(items, toSection: 0)
+//        dataSource.applySnapshotUsingReloadData(snapshot)
+//    }
+    
+    private func collectionViewLayout() -> UICollectionViewFlowLayout {
+        let width: CGFloat = UIScreen.main.bounds.width
+        //        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
+        return UICollectionViewFlowLayout().collectionViewLayout(
+            headerSize: .zero,
+            itemSize: CGSize(width: width, height: 60),
+            //            itemSize: CGSize(width: width, height: headerHeight / 3.4),
+            sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
+            minimumLineSpacing: 2,
+            minimumInteritemSpacing: 0)
+    }
 }

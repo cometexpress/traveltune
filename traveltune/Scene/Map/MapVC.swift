@@ -67,7 +67,7 @@ class MapFloatingPanelLayout: FloatingPanelLayout {
     let anchors: [FloatingPanelState: FloatingPanelLayoutAnchoring] = [
         .full: FloatingPanelLayoutAnchor(absoluteInset: 56.0, edge: .top, referenceGuide: .safeArea),
         .half: FloatingPanelLayoutAnchor(absoluteInset: 262.0, edge: .bottom, referenceGuide: .safeArea),
-        .tip: FloatingPanelLayoutAnchor(absoluteInset: 25.0 + 44.0, edge: .bottom, referenceGuide: .safeArea),
+        .tip: FloatingPanelLayoutAnchor(absoluteInset: 40.0 + 44.0, edge: .bottom, referenceGuide: .safeArea),
     ]
 
     func backdropAlpha(for state: FloatingPanelState) -> CGFloat {
