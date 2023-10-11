@@ -43,7 +43,7 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
             case .loading:
                 LoadingIndicator.show()
             case .success(let data):
-                self?.mapSpotItems = data.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL})
+                self?.mapSpotItems = data
                 LoadingIndicator.hide()
             case .error(let msg):
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
@@ -68,14 +68,16 @@ extension MapFloatingPanelVC: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: 맵 상세화면으로 이동시키기
         didSelect?(mapSpotItems[indexPath.item])
     }
 }
 
 extension MapFloatingPanelVC: MapFloatingPanelProtocol {
+    
     func moveMapButtonClicked() {
-        // TODO: 맵킷 화면으로 이동시키기
-        print("맵킷 화면으로 이동시키기")
+        let vc = DetailRegionMapVC(viewModel: DetailRegionMapViewModel())
+        vc.viewModel?.regionType = self.viewModel?.regionType
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

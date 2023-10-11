@@ -69,6 +69,11 @@ extension DetailMapSpotView: UICollectionViewDelegate, UICollectionViewDataSourc
             view.backClicked = { [weak self] in
                 self?.detailMapSpotVCProtocol?.backClicked()
             }
+            
+            view.moveMapClicked = { [weak self] in
+                self?.detailMapSpotVCProtocol?.moveMapClicked()
+            }
+            
             return view
             
         } else {

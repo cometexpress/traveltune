@@ -35,9 +35,13 @@ final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpot
 }
 
 extension DetailMapSpotVC: DetailMapSpotVCProtocol {
-    
+
     func backClicked() {
         dismiss(animated: false)
+    }
+    
+    func moveMapClicked() {
+        // 장소로 검색한 지도 상세로 이동시키기
     }
     
     func didSelectItemAt(item: StoryItem) {

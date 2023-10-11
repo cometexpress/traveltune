@@ -19,10 +19,6 @@ final class MapVC: BaseViewController<MapView, MapViewModel> {
         view.surfaceView.appearance.borderColor = UIColor.black.withAlphaComponent(0.2)
     }
     
-    private func layout() {
-        fpc.addPanel(toParent: self)
-    }
-    
     var currentRegion = ""
     
     // 선택한 아이템 상세페이지로 이동시키기
@@ -35,10 +31,17 @@ final class MapVC: BaseViewController<MapView, MapViewModel> {
         }
         configureVC()
         bindViewModel()
+        mainView.mapVCProtocol = self
+        fpc.addPanel(toParent: self)
+        fpc.hide(animated: true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.topItem?.title = Strings.TabMap.title
     }
     
     func configureVC() {
-        mainView.mapVCProtocol = self
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = UIColor.background
@@ -49,15 +52,10 @@ final class MapVC: BaseViewController<MapView, MapViewModel> {
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.topItem?.title = Strings.TabMap.title
-        
-        layout()
-        fpc.hide(animated: true)
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
-    func bindViewModel() {
-        
-    }
+    func bindViewModel() { }
 }
 
 class MapFloatingPanelLayout: FloatingPanelLayout {

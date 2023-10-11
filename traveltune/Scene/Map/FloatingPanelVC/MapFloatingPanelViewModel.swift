@@ -56,11 +56,8 @@ final class MapFloatingPanelViewModel: BaseViewModel {
                 }
                 
                 dispatchGroup.notify(queue: .main) { [weak self] in
-                    guard let self else {
-                        self?.state.value = .error(msg: "오류")
-                        return
-                    }
-                    self.state.value = .success(data: self.saveMapSpotItems)
+                    guard let self else { return }
+                    self.state.value = .success(data: self.saveMapSpotItems.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL}))
                 }
                 
             case .failure(let failure):
@@ -76,7 +73,6 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             case .success(let success):
                 let stories = success.response.body.items.item
                 if !stories.isEmpty {
-                    print("이야기 없는 아이템 패스")
                     self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
                 }
                 

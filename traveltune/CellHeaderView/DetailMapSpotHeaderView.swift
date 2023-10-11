@@ -49,7 +49,9 @@ final class DetailMapSpotHeaderView: UICollectionReusableView, BaseCellProtocol 
     private let titleLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
         view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
-        view.numberOfLines = 0
+        view.numberOfLines = 1
+        view.adjustsFontSizeToFitWidth = true
+        view.minimumScaleFactor = 0.5
     }
     
     private let infoLabel = UILabel().setup { view in
@@ -63,10 +65,22 @@ final class DetailMapSpotHeaderView: UICollectionReusableView, BaseCellProtocol 
         view.text = Strings.Common.storyList
     }
     
+    private lazy var moveMapView = CircleImageButtonView().setup { view in
+        view.setView(backgroundColor: .backgroundButton, image: .enterMap)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(moveMapImageViewClicked))
+        view.addGestureRecognizer(tap)
+    }
+    
     var backClicked: (() -> Void)?
     
-    @objc func backButtonClicked() {
+    var moveMapClicked: (() -> Void)?
+    
+    @objc private func backButtonClicked() {
         backClicked?()
+    }
+    
+    @objc private func moveMapImageViewClicked() {
+        moveMapClicked?()
     }
     
     override init(frame: CGRect) {
@@ -94,6 +108,7 @@ final class DetailMapSpotHeaderView: UICollectionReusableView, BaseCellProtocol 
         labelStackView.addArrangedSubview(titleLabel)
         labelStackView.addArrangedSubview(infoLabel)
         containerView.addSubview(labelStackView)
+        containerView.addSubview(moveMapView)
     }
     
     func configureLayout() {
@@ -143,6 +158,12 @@ final class DetailMapSpotHeaderView: UICollectionReusableView, BaseCellProtocol 
         guideLabel.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview().inset(20)
+        }
+        
+        moveMapView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.trailing.equalToSuperview().inset(20)
+            make.size.equalTo(38)
         }
         
         labelStackView.snp.makeConstraints { make in
