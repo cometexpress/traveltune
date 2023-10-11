@@ -70,7 +70,7 @@ extension SearchResultTabTravelSpotVC: SearchResultTabTravelSpotVCProtocol {
         let vc = DetailTravelSpotVC(viewModel: DetailTravelSpotViewModel(travelSportRepository: TravelSpotRepository()))
         vc.viewModel?.detailTravelSpot.value = item
         vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true)
+        present(vc, animated: false)
     }
     
     func willDisplay(page: Int) {

@@ -32,7 +32,8 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         view.image = .defaultImg
     }
     
-    private lazy var heartImageView = AudioImageView(frame: .zero).setup { view in
+    private lazy var heartImageView = UIImageView(frame: .zero).setup { view in
+        view.isUserInteractionEnabled = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(heartClicked))
         view.addGestureRecognizer(tap)
     }
@@ -46,6 +47,7 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
     override func prepareForReuse() {
         super.prepareForReuse()
         thumbImageView.image = .defaultImg
+        heartButtonClicked = nil
     }
     
     override func configureHierarchy() {
@@ -96,7 +98,15 @@ final class StoryCell: BaseCollectionViewCell<StoryItem> {
         titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
         playTimeLabel.text = row.convertTime
         thumbImageView.addImage(url: row.imageURL)
-        heartImageView.addConfigImage(image: row.isFavorite ? .heartFill : .heart, configuration: .init(pointSize: 24, weight: .medium))
+        
+        let heartImg: UIImage = if row.isFavorite {
+            .heartFill
+        } else {
+            .heart
+        }
+        
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .light)
+        heartImageView.image = heartImg.withConfiguration(configuration).withTintColor(.systemRed, renderingMode: .alwaysOriginal)
         
         if row.isPlaying {
             titleLabel.font = .monospacedSystemFont(ofSize: 14, weight: .bold)

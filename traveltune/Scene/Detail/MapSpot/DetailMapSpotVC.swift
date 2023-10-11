@@ -16,8 +16,8 @@ final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpot
     }
     
     func configureVC() {
-        mainView.viewModel = viewModel
         mainView.detailMapSpotVCProtocol = self
+        mainView.viewModel = viewModel
     }
     
     func bindViewModel() {
@@ -29,5 +29,21 @@ extension DetailMapSpotVC: DetailMapSpotVCProtocol {
     
     func backClicked() {
         dismiss(animated: false)
+    }
+    
+    func didSelectItemAt(item: StoryItem) {
+        let vc = DetailStoryVC(viewModel: DetailStoryViewModel(storyRepository: StoryRepository(), localFavoriteStoryRepository: LocalFavoriteStoryRepository()))
+        vc.viewModel?.detailStory.value = item
+        vc.modalPresentationStyle = .pageSheet
+        present(vc, animated: true)
+    }
+    
+    func cellHeartButtonClicked(item: StoryItem) {
+        print("하트 클릭")
+//        if item.isFavorite {
+//            viewModel?.deleteFavoriteStory(item: item)
+//        } else {
+//            viewModel?.addFavoriteStory(item: item)
+//        }
     }
 }

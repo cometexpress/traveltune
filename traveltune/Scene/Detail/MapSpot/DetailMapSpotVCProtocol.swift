@@ -9,4 +9,6 @@ import Foundation
 
 protocol DetailMapSpotVCProtocol: AnyObject {
     func backClicked()
+    func cellHeartButtonClicked(item: StoryItem)
+    func didSelectItemAt(item: StoryItem)
 }

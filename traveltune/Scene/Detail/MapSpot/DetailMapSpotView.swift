@@ -51,6 +51,9 @@ extension DetailMapSpotView: UICollectionViewDelegate, UICollectionViewDataSourc
         }
         if let item = viewModel?.mapSpotItem?.stories[indexPath.item] {
             cell.configCell(row: item)
+            cell.heartButtonClicked = { [weak self] in
+                self?.detailMapSpotVCProtocol?.cellHeartButtonClicked(item: item)
+            }
         }
         return cell
     }
@@ -71,6 +74,11 @@ extension DetailMapSpotView: UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
             return UICollectionReusableView()
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let item = viewModel?.mapSpotItem?.stories[indexPath.item] else { return }
+        detailMapSpotVCProtocol?.didSelectItemAt(item: item)
     }
 }
 

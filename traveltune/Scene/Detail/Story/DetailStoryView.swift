@@ -30,7 +30,7 @@ final class DetailStoryView: BaseView {
     private let blurredEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
     private let vibrancyEffectView = UIVisualEffectView(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: .regular)))
     
-    private lazy var backButton = UIButton().setup { view in
+    lazy var backButton = UIButton().setup { view in
         view.setImage(.backCircle.withTintColor(.white, renderingMode: .alwaysTemplate), for: .normal)
         view.addTarget(self, action: #selector(backDetailStoryButtonClicked), for: .touchUpInside)
     }
