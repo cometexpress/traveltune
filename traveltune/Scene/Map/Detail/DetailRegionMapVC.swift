@@ -110,8 +110,12 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
         checkAvailableCurrentLocation()
     }
     
-    func selectRegionButtonClicked() {
-        showToast(msg: "지역 선택할 수 있는 BottomView 띄우기")
+    func selectRegionButtonClicked(item: String) {
+        let vc = CommonPickerVC()
+        vc.items = RegionType.allCases.map { $0.name }
+        vc.selectedItem = item
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true)
     }
 }
 

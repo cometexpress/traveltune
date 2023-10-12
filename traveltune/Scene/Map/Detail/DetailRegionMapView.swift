@@ -26,15 +26,15 @@ final class DetailRegionMapView: BaseView {
     private lazy var selectRegionButton = UIButton().setup { view in
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
-        view.addTarget(self, action: #selector(selectRegionButtonClicked), for: .touchUpInside)
+        view.addTarget(self, action: #selector(selectRegionButtonClicked(_ :)), for: .touchUpInside)
     }
     
     @objc private func currentMyLocationClicked() {
         detailRegionMapViewProtocol?.currentLocationClicked()
     }
     
-    @objc private func selectRegionButtonClicked() {
-        detailRegionMapViewProtocol?.selectRegionButtonClicked()
+    @objc private func selectRegionButtonClicked(_ sender: UIButton) {
+        detailRegionMapViewProtocol?.selectRegionButtonClicked(item: (sender.titleLabel?.text)!)
     }
     
     func updateButtonTitle(title: String) {
