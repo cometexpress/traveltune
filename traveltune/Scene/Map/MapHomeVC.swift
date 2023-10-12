@@ -1,5 +1,5 @@
 //
-//  MapVC.swift
+//  MapHomeVC.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/22.
@@ -8,7 +8,7 @@
 import UIKit
 import FloatingPanel
 
-final class MapVC: BaseViewController<MapView, MapViewModel> {
+final class MapHomeVC: BaseViewController<MapHomeView, MapHomeViewModel> {
     
     private lazy var fpc = FloatingPanelController(delegate: self).setup { view in
         view.isRemovalInteractionEnabled = false
@@ -73,7 +73,7 @@ class MapFloatingPanelLayout: FloatingPanelLayout {
     }
 }
 
-extension MapVC: FloatingPanelControllerDelegate {
+extension MapHomeVC: FloatingPanelControllerDelegate {
     
     func floatingPanelDidMove(_ fpc: FloatingPanelController) {
 //        print(fpc)
@@ -84,7 +84,7 @@ extension MapVC: FloatingPanelControllerDelegate {
     }
 }
 
-extension MapVC: MapVCProtocol {
+extension MapHomeVC: MapHomeVCProtocol {
     func regionButtonClicked(type: RegionType) {
         
         if currentRegion == type.name {

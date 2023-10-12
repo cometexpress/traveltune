@@ -76,14 +76,9 @@ final class DetailTravelSpotView: BaseView {
     
     private var customAnnotaionImageUrl = ""
     
-    let mapView = MKMapView().setup { view in
-        view.preferredConfiguration = MKStandardMapConfiguration()
+    let mapView = ExcludeMapView().setup { view in
         view.isZoomEnabled = false           // 줌
         view.isScrollEnabled = false         // 이동
-        view.isPitchEnabled = false         // 각도 조절
-        view.isRotateEnabled = false        // 회전
-        view.showsCompass = false           // 나침반
-        view.showsScale = false             // 축척
         view.showsUserLocation = false       // 유저 위치
         view.clipsToBounds = true
         view.layer.cornerRadius = 12

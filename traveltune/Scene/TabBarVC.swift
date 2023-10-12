@@ -44,7 +44,7 @@ extension TabBarVC {
             case .home:
                 return ThemeVC(viewModel: ThemeViewModel())
             case .map:
-                return MapVC(viewModel: MapViewModel())
+                return MapHomeVC(viewModel: MapHomeViewModel())
             case .setting:
                 return SettingVC(viewModel: SettingViewModel())
             }

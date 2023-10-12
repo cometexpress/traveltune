@@ -1,5 +1,5 @@
 //
-//  MapVCProtocol.swift
+//  MapHomeVCProtocol.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/10/10.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol MapVCProtocol: AnyObject {
+protocol MapHomeVCProtocol: AnyObject {
     func regionButtonClicked(type: RegionType)
 }

@@ -1,5 +1,5 @@
 //
-//  MapView.swift
+//  MapHomeView.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/22.
@@ -13,9 +13,9 @@ struct RegionButtonItems {
     let isSelected: Bool
 }
 
-final class MapView: BaseView {
+final class MapHomeView: BaseView {
     
-    weak var mapVCProtocol: MapVCProtocol?
+    weak var mapVCProtocol: MapHomeVCProtocol?
     
     lazy var scrollView = UIScrollView().setup { view in
         view.delegate = self
@@ -293,7 +293,7 @@ final class MapView: BaseView {
     }
 }
 
-extension MapView: UIScrollViewDelegate {
+extension MapHomeView: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return containerView

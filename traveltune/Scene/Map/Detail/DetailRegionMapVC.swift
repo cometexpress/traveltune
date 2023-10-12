@@ -24,15 +24,11 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
      - iOS 시스템 설정 유도
      */
     
-//    lazy var locationManager: CLLocationManager = {
-//            let manager = CLLocationManager()
-//            manager.desiredAccuracy = kCLLocationAccuracyBest
-//            manager.startUpdatingLocation() // startUpdate를 해야 didUpdateLocation 메서드가 호출됨.
-//            manager.delegate = self
-//            return manager
-//        }()
+    private let locationManager = CLLocationManager()
     
-    let locationManager = CLLocationManager()
+    deinit {
+        locationManager.stopUpdatingLocation()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +69,6 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     }
     
     func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
-        print("stats =",status)
         switch status {
         case .notDetermined:
 //            print("최초로 앱을 유저가 실행했을 때")
@@ -152,10 +147,19 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         navigationItem.standardAppearance = appearance
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = false
+        
+        mainView.detailRegionMapViewProtocol = self
     }
     
     @objc private func backButtonClicked() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+extension DetailRegionMapVC: DetailRegionMapVCProtocol {
+    
+    func currentLocationClicked() {
+        mainView.mapView.setUserTrackingMode(.follow, animated: true)
     }
 }
 
@@ -166,5 +170,30 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 }
 
 extension DetailRegionMapVC: CLLocationManagerDelegate {
+    // 5. 사용자의 위치를 성공적으로 가지고 온 경우
+    // 한번만 실행되는 것이 아니라 위치가 계속 바뀌면 계속 호출됨 , iOS 위치 업데이트가 필요한 시점에 알아서 여러번 호출!!
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(#function ,locations)
+        
+//        if let coordinate = locations.last?.coordinate {
+//            print(coordinate)
+//            setRegionAndAnnotation(center: coordinate)
+//        }
+        // 위치 업데이트 그만하고 싶을 때
+//        locationManager.stopUpdatingLocation()
+    }
     
+    // 6. 사용자의 위치를 못가지고 왔을 경우 (사용자의 권한거부시에도 호출 됨)
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(#function, error.localizedDescription)
+    }
+
+    // 7. 사용자의 권한 상태가 바뀔 때를 얄려줌 (iOS 14 이상)
+    // 거부했다가 설정에서 변경을 했거나 ,notDetermained 상태에서 허용을 했거나
+    // 허용해서 위치를 가지고 오는 도중에 설정에서 거부를 하고 앱으로 다시 돌아올 때
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        // 어떤 권한인지는 모르고 권한이 바뀌는 것만 암,
+        print(#function)
+        checkDeviceLocationAuthorization()
+    }
 }
