@@ -12,4 +12,5 @@ final class DetailRegionMapViewModel: BaseViewModel {
     // 지역에서 넘어왔을 때
     var regionType: RegionType?
     
+    
 }

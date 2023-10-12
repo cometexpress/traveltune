@@ -553,18 +553,18 @@
 			children = (
 				C00839F52AC68DB700C17BD6 /* AudioImageView.swift */,
 				C00839F22AC67EBB00C17BD6 /* AudioUISlider.swift */,
+				C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */,
 				C00839F02AC5E6DE00C17BD6 /* CircleView.swift */,
 				C03592822ACD987A00AA3D36 /* CommonTabPagingVC.swift */,
 				C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */,
+				C05F535E2AD8036300E7FF28 /* ExcludeMapView.swift */,
 				C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */,
+				C0B6CA152AC99494005A0E2A /* PlayerBottomView */,
 				C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */,
 				C09A697C2ACB04CD002FA468 /* SearchTextField.swift */,
 				C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */,
-				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
-				C0B6CA152AC99494005A0E2A /* PlayerBottomView */,
-				C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */,
 				C02AA1242AD6AAAC007BA3AD /* StretchableUICollectionViewFlowLayout.swift */,
-				C05F535E2AD8036300E7FF28 /* ExcludeMapView.swift */,
+				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

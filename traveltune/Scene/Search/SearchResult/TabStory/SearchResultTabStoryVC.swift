@@ -75,7 +75,7 @@ extension SearchResultTabStoryVC: SearchResultTabStoryVCProtocol {
         )
         vc.viewModel?.detailStory.value = item
         vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: false)
+        present(vc, animated: true)
     }
     
     func willDisplay(page: Int) {

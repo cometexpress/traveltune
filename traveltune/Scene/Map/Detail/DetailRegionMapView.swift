@@ -19,7 +19,7 @@ final class DetailRegionMapView: BaseView {
     }
     
     private lazy var currentMyLocationView = CircleImageButtonView().setup { view in
-        view.setView(backgroundColor: .backgroundButton, image: .scope)
+        view.setView(backgroundColor: .primary, image: .scope)
         let tap = UITapGestureRecognizer(target: self, action: #selector(currentMyLocationClicked))
         view.addGestureRecognizer(tap)
     }

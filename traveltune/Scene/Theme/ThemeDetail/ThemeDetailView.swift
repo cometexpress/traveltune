@@ -43,7 +43,8 @@ final class ThemeDetailView: BaseView {
     }
     
     lazy var backButton = UIButton().setup { view in
-        view.setImage(.backCircle.withTintColor(.white, renderingMode: .alwaysTemplate), for: .normal)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
+        view.setImage(.xmark.withConfiguration(configuration).withTintColor(.white, renderingMode: .alwaysTemplate), for: .normal)
         view.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
     }
     
