@@ -72,6 +72,7 @@
 		C05F53612AD8058500E7FF28 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F53602AD8058500E7FF28 /* LocationManager.swift */; };
 		C05F53632AD8063D00E7FF28 /* DetailRegionMapVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F53622AD8063D00E7FF28 /* DetailRegionMapVCProtocol.swift */; };
 		C05F53662AD82D2E00E7FF28 /* CommonPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F53652AD82D2E00E7FF28 /* CommonPickerVC.swift */; };
+		C05F536A2AD83EAD00E7FF28 /* RequestStoryByLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F53692AD83EAD00E7FF28 /* RequestStoryByLocation.swift */; };
 		C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F92192AC3494F00427F6D /* UILabel+Extension.swift */; };
 		C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F921B2AC3F33000427F6D /* RequestSearchTravelSpots.swift */; };
 		C05F921F2AC3F4C600427F6D /* ThemeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F921E2AC3F4C600427F6D /* ThemeDetailVC.swift */; };
@@ -235,6 +236,7 @@
 		C05F53602AD8058500E7FF28 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C05F53622AD8063D00E7FF28 /* DetailRegionMapVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRegionMapVCProtocol.swift; sourceTree = "<group>"; };
 		C05F53652AD82D2E00E7FF28 /* CommonPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPickerVC.swift; sourceTree = "<group>"; };
+		C05F53692AD83EAD00E7FF28 /* RequestStoryByLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStoryByLocation.swift; sourceTree = "<group>"; };
 		C05F92192AC3494F00427F6D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		C05F921B2AC3F33000427F6D /* RequestSearchTravelSpots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSearchTravelSpots.swift; sourceTree = "<group>"; };
 		C05F921E2AC3F4C600427F6D /* ThemeDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailVC.swift; sourceTree = "<group>"; };
@@ -478,6 +480,7 @@
 				C0453D182AC6A3DB00C220A6 /* RequestStory.swift */,
 				C03592902ACDCD1200AA3D36 /* RequestSearchStory.swift */,
 				C091AA6A2AD3B57100A450E7 /* RequestTravelSpotsByLocation.swift */,
+				C05F53692AD83EAD00E7FF28 /* RequestStoryByLocation.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				C0E8BAB02ABDDD9700B1CCA6 /* SettingView.swift in Sources */,
 				C05F53632AD8063D00E7FF28 /* DetailRegionMapVCProtocol.swift in Sources */,
 				C05F53612AD8058500E7FF28 /* LocationManager.swift in Sources */,
+				C05F536A2AD83EAD00E7FF28 /* RequestStoryByLocation.swift in Sources */,
 				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
 				C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */,
 				C05F921C2AC3F33000427F6D /* RequestSearchTravelSpots.swift in Sources */,

@@ -39,5 +39,26 @@ final class StoryRepository {
                 completion(response)
             }
     }
-    
+ 
+    func requestStoryByLocation(
+        page: Int,
+        numOfRows: Int? = nil,
+        mapX: String,
+        mapY: String,
+        radius: String,
+        completion: @escaping (Result<ResponseStory, Error>) -> Void
+    ) {
+        network.request(
+            api: .locationStories(
+                request: RequestStoryByLocation(
+                    pageNo: String(page),
+                    numOfRows: String(numOfRows ?? Network.numOfRows),
+                    mapX: mapX,
+                    mapY: mapY,
+                    radius: radius)
+            ),
+            type: ResponseStory.self) { response in
+                completion(response)
+            }
+    }
 }
