@@ -48,11 +48,16 @@ final class MapFloatingPanelViewModel: BaseViewModel {
         ) { [weak self] response in
             switch response {
             case .success(let success):
-                let travelSpots = success.response.body.items.item
+                let travelSpots = success.response.body.items.item.sorted(by: { $0.imageURL > $1.imageURL })
                 
                 let dispatchGroup = DispatchGroup()
-                travelSpots.forEach { spotItem in
-                    self?.basedStory(dispatchGroup: dispatchGroup, item: spotItem)
+                travelSpots.enumerated().forEach { idx, spotItem in
+                    // TODO: 밤 12시 이후 테스트 필요
+                    if idx < 100 {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                            self?.basedStory(dispatchGroup: dispatchGroup, item: spotItem)
+                        }
+                    }                    
                 }
                 
                 dispatchGroup.notify(queue: .main) { [weak self] in
@@ -72,13 +77,15 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             switch response {
             case .success(let success):
                 let stories = success.response.body.items.item
+                print("스토리 갯", stories.count)
                 if !stories.isEmpty {
                     self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
                 }
                 
-            case .failure:
-                print("값 추가 오류일 때 값 추가 패스")
-//                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: []))
+            case .failure(let error):
+                print(error.localizedDescription)
+//                print("값 추가 오류일 때 값 추가 패스")
+                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: []))
             }
             dispatchGroup.leave()
         }

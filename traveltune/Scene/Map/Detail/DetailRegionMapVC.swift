@@ -19,14 +19,11 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.topItem?.title = naviTitle
+        navigationController?.navigationBar.topItem?.title = viewModel?.regionType?.name
     }
     
     func bindViewModel() {
-        if let regionName = viewModel?.regionType?.name {
-            naviTitle = regionName
-        }
-        print("naviTitle = \(naviTitle)")
+        
     }
     
     func configureVC() {
