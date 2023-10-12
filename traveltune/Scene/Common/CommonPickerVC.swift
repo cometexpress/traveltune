@@ -49,7 +49,7 @@ final class CommonPickerVC: UIViewController {
         configureLayout()
         
         if let selectedItem , let indexPosition = items.firstIndex(of: selectedItem){
-          pickerView.selectRow(indexPosition, inComponent: 0, animated: false)
+            pickerView.selectRow(indexPosition, inComponent: 0, animated: false)
         }
     }
     
@@ -58,7 +58,15 @@ final class CommonPickerVC: UIViewController {
     }
     
     @objc private func okButtonClicked() {
-//        dismiss(animated: true)
+        if let selectedItem {
+            NotificationCenter.default.post(
+                name: .regionChange,
+                object: nil,
+                userInfo:  [ "region" : selectedItem]
+            )
+        }
+        
+        dismiss(animated: true)
     }
     
     private func configureHierarchy() {
@@ -68,7 +76,7 @@ final class CommonPickerVC: UIViewController {
     }
     
     private func configureLayout() {
-
+        
         containerView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.equalTo(view.snp.width).multipliedBy(0.8)
@@ -105,6 +113,7 @@ extension CommonPickerVC: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerView.reloadComponent(component)
+        selectedItem = items[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
