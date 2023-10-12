@@ -42,6 +42,7 @@ struct Strings {
     
     struct TabMap {
         static let title = "tab_map_title".localized
+        static let detailTitle = "tab_detail_map_title".localized        
     }
     
     struct ThemeStory {

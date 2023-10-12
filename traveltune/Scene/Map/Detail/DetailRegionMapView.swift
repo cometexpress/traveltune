@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 import SnapKit
 
@@ -24,13 +23,38 @@ final class DetailRegionMapView: BaseView {
         view.addGestureRecognizer(tap)
     }
     
+    private lazy var selectRegionButton = UIButton().setup { view in
+        view.layer.cornerRadius = 8
+        view.clipsToBounds = true
+        view.addTarget(self, action: #selector(selectRegionButtonClicked), for: .touchUpInside)
+    }
+    
     @objc private func currentMyLocationClicked() {
         detailRegionMapViewProtocol?.currentLocationClicked()
+    }
+    
+    @objc private func selectRegionButtonClicked() {
+        detailRegionMapViewProtocol?.selectRegionButtonClicked()
+    }
+    
+    func updateButtonTitle(title: String) {
+        var attString = AttributedString(title)
+        attString.font = .systemFont(ofSize: 16, weight: .light)
+        var config = UIButton.Configuration.filled()
+        config.attributedTitle = attString
+        config.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
+        config.image = .chevronDown.withConfiguration(UIImage.SymbolConfiguration(pointSize: 12, weight: .light)).withTintColor(.white, renderingMode: .alwaysTemplate)
+        config.imagePadding = 4
+        config.imagePlacement = .trailing
+        config.baseBackgroundColor = .primary
+        config.baseForegroundColor = .white
+        selectRegionButton.configuration = config
     }
     
     override func configureHierarchy() {
         addSubview(mapView)
         addSubview(currentMyLocationView)
+        addSubview(selectRegionButton)
     }
     
     override func configureLayout() {
@@ -43,6 +67,11 @@ final class DetailRegionMapView: BaseView {
             make.top.equalTo(safeAreaLayoutGuide).inset(20)
             make.trailing.equalToSuperview().inset(20)
             make.size.equalTo(44)
+        }
+        
+        selectRegionButton.snp.makeConstraints { make in
+            make.centerY.equalTo(currentMyLocationView)
+            make.leading.equalToSuperview().inset(20)
         }
     }
 }

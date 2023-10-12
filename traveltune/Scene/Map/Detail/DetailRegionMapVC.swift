@@ -10,8 +10,6 @@ import CoreLocation
 
 final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailRegionMapViewModel> {
     
-    private var naviTitle = ""
-    
     deinit {
         LocationManager.shared.stopUpdating()
     }
@@ -41,11 +39,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navigationController?.navigationBar.topItem?.title = viewModel?.regionType?.name
-    }
-    
-    func bindViewModel() {
-        
+        navigationController?.navigationBar.topItem?.title = Strings.TabMap.detailTitle
     }
     
     func configureVC() {
@@ -71,6 +65,10 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         navigationController?.navigationBar.isTranslucent = false
         
         mainView.detailRegionMapViewProtocol = self
+    }
+    
+    func bindViewModel() {
+        mainView.updateButtonTitle(title: viewModel?.regionType?.name ?? "")
     }
     
     @objc private func backButtonClicked() {
@@ -110,6 +108,10 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
     
     func currentLocationClicked() {
         checkAvailableCurrentLocation()
+    }
+    
+    func selectRegionButtonClicked() {
+        showToast(msg: "지역 선택할 수 있는 BottomView 띄우기")
     }
 }
 

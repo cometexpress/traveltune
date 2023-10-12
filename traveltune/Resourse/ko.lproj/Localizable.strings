@@ -40,6 +40,7 @@
 
 // 하단 탭 맵
 "tab_map_title" = "지역선택";
+"tab_detail_map_title" = "지역상세";
 
 // 홈 테마 타이틀
 "theme_hangang" = "한강";

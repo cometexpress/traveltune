@@ -9,4 +9,5 @@ import Foundation
 
 protocol DetailRegionMapVCProtocol: AnyObject {
     func currentLocationClicked()
+    func selectRegionButtonClicked()    
 }
