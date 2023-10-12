@@ -9,7 +9,42 @@ import Foundation
 
 final class DetailRegionMapViewModel: BaseViewModel {
     
-    // 지역에서 넘어왔을 때
-    var regionType: RegionType?
+    enum DetailRegionMapUIState<T> {
+        case initValue
+        case loading
+        case success(data: T)
+        case error(msg: String)
+    }
     
+    private var storyRepository: StoryRepository
+    var regionType: RegionType
+    
+    init(
+        regionType: RegionType,
+        storyRepository: StoryRepository
+    ) {
+        self.regionType = regionType
+        self.storyRepository = storyRepository
+    }
+    
+    var state: Observable<DetailRegionMapUIState<[StoryItem]>> = Observable(.initValue)
+    
+    func fetchStoryByLocation(lat: Double, lng: Double) {
+        print("위치변경에 따른 이야기 데이터 업데이트")
+        state.value = .loading
+        storyRepository.requestStoryByLocation(
+            page: 1, 
+            numOfRows: 1000,
+            mapX: lng,
+            mapY: lat,
+            radius: Network.maxRadius) { [weak self] response in
+                switch response {
+                case .success(let success):
+                    let stories = success.response.body.items.item
+                    self?.state.value = .success(data: stories)
+                case .failure(let failure):
+                    self?.state.value = .error(msg: failure.localizedDescription)
+                }
+        }
+    }
 }

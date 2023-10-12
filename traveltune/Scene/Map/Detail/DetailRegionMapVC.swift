@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailRegionMapViewModel> {
     
@@ -14,13 +15,18 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         LocationManager.shared.stopUpdating()
     }
     
+    private var stories: [StoryItem] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
         bindViewModel()
+                
+        LocationManager.shared.locationManager.delegate = self
         
         // 위치 권한 상태값 확인
         LocationManager.shared.locationAuthorizationStatus.bind { [weak self] authrizationStatus in
+            guard let self else { return }
             switch authrizationStatus {
             case .initAuth: Void()
             case .none: Void()
@@ -28,11 +34,15 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 LocationManager.shared.requestAuthorization()
             case .denied:
                 // iOS 설정으로 보내라는 alert 띄우기
-                self?.showLocationSettingAlert()
+                self.showLocationSettingAlert()
             case .authorized:
                 // didUpDateLocationer
-                LocationManager.shared.startUpdating()
-                self?.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+                DispatchQueue.main.async {
+                    LocationManager.shared.startUpdating()
+                    self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
+                    self.mainView.mapView.showsUserLocation = true
+                    self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+                }
             }
         }
     }
@@ -65,6 +75,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         navigationController?.navigationBar.isTranslucent = false
         
         mainView.detailRegionMapViewProtocol = self
+        mainView.mapView.delegate = self
         
         // 지역변경 피커뷰 감지
         NotificationCenter.default.addObserver(
@@ -76,7 +87,29 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     }
     
     func bindViewModel() {
-        mainView.updateButtonTitle(title: viewModel?.regionType?.name ?? "")
+        guard let type = viewModel?.regionType else { return }
+        mainView.updateButtonTitle(title: type.name)
+        viewModel?.fetchStoryByLocation(lat: type.latitude, lng: type.longitude)
+        
+        viewModel?.state.bind { [weak self] state in
+            guard let self else { return }
+            switch state {
+            case .initValue: Void()
+            case .loading:
+                LoadingIndicator.show()
+            case .success(let data):
+                data.forEach { item in
+                    self.addMarker(story: item)
+                }
+                stories = data
+                // 모든 annotation 표시
+                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
+                LoadingIndicator.hide()
+            case .error:
+                self.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+                LoadingIndicator.hide()
+            }
+        }
     }
     
     @objc private func backButtonClicked() {
@@ -85,9 +118,35 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     
     @objc private func regionChangeObserver(notification: NSNotification) {
         if let region = notification.userInfo?["region"] as? String {
-            mainView.updateButtonTitle(title: region)
-            // TODO: 지역 변경되었을 때 api 통신하기
+            
+            if mainView.selectRegionButton.titleLabel?.text == region {
+                print("기존꺼 그대로 선택")
+                return
+            }
+            
+            let selectedRegionType = RegionType.allCases.first { $0.name == region }
+            if let selectedRegionType {
+                print("업데이트 데이터")
+                mainView.mapView.showsUserLocation = false
+                mainView.mapView.removeAnnotations(mainView.mapView.annotations)
+                mainView.updateButtonTitle(title: region)
+                viewModel?.fetchStoryByLocation(lat: selectedRegionType.latitude, lng: selectedRegionType.longitude)
+            }
         }
+    }
+    
+    private func addMarker(story: StoryItem) {
+        let lat = Double(story.mapY)
+        let lng = Double(story.mapX)
+        guard let lat, let lng else { return }
+        let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 400, longitudinalMeters: 400)
+        mainView.mapView.setRegion(region, animated: true)
+        // 지도에 어노테이션 추가
+        let annotation = MKPointAnnotation()
+        annotation.title = story.audioTitle
+        annotation.coordinate = center
+        mainView.mapView.addAnnotation(annotation)
     }
     
     // GPS, 위치권한 획득 확인
@@ -134,6 +193,46 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
     }
 }
 
+extension DetailRegionMapVC: MKMapViewDelegate {
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
+        if annotationView == nil {
+            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        let customAnnotaionImageUrl = stories.first { $0.audioTitle == annotation.title }?.imageURL ?? ""
+        
+        if customAnnotaionImageUrl.isEmpty {
+            let thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)).setup { view in
+                view.image = .defaultImg
+                view.layer.cornerRadius = 8
+                view.clipsToBounds = true
+            }
+            annotationView?.addSubview(thumbImageView)
+            
+        } else {
+            let thumbImageView = ThumbnailImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)).setup { view in
+                view.contentMode = .scaleAspectFill
+                view.layer.cornerRadius = 8
+                view.clipsToBounds = true
+            }
+            thumbImageView.addImage(url: customAnnotaionImageUrl)
+            annotationView?.addSubview(thumbImageView)
+        }
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print(view.annotation?.title, "clicked")
+    }
+}
+
+
+
 extension DetailRegionMapVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -141,16 +240,15 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 }
 
 extension DetailRegionMapVC: CLLocationManagerDelegate {
-    // 5. 사용자의 위치를 성공적으로 가지고 온 경우
-    // 한번만 실행되는 것이 아니라 위치가 계속 바뀌면 계속 호출됨 , iOS 위치 업데이트가 필요한 시점에 알아서 여러번 호출!!
+    
+    // TODO: 실행 테스트 필요
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function ,locations)
-        //        if let coordinate = locations.last?.coordinate {
-        //            print(coordinate)
-        //            setRegionAndAnnotation(center: coordinate)
-        //        }
-        // 위치 업데이트 그만하고 싶을 때
-        //        locationManager.stopUpdatingLocation()
+        if let coordinate = locations.last?.coordinate {
+            print("coordinate = \(coordinate)")
+            viewModel?.fetchStoryByLocation(lat: coordinate.latitude, lng: coordinate.longitude)
+//            LocationManager.shared.stopUpdating()
+        }
     }
     
     // 6. 사용자의 위치를 못가지고 왔을 경우 (사용자의 권한거부시에도 호출 됨)

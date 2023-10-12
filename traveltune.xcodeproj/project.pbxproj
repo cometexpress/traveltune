@@ -86,7 +86,7 @@
 		C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */; };
 		C06449FE2ACC3C4D005C8529 /* UITextfield+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */; };
 		C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */; };
-		C073F6512AD2D5B500EEE107 /* CustomAnnotaionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */; };
+		C073F6512AD2D5B500EEE107 /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6502AD2D5B500EEE107 /* CustomAnnotationView.swift */; };
 		C073F6542AD3074300EEE107 /* URLSchemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C073F6532AD3074300EEE107 /* URLSchemeManager.swift */; };
 		C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C07D8B152AD00D4800267C8B /* Notification+Extension.swift */; };
 		C07D8B182AD0358B00267C8B /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = C07D8B172AD0358B00267C8B /* launch_screen.png */; };
@@ -249,7 +249,7 @@
 		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
 		C06C933B2AC2B231006B26F6 /* ThemePagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemePagerCellView.swift; sourceTree = "<group>"; };
-		C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotaionView.swift; sourceTree = "<group>"; };
+		C073F6502AD2D5B500EEE107 /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		C073F6532AD3074300EEE107 /* URLSchemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSchemeManager.swift; sourceTree = "<group>"; };
 		C07D8B152AD00D4800267C8B /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		C07D8B172AD0358B00267C8B /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_screen.png; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 				C05824AC2AD419C700E34DF0 /* CircleImageButtonView.swift */,
 				C00839F02AC5E6DE00C17BD6 /* CircleView.swift */,
 				C03592822ACD987A00AA3D36 /* CommonTabPagingVC.swift */,
-				C073F6502AD2D5B500EEE107 /* CustomAnnotaionView.swift */,
+				C073F6502AD2D5B500EEE107 /* CustomAnnotationView.swift */,
 				C05F535E2AD8036300E7FF28 /* ExcludeMapView.swift */,
 				C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */,
 				C0B6CA152AC99494005A0E2A /* PlayerBottomView */,
@@ -1098,7 +1098,7 @@
 				C00C3CB42ACD2D2D00B89928 /* Results+Extension.swift in Sources */,
 				C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */,
 				C0F383632AD7095000DF276D /* DetailRegionMapViewModel.swift in Sources */,
-				C073F6512AD2D5B500EEE107 /* CustomAnnotaionView.swift in Sources */,
+				C073F6512AD2D5B500EEE107 /* CustomAnnotationView.swift in Sources */,
 				C03FE03D2ACFEB0400D02385 /* SearchResultStoryCell.swift in Sources */,
 				C06449F92ACC37D7005C8529 /* SearchVCProtocol.swift in Sources */,
 				C03FE0392ACFDB6600D02385 /* SettingViewModel.swift in Sources */,

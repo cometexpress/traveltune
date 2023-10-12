@@ -77,8 +77,13 @@ extension MapFloatingPanelVC: UICollectionViewDelegate, UICollectionViewDataSour
 extension MapFloatingPanelVC: MapFloatingPanelProtocol {
     
     func moveMapButtonClicked() {
-        let vc = DetailRegionMapVC(viewModel: DetailRegionMapViewModel())
-        vc.viewModel?.regionType = self.viewModel?.regionType
+        guard let regionType = self.viewModel?.regionType else { return }
+        let vc = DetailRegionMapVC(
+            viewModel: DetailRegionMapViewModel(
+                regionType: regionType,
+                storyRepository: StoryRepository()
+            )
+        )
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }

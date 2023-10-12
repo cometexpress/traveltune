@@ -12,7 +12,7 @@ final class LocationManager {
     static let shared = LocationManager()
     private init() {}
     
-    private var locationManager: CLLocationManager {
+    var locationManager: CLLocationManager {
         let manager = CLLocationManager()
         manager.desiredAccuracy = kCLLocationAccuracyBest
         return manager

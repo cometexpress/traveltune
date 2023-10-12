@@ -43,8 +43,8 @@ final class StoryRepository {
     func requestStoryByLocation(
         page: Int,
         numOfRows: Int? = nil,
-        mapX: String,
-        mapY: String,
+        mapX: Double,
+        mapY: Double,
         radius: String,
         completion: @escaping (Result<ResponseStory, Error>) -> Void
     ) {
@@ -53,8 +53,8 @@ final class StoryRepository {
                 request: RequestStoryByLocation(
                     pageNo: String(page),
                     numOfRows: String(numOfRows ?? Network.numOfRows),
-                    mapX: mapX,
-                    mapY: mapY,
+                    mapX: String(mapX),
+                    mapY: String(mapY),
                     radius: radius)
             ),
             type: ResponseStory.self) { response in

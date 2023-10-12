@@ -14,7 +14,10 @@ final class DetailRegionMapView: BaseView {
     weak var detailRegionMapViewProtocol: DetailRegionMapVCProtocol?
     
     let mapView = ExcludeMapView().setup { view in
-        view.showsUserLocation = true       // 유저 위치
+        view.showsUserLocation = false       // 유저 위치
+        view.setCameraZoomRange(.init(maxCenterCoordinateDistance: 1000000), animated: true)
+        view.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
+        
     }
     
     private lazy var currentMyLocationView = CircleImageButtonView().setup { view in
@@ -23,7 +26,7 @@ final class DetailRegionMapView: BaseView {
         view.addGestureRecognizer(tap)
     }
     
-    private lazy var selectRegionButton = UIButton().setup { view in
+    lazy var selectRegionButton = UIButton().setup { view in
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
         view.addTarget(self, action: #selector(selectRegionButtonClicked(_ :)), for: .touchUpInside)
@@ -39,7 +42,7 @@ final class DetailRegionMapView: BaseView {
     
     func updateButtonTitle(title: String) {
         var attString = AttributedString(title)
-        attString.font = .systemFont(ofSize: 16, weight: .light)
+        attString.font = .systemFont(ofSize: 16, weight: .semibold)
         var config = UIButton.Configuration.filled()
         config.attributedTitle = attString
         config.contentInsets = .init(top: 6, leading: 12, bottom: 6, trailing: 12)
