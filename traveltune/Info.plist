@@ -2,18 +2,20 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>tmap</string>
-        <string>nmap</string>
-        <string>kakaomap</string>
-    </array>
-    <key>FirebaseAutomaticScreenReportingEnabled</key>
-    <false/>
-    <key>FirebaseScreenReportingEnabled</key>
-    <false/>
-    <key>FirebaseAppDelegateProxyEnabled</key>
-    <false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>내 주변 관광지를 확인하기 위해 위치 권한을 허용해주세요</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tmap</string>
+		<string>nmap</string>
+		<string>kakaomap</string>
+	</array>
+	<key>FirebaseAutomaticScreenReportingEnabled</key>
+	<false/>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pavelt 400.otf</string>

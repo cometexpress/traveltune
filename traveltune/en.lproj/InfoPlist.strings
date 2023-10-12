@@ -7,3 +7,5 @@
 */
 
 "CFBundleDisplayName" = "TravelTune";
+
+"NSLocationWhenInUseUsageDescription" = "Please allow location permission to check out tourist attractions near me.";

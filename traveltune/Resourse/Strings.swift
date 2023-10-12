@@ -14,6 +14,7 @@ struct Strings {
         static let play = "common_play".localized
         static let ok = "common_ok".localized
         static let cancel = "common_cancel".localized
+        static let move = "common_move".localized
         static let selectPlayStory = "select_play_story".localized
         static let searchButton = "search_button".localized
         static let searchPlaceHolder = "search_place_holder".localized
@@ -26,6 +27,8 @@ struct Strings {
         static let storyItemsCount = "story_items_count".localized
         static let touristDestination = "tourist_destination".localized
         static let storyList = "story_list".localized
+        static let locationServices = "location_services".localized
+        static let locationServicesGuide = "location_services_guide".localized
     }
     
     struct ErrorMsg {

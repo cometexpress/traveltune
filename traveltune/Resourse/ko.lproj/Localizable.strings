@@ -10,6 +10,7 @@
 "common_play" = "play";
 "common_ok" = "확인";
 "common_cancel" = "취소";
+"common_move" = "이동";
 "select_play_story" = "이야기를 선택해주세요";
 "search_button" = "검색";
 "search_place_holder" = "검색어를 입력해주세요";
@@ -22,6 +23,8 @@
 "story_items_count" = "이야기 %d개";
 "tourist_destination" = "관광지";
 "story_list" = "이야기 목록";
+"location_services" = "위치 서비스";
+"location_services_guide" = "설정 > 개인정보 보호에서 위치 서비스를 켜주세요";
 
 
 // 에러메시지

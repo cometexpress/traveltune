@@ -77,7 +77,6 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             switch response {
             case .success(let success):
                 let stories = success.response.body.items.item
-                print("스토리 갯", stories.count)
                 if !stories.isEmpty {
                     self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
                 }

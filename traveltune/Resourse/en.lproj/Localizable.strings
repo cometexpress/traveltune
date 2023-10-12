@@ -10,6 +10,7 @@
 "common_play" = "play";
 "common_ok" = "OK";
 "common_cancel" = "Cancel";
+"common_move" = "Move";
 "select_play_story" = "Select Story";
 "search_button" = "Search";
 "search_place_holder" = "Please enter a search word";
@@ -22,6 +23,8 @@
 "story_items_count" = "%d stories";
 "tourist_destination" = "Tourist spot";
 "story_list" = "List of stories";
+"location_services" = "Location services";
+"location_services_guide" = "Please turn on location services in Settings > Privacy";
 
 
 // 에러메시지
@@ -31,6 +34,7 @@
 "error_no_file" = "Be preparing a file";
 "error_first_story" = "This is the first story";
 "error_last_story" = "This is the last story";
+
 
 // 홈 네비 타이틀
 "home_nav_title" = "travel tune";
