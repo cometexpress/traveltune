@@ -12,7 +12,7 @@ final class DetailRegionMapViewModel: BaseViewModel {
     enum DetailRegionMapUIState<T> {
         case initValue
         case loading
-        case success(data: T)
+        case success(data: T, lat: Double, lng: Double)
         case error(msg: String)
     }
     
@@ -41,7 +41,7 @@ final class DetailRegionMapViewModel: BaseViewModel {
                 switch response {
                 case .success(let success):
                     let stories = success.response.body.items.item
-                    self?.state.value = .success(data: stories)
+                    self?.state.value = .success(data: stories, lat: lat, lng: lng)
                 case .failure(let failure):
                     self?.state.value = .error(msg: failure.localizedDescription)
                 }

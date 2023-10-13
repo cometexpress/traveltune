@@ -22,29 +22,10 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         configureVC()
         bindViewModel()
                 
+        LocationManager.shared.startUpdating()
         LocationManager.shared.locationManager.delegate = self
         
-        // 위치 권한 상태값 확인
-        LocationManager.shared.locationAuthorizationStatus.bind { [weak self] authrizationStatus in
-            guard let self else { return }
-            switch authrizationStatus {
-            case .initAuth: Void()
-            case .none: Void()
-            case .notDetermined:
-                LocationManager.shared.requestAuthorization()
-            case .denied:
-                // iOS 설정으로 보내라는 alert 띄우기
-                self.showLocationSettingAlert()
-            case .authorized:
-                // didUpDateLocationer
-                DispatchQueue.main.async {
-                    LocationManager.shared.startUpdating()
-                    self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
-                    self.mainView.mapView.showsUserLocation = true
-                    self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
-                }
-            }
-        }
+        bindLocationAuthStatus()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -97,17 +78,53 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             case .initValue: Void()
             case .loading:
                 LoadingIndicator.show()
-            case .success(let data):
+            case .success(let data, let lat, let lng):
                 data.forEach { item in
                     self.addMarker(story: item)
                 }
                 stories = data
+                
+                let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                let region = MKCoordinateRegion(center: center, latitudinalMeters: 100000, longitudinalMeters: 100000)
+                self.mainView.mapView.setRegion(region, animated: true)
+                
                 // 모든 annotation 표시
-                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
+//                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
+                
                 LoadingIndicator.hide()
             case .error:
                 self.showToast(msg: Strings.ErrorMsg.errorLoadingData)
                 LoadingIndicator.hide()
+            }
+        }
+    }
+    
+    // 위치 권한 상태값 확인
+    private func bindLocationAuthStatus() {
+        LocationManager.shared.locationAuthorizationStatus.bind { [weak self] authrizationStatus in
+            guard let self else { return }
+            switch authrizationStatus {
+            case .initAuth: Void()
+            case .none: Void()
+            case .notDetermined:
+                LocationManager.shared.requestAuthorization()
+            case .denied:
+                // iOS 설정으로 보내라는 alert 띄우기
+                self.showLocationSettingAlert()
+            case .authorized:
+                // didUpDateLocationer
+                DispatchQueue.main.async {
+                    LocationManager.shared.startUpdating()
+                    self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
+//                    self.mainView.mapView.showsUserLocation = true
+                    self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+                    guard let userLocation = self.mainView.mapView.userLocation.location else {
+                        print("유저 위치 없음")
+                        return
+                    }
+                    self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
+                    self.mainView.updateButtonTitle(title: "현재 위치")
+                }
             }
         }
     }
@@ -127,7 +144,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             let selectedRegionType = RegionType.allCases.first { $0.name == region }
             if let selectedRegionType {
                 print("업데이트 데이터")
-                mainView.mapView.showsUserLocation = false
+//                mainView.mapView.showsUserLocation = false
                 mainView.mapView.removeAnnotations(mainView.mapView.annotations)
                 mainView.updateButtonTitle(title: region)
                 viewModel?.fetchStoryByLocation(lat: selectedRegionType.latitude, lng: selectedRegionType.longitude)
@@ -140,7 +157,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         let lng = Double(story.mapX)
         guard let lat, let lng else { return }
         let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 400, longitudinalMeters: 400)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 200, longitudinalMeters: 200)
         mainView.mapView.setRegion(region, animated: true)
         // 지도에 어노테이션 추가
         let annotation = MKPointAnnotation()
@@ -197,39 +214,46 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
-        if annotationView == nil {
-            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier).setup { view in
-                view.canShowCallout = false
-            }
-        } else {
-            annotationView?.annotation = annotation
-        }
         
-        let customAnnotaionImageUrl = stories.first { $0.audioTitle == annotation.title }?.imageURL ?? ""
-        
-        if customAnnotaionImageUrl.isEmpty {
-            let thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)).setup { view in
-                view.image = .defaultImg
-                view.layer.cornerRadius = 8
-                view.clipsToBounds = true
-            }
-            annotationView?.addSubview(thumbImageView)
+        switch annotation {
+        case is MKClusterAnnotation:
+            let clusterAnotaionView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
+            return clusterAnotaionView
+        case is MKPointAnnotation:
+            self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier, for: annotation)
+            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier) as? CustomAnnotationView
             
-        } else {
-            let thumbImageView = ThumbnailImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40)).setup { view in
-                view.contentMode = .scaleAspectFill
-                view.layer.cornerRadius = 8
-                view.clipsToBounds = true
+            if annotationView == nil {
+                annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier).setup { view in
+                    view.canShowCallout = false
+                }
+            } else {
+                annotationView!.annotation = annotation
             }
-            thumbImageView.addImage(url: customAnnotaionImageUrl)
-            annotationView?.addSubview(thumbImageView)
+            
+            let customAnnotaionImageUrl = stories.first { $0.audioTitle == annotation.title }?.imageURL ?? ""
+            annotationView?.addImage(imagePath: customAnnotaionImageUrl)
+            return annotationView
+            
+        default:
+            return nil
         }
-        return annotationView
+        
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print(view.annotation?.title, "clicked")
+    }
+    
+    func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
+        return MKClusterAnnotation(memberAnnotations: memberAnnotations)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print(#function, "regionDidChangeAnimated")
+//        if let activeCluster = mapView.selectedAnnotations.first(where: { $0.isKind(of: MKClusterAnnotation.self)}) as? MKClusterAnnotation {
+//            self.mainView.mapView.delegate?.drawCluster(annotations: activeCluster.memberAnnotations ?? [])
+//        }
     }
 }
 

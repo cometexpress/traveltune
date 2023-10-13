@@ -14,10 +14,10 @@ final class DetailRegionMapView: BaseView {
     weak var detailRegionMapViewProtocol: DetailRegionMapVCProtocol?
     
     let mapView = ExcludeMapView().setup { view in
-        view.showsUserLocation = false       // 유저 위치
+        view.showsUserLocation = true       // 유저 위치
         view.setCameraZoomRange(.init(maxCenterCoordinateDistance: 1000000), animated: true)
         view.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
-        
+        view.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
     
     private lazy var currentMyLocationView = CircleImageButtonView().setup { view in
