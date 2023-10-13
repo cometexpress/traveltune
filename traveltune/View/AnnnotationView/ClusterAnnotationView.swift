@@ -15,7 +15,7 @@ final class ClusterAnnotationView: MKAnnotationView {
         collisionMode = .circle
         centerOffset = CGPoint(x: 0, y: -10) // Offset center point to animate better with marker annotations
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -24,16 +24,18 @@ final class ClusterAnnotationView: MKAnnotationView {
         super.prepareForDisplay()
         
         if let cluster = annotation as? MKClusterAnnotation {
-            let totalAnnotation = cluster.memberAnnotations.count
-            image = drawCount(count: totalAnnotation)
-            displayPriority = .defaultHigh
+            let memberAnnotations = cluster.memberAnnotations.count
+            if memberAnnotations > 1 {
+                image = drawCount(count: memberAnnotations)
+                displayPriority = .defaultHigh
+            }
         }
     }
-
+    
     private func drawCount(count: Int) -> UIImage {
         return drawRatio(0, to: count, fractionColor: nil, wholeColor: .backgroundButton)
     }
-
+    
     private func drawRatio(_ fraction: Int, to whole: Int, fractionColor: UIColor?, wholeColor: UIColor?) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
         return renderer.image { _ in
@@ -47,5 +49,5 @@ final class ClusterAnnotationView: MKAnnotationView {
             text.draw(in: rect, withAttributes: attributes)
         }
     }
-
+    
 }

@@ -24,6 +24,12 @@ class CustomAnnotationView: MKAnnotationView {
         size: CGSize(width: 20, height: 20))
     )
     
+    override var annotation: MKAnnotation? {
+        willSet {
+            clusteringIdentifier = CustomAnnotationView.identifier
+        }
+    }
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
