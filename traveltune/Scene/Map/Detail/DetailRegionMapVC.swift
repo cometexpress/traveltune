@@ -242,22 +242,24 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view.annotation?.title, "clicked")
+        switch view {
+        case is ClusterAnnotationView:
+            if let cluster = view.annotation as? MKClusterAnnotation {
+                let memberAnnotations = cluster.memberAnnotations
+                memberAnnotations.forEach { annotation in
+                    print("cluster = ", annotation.title)
+                }
+            }
+        case is CustomAnnotationView:
+            print("basic = ", view.annotation?.title, "clicked")
+        default: Void()
+        }
     }
     
     func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
         return MKClusterAnnotation(memberAnnotations: memberAnnotations)
     }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        print(#function, "regionDidChangeAnimated")
-//        if let activeCluster = mapView.selectedAnnotations.first(where: { $0.isKind(of: MKClusterAnnotation.self)}) as? MKClusterAnnotation {
-//            self.mainView.mapView.delegate?.drawCluster(annotations: activeCluster.memberAnnotations ?? [])
-//        }
-    }
 }
-
-
 
 extension DetailRegionMapVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -268,18 +270,18 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 extension DetailRegionMapVC: CLLocationManagerDelegate {
     
     // TODO: 실행 테스트 필요
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(#function ,locations)
-        if let coordinate = locations.last?.coordinate {
-            print("coordinate = \(coordinate)")
-            viewModel?.fetchStoryByLocation(lat: coordinate.latitude, lng: coordinate.longitude)
-//            LocationManager.shared.stopUpdating()
-        }
-    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print(#function ,locations)
+//        if let coordinate = locations.last?.coordinate {
+//            print("coordinate = \(coordinate)")
+//            viewModel?.fetchStoryByLocation(lat: coordinate.latitude, lng: coordinate.longitude)
+////            LocationManager.shared.stopUpdating()
+//        }
+//    }
     
-    // 6. 사용자의 위치를 못가지고 왔을 경우 (사용자의 권한거부시에도 호출 됨)
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function, error.localizedDescription)
+        showToast(msg: Strings.ErrorMsg.errorLocation)
     }
     
     // 7. 사용자의 권한 상태가 바뀔 때를 얄려줌 (iOS 14 이상)

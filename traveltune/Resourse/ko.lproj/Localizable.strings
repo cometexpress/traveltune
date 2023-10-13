@@ -28,7 +28,8 @@
 
 
 // 에러메시지
-"error_network" = "네크워크 연결을 확인해주세요";
+"error_network" = "네트워크 연결을 확인해주세요";
+"error_location" = "현재 위치를 가져오는데 오류가 발생했어요";
 "error_restart_app" = "앱을 재실행 해주세요";
 "error_loading_data" = "데이터를 불러오는 중에 오류가 발생했어요";
 "error_no_file" = "파일을 준비중이에요";

@@ -33,11 +33,12 @@ struct Strings {
     
     struct ErrorMsg {
         static let errorNetwork = "error_network".localized
+        static let errorLocation = "error_location".localized
         static let errorRestartApp = "error_restart_app".localized
         static let errorLoadingData = "error_loading_data".localized
         static let errorFirstStory = "error_first_story".localized
         static let errorLastStory = "error_last_story".localized
-        static let errorNoFile = "error_no_file".localized
+        static let errorNoFile = "error_no_file".localized        
     }
     
     struct TabMap {

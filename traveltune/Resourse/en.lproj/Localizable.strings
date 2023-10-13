@@ -29,6 +29,7 @@
 
 // 에러메시지
 "error_network" = "Please check network";
+"error_location" = "There was an error retrieving your current location";
 "error_restart_app" = "Please restart app";
 "error_loading_data" = "Error trying to load data";
 "error_no_file" = "Be preparing a file";
