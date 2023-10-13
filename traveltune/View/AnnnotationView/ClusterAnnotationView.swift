@@ -26,19 +26,15 @@ final class ClusterAnnotationView: MKAnnotationView {
         if let cluster = annotation as? MKClusterAnnotation {
             let memberAnnotations = cluster.memberAnnotations.count
             if memberAnnotations > 1 {
-                image = drawCount(count: memberAnnotations)
+                defaultDrawRatio(to: memberAnnotations, wholeColor: .backgroundButton)
                 displayPriority = .defaultHigh
             }
         }
     }
     
-    private func drawCount(count: Int) -> UIImage {
-        return drawRatio(0, to: count, fractionColor: nil, wholeColor: .backgroundButton)
-    }
-    
-    private func drawRatio(_ fraction: Int, to whole: Int, fractionColor: UIColor?, wholeColor: UIColor?) -> UIImage {
+    func defaultDrawRatio(to whole: Int, wholeColor: UIColor?) {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
-        return renderer.image { _ in
+        let defaultImage = renderer.image { _ in
             wholeColor?.setFill()
             UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
             let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
@@ -48,6 +44,23 @@ final class ClusterAnnotationView: MKAnnotationView {
             let rect = CGRect(x: 20 - size.width / 2, y: 20 - size.height / 2, width: size.width, height: size.height)
             text.draw(in: rect, withAttributes: attributes)
         }
+        image = defaultImage
+        setNeedsLayout()
     }
     
+    func selectedDrawRatio(to whole: Int, wholeColor: UIColor?) {
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
+        let selectedImage = renderer.image { _ in
+            wholeColor?.setFill()
+            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
+            let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
+                               NSAttributedString.Key.font: UIFont.monospacedSystemFont(ofSize: 18, weight: .regular)]
+            let text = "\(whole)"
+            let size = text.size(withAttributes: attributes)
+            let rect = CGRect(x: 20 - size.width / 2, y: 20 - size.height / 2, width: size.width, height: size.height)
+            text.draw(in: rect, withAttributes: attributes)
+        }
+        image = selectedImage
+        setNeedsLayout()
+    }
 }

@@ -25,6 +25,7 @@
 "story_list" = "List of stories";
 "location_services" = "Location services";
 "location_services_guide" = "Please turn on location services in Settings > Privacy";
+"current_location" = "Current location";
 
 
 // 에러메시지

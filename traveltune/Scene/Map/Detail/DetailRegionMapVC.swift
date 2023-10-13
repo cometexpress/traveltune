@@ -123,7 +123,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                         return
                     }
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
-                    self.mainView.updateButtonTitle(title: "현재 위치")
+                    self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
                 }
             }
         }
@@ -238,26 +238,53 @@ extension DetailRegionMapVC: MKMapViewDelegate {
         default:
             return nil
         }
-        
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        // TODO: 어노테이션은 클릭시 그냥 하단 컬렉션뷰에 리스트아이템 1개 추가해서 보여주기
+        // TODO: 클러스터링은 클릭시 색깔 변화시킨 후 하단 컬렉션뷰에 리스트 띄우기
+      
         switch view {
         case is ClusterAnnotationView:
+            let selectedClusterView = view as? ClusterAnnotationView
             if let cluster = view.annotation as? MKClusterAnnotation {
                 let memberAnnotations = cluster.memberAnnotations
-                memberAnnotations.forEach { annotation in
-                    print("cluster = ", annotation.title)
-                }
+                selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
+//                memberAnnotations.forEach { annotation in
+//                    print("cluster = ", annotation.title)
+//                }
             }
+            
         case is CustomAnnotationView:
-            print("basic = ", view.annotation?.title, "clicked")
+            let selectedAnnotationView = view as? CustomAnnotationView
+            guard let selectedAnnotationView else { return }
+            print(#function, view.annotation?.title, " clicked")
         default: Void()
         }
     }
     
     func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
         return MKClusterAnnotation(memberAnnotations: memberAnnotations)
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        switch view {
+        case is ClusterAnnotationView:
+            let deSelectedClusterView = view as? ClusterAnnotationView
+            if let cluster = view.annotation as? MKClusterAnnotation {
+                let memberAnnotations = cluster.memberAnnotations
+                deSelectedClusterView?.defaultDrawRatio(to: memberAnnotations.count, wholeColor: .backgroundButton)
+//                memberAnnotations.forEach { annotation in
+//                    print("cluster = ", annotation.title)
+//                }
+            }
+//        case is CustomAnnotationView:
+//            let selectedAnnotationView = view as? CustomAnnotationView
+//            guard let selectedAnnotationView else { return }
+//            print(#function, view.annotation?.title, "클릭 해제")
+//            selectedAnnotationView.resetAnnotationView()
+        default: Void()
+        }
     }
 }
 

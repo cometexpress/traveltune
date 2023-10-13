@@ -12,7 +12,10 @@ class CustomAnnotationView: MKAnnotationView {
     
     static let identifier = "CustomAnnotationView"
     
-    private let thumbImageView = ThumbnailImageView(frame: CGRect(x: 0, y: 0, width: 30, height: 30)).setup { view in
+    private let defaultSize = 30
+    private let selectedSize = 100
+    
+    private lazy var thumbImageView = ThumbnailImageView(frame: .init(x: 0, y: 0, width: defaultSize, height: defaultSize)).setup { view in
         view.image = .defaultImg
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -32,10 +35,7 @@ class CustomAnnotationView: MKAnnotationView {
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        
         displayPriority = .defaultLow
-//        frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         clusteringIdentifier = CustomAnnotationView.identifier
         setUI()
     }
@@ -48,20 +48,22 @@ class CustomAnnotationView: MKAnnotationView {
     override func layoutSubviews() {
         super.layoutSubviews()
         // MKAnnotationView 크기를 backgroundView 크기 만큼 정해줌.
-        bounds.size = CGSize(width: 50, height: 50)
-        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+        //        bounds.size = CGSize(width: 50, height: 50)
+        //        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
     }
-
+    
     override func prepareForDisplay() {
         super.prepareForDisplay()
         displayPriority = .defaultLow
-//        glyphImage = #imageLiteral(resourceName: "unicycle")
+        thumbImageView.image = nil
     }
     
     private func setUI() {
+        frame = CGRect(x: 0, y: 0, width: defaultSize, height: defaultSize)
+        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         addSubview(thumbImageView)
         backgroundColor = .clear
-//        canShowCallout = true
+        //        canShowCallout = true
         accessoryView.setImage(.locationArrow, for: .normal)
         rightCalloutAccessoryView = accessoryView
         rightCalloutAccessoryView?.tintColor = .txtSecondary
@@ -72,5 +74,20 @@ class CustomAnnotationView: MKAnnotationView {
             thumbImageView.addImage(url: imagePath)
         }
     }
+    
+//    func selectedAnnotationView() {
+//        thumbImageView.bounds = .init(x: 0, y: 0, width: selectedSize, height: selectedSize)
+//        bounds.size = CGSize(width: selectedSize, height: selectedSize)
+//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+//        setNeedsLayout()
+//    }
+//    
+//    func resetAnnotationView() {
+//        thumbImageView.bounds = .init(x: 0, y: 0, width: defaultSize, height: defaultSize)
+//        bounds.size = CGSize(width: 100, height: 100)
+//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
+//        setNeedsLayout()
+//    }
+    
 }
 
