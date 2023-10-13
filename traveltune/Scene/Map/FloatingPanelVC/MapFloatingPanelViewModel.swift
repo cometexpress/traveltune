@@ -41,7 +41,7 @@ final class MapFloatingPanelViewModel: BaseViewModel {
     func fetchMapSpotItems() {
         travelSpotRepository.requestTravelSpotsByLocation(
             page: 1,
-            numOfRows: Network.numOfRowsByAllData,
+            numOfRows: Network.numOfRowsByAllData / 2,
             mapX: String(regionType.longitude),
             mapY: String(regionType.latitude),
             radius: "15000"
@@ -52,12 +52,10 @@ final class MapFloatingPanelViewModel: BaseViewModel {
                 
                 let dispatchGroup = DispatchGroup()
                 travelSpots.enumerated().forEach { idx, spotItem in
-                    // TODO: 밤 12시 이후 테스트 필요
-                    if idx < 100 {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                            self?.basedStory(dispatchGroup: dispatchGroup, item: spotItem)
-                        }
-                    }                    
+                    dispatchGroup.enter()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        self?.basedStory(dispatchGroup: dispatchGroup, item: spotItem)
+                    }
                 }
                 
                 dispatchGroup.notify(queue: .main) { [weak self] in
@@ -72,7 +70,6 @@ final class MapFloatingPanelViewModel: BaseViewModel {
     }
     
     private func basedStory(dispatchGroup: DispatchGroup, item: TravelSpotItem) {
-        dispatchGroup.enter()
         storyRepository.requestBasedStory(item: item) { [weak self] response in
             switch response {
             case .success(let success):
@@ -83,8 +80,7 @@ final class MapFloatingPanelViewModel: BaseViewModel {
                 
             case .failure(let error):
                 print(error.localizedDescription)
-//                print("값 추가 오류일 때 값 추가 패스")
-                self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: []))
+                print("값 추가 오류일 때 값 추가 패스")
             }
             dispatchGroup.leave()
         }

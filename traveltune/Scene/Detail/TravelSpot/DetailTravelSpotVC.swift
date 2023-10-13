@@ -123,7 +123,9 @@ extension DetailTravelSpotVC: MKMapViewDelegate {
         
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         if annotationView == nil {
-            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier).setup { view in
+                view.canShowCallout = true
+            }
         } else {
             annotationView?.annotation = annotation
         }

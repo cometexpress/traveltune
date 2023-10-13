@@ -34,7 +34,7 @@ class CustomAnnotationView: MKAnnotationView {
 
     private func setUI() {
         backgroundColor = .clear
-        canShowCallout = true
+//        canShowCallout = true
         
         let accessoryView = UIButton(frame: CGRect(
             origin: CGPoint.zero,

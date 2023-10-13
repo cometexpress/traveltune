@@ -37,14 +37,14 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
     
     func bindViewModel() {
         // 지도상세 개발 중 주석처리
-//        viewModel?.fetchMapSpotItems()
-        LoadingIndicator.hide()
+        viewModel?.fetchMapSpotItems()
         viewModel?.state.bind { [weak self] state in
             switch state {
             case .initValue: Void()
             case .loading:
                 LoadingIndicator.show()
             case .success(let data):
+                dump(data)
                 self?.mapSpotItems = data
                 LoadingIndicator.hide()
             case .error(let msg):

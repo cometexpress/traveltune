@@ -199,7 +199,9 @@ extension DetailRegionMapVC: MKMapViewDelegate {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
         if annotationView == nil {
-            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier).setup { view in
+                view.canShowCallout = false
+            }
         } else {
             annotationView?.annotation = annotation
         }
