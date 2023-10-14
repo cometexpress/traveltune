@@ -48,7 +48,7 @@ final class DetailRegionMapView: BaseView {
         view.bounces = false
         // 스크롤 시 빠르게 감속 되도록 설정
         view.decelerationRate = .fast
-        view.register(SearchResultStoryCell.self, forCellWithReuseIdentifier: SearchResultStoryCell.identifier)
+        view.register(MapCarouselCell.self, forCellWithReuseIdentifier: MapCarouselCell.identifier)
         
         let insetX = (deviceWidth - cellWidth) / 2.0
         view.contentInset = .init(top: 0, left: insetX, bottom: 0, right: insetX)
@@ -127,10 +127,13 @@ extension DetailRegionMapView: UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchResultStoryCell.identifier, for: indexPath) as? SearchResultStoryCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapCarouselCell.identifier, for: indexPath) as? MapCarouselCell else {
             return UICollectionViewCell()
         }
-        cell.backgroundColor = .systemRed
+        // TODO: 데이터 연결
+//        cell.configCell(row: <#T##StoryItem#>)
+//        cell.calculationDistance(currentLat: <#T##Double#>, currentLng: <#T##Double#>)
+        
         return cell
     }
 
@@ -156,17 +159,14 @@ extension DetailRegionMapView: UICollectionViewDelegate, UICollectionViewDataSou
             roundedIndex = round(index)
         }
         
-        if isOneStepPaging {
-            if currentIndex > roundedIndex {
-                currentIndex -= 1
-                roundedIndex = currentIndex
-            } else if currentIndex < roundedIndex {
-                currentIndex += 1
-                roundedIndex = currentIndex
-            }
+        if currentIndex > roundedIndex {
+            currentIndex -= 1
+            roundedIndex = currentIndex
+        } else if currentIndex < roundedIndex {
+            currentIndex += 1
+            roundedIndex = currentIndex
         }
         
-        // 위 코드를 통해 페이징 될 좌표값을 targetContentOffset에 대입하면 된다.
         offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
         targetContentOffset.pointee = offset
     }
