@@ -91,7 +91,12 @@ final class SearchResultStoryCell: BaseCollectionViewCell<StoryItem> {
     override func configCell(row: StoryItem) {
         thumbImageView.addImage(url: row.imageURL)
         titleLabel.text = row.audioTitle
-        scriptLabel.text = row.script.replacingOccurrences(of: "  ", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        if row.script.isEmpty {
+            scriptLabel.text = Strings.Common.scriptInfoNoData
+        } else {
+            scriptLabel.text = item.script.replacingOccurrences(of: "  ", with: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
         playTimeLabel.text = "ᐅ " + row.convertTime
     }
     

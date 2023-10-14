@@ -26,6 +26,7 @@
 "location_services" = "Location services";
 "location_services_guide" = "Please turn on location services in Settings > Privacy";
 "current_location" = "Current location";
+"script_info_no_data" = "There is no script information";
 
 
 // 에러메시지

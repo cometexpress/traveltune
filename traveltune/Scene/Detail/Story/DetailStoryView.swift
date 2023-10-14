@@ -119,9 +119,14 @@ final class DetailStoryView: BaseView {
         titleLabel.text = item.title
         audioTitleLabel.text = item.audioTitle
         playTimeLabel.text = item.convertTime
-        scriptLabel.text = item.script.replacingOccurrences(of: "  ", with: "\n\n")
-        scriptLabel.setLineSpacing(spacing: 6)
-
+        
+        if item.script.isEmpty {
+            scriptLabel.text = Strings.Common.scriptInfoNoData
+        } else {
+            scriptLabel.text = item.script.replacingOccurrences(of: "  ", with: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines)
+            scriptLabel.setLineSpacing(spacing: 6)
+        }
+        
         if item.imageURL.isEmpty {
             circleImageView.image = .defaultImg
             backBlurImageView.image = .defaultImg

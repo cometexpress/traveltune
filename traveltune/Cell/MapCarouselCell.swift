@@ -106,7 +106,12 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
     override func configCell(row: StoryItem) {
         thumbImageView.addImage(url: row.imageURL)
         titleLabel.text = row.audioTitle
-        scriptLabel.text = row.script.replacingOccurrences(of: "  ", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
+        if row.script.isEmpty {
+            scriptLabel.text = Strings.Common.scriptInfoNoData
+        } else {
+            scriptLabel.text = row.script.replacingOccurrences(of: "  ", with: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        
     }
     
     func calculationDistance(row: StoryItem, currentLat: Double, currentLng: Double) {

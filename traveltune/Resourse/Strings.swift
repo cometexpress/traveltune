@@ -30,6 +30,7 @@ struct Strings {
         static let locationServices = "location_services".localized
         static let locationServicesGuide = "location_services_guide".localized
         static let currentLocation = "current_location".localized
+        static let scriptInfoNoData = "script_info_no_data".localized
     }
     
     struct ErrorMsg {

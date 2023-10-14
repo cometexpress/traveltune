@@ -26,6 +26,7 @@
 "location_services" = "위치 서비스";
 "location_services_guide" = "설정 > 개인정보 보호에서 위치 서비스를 켜주세요";
 "current_location" = "현재 위치";
+"script_info_no_data" = "스크립트 정보가 없어요";
 
 
 // 에러메시지
