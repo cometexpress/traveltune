@@ -51,7 +51,7 @@ final class DetailStoryView: BaseView {
         view.spacing = 16
     }
     
-    private lazy var playView = CircleImageButtonView().setup { view in
+    lazy var playView = CircleImageButtonView().setup { view in
         view.setView(backgroundColor: .backgroundButton, image: .playFill)
         let tap = UITapGestureRecognizer(target: self, action: #selector(playAndPauseClicked))
         view.addGestureRecognizer(tap)

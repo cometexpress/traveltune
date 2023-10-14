@@ -213,6 +213,18 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true)
     }
+    
+    func didSelectItemAt(item: StoryItem) {
+        let vc = DetailStoryVC(
+            viewModel: DetailStoryViewModel(
+                storyRepository: StoryRepository(),
+                localFavoriteStoryRepository: LocalFavoriteStoryRepository()
+            )
+        )
+        vc.viewModel?.detailStory.value = item
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
 }
 
 extension DetailRegionMapVC: MKMapViewDelegate {
@@ -261,11 +273,14 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                         mainView.selectedStoryItems.append(storyAnnotation.item)
                     }
                 }
-                self.mainView.bottomCollectionView.scrollToItem(
-                    at: .init(index: 0),
-                    at: .left,
-                    animated: false
-                )
+                
+                if !mainView.selectedStoryItems.isEmpty {
+                    self.mainView.bottomCollectionView.scrollToItem(
+                        at: IndexPath(item: 0, section: 0),
+                        at: .left,
+                        animated: false
+                    )
+                }
             }
             
         case is CustomAnnotationView:

@@ -157,6 +157,10 @@ extension DetailRegionMapView: UICollectionViewDelegate, UICollectionViewDataSou
         cell.calculationDistance(row: item, currentLat: currentLat, currentLng: currentLng)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        detailRegionMapViewProtocol?.didSelectItemAt(item: selectedStoryItems[indexPath.item])
+    }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         // item의 사이즈와 item 간의 간격 사이즈를 구해서 하나의 item 크기로 설정.

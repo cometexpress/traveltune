@@ -150,7 +150,7 @@ extension DetailStoryVC: DetailStoryProtocol {
             switch AVPlayerManager.shared.status {
             case .playing:  // 재생중일 때 누르면 할 일
                 AVPlayerManager.shared.pause()
-                mainView.resetAudio()
+                mainView.playView.setView(backgroundColor: .backgroundButton, image: .playFill)
             case .stop:     // 멈춰있을 때 누르면 할 일
                 AVPlayerManager.shared.replay()
                 mainView.setPlayImageInAudio()

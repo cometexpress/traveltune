@@ -112,7 +112,7 @@ final class AVPlayerManager: NSObject {
     }
     
     func addPlayTimeObserver(listener: @escaping (Float, Float64) -> Void) {
-        let time = CMTime(seconds: 0.01, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        let time = CMTime(seconds: 0.001, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserverToken = player?.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] progressTime in
             //현재 진행된 progressTime 을 '초'로 변경
             let seconds = CMTimeGetSeconds(progressTime)
