@@ -41,7 +41,8 @@ extension DetailMapSpotVC: DetailMapSpotVCProtocol {
     }
     
     func moveMapClicked() {
-        // 장소로 검색한 지도 상세로 이동시키기
+        // 현재 보여지고 있는 이야기 목록리스트 지도에 보여주기
+        print("추후 업데이트")
     }
     
     func didSelectItemAt(item: StoryItem) {

@@ -70,6 +70,9 @@ final class DetailMapSpotHeaderView: UICollectionReusableView, BaseCellProtocol 
         view.setView(backgroundColor: .backgroundButton, image: .enterMap)
         let tap = UITapGestureRecognizer(target: self, action: #selector(moveMapImageViewClicked))
         view.addGestureRecognizer(tap)
+        
+        // 추후 업데이트 때 다시 버튼 보여주기
+        view.isHidden = true
     }
     
     var backClicked: (() -> Void)?

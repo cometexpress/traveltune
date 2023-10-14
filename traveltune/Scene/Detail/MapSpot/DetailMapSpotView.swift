@@ -31,7 +31,6 @@ final class DetailMapSpotView: BaseView {
     }
     
     override func configureLayout() {
-//        collectionView.backgroundColor = .brown
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide)
