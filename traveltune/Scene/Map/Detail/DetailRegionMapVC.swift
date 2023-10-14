@@ -123,6 +123,9 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                         self.showToast(msg: Strings.ErrorMsg.errorLocation)
                         return
                     }
+                    self.mainView.currentLat = userLocation.coordinate.latitude
+                    self.mainView.currentLng = userLocation.coordinate.longitude
+                    
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
                     self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
                 }
@@ -160,10 +163,9 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 200, longitudinalMeters: 200)
         mainView.mapView.setRegion(region, animated: true)
-        // 지도에 어노테이션 추가
-        let annotation = MKPointAnnotation()
-        annotation.title = story.audioTitle
-        annotation.coordinate = center
+        
+        // 지도에 커스텀 어노테이션 추가
+        let annotation = StoryAnnotation(coordinate: center, item: story)
         mainView.mapView.addAnnotation(annotation)
     }
     
@@ -221,20 +223,26 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             let clusterAnotaionView = mapView.dequeueReusableAnnotationView(
                 withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
             return clusterAnotaionView
-        case is MKPointAnnotation:
-            self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier, for: annotation)
+        case is StoryAnnotation:
+            
+            let customAnnotation = annotation as? StoryAnnotation
+            guard let customAnnotation else { return nil }
+            self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier, for: customAnnotation)
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier) as? CustomAnnotationView
             
             if annotationView == nil {
-                annotationView = CustomAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier).setup { view in
+                let customAnnotaionImageUrl = stories.first { $0.audioTitle == customAnnotation.item.audioTitle }?.imageURL ?? ""
+                
+                annotationView = CustomAnnotationView(
+                    imageURL: customAnnotaionImageUrl
+                ).setup { view in
                     view.canShowCallout = false
                 }
+                
             } else {
                 annotationView!.annotation = annotation
             }
             
-            let customAnnotaionImageUrl = stories.first { $0.audioTitle == annotation.title }?.imageURL ?? ""
-            annotationView?.addImage(imagePath: customAnnotaionImageUrl)
             return annotationView
             
         default:
@@ -252,15 +260,19 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 let memberAnnotations = cluster.memberAnnotations
                 selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
-//                memberAnnotations.forEach { annotation in
-//                    print("cluster = ", annotation.title)
-//                }
+                memberAnnotations.forEach { annotation in
+                    print("cluster = ", annotation.title)
+                }
             }
             
         case is CustomAnnotationView:
             let selectedAnnotationView = view as? CustomAnnotationView
             guard let selectedAnnotationView else { return }
-            print(#function, view.annotation?.title, " clicked")
+            let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
+            guard let storyAnnotation else { return }
+            print(#function, storyAnnotation.item.title, " clicked")
+            mainView.selectedStoryItems.append(storyAnnotation.item)
+            mainView.bottomCollectionView.isHidden = false
         default: Void()
         }
     }
@@ -280,10 +292,14 @@ extension DetailRegionMapVC: MKMapViewDelegate {
 //                    print("cluster = ", annotation.title)
 //                }
             }
-//        case is CustomAnnotationView:
-//            let selectedAnnotationView = view as? CustomAnnotationView
-//            guard let selectedAnnotationView else { return }
-//            print(#function, view.annotation?.title, "클릭 해제")
+        case is CustomAnnotationView:
+            let selectedAnnotationView = view as? CustomAnnotationView
+            guard let selectedAnnotationView else { return }
+            let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
+            guard let storyAnnotation else { return }
+            print(#function, storyAnnotation.item.title, " 클릭 해제")
+            mainView.selectedStoryItems.removeAll()
+            mainView.bottomCollectionView.isHidden = true
 //            selectedAnnotationView.resetAnnotationView()
         default: Void()
         }

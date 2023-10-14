@@ -19,8 +19,17 @@ final class DetailRegionMapView: BaseView {
     private let deviceWidth: CGFloat = UIScreen.main.bounds.width
     private let deviceHeight: CGFloat = UIScreen.main.bounds.height
     
-    private lazy var cellWidth = floor(deviceWidth * 0.7)
+    private lazy var cellWidth = floor(deviceWidth * 0.82)
     private lazy var cellHeight = floor(deviceHeight * 0.15)
+    
+    var selectedStoryItems: [StoryItem] = [] {
+        didSet {
+            bottomCollectionView.reloadData()
+            bottomCollectionView.isHidden = selectedStoryItems.isEmpty
+        }
+    }
+    var currentLat: Double = 0
+    var currentLng: Double = 0
     
     let mapView = ExcludeMapView().setup { view in
         view.showsUserLocation = true       // 유저 위치
@@ -48,6 +57,7 @@ final class DetailRegionMapView: BaseView {
         view.bounces = false
         // 스크롤 시 빠르게 감속 되도록 설정
         view.decelerationRate = .fast
+        view.isHidden = true
         view.register(MapCarouselCell.self, forCellWithReuseIdentifier: MapCarouselCell.identifier)
         
         let insetX = (deviceWidth - cellWidth) / 2.0
@@ -123,16 +133,17 @@ extension DetailRegionMapView {
 
 extension DetailRegionMapView: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return selectedStoryItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapCarouselCell.identifier, for: indexPath) as? MapCarouselCell else {
             return UICollectionViewCell()
         }
-        // TODO: 데이터 연결
-//        cell.configCell(row: <#T##StoryItem#>)
-//        cell.calculationDistance(currentLat: <#T##Double#>, currentLng: <#T##Double#>)
+        
+        let item = selectedStoryItems[indexPath.item]
+        cell.configCell(row: item)
+        cell.calculationDistance(currentLat: currentLat, currentLng: currentLng)
         
         return cell
     }

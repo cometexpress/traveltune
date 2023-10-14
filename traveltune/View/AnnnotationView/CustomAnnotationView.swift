@@ -12,8 +12,10 @@ class CustomAnnotationView: MKAnnotationView {
     
     static let identifier = "CustomAnnotationView"
     
-    private let defaultSize = 30
+    private let defaultSize = 36
     private let selectedSize = 100
+    
+    private var imageURL: String?
     
     private lazy var thumbImageView = ThumbnailImageView(frame: .init(x: 0, y: 0, width: defaultSize, height: defaultSize)).setup { view in
         view.image = .defaultImg
@@ -36,8 +38,14 @@ class CustomAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         displayPriority = .defaultLow
-        clusteringIdentifier = CustomAnnotationView.identifier
         setUI()
+    }
+    
+    convenience init(imageURL: String) {
+        self.init()
+        self.imageURL = imageURL
+        clusteringIdentifier = CustomAnnotationView.identifier
+        addImage(imagePath: imageURL)
     }
     
     @available(*, unavailable)
@@ -47,15 +55,12 @@ class CustomAnnotationView: MKAnnotationView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // MKAnnotationView 크기를 backgroundView 크기 만큼 정해줌.
-        //        bounds.size = CGSize(width: 50, height: 50)
-        //        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
     }
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        displayPriority = .defaultLow
-        thumbImageView.image = nil
+        print(#function, " = \(imageURL)")
+        addImage(imagePath: imageURL ?? "")
     }
     
     private func setUI() {
@@ -70,8 +75,12 @@ class CustomAnnotationView: MKAnnotationView {
     }
     
     func addImage(imagePath: String) {
+        self.imageURL = imagePath
         if !imagePath.isEmpty {
+            print("이미지 주소 - ", imagePath)
             thumbImageView.addImage(url: imagePath)
+        } else {
+            thumbImageView.image = .defaultImg
         }
     }
     

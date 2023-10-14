@@ -29,7 +29,7 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
     
     private let scriptLabel = UILabel().setup { view in
         view.font = .monospacedSystemFont(ofSize: 11, weight: .light)
-        view.numberOfLines = 2
+        view.numberOfLines = 0
         view.textColor = .txtSecondary
     }
     
@@ -69,7 +69,7 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
         }
         
         thumbImageView.snp.makeConstraints { make in
-            make.width.equalTo(containerView.snp.width).multipliedBy(0.5)
+            make.width.equalTo(containerView.snp.width).multipliedBy(0.4)
             make.verticalEdges.equalToSuperview()
             make.leading.equalToSuperview()
         }
@@ -85,9 +85,11 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
             make.horizontalEdges.equalToSuperview()
         }
         
+        scriptLabel.setContentHuggingPriority(.required, for: .vertical)
         scriptLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(6)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
             make.horizontalEdges.equalToSuperview()
+            make.bottom.lessThanOrEqualTo(distanceLabel.snp.top).offset(-16)
         }
         
         locationImageView.snp.makeConstraints { make in
@@ -97,8 +99,9 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
             make.trailing.equalTo(distanceLabel.snp.leading).offset(-6)
         }
         
+        distanceLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         distanceLabel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(8)
+            make.bottom.equalToSuperview()
             make.trailing.equalToSuperview()
         }
     }
@@ -111,6 +114,8 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
     
     func calculationDistance(currentLat: Double, currentLng: Double) {
         // TODO: 현재 위치와 지금 위치 거리 계산해서 보여주기
+        print("현재 / ", currentLat)
+        print("현재 / ", currentLng)
         distanceLabel.text = "계산된 거리 km"
     }
 }
