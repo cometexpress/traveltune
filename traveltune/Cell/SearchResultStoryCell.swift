@@ -95,7 +95,7 @@ final class SearchResultStoryCell: BaseCollectionViewCell<StoryItem> {
         if row.script.isEmpty {
             scriptLabel.text = Strings.Common.scriptInfoNoData
         } else {
-            scriptLabel.text = item.script.replacingOccurrences(of: "  ", with: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines)
+            scriptLabel.text = row.script.replacingOccurrences(of: "  ", with: "\n\n").trimmingCharacters(in: .whitespacesAndNewlines)
         }
         playTimeLabel.text = "ᐅ " + row.convertTime
     }
