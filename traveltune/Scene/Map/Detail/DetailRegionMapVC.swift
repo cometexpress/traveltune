@@ -117,15 +117,13 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 DispatchQueue.main.async {
                     LocationManager.shared.startUpdating()
                     self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
-                    //                    self.mainView.mapView.showsUserLocation = true
                     self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
+                    
                     guard let userLocation = self.mainView.mapView.userLocation.location else {
                         print("유저 위치 없음")
                         self.showToast(msg: Strings.ErrorMsg.errorLocation)
                         return
                     }
-                    self.mainView.currentLat = userLocation.coordinate.latitude
-                    self.mainView.currentLng = userLocation.coordinate.longitude
                     
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
                     self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
@@ -149,7 +147,6 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             let selectedRegionType = RegionType.allCases.first { $0.name == region }
             if let selectedRegionType {
                 print("업데이트 데이터")
-                //                mainView.mapView.showsUserLocation = false
                 mainView.mapView.removeAnnotations(mainView.mapView.annotations)
                 mainView.updateButtonTitle(title: region)
                 viewModel?.fetchStoryByLocation(lat: selectedRegionType.latitude, lng: selectedRegionType.longitude)
@@ -217,6 +214,11 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
 }
 
 extension DetailRegionMapVC: MKMapViewDelegate {
+    
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        // 이전에 권한 획득한 유저는 바로 유저 위치 저장하도록 viewDidLoad 에 추가
+        mainView.updateUserLocation()
+    }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
     
@@ -112,10 +113,17 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
         scriptLabel.text = row.script.replacingOccurrences(of: "  ", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
-    func calculationDistance(currentLat: Double, currentLng: Double) {
-        // TODO: 현재 위치와 지금 위치 거리 계산해서 보여주기
-        print("현재 / ", currentLat)
-        print("현재 / ", currentLng)
-        distanceLabel.text = "계산된 거리 km"
+    func calculationDistance(row: StoryItem, currentLat: Double, currentLng: Double) {
+        if currentLat == 0 || currentLng == 0 {
+            distanceLabel.text = "-"
+        } else {
+            let currentCoord = CLLocation(latitude: currentLat, longitude: currentLng)
+            guard let lat = Double(row.mapY), let lng = Double(row.mapX) else { return }
+            let rowCoord = CLLocation(latitude: lat, longitude: lng)
+            let distance = currentCoord.distance(from: rowCoord)
+            let result = String(format: "%.2f", distance / 1000.0)
+            distanceLabel.text = "\(result)km"
+        }
     }
+
 }

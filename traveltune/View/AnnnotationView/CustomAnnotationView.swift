@@ -71,7 +71,6 @@ class CustomAnnotationView: MKAnnotationView {
     func addImage(imagePath: String) {
         self.imageURL = imagePath
         if !imagePath.isEmpty {
-            print("이미지 주소 - ", imagePath)
             if let url = URL(string: imagePath) {
                 annotationImageView.kf.setImage(
                     with: url,

@@ -28,8 +28,9 @@ final class DetailRegionMapView: BaseView {
             bottomCollectionView.isHidden = selectedStoryItems.isEmpty
         }
     }
-    var currentLat: Double = 0
-    var currentLng: Double = 0
+    
+    private var currentLat: Double = 0
+    private var currentLng: Double = 0
     
     let mapView = ExcludeMapView().setup { view in
         view.showsUserLocation = true       // 유저 위치
@@ -84,6 +85,16 @@ final class DetailRegionMapView: BaseView {
         config.baseBackgroundColor = .primary
         config.baseForegroundColor = .white
         selectRegionButton.configuration = config
+    }
+    
+    func updateUserLocation() {
+        guard let userLocation = mapView.userLocation.location else {
+            print("유저 위치 없음")
+            return
+        }
+        print("유저 위치 있음")
+        currentLat = userLocation.coordinate.latitude
+        currentLng = userLocation.coordinate.longitude
     }
     
     override func configureHierarchy() {
@@ -143,8 +154,7 @@ extension DetailRegionMapView: UICollectionViewDelegate, UICollectionViewDataSou
         
         let item = selectedStoryItems[indexPath.item]
         cell.configCell(row: item)
-        cell.calculationDistance(currentLat: currentLat, currentLng: currentLng)
-        
+        cell.calculationDistance(row: item, currentLat: currentLat, currentLng: currentLng)
         return cell
     }
 
