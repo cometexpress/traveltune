@@ -120,6 +120,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                     self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
                     guard let userLocation = self.mainView.mapView.userLocation.location else {
                         print("유저 위치 없음")
+                        self.showToast(msg: Strings.ErrorMsg.errorLocation)
                         return
                     }
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
@@ -217,7 +218,8 @@ extension DetailRegionMapVC: MKMapViewDelegate {
         
         switch annotation {
         case is MKClusterAnnotation:
-            let clusterAnotaionView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
+            let clusterAnotaionView = mapView.dequeueReusableAnnotationView(
+                withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
             return clusterAnotaionView
         case is MKPointAnnotation:
             self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier, for: annotation)
