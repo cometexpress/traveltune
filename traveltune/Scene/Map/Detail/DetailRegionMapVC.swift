@@ -125,6 +125,8 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                         return
                     }
                     
+//                    mainView.updateUserLocation()
+                    
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
                     self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
                 }
@@ -246,7 +248,8 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // TODO: 클러스터링은 클릭시 색깔 변화시킨 후 하단 컬렉션뷰에 리스트 띄우기
+        
+        mainView.selectedStoryItems.removeAll()
         switch view {
         case is ClusterAnnotationView:
             let selectedClusterView = view as? ClusterAnnotationView
@@ -254,8 +257,15 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                 let memberAnnotations = cluster.memberAnnotations
                 selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
                 memberAnnotations.forEach { annotation in
-                    print("cluster = ", annotation.title)
+                    if let storyAnnotation = annotation as? StoryAnnotation {
+                        mainView.selectedStoryItems.append(storyAnnotation.item)
+                    }
                 }
+                self.mainView.bottomCollectionView.scrollToItem(
+                    at: .init(index: 0),
+                    at: .left,
+                    animated: false
+                )
             }
             
         case is CustomAnnotationView:
@@ -263,9 +273,7 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             guard let selectedAnnotationView else { return }
             let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
             guard let storyAnnotation else { return }
-            print(#function, storyAnnotation.item.imageURL, " clicked")
             mainView.selectedStoryItems.append(storyAnnotation.item)
-            mainView.bottomCollectionView.isHidden = false
         default: Void()
         }
     }
@@ -281,18 +289,14 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 let memberAnnotations = cluster.memberAnnotations
                 deSelectedClusterView?.defaultDrawRatio(to: memberAnnotations.count, wholeColor: .backgroundButton)
-                //                memberAnnotations.forEach { annotation in
-                //                    print("cluster = ", annotation.title)
-                //                }
+                mainView.selectedStoryItems.removeAll()
             }
         case is CustomAnnotationView:
             let selectedAnnotationView = view as? CustomAnnotationView
             guard let selectedAnnotationView else { return }
             let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
             guard let storyAnnotation else { return }
-            print(#function, storyAnnotation.item.title, " 클릭 해제")
             mainView.selectedStoryItems.removeAll()
-            mainView.bottomCollectionView.isHidden = true
         default: Void()
         }
     }

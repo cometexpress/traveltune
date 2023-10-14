@@ -58,10 +58,6 @@ final class MapCarouselCell: BaseCollectionViewCell<StoryItem> {
         textContainerView.addSubview(scriptLabel)
         textContainerView.addSubview(locationImageView)
         textContainerView.addSubview(distanceLabel)
-        
-        titleLabel.text = "row.audioTitle"
-        scriptLabel.text = "row.script.trimmingCharacters(in: .whitespacesAndNewlines)"
-        distanceLabel.text = "10.0km"
     }
     
     override func configureLayout() {
