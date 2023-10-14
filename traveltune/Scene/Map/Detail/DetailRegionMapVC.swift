@@ -8,6 +8,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Kingfisher
 
 final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailRegionMapViewModel> {
     
@@ -21,7 +22,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         super.viewDidLoad()
         configureVC()
         bindViewModel()
-                
+        
         LocationManager.shared.startUpdating()
         LocationManager.shared.locationManager.delegate = self
         
@@ -89,7 +90,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 self.mainView.mapView.setRegion(region, animated: true)
                 
                 // 모든 annotation 표시
-//                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
+                //                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
                 
                 LoadingIndicator.hide()
             case .error:
@@ -116,7 +117,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 DispatchQueue.main.async {
                     LocationManager.shared.startUpdating()
                     self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
-//                    self.mainView.mapView.showsUserLocation = true
+                    //                    self.mainView.mapView.showsUserLocation = true
                     self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
                     guard let userLocation = self.mainView.mapView.userLocation.location else {
                         print("유저 위치 없음")
@@ -148,7 +149,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             let selectedRegionType = RegionType.allCases.first { $0.name == region }
             if let selectedRegionType {
                 print("업데이트 데이터")
-//                mainView.mapView.showsUserLocation = false
+                //                mainView.mapView.showsUserLocation = false
                 mainView.mapView.removeAnnotations(mainView.mapView.annotations)
                 mainView.updateButtonTitle(title: region)
                 viewModel?.fetchStoryByLocation(lat: selectedRegionType.latitude, lng: selectedRegionType.longitude)
@@ -165,7 +166,8 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         mainView.mapView.setRegion(region, animated: true)
         
         // 지도에 커스텀 어노테이션 추가
-        let annotation = StoryAnnotation(coordinate: center, item: story)
+        let annotation = StoryAnnotation(item: story)
+        annotation.coordinate = center
         mainView.mapView.addAnnotation(annotation)
     }
     
@@ -190,11 +192,12 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             title: Strings.Common.locationServices,
             msg: Strings.Common.locationServicesGuide,
             ok: Strings.Common.move,
-            no: Strings.Common.cancel) { _ in
-                if let appSetting = URL(string: UIApplication.openSettingsURLString) {
-                    UIApplication.shared.open(appSetting)
-                }
+            no: Strings.Common.cancel
+        ) { _ in
+            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSetting)
             }
+        }
     }
 }
 
@@ -223,26 +226,16 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             let clusterAnotaionView = mapView.dequeueReusableAnnotationView(
                 withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
             return clusterAnotaionView
-        case is StoryAnnotation:
             
+        case is StoryAnnotation:
             let customAnnotation = annotation as? StoryAnnotation
             guard let customAnnotation else { return nil }
-            self.mainView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier, for: customAnnotation)
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier) as? CustomAnnotationView
+            let annotationView = mapView.dequeueReusableAnnotationView(
+                withIdentifier: CustomAnnotationView.identifier, for: customAnnotation) as? CustomAnnotationView
             
-            if annotationView == nil {
-                let customAnnotaionImageUrl = stories.first { $0.audioTitle == customAnnotation.item.audioTitle }?.imageURL ?? ""
-                
-                annotationView = CustomAnnotationView(
-                    imageURL: customAnnotaionImageUrl
-                ).setup { view in
-                    view.canShowCallout = false
-                }
-                
-            } else {
-                annotationView!.annotation = annotation
-            }
-            
+            guard let annotationView else { return nil }
+            let customAnnotaionImageUrl = stories.first { $0.stid == customAnnotation.item.stid }?.imageURL ?? ""
+            annotationView.addImage(imagePath: customAnnotaionImageUrl)
             return annotationView
             
         default:
@@ -251,9 +244,7 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        // TODO: 어노테이션은 클릭시 그냥 하단 컬렉션뷰에 리스트아이템 1개 추가해서 보여주기
         // TODO: 클러스터링은 클릭시 색깔 변화시킨 후 하단 컬렉션뷰에 리스트 띄우기
-      
         switch view {
         case is ClusterAnnotationView:
             let selectedClusterView = view as? ClusterAnnotationView
@@ -270,7 +261,7 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             guard let selectedAnnotationView else { return }
             let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
             guard let storyAnnotation else { return }
-            print(#function, storyAnnotation.item.title, " clicked")
+            print(#function, storyAnnotation.item.imageURL, " clicked")
             mainView.selectedStoryItems.append(storyAnnotation.item)
             mainView.bottomCollectionView.isHidden = false
         default: Void()
@@ -288,9 +279,9 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             if let cluster = view.annotation as? MKClusterAnnotation {
                 let memberAnnotations = cluster.memberAnnotations
                 deSelectedClusterView?.defaultDrawRatio(to: memberAnnotations.count, wholeColor: .backgroundButton)
-//                memberAnnotations.forEach { annotation in
-//                    print("cluster = ", annotation.title)
-//                }
+                //                memberAnnotations.forEach { annotation in
+                //                    print("cluster = ", annotation.title)
+                //                }
             }
         case is CustomAnnotationView:
             let selectedAnnotationView = view as? CustomAnnotationView
@@ -300,7 +291,6 @@ extension DetailRegionMapVC: MKMapViewDelegate {
             print(#function, storyAnnotation.item.title, " 클릭 해제")
             mainView.selectedStoryItems.removeAll()
             mainView.bottomCollectionView.isHidden = true
-//            selectedAnnotationView.resetAnnotationView()
         default: Void()
         }
     }
@@ -314,22 +304,11 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 
 extension DetailRegionMapVC: CLLocationManagerDelegate {
     
-    // TODO: 실행 테스트 필요
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print(#function ,locations)
-//        if let coordinate = locations.last?.coordinate {
-//            print("coordinate = \(coordinate)")
-//            viewModel?.fetchStoryByLocation(lat: coordinate.latitude, lng: coordinate.longitude)
-////            LocationManager.shared.stopUpdating()
-//        }
-//    }
-    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function, error.localizedDescription)
         showToast(msg: Strings.ErrorMsg.errorLocation)
     }
     
-    // 7. 사용자의 권한 상태가 바뀔 때를 얄려줌 (iOS 14 이상)
     // 거부했다가 설정에서 변경을 했거나 ,notDetermained 상태에서 허용을 했거나
     // 허용해서 위치를 가지고 오는 도중에 설정에서 거부를 하고 앱으로 다시 돌아올 때
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

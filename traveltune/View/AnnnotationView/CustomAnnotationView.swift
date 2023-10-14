@@ -7,18 +7,18 @@
 
 import Foundation
 import MapKit
+import Kingfisher
 
 class CustomAnnotationView: MKAnnotationView {
     
     static let identifier = "CustomAnnotationView"
     
-    private let defaultSize = 36
+    private let defaultSize = 40
     private let selectedSize = 100
     
     private var imageURL: String?
     
-    private lazy var thumbImageView = ThumbnailImageView(frame: .init(x: 0, y: 0, width: defaultSize, height: defaultSize)).setup { view in
-        view.image = .defaultImg
+    private lazy var annotationImageView = UIImageView(frame: .init(x: 0, y: 0, width: defaultSize, height: defaultSize)).setup { view in
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFill
@@ -38,14 +38,8 @@ class CustomAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         displayPriority = .defaultLow
-        setUI()
-    }
-    
-    convenience init(imageURL: String) {
-        self.init()
-        self.imageURL = imageURL
         clusteringIdentifier = CustomAnnotationView.identifier
-        addImage(imagePath: imageURL)
+        setUI()
     }
     
     @available(*, unavailable)
@@ -59,16 +53,16 @@ class CustomAnnotationView: MKAnnotationView {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        print(#function, " = \(imageURL)")
-        addImage(imagePath: imageURL ?? "")
+//        print(#function, " = \(imageURL)")
+//        addImage(imagePath: imageURL ?? "")
     }
     
     private func setUI() {
         frame = CGRect(x: 0, y: 0, width: defaultSize, height: defaultSize)
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
-        addSubview(thumbImageView)
+        addSubview(annotationImageView)
         backgroundColor = .clear
-        //        canShowCallout = true
+        
         accessoryView.setImage(.locationArrow, for: .normal)
         rightCalloutAccessoryView = accessoryView
         rightCalloutAccessoryView?.tintColor = .txtSecondary
@@ -78,25 +72,21 @@ class CustomAnnotationView: MKAnnotationView {
         self.imageURL = imagePath
         if !imagePath.isEmpty {
             print("이미지 주소 - ", imagePath)
-            thumbImageView.addImage(url: imagePath)
+            if let url = URL(string: imagePath) {
+                annotationImageView.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(named: "default_img"),
+                    options: [
+                        .processor(DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))),
+                        .scaleFactor(UIScreen.main.scale),
+                        .forceRefresh
+                    ]
+                )
+            }
         } else {
-            thumbImageView.image = .defaultImg
+            annotationImageView.image = .defaultImg
         }
     }
-    
-//    func selectedAnnotationView() {
-//        thumbImageView.bounds = .init(x: 0, y: 0, width: selectedSize, height: selectedSize)
-//        bounds.size = CGSize(width: selectedSize, height: selectedSize)
-//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
-//        setNeedsLayout()
-//    }
-//    
-//    func resetAnnotationView() {
-//        thumbImageView.bounds = .init(x: 0, y: 0, width: defaultSize, height: defaultSize)
-//        bounds.size = CGSize(width: 100, height: 100)
-//        centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
-//        setNeedsLayout()
-//    }
     
 }
 

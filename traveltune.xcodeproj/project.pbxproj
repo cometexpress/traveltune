@@ -115,7 +115,7 @@
 		C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */; };
 		C0D6153D2ACEE8AA00EC5EE9 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D6153C2ACEE8AA00EC5EE9 /* BaseViewModel.swift */; };
 		C0D662332ADA28E900391C50 /* MapCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D662322ADA28E900391C50 /* MapCarouselCell.swift */; };
-		C0D662352ADA448C00391C50 /* CustomAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D662342ADA448C00391C50 /* CustomAnnotation.swift */; };
+		C0D662352ADA448C00391C50 /* StoryAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D662342ADA448C00391C50 /* StoryAnnotation.swift */; };
 		C0D81A722AC40A5A00CB2EF0 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */; };
 		C0D81A742AC40A7700CB2EF0 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A732AC40A7700CB2EF0 /* SplashView.swift */; };
 		C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */; };
@@ -281,7 +281,7 @@
 		C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryViewModel.swift; sourceTree = "<group>"; };
 		C0D6153C2ACEE8AA00EC5EE9 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		C0D662322ADA28E900391C50 /* MapCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapCarouselCell.swift; sourceTree = "<group>"; };
-		C0D662342ADA448C00391C50 /* CustomAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotation.swift; sourceTree = "<group>"; };
+		C0D662342ADA448C00391C50 /* StoryAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryAnnotation.swift; sourceTree = "<group>"; };
 		C0D81A712AC40A5A00CB2EF0 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
 		C0D81A732AC40A7700CB2EF0 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		C0D81A752AC40C8E00CB2EF0 /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 			children = (
 				C073F6502AD2D5B500EEE107 /* CustomAnnotationView.swift */,
 				C049FBB72AD914400000344C /* ClusterAnnotationView.swift */,
-				C0D662342ADA448C00391C50 /* CustomAnnotation.swift */,
+				C0D662342ADA448C00391C50 /* StoryAnnotation.swift */,
 			);
 			path = AnnnotationView;
 			sourceTree = "<group>";
@@ -1160,7 +1160,7 @@
 				C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */,
 				C0F383652AD7180900DF276D /* DetailRegionMapVC.swift in Sources */,
 				C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */,
-				C0D662352ADA448C00391C50 /* CustomAnnotation.swift in Sources */,
+				C0D662352ADA448C00391C50 /* StoryAnnotation.swift in Sources */,
 				C02AA1252AD6AAAC007BA3AD /* StretchableUICollectionViewFlowLayout.swift in Sources */,
 				C08B37A82AC2A761007FF39F /* ReusableViewProtocol.swift in Sources */,
 				C0D81AA52AC575F100CB2EF0 /* ThemeDetailVCProtocol.swift in Sources */,
