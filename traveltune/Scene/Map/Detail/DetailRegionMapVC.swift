@@ -18,6 +18,8 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     
     private var stories: [StoryItem] = []
     
+    private var isTouchable = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -27,6 +29,13 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
         LocationManager.shared.locationManager.delegate = self
         
         bindLocationAuthStatus()
+        
+        mainView.mapView.isMultipleTouchEnabled = false
+    }
+    
+    @objc func touchAction (sender: UIPanGestureRecognizer) {
+            
+        print("터치터ㅣ터치")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -229,14 +238,25 @@ extension DetailRegionMapVC: DetailRegionMapVCProtocol {
 
 extension DetailRegionMapVC: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        mainView.updateUserLocation()
+    }
+    
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         // 이전에 권한 획득한 유저는 바로 유저 위치 저장하도록 viewDidLoad 에 추가
         mainView.updateUserLocation()
     }
     
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        isTouchable = false
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        isTouchable = true
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
-        
         switch annotation {
         case is MKClusterAnnotation:
             let clusterAnotaionView = mapView.dequeueReusableAnnotationView(
@@ -260,22 +280,26 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        mainView.selectedStoryItems.removeAll()
-        DispatchQueue.main.async {
+        
+            if !isTouchable {
+                return
+            }
+            
             switch view {
             case is ClusterAnnotationView:
                 let selectedClusterView = view as? ClusterAnnotationView
                 if let cluster = view.annotation as? MKClusterAnnotation {
                     let memberAnnotations = cluster.memberAnnotations
                     selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
+                    self.mainView.selectedStoryItems = []
                     memberAnnotations.forEach { annotation in
                         if let storyAnnotation = annotation as? StoryAnnotation {
-                            self.mainView.selectedStoryItems.append(storyAnnotation.item)
+                            mainView.selectedStoryItems.append(storyAnnotation.item)
                         }
                     }
-                    
-                    if !self.mainView.selectedStoryItems.isEmpty {
-                        self.mainView.bottomCollectionView.scrollToItem(
+                    selectedClusterView?.setSelected(true, animated: false)
+                    if !mainView.selectedStoryItems.isEmpty {
+                        mainView.bottomCollectionView.scrollToItem(
                             at: IndexPath(item: 0, section: 0),
                             at: .left,
                             animated: false
@@ -288,10 +312,12 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                 guard let selectedAnnotationView else { return }
                 let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
                 guard let storyAnnotation else { return }
-                self.mainView.selectedStoryItems.append(storyAnnotation.item)
+                selectedAnnotationView.setSelected(true, animated: false)
+                mainView.selectedStoryItems = []
+                mainView.selectedStoryItems.append(storyAnnotation.item)
             default: Void()
             }
-        }
+        
     }
     
     func mapView(_ mapView: MKMapView, clusterAnnotationForMemberAnnotations memberAnnotations: [MKAnnotation]) -> MKClusterAnnotation {
@@ -307,11 +333,13 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                 deSelectedClusterView?.defaultDrawRatio(to: memberAnnotations.count, wholeColor: .backgroundButton)
                 mainView.selectedStoryItems.removeAll()
             }
+            deSelectedClusterView?.setSelected(false, animated: false)
         case is CustomAnnotationView:
             let selectedAnnotationView = view as? CustomAnnotationView
             guard let selectedAnnotationView else { return }
             let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
             guard let storyAnnotation else { return }
+            selectedAnnotationView.setSelected(false, animated: false)
             mainView.selectedStoryItems.removeAll()
         default: Void()
         }
