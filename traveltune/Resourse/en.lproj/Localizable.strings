@@ -119,3 +119,18 @@
 "map_naver" = "Naver Map";
 "map_tmap" = "T Map";
 "map_apple" = "Apple Map";
+
+// 설정
+"tab_setting_title" = "Setting";
+"setting_audio_guide" = "Audio";
+"setting_notification" = "Notification";
+"setting_terms" = "Terms";
+"setting_etc" = "Etc";
+
+// 설정 헤더, 아이템 타이틀
+"setting_audio_guide_item_01" = "Audio guide of interest";
+"setting_notification_item_01" = "Notification settings";
+"setting_terms_item_01" = "Privacy policy";
+"setting_etc_item_01" = "Contact us";
+"setting_etc_item_02" = "Open source";
+"setting_etc_item_03" = "App version";

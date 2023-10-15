@@ -38,6 +38,7 @@
 "error_first_story" = "첫번째 이야기에요";
 "error_last_story" = "마지막 이야기에요";
 
+
 // 홈 네비 타이틀
 "home_nav_title" = "travel tune";
 
@@ -118,3 +119,18 @@
 "map_naver" = "네이버지도";
 "map_tmap" = "티맵";
 "map_apple" = "애플지도";
+
+// 설정
+"tab_setting_title" = "설정";
+"setting_audio_guide" = "오디오";
+"setting_notification" = "알림";
+"setting_terms" = "이용약관";
+"setting_etc" = "기타";
+
+// 설정 헤더, 아이템 타이틀
+"setting_audio_guide_item_01" = "관심있는 오디오 가이드";
+"setting_notification_item_01" = "알림 설정";
+"setting_terms_item_01" = "개인정보 처리방침";
+"setting_etc_item_01" = "문의하기";
+"setting_etc_item_02" = "오픈소스";
+"setting_etc_item_03" = "앱 버전";

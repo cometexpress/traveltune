@@ -21,6 +21,8 @@
 		C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
+		C0225C8F2ADBA5D90057CC6B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */; };
+		C0225C912ADBAB350057CC6B /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C902ADBAB350057CC6B /* SettingItem.swift */; };
 		C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */; };
 		C02AA11A2AD68C34007BA3AD /* DetailMapSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */; };
 		C02AA11C2AD68C47007BA3AD /* DetailMapSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */; };
@@ -187,6 +189,8 @@
 		C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotProtocol.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		C0225C902ADBAB350057CC6B /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
 		C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelProtocol.swift; sourceTree = "<group>"; };
 		C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotVC.swift; sourceTree = "<group>"; };
 		C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotView.swift; sourceTree = "<group>"; };
@@ -480,9 +484,10 @@
 			children = (
 				C0BDC3272AC934F100D7331E /* FavoriteStory.swift */,
 				C0E203CA2AD5A4AC00607534 /* MapSpotItem.swift */,
+				C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */,
+				C0225C902ADBAB350057CC6B /* SettingItem.swift */,
 				C04F9CAB2ABEF79E0058A8D0 /* Request */,
 				C04F9CAC2ABEF7A30058A8D0 /* Response */,
-				C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */,
 				C03FE03C2ACFEB0400D02385 /* SearchResultStoryCell.swift */,
 				C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */,
+				C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */,
 				C0EF78802AC5D60B0098D091 /* StoryCell.swift */,
 				C06C93392AC2B214006B26F6 /* ThemePager */,
 			);
@@ -1084,6 +1090,7 @@
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C0F383612AD7093B00DF276D /* DetailRegionMapView.swift in Sources */,
+				C0225C8F2ADBA5D90057CC6B /* SettingCell.swift in Sources */,
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C05824AF2AD459A500E34DF0 /* ShareableLinkPresentation.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
@@ -1093,6 +1100,7 @@
 				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
 				C0E203CF2AD5A8D200607534 /* MapFloatingPanelViewModel.swift in Sources */,
+				C0225C912ADBAB350057CC6B /* SettingItem.swift in Sources */,
 				C035928B2ACDA05100AA3D36 /* SearchResultTabStoryView.swift in Sources */,
 				C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */,
 				C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */,

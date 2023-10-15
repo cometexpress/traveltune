@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>내 주변 관광지를 확인하기 위해 위치 권한을 허용해주세요</string>
 	<key>LSApplicationQueriesSchemes</key>

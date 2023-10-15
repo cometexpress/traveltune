@@ -260,36 +260,37 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
         mainView.selectedStoryItems.removeAll()
-        switch view {
-        case is ClusterAnnotationView:
-            let selectedClusterView = view as? ClusterAnnotationView
-            if let cluster = view.annotation as? MKClusterAnnotation {
-                let memberAnnotations = cluster.memberAnnotations
-                selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
-                memberAnnotations.forEach { annotation in
-                    if let storyAnnotation = annotation as? StoryAnnotation {
-                        mainView.selectedStoryItems.append(storyAnnotation.item)
+        DispatchQueue.main.async {
+            switch view {
+            case is ClusterAnnotationView:
+                let selectedClusterView = view as? ClusterAnnotationView
+                if let cluster = view.annotation as? MKClusterAnnotation {
+                    let memberAnnotations = cluster.memberAnnotations
+                    selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
+                    memberAnnotations.forEach { annotation in
+                        if let storyAnnotation = annotation as? StoryAnnotation {
+                            self.mainView.selectedStoryItems.append(storyAnnotation.item)
+                        }
+                    }
+                    
+                    if !self.mainView.selectedStoryItems.isEmpty {
+                        self.mainView.bottomCollectionView.scrollToItem(
+                            at: IndexPath(item: 0, section: 0),
+                            at: .left,
+                            animated: false
+                        )
                     }
                 }
                 
-                if !mainView.selectedStoryItems.isEmpty {
-                    self.mainView.bottomCollectionView.scrollToItem(
-                        at: IndexPath(item: 0, section: 0),
-                        at: .left,
-                        animated: false
-                    )
-                }
+            case is CustomAnnotationView:
+                let selectedAnnotationView = view as? CustomAnnotationView
+                guard let selectedAnnotationView else { return }
+                let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
+                guard let storyAnnotation else { return }
+                self.mainView.selectedStoryItems.append(storyAnnotation.item)
+            default: Void()
             }
-            
-        case is CustomAnnotationView:
-            let selectedAnnotationView = view as? CustomAnnotationView
-            guard let selectedAnnotationView else { return }
-            let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
-            guard let storyAnnotation else { return }
-            mainView.selectedStoryItems.append(storyAnnotation.item)
-        default: Void()
         }
     }
     

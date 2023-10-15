@@ -114,7 +114,7 @@ extension MapHomeVC: MapHomeVCProtocol {
                 let vc = DetailMapSpotVC(viewModel: DetailMapSpotViewModel(localFavoriteStoryRepository: LocalFavoriteStoryRepository()))
                 vc.modalPresentationStyle = .fullScreen
                 vc.viewModel?.mapSpotItem = item
-                self?.present(vc, animated: false)
+                self?.present(vc, animated: true)
             }
             fpc.set(contentViewController: contentVC)
             fpc.track(scrollView: contentVC.mainView.collectionView)

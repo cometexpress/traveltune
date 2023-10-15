@@ -15,8 +15,23 @@ final class SettingVC: BaseViewController<SettingView, SettingViewModel> {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.navigationBar.topItem?.title = Strings.Setting.title
+    }
+    
     func configureVC() {
-        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithTransparentBackground()
+        appearance.backgroundColor = UIColor.background
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.txtPrimary,
+            .font: UIFont.monospacedSystemFont(ofSize: 18, weight: .medium)
+        ]
+        navigationItem.standardAppearance = appearance
+        navigationItem.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.isTranslucent = false
+        navigationItem.backButtonDisplayMode = .minimal
     }
     
     func bindViewModel() {

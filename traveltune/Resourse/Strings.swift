@@ -116,4 +116,19 @@ struct Strings {
         static var mapTmap = "map_tmap".localized
         static var mapApple = "map_apple".localized
     }
+    
+    struct Setting {
+        static var title = "tab_setting_title".localized
+        static var settingHeaderAudioGuide = "setting_audio_guide".localized
+        static var settingHeaderNotification = "setting_notification".localized
+        static var settingHeaderTerms = "setting_terms".localized
+        static var settingHeaderEtc = "setting_etc".localized
+        
+        static var settingAudioGuideItem01 = "setting_audio_guide_item_01".localized
+        static var settingNotificationItem01 = "setting_notification_item_01".localized
+        static var settingTermsItem01 = "setting_terms_item_01".localized
+        static var settingEtcItem01 = "setting_etc_item_01".localized
+        static var settingEtcItem02 = "setting_etc_item_02".localized
+        static var settingEtcItem03 = "setting_etc_item_03".localized
+    }
 }

@@ -37,7 +37,7 @@ final class DetailMapSpotVC: BaseViewController<DetailMapSpotView, DetailMapSpot
 extension DetailMapSpotVC: DetailMapSpotVCProtocol {
 
     func backClicked() {
-        dismiss(animated: false)
+        dismiss(animated: true)
     }
     
     func moveMapClicked() {
