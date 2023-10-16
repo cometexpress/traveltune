@@ -23,7 +23,21 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
     }
     
     func bindViewModel() {
-        
+        viewModel?.favoriteStoryObserve()
+        viewModel?.state.bind { [weak self] state in
+            switch state {
+            case .initValue: Void()
+            case .success(let data):
+                self?.mainView.favoriteStories = data
+                self?.mainView.updateCountLabel(count: data.count)
+            case .deleteUpdate(let data):
+                self?.mainView.favoriteStories = data
+                self?.mainView.updateCountLabel(count: data.count)
+            case .error(let msg):
+                print(msg)
+                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+            }
+        }
     }
     
     func configureVC() {
@@ -48,7 +62,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.backButtonDisplayMode = .minimal
     }
-
+    
     @objc private func backButtonClicked() {
         navigationController?.popViewController(animated: true)
     }

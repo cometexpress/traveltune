@@ -10,6 +10,12 @@ import SnapKit
 
 final class FavoriteAudioGuideView: BaseView {
     
+    var favoriteStories: [FavoriteStory] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    
     private let topView = UIView()
     private let guideCountLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
@@ -19,7 +25,7 @@ final class FavoriteAudioGuideView: BaseView {
     
     private let countLabel = UILabel().setup { view in
         view.textColor = .primary
-        view.font = .monospacedSystemFont(ofSize: 16, weight: .bold)
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
     }
     
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
@@ -38,6 +44,7 @@ final class FavoriteAudioGuideView: BaseView {
     override func configureHierarchy() {
         addSubview(topView)
         topView.addSubview(guideCountLabel)
+        topView.addSubview(countLabel)
         addSubview(collectionView)
         addSubview(playerBottomView)
     }
@@ -52,6 +59,11 @@ final class FavoriteAudioGuideView: BaseView {
         guideCountLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(16)
+        }
+        
+        countLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(guideCountLabel.snp.trailing).offset(6)
         }
         
         collectionView.snp.makeConstraints { make in
@@ -71,16 +83,15 @@ final class FavoriteAudioGuideView: BaseView {
 extension FavoriteAudioGuideView: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return favoriteStories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FavoriteStoryCell.identifier, for: indexPath) as? FavoriteStoryCell else {
             return UICollectionViewCell()
         }
-        
-        cell.backgroundColor = .lightGray
-       
+        let item = favoriteStories[indexPath.item]
+        cell.configCell(row: item)
         return cell
     }
 

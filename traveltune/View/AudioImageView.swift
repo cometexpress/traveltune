@@ -19,7 +19,7 @@ final class AudioImageView: UIImageView {
     }
     
     func addImage(image: UIImage) {
-        self.image = image.withTintColor(.whiteOpacity50, renderingMode: .alwaysOriginal)
+        self.image = image.withTintColor(.backgroundAuidioImg, renderingMode: .alwaysOriginal)
     }
     
     func addConfigImage(image: UIImage, configuration: UIImage.SymbolConfiguration) {

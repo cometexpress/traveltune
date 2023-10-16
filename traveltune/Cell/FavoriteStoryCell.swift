@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class FavoriteStoryCell: BaseCollectionViewCell<StoryItem> {
+final class FavoriteStoryCell: BaseCollectionViewCell<FavoriteStory> {
     
     private let leftView = UIView()
     
@@ -93,19 +93,13 @@ final class FavoriteStoryCell: BaseCollectionViewCell<StoryItem> {
         }
     }
     
-    override func configCell(row: StoryItem) {
-        titleLabel.text = row.audioTitle.isEmpty ? row.title : row.audioTitle
+    override func configCell(row: FavoriteStory) {
+        titleLabel.text = row.audioTitle
         playTimeLabel.text = row.convertTime
         thumbImageView.addImage(url: row.imageURL)
         
-        let heartImg: UIImage = if row.isFavorite {
-            .heartFill
-        } else {
-            .heart
-        }
-        
         let configuration = UIImage.SymbolConfiguration(pointSize: 24, weight: .light)
-        heartImageView.image = heartImg.withConfiguration(configuration).withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        heartImageView.image = .heartFill.withConfiguration(configuration).withTintColor(.systemRed, renderingMode: .alwaysOriginal)
         
         if row.isPlaying {
             titleLabel.font = .monospacedSystemFont(ofSize: 14, weight: .bold)

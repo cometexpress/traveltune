@@ -25,6 +25,8 @@ final class FavoriteStory: Object {
     @Persisted var searchKeyword: String
     @Persisted var date: Date
     
+    var isPlaying: Bool = false
+    
     convenience init(
         tid: String,
         tlid: String,
