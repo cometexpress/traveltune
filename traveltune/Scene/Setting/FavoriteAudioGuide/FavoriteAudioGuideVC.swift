@@ -28,11 +28,20 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
             switch state {
             case .initValue: Void()
             case .success(let data):
-                self?.mainView.favoriteStories = data
-                self?.mainView.updateCountLabel(count: data.count)
+                if data.isEmpty {
+                    self?.mainView.showEmptyLabel()
+                } else {
+                    self?.mainView.favoriteStories = data
+                    self?.mainView.updateCountLabel(count: data.count)
+                }
+                
             case .deleteUpdate(let data):
-                self?.mainView.favoriteStories = data
-                self?.mainView.updateCountLabel(count: data.count)
+                if data.isEmpty {
+                    self?.mainView.showEmptyLabel()
+                } else {
+                    self?.mainView.favoriteStories = data
+                    self?.mainView.updateCountLabel(count: data.count)
+                }
             case .error(let msg):
                 print(msg)
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
@@ -61,11 +70,32 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.backButtonDisplayMode = .minimal
+        
+        mainView.favoriteAudioGuideProtocol = self
     }
     
     @objc private func backButtonClicked() {
         navigationController?.popViewController(animated: true)
     }
+}
+
+extension FavoriteAudioGuideVC: FavoriteAudioGuideVCProtocol {
+    
+    func cellHeartButtonClicked(item: FavoriteStory) {
+        showAlert(
+            title: "",
+            msg: Strings.Common.alertMsgDeleteStoryItem,
+            ok: Strings.Common.ok,
+            no: Strings.Common.cancel
+        ) { [weak self] _ in
+            self?.viewModel?.deleteFavoriteStory(item: item)
+        }
+    }
+    
+    func didSelectItemAt(item: FavoriteStory) {
+        // 재생시키기
+    }
+ 
 }
 
 extension FavoriteAudioGuideVC: UIGestureRecognizerDelegate {

@@ -31,6 +31,9 @@ struct Strings {
         static let locationServicesGuide = "location_services_guide".localized
         static let currentLocation = "current_location".localized
         static let scriptInfoNoData = "script_info_no_data".localized
+        static let story = "story".localized
+        static let favoriteStoryNoData = "favorite_story_no_data".localized
+        static let alertMsgDeleteStoryItem = "alert_msg_delete_story_item".localized
     }
     
     struct ErrorMsg {

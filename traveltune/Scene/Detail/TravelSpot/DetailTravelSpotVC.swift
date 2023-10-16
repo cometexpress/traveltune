@@ -75,8 +75,7 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
         no: String? = Strings.Common.cancel,
         lat: Double,
         lng: Double,
-        arrivalPoint: String,
-        handler: ((UIAlertAction) -> Void)? = nil
+        arrivalPoint: String
     ) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         type.forEach { type in

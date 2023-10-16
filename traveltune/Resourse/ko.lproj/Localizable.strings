@@ -27,6 +27,9 @@
 "location_services_guide" = "설정 > 개인정보 보호에서 위치 서비스를 켜주세요";
 "current_location" = "현재 위치";
 "script_info_no_data" = "스크립트 정보가 없어요";
+"story" = "이야기";
+"favorite_story_no_data" = "관심있는 이야기를 추가해보세요!";
+"alert_msg_delete_story_item" = "목록에서 삭제할까요?";
 
 
 // 에러메시지

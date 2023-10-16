@@ -28,6 +28,7 @@
 		C0289E952ADD0C7000F52624 /* FavoriteAudioGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */; };
 		C0289E972ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */; };
 		C0289E992ADD1F3400F52624 /* FavoriteStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */; };
+		C0289E9E2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E9D2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift */; };
 		C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */; };
 		C02AA11A2AD68C34007BA3AD /* DetailMapSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */; };
 		C02AA11C2AD68C47007BA3AD /* DetailMapSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */; };
@@ -201,6 +202,7 @@
 		C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideView.swift; sourceTree = "<group>"; };
 		C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideViewModel.swift; sourceTree = "<group>"; };
 		C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStoryCell.swift; sourceTree = "<group>"; };
+		C0289E9D2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideVCProtocol.swift; sourceTree = "<group>"; };
 		C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelProtocol.swift; sourceTree = "<group>"; };
 		C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotVC.swift; sourceTree = "<group>"; };
 		C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotView.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				C0289E922ADD0C5900F52624 /* FavoriteAudioGuideVC.swift */,
 				C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */,
 				C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */,
+				C0289E9D2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift */,
 			);
 			path = FavoriteAudioGuide;
 			sourceTree = "<group>";
@@ -1134,6 +1137,7 @@
 				C0E8BA8A2ABC993000B1CCA6 /* Strings.swift in Sources */,
 				C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */,
 				C02DABE12ACADE4700F3BC42 /* SearchView.swift in Sources */,
+				C0289E9E2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift in Sources */,
 				C02DABDF2ACADE3000F3BC42 /* SearchVC.swift in Sources */,
 				C05F921A2AC3494F00427F6D /* UILabel+Extension.swift in Sources */,
 				C08B37A32AC2A627007FF39F /* ThemePagerCell.swift in Sources */,

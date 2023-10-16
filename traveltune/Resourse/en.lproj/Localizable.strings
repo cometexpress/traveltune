@@ -27,6 +27,9 @@
 "location_services_guide" = "Please turn on location services in Settings > Privacy";
 "current_location" = "Current location";
 "script_info_no_data" = "There is no script information";
+"story" = "Story";
+"favorite_story_no_data" = "Add stories of interest!";
+"alert_msg_delete_story_item" = "Do you want to delete it?";
 
 
 // 에러메시지

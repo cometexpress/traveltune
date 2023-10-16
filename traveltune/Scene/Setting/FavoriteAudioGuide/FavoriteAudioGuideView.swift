@@ -10,6 +10,8 @@ import SnapKit
 
 final class FavoriteAudioGuideView: BaseView {
     
+    weak var favoriteAudioGuideProtocol: FavoriteAudioGuideVCProtocol?
+    
     var favoriteStories: [FavoriteStory] = [] {
         didSet {
             collectionView.reloadData()
@@ -20,7 +22,15 @@ final class FavoriteAudioGuideView: BaseView {
     private let guideCountLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
         view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
-        view.text = "이야기"
+        view.text = Strings.Common.story
+    }
+    
+    let emptyLabel = UILabel().setup { view in
+        view.textColor = .txtDisabled
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .medium)
+        view.text = Strings.Common.favoriteStoryNoData
+        view.textAlignment = .center
+        view.isHidden = true
     }
     
     private let countLabel = UILabel().setup { view in
@@ -41,12 +51,20 @@ final class FavoriteAudioGuideView: BaseView {
         countLabel.text = "\(count)"
     }
     
+    func showEmptyLabel() {
+        topView.isHidden = true
+        collectionView.isHidden = true
+        playerBottomView.isHidden = true
+        emptyLabel.isHidden = false
+    }
+    
     override func configureHierarchy() {
         addSubview(topView)
         topView.addSubview(guideCountLabel)
         topView.addSubview(countLabel)
         addSubview(collectionView)
         addSubview(playerBottomView)
+        addSubview(emptyLabel)
     }
     
     override func configureLayout() {
@@ -77,6 +95,11 @@ final class FavoriteAudioGuideView: BaseView {
             make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(self.snp.height).multipliedBy(0.13)
         }
+        
+        emptyLabel.snp.makeConstraints { make in
+            make.verticalEdges.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
+        }
     }
 }
 
@@ -92,9 +115,16 @@ extension FavoriteAudioGuideView: UICollectionViewDelegate, UICollectionViewData
         }
         let item = favoriteStories[indexPath.item]
         cell.configCell(row: item)
+        cell.heartButtonClicked = { [weak self] in
+            self?.favoriteAudioGuideProtocol?.cellHeartButtonClicked(item: item)
+        }
         return cell
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = favoriteStories[indexPath.item]
+        favoriteAudioGuideProtocol?.didSelectItemAt(item: item)
+    }
 }
 
 extension FavoriteAudioGuideView {
