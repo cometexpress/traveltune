@@ -34,6 +34,7 @@ struct Strings {
         static let story = "story".localized
         static let favoriteStoryNoData = "favorite_story_no_data".localized
         static let alertMsgDeleteStoryItem = "alert_msg_delete_story_item".localized
+        static let continuousPlay = "continuous_play".localized
     }
     
     struct ErrorMsg {

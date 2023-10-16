@@ -19,6 +19,15 @@ final class FavoriteAudioGuideView: BaseView {
     }
     
     private let topView = UIView()
+    
+    let checkBoxView = CheckBoxView()
+    
+    private let guideContinuousLabel = UILabel().setup { view in
+        view.textColor = .txtPrimary
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
+        view.text = Strings.Common.continuousPlay
+    }
+    
     private let guideCountLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
         view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
@@ -41,6 +50,7 @@ final class FavoriteAudioGuideView: BaseView {
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
         view.register(FavoriteStoryCell.self, forCellWithReuseIdentifier: FavoriteStoryCell.identifier)
         view.showsVerticalScrollIndicator = false
+        view.alwaysBounceVertical = true
         view.delegate = self
         view.dataSource = self
     }
@@ -103,6 +113,8 @@ final class FavoriteAudioGuideView: BaseView {
         addSubview(topView)
         topView.addSubview(guideCountLabel)
         topView.addSubview(countLabel)
+        topView.addSubview(checkBoxView)
+        topView.addSubview(guideContinuousLabel)
         addSubview(collectionView)
         addSubview(playerBottomView)
         addSubview(scriptView)
@@ -112,18 +124,29 @@ final class FavoriteAudioGuideView: BaseView {
     override func configureLayout() {
         topView.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide)
-            make.height.equalTo(40)
+            make.height.equalTo(70)
             make.horizontalEdges.equalToSuperview()
         }
         
         guideCountLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(16)
             make.leading.equalTo(16)
         }
         
         countLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalTo(guideCountLabel)
             make.leading.equalTo(guideCountLabel.snp.trailing).offset(6)
+        }
+        
+        checkBoxView.snp.makeConstraints { make in
+            make.top.equalTo(guideCountLabel.snp.bottom).offset(6)
+            make.leading.equalTo(guideCountLabel.snp.leading)
+            make.size.equalTo(24)
+        }
+        
+        guideContinuousLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(checkBoxView)
+            make.leading.equalTo(checkBoxView.snp.trailing).offset(4)
         }
         
         collectionView.snp.makeConstraints { make in

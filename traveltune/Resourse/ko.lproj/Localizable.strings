@@ -30,6 +30,8 @@
 "story" = "이야기";
 "favorite_story_no_data" = "관심있는 이야기를 추가해보세요!";
 "alert_msg_delete_story_item" = "목록에서 삭제할까요?";
+"continuous_play" = "연속재생";
+
 
 
 // 에러메시지

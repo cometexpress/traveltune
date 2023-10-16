@@ -30,6 +30,7 @@
 "story" = "Story";
 "favorite_story_no_data" = "Add stories of interest!";
 "alert_msg_delete_story_item" = "Do you want to delete it?";
+"continuous_play" = "Continuous play";
 
 
 // 에러메시지

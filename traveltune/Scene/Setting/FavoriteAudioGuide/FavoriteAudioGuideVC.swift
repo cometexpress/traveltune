@@ -13,6 +13,8 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
     
     private var currentPlayingAudioURL = ""
     
+    private var isContinuousPlay = false // 연속 재생 여부
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
@@ -110,6 +112,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         
         mainView.favoriteAudioGuideProtocol = self
         mainView.playerBottomView.playerBottomProtocol = self
+        mainView.checkBoxView.delegate = self
     }
     
     @objc private func backButtonClicked() {
@@ -122,15 +125,57 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
-        if !mainView.favoriteStories.isEmpty {
-            mainView.favoriteStories = mainView.favoriteStories.map {
-                $0.isPlaying = false
-                return $0
+        
+        if isContinuousPlay {
+            let playItemIdx = mainView.favoriteStories.firstIndex { $0.isPlaying == true }
+            guard let playItemIdx else { return }
+            if playItemIdx < mainView.favoriteStories.count - 1 {
+                let newPlayItem = mainView.favoriteStories[playItemIdx + 1]
+                
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == newPlayItem {
+                        $0.isPlaying = true
+                    }
+                    return $0
+                }
+                
+                guard let url = URL(string: newPlayItem.audioURL) else { return }
+                audioPlay(url: url)
+                updateData(item: newPlayItem)
+                
+            } else {
+                
+                // 마지막곡이 재생완료되면 처음부터 재생
+                let newPlayItem = mainView.favoriteStories[0]
+                
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == newPlayItem {
+                        $0.isPlaying = true
+                    }
+                    return $0
+                }
+                
+                guard let url = URL(string: newPlayItem.audioURL) else { return }
+                audioPlay(url: url)
+                updateData(item: newPlayItem)
+            }
+            
+            
+        } else {
+            if !mainView.favoriteStories.isEmpty {
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    return $0
+                }
             }
         }
+        
     }
     
     private func audioPlay(url: URL) {
+        currentPlayingAudioURL = String(describing: url)
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.play(url: url)
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
@@ -149,19 +194,88 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
             script: item.script
         )
     }
+    
+    private func currentPlayingItemIndex() -> Int? {
+        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first,
+              let index = mainView.favoriteStories.firstIndex(of: playItem) else {
+            return nil
+        }
+        return index
+    }
 }
 
 extension FavoriteAudioGuideVC: PlayerBottomProtocol {
     func previousClicked() {
+        guard let currentIndex = currentPlayingItemIndex() else {
+            AVPlayerManager.shared.stop()
+            self.mainView.playerBottomView.resetData()
+            return
+        }
         
+        if currentIndex == 0 {
+            showToast(msg: Strings.ErrorMsg.errorFirstStory)
+        } else {
+            let previousItemIndex = currentIndex - 1
+            let previousPlayItem = mainView.favoriteStories[previousItemIndex]
+            
+            if let audioURL = URL(string: previousPlayItem.audioURL) {
+                audioPlay(url: audioURL)
+                updateData(item: previousPlayItem)
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == previousPlayItem {
+                        $0.isPlaying = !previousPlayItem.isPlaying
+                    }
+                    return $0
+                }
+            }
+        }
     }
     
     func nextClicked() {
+        guard let currentIndex = currentPlayingItemIndex() else {
+            AVPlayerManager.shared.stop()
+            self.mainView.playerBottomView.resetData()
+            return
+        }
         
+        if currentIndex == mainView.favoriteStories.count - 1 {
+            showToast(msg: Strings.ErrorMsg.errorLastStory)
+        } else {
+            let nextItemIndex = currentIndex + 1
+            let nextPlayItem = mainView.favoriteStories[nextItemIndex]
+            
+            if let audioURL = URL(string: nextPlayItem.audioURL) {
+                audioPlay(url: audioURL)
+                updateData(item: nextPlayItem)
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == nextPlayItem {
+                        $0.isPlaying = !nextPlayItem.isPlaying
+                    }
+                    return $0
+                }
+            }
+        }
     }
     
     func playAndPauseClicked() {
+        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first else {
+            return
+        }
         
+        // StoryItem 안의 isPlaying 값은 재생시작 때 관리
+        // 일시정지할 때는 viewModel.stories.value 의 StoryItem 안의 isPlaying 값 그대로 true 로 유지
+        switch AVPlayerManager.shared.status {
+        case .playing:  // 재생중일 때 누르면 할 일
+            AVPlayerManager.shared.pause()
+            mainView.playerBottomView.addPlayAndPauseImage(isPlaying: true)
+        case .stop:     // 멈춰있을 때 누르면 할 일
+            AVPlayerManager.shared.replay()
+            mainView.playerBottomView.addPlayAndPauseImage(isPlaying: false)
+        case .waitingToPlay:
+            print("로딩 중")
+        }
     }
     
     func thumbImageClicked() {
@@ -170,6 +284,13 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
         } else {
             mainView.hideScriptView()
         }
+    }
+}
+
+extension FavoriteAudioGuideVC: CheckBoxDelegate {
+    func checkBoxClicked(isChecked: Bool) {        
+        mainView.checkBoxView.updateCheckboxImage(checked: !isChecked)
+        isContinuousPlay = !isChecked
     }
 }
 
@@ -196,15 +317,13 @@ extension FavoriteAudioGuideVC: FavoriteAudioGuideVCProtocol {
             return $0
         }
         
-        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first,
-              let audioURL = URL(string: playItem.audioURL) else {
+        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first, let url = URL(string: playItem.audioURL) else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
             return
         }
-        audioPlay(url: audioURL)
+        audioPlay(url: url)
         updateData(item: playItem)
-        currentPlayingAudioURL = playItem.audioURL
     }
     
 }

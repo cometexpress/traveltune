@@ -29,6 +29,7 @@
 		C0289E972ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */; };
 		C0289E992ADD1F3400F52624 /* FavoriteStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */; };
 		C0289E9E2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E9D2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift */; };
+		C0289EA12ADD822100F52624 /* CheckBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289EA02ADD822100F52624 /* CheckBoxView.swift */; };
 		C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */; };
 		C02AA11A2AD68C34007BA3AD /* DetailMapSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */; };
 		C02AA11C2AD68C47007BA3AD /* DetailMapSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */; };
@@ -203,6 +204,7 @@
 		C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideViewModel.swift; sourceTree = "<group>"; };
 		C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStoryCell.swift; sourceTree = "<group>"; };
 		C0289E9D2ADD4D4A00F52624 /* FavoriteAudioGuideVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideVCProtocol.swift; sourceTree = "<group>"; };
+		C0289EA02ADD822100F52624 /* CheckBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxView.swift; sourceTree = "<group>"; };
 		C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelProtocol.swift; sourceTree = "<group>"; };
 		C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotVC.swift; sourceTree = "<group>"; };
 		C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotView.swift; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 				C002E3B72ACAA225004C9C54 /* StoryScriptView.swift */,
 				C02AA1242AD6AAAC007BA3AD /* StretchableUICollectionViewFlowLayout.swift */,
 				C0B6CA182AC99EDD005A0E2A /* ThumbnailImageView.swift */,
+				C0289EA02ADD822100F52624 /* CheckBoxView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1077,6 +1080,7 @@
 				C04F9CA72ABEEFD50058A8D0 /* Router.swift in Sources */,
 				C0B6CA172AC994AF005A0E2A /* PlayerBottomProtocol.swift in Sources */,
 				C05F92212AC3F4F400427F6D /* ThemeDetailView.swift in Sources */,
+				C0289EA12ADD822100F52624 /* CheckBoxView.swift in Sources */,
 				C0D81A912AC49D1000CB2EF0 /* VisitorDataInfoRequestInterceptor.swift in Sources */,
 				C05BB6B22AC31D2A007CC4A5 /* ThemeViewModel.swift in Sources */,
 				C0D81A762AC40C8E00CB2EF0 /* SplashViewModel.swift in Sources */,
