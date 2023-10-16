@@ -162,7 +162,7 @@ extension SearchView {
             layoutSize: headerFooterSize,
             elementKind: SearchController.sectionHeaderElementKind, alignment: .top)
         section.boundarySupplementaryItems = [sectionHeader]
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: spacing, bottom: spacing, trailing: spacing)
+        section.contentInsets = NSDirectionalEdgeInsets(top: spacing, leading: 16, bottom: spacing, trailing: spacing)
         section.interGroupSpacing = spacing
         return section
     }

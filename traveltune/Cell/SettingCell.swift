@@ -39,7 +39,7 @@ final class SettingCell: BaseCollectionViewCell<SettingItem> {
         }
         
         arrowImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(16)
+            make.trailing.equalToSuperview().inset(30)
             make.centerY.equalToSuperview()
         }
         

@@ -31,7 +31,7 @@ class TitleSupplementaryView: UICollectionReusableView {
     
     private func configureLayout() {
         titleLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(10)
+            make.edges.equalToSuperview()
         }
     }
 }

@@ -30,7 +30,7 @@ final class SettingView: BaseView {
     override func configureLayout() {
         collectionView.snp.makeConstraints { make in
             make.top.bottom.equalTo(safeAreaLayoutGuide)
-            make.horizontalEdges.equalToSuperview().inset(8)
+            make.horizontalEdges.equalToSuperview().inset(16)
         }
     }
 }
@@ -81,9 +81,9 @@ extension SettingView {
         let width: CGFloat = UIScreen.main.bounds.width
         return UICollectionViewFlowLayout().collectionViewLayout(
             scrollDirection: .vertical,
-            headerSize: CGSize(width: width, height: 34),
+            headerSize: CGSize(width: width, height: 30),
             itemSize: CGSize(width: width, height: 44),
-            sectionInset: .init(top: 0, left: 0, bottom: 0, right: 0),
+            sectionInset: .init(top: 0, left: 16, bottom: 16, right: 0),
             minimumLineSpacing: 0,
             minimumInteritemSpacing: 0)
     }

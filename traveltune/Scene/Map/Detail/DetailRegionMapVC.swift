@@ -337,8 +337,7 @@ extension DetailRegionMapVC: MKMapViewDelegate {
         case is CustomAnnotationView:
             let selectedAnnotationView = view as? CustomAnnotationView
             guard let selectedAnnotationView else { return }
-            let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
-            guard let storyAnnotation else { return }
+            guard let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation else { return }
             selectedAnnotationView.setSelected(false, animated: false)
             mainView.selectedStoryItems.removeAll()
         default: Void()
