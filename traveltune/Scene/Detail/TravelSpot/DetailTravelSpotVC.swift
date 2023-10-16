@@ -29,14 +29,11 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
             case .loading: 
                 LoadingIndicator.show()
             case .success(let data):
-                if data.isEmpty {
-                    self?.mainView.hideNearbyCollectionView()
-                } else {
-                    self?.mainView.applySnapShot(items: data)
-                }
+                self?.mainView.applySnapShot(items: data)
                 LoadingIndicator.hide()
             case .error(let msg):
                 print(msg)
+                self?.mainView.hideNearbyCollectionView()
                 LoadingIndicator.hide()
             }
         }
@@ -85,7 +82,7 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
                 case .naver:
                     URLSchemeManager.shared.showURLScemeMap(type: .naver(lat: lat, lng: lng, dname: arrivalPoint))
                 case .tmap:
-                    URLSchemeManager.shared.showURLScemeMap(type: .naver(lat: lat, lng: lng, dname: arrivalPoint))
+                    URLSchemeManager.shared.showURLScemeMap(type: .tmap(lat: lat, lng: lng, rGoName: arrivalPoint))
                 case .apple:
                     URLSchemeManager.shared.convertCoordnatesToAddress(lat: lat, lng: lng) { address in
                         print(address)

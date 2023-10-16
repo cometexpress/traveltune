@@ -96,6 +96,8 @@ final class DetailTravelSpotView: BaseView {
     }
     
     let findDirectionButton = UIButton().setup { view in
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 0
         var attString = AttributedString(Strings.Common.getDirection)
         attString.font = .systemFont(ofSize: 16, weight: .bold)
         var config = UIButton.Configuration.filled()
@@ -109,16 +111,22 @@ final class DetailTravelSpotView: BaseView {
         view.configuration = config
     }
     
+    private let emptyDirectionButtonView = UIView().setup { view in
+        view.backgroundColor = .backgroundButton
+    }
+    
     private let nearbyTravelSpotLabel = UILabel().setup { view in
         view.font = .monospacedSystemFont(ofSize: 16, weight: .regular)
         view.textColor = .txtPrimary
         view.text = Strings.Common.nearbyAttractions
+        view.isHidden = true
     }
     
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: self.createLayout()).setup { view in
         view.delegate = self
         view.alwaysBounceVertical = false
         view.showsVerticalScrollIndicator = false
+        view.isHidden = true
     }
     
     enum Section {
@@ -149,6 +157,8 @@ final class DetailTravelSpotView: BaseView {
         
         if let x = Double(item.mapX), let y = Double(item.mapY) {
             mapNodataLabel.isHidden = true
+            nearbyTravelSpotLabel.isHidden = false
+            collectionView.isHidden = false
             let center = CLLocationCoordinate2D(latitude: y, longitude: x)
             setRegionAndAnnotation(center: center, item: item)
             mapView.isZoomEnabled = true           // 줌
@@ -184,6 +194,7 @@ final class DetailTravelSpotView: BaseView {
     }
     
     func hideNearbyCollectionView() {
+        nearbyTravelSpotLabel.backgroundColor = .lightGray
         nearbyTravelSpotLabel.isHidden = true
         collectionView.isHidden = true
     }
@@ -202,6 +213,7 @@ final class DetailTravelSpotView: BaseView {
     override func configureHierarchy() {
         addSubview(scrollView)
         addSubview(findDirectionButton)
+        addSubview(emptyDirectionButtonView)
         scrollView.addSubview(imageContainerView)
         scrollView.addSubview(backBlurImageView)
         scrollView.addSubview(topRoundView)
@@ -238,6 +250,12 @@ final class DetailTravelSpotView: BaseView {
             make.bottom.equalToSuperview()
             make.height.equalTo(90)
             make.horizontalEdges.equalToSuperview()
+        }
+        
+        emptyDirectionButtonView.snp.makeConstraints { make in
+            make.horizontalEdges.equalToSuperview()
+            make.height.equalTo(10)
+            make.top.equalTo(findDirectionButton)
         }
         
         imageContainerView.snp.makeConstraints { make in
@@ -315,7 +333,7 @@ final class DetailTravelSpotView: BaseView {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(nearbyTravelSpotLabel.snp.bottom)
             make.horizontalEdges.equalTo(self)
-            make.height.equalTo(160)
+            make.height.equalTo(150)
         }
     }
 
