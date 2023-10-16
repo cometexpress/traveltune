@@ -47,6 +47,12 @@ final class FavoriteAudioGuideView: BaseView {
     
     let playerBottomView = PlayerBottomView()
     
+    lazy var scriptView = StoryScriptView().setup { view in
+        view.closeClicked = {
+            self.hideScriptView()
+        }
+    }
+    
     func updateCountLabel(count: Int) {
         countLabel.text = "\(count)"
     }
@@ -58,12 +64,48 @@ final class FavoriteAudioGuideView: BaseView {
         emptyLabel.isHidden = false
     }
     
+    func showScriptView() {
+        playerBottomView.thumbImageView.isUserInteractionEnabled = false
+        scriptView.isHidden = false
+        scriptView.isUserInteractionEnabled = false
+        scriptView.snp.remakeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide)
+            make.bottom.equalTo(playerBottomView.snp.top)
+            make.horizontalEdges.equalToSuperview()
+        }
+        scriptView.alpha = 0
+        UIView.animate(withDuration: 0.2, delay: 0, options:.curveEaseOut) {
+            self.scriptView.alpha = 1
+            self.layoutIfNeeded()
+        } completion: { _ in
+            self.scriptView.isUserInteractionEnabled = true
+        }
+
+    }
+    
+    func hideScriptView() {
+        scriptView.isUserInteractionEnabled = false
+        scriptView.snp.remakeConstraints { make in
+            make.top.equalTo(playerBottomView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
+        }
+        scriptView.alpha = 1
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseOut) {
+            self.layoutIfNeeded()
+            self.scriptView.alpha = 0
+        } completion: { _ in
+            self.scriptView.isHidden = true
+            self.playerBottomView.thumbImageView.isUserInteractionEnabled = true
+        }
+    }
+    
     override func configureHierarchy() {
         addSubview(topView)
         topView.addSubview(guideCountLabel)
         topView.addSubview(countLabel)
         addSubview(collectionView)
         addSubview(playerBottomView)
+        addSubview(scriptView)
         addSubview(emptyLabel)
     }
     
@@ -94,6 +136,11 @@ final class FavoriteAudioGuideView: BaseView {
             make.horizontalEdges.equalToSuperview()
             make.bottom.equalToSuperview().inset(40)
             make.height.equalTo(self.snp.height).multipliedBy(0.13)
+        }
+        
+        scriptView.snp.makeConstraints { make in
+            make.top.equalTo(playerBottomView.snp.bottom)
+            make.horizontalEdges.equalToSuperview()
         }
         
         emptyLabel.snp.makeConstraints { make in

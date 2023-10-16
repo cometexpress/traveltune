@@ -50,7 +50,7 @@ final class FavoriteAudioGuideViewModel: BaseViewModel {
                 tasks.forEach { story in
                     favoriteStroies.append(story)
                 }
-                self.state.value = .success(data: favoriteStroies)
+                self.state.value = .deleteUpdate(data: favoriteStroies)
 
             case .error(let error): break
                 self.state.value = .error(msg: error.localizedDescription)
