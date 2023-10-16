@@ -128,19 +128,9 @@ final class FavoriteAudioGuideView: BaseView {
             make.horizontalEdges.equalToSuperview()
         }
         
-        guideCountLabel.snp.makeConstraints { make in
+        checkBoxView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(16)
             make.leading.equalTo(16)
-        }
-        
-        countLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(guideCountLabel)
-            make.leading.equalTo(guideCountLabel.snp.trailing).offset(6)
-        }
-        
-        checkBoxView.snp.makeConstraints { make in
-            make.top.equalTo(guideCountLabel.snp.bottom).offset(6)
-            make.leading.equalTo(guideCountLabel.snp.leading)
             make.size.equalTo(24)
         }
         
@@ -149,6 +139,16 @@ final class FavoriteAudioGuideView: BaseView {
             make.leading.equalTo(checkBoxView.snp.trailing).offset(4)
         }
         
+        guideCountLabel.snp.makeConstraints { make in
+            make.top.equalTo(checkBoxView.snp.bottom).offset(12)
+            make.leading.equalTo(checkBoxView.snp.leading)
+        }
+        
+        countLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(guideCountLabel)
+            make.leading.equalTo(guideCountLabel.snp.trailing).offset(6)
+        }
+ 
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom)
             make.horizontalEdges.equalToSuperview()

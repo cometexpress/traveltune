@@ -213,7 +213,27 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
         }
         
         if currentIndex == 0 {
-            showToast(msg: Strings.ErrorMsg.errorFirstStory)
+            
+            if isContinuousPlay {
+                // 첫번째 아이템에서 이전버튼 클릭시 마지막아이템으로 이동
+                let lastPlayItem = mainView.favoriteStories[mainView.favoriteStories.count - 1]
+                
+                if let audioURL = URL(string: lastPlayItem.audioURL) {
+                    audioPlay(url: audioURL)
+                    updateData(item: lastPlayItem)
+                    mainView.favoriteStories = mainView.favoriteStories.map {
+                        $0.isPlaying = false
+                        if $0 == lastPlayItem {
+                            $0.isPlaying = true
+                        }
+                        return $0
+                    }
+                }
+                
+            } else {
+                showToast(msg: Strings.ErrorMsg.errorFirstStory)
+            }
+            
         } else {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = mainView.favoriteStories[previousItemIndex]
@@ -240,7 +260,27 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
         }
         
         if currentIndex == mainView.favoriteStories.count - 1 {
-            showToast(msg: Strings.ErrorMsg.errorLastStory)
+            
+            if isContinuousPlay {
+                // 마지막 아이템에서 이전버튼 클릭시 첫 아이템으로 이동
+                let firstPlayItem = mainView.favoriteStories[0]
+                
+                if let audioURL = URL(string: firstPlayItem.audioURL) {
+                    audioPlay(url: audioURL)
+                    updateData(item: firstPlayItem)
+                    mainView.favoriteStories = mainView.favoriteStories.map {
+                        $0.isPlaying = false
+                        if $0 == firstPlayItem {
+                            $0.isPlaying = true
+                        }
+                        return $0
+                    }
+                }
+                
+            } else {
+                showToast(msg: Strings.ErrorMsg.errorLastStory)
+            }
+            
         } else {
             let nextItemIndex = currentIndex + 1
             let nextPlayItem = mainView.favoriteStories[nextItemIndex]
