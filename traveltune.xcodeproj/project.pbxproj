@@ -23,6 +23,11 @@
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C0225C8F2ADBA5D90057CC6B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */; };
 		C0225C912ADBAB350057CC6B /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C902ADBAB350057CC6B /* SettingItem.swift */; };
+		C0289E902ADD0BAA00F52624 /* SettingVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E8F2ADD0BAA00F52624 /* SettingVCProtocol.swift */; };
+		C0289E932ADD0C5900F52624 /* FavoriteAudioGuideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E922ADD0C5900F52624 /* FavoriteAudioGuideVC.swift */; };
+		C0289E952ADD0C7000F52624 /* FavoriteAudioGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */; };
+		C0289E972ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */; };
+		C0289E992ADD1F3400F52624 /* FavoriteStoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */; };
 		C02AA1152AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */; };
 		C02AA11A2AD68C34007BA3AD /* DetailMapSpotVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */; };
 		C02AA11C2AD68C47007BA3AD /* DetailMapSpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */; };
@@ -191,6 +196,11 @@
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		C0225C902ADBAB350057CC6B /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		C0289E8F2ADD0BAA00F52624 /* SettingVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVCProtocol.swift; sourceTree = "<group>"; };
+		C0289E922ADD0C5900F52624 /* FavoriteAudioGuideVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideVC.swift; sourceTree = "<group>"; };
+		C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideView.swift; sourceTree = "<group>"; };
+		C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteAudioGuideViewModel.swift; sourceTree = "<group>"; };
+		C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStoryCell.swift; sourceTree = "<group>"; };
 		C02AA1142AD5C5B4007BA3AD /* MapFloatingPanelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapFloatingPanelProtocol.swift; sourceTree = "<group>"; };
 		C02AA1192AD68C34007BA3AD /* DetailMapSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotVC.swift; sourceTree = "<group>"; };
 		C02AA11B2AD68C47007BA3AD /* DetailMapSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMapSpotView.swift; sourceTree = "<group>"; };
@@ -383,6 +393,16 @@
 				C002E3B22ACA7FD4004C9C54 /* ThemeDetailInfoView.swift */,
 			);
 			path = ThemeDetailInfo;
+			sourceTree = "<group>";
+		};
+		C0289E912ADD0C4000F52624 /* FavoriteAudioGuide */ = {
+			isa = PBXGroup;
+			children = (
+				C0289E922ADD0C5900F52624 /* FavoriteAudioGuideVC.swift */,
+				C0289E942ADD0C7000F52624 /* FavoriteAudioGuideView.swift */,
+				C0289E962ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift */,
+			);
+			path = FavoriteAudioGuide;
 			sourceTree = "<group>";
 		};
 		C02AA1182AD68C20007BA3AD /* MapSpot */ = {
@@ -815,9 +835,11 @@
 		C0E8BA982ABDCD2000B1CCA6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				C0289E912ADD0C4000F52624 /* FavoriteAudioGuide */,
 				C0E8BA9D2ABDCD8300B1CCA6 /* SettingVC.swift */,
 				C0E8BAAF2ABDDD9700B1CCA6 /* SettingView.swift */,
 				C03FE0382ACFDB6600D02385 /* SettingViewModel.swift */,
+				C0289E8F2ADD0BAA00F52624 /* SettingVCProtocol.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -860,6 +882,7 @@
 		C0EF78822AC5D6190098D091 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				C0289E982ADD1F3400F52624 /* FavoriteStoryCell.swift */,
 				C0D662322ADA28E900391C50 /* MapCarouselCell.swift */,
 				C0E203C22AD5984C00607534 /* MapSpotCell.swift */,
 				C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */,
@@ -1067,6 +1090,7 @@
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
 				C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */,
 				C05F535F2AD8036300E7FF28 /* ExcludeMapView.swift in Sources */,
+				C0289E972ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift in Sources */,
 				C09A697F2ACB34F1002FA468 /* SearchController.swift in Sources */,
 				C06449F22ACC2D60005C8529 /* SearchRecentWordCell.swift in Sources */,
 				C09B48792ACF195A00B951CB /* SearchResultTabTravelSpotVCProtocol.swift in Sources */,
@@ -1094,8 +1118,10 @@
 				C002E3B32ACA7FD4004C9C54 /* ThemeDetailInfoView.swift in Sources */,
 				C05824AF2AD459A500E34DF0 /* ShareableLinkPresentation.swift in Sources */,
 				C06C933C2AC2B231006B26F6 /* ThemePagerCellView.swift in Sources */,
+				C0289E902ADD0BAA00F52624 /* SettingVCProtocol.swift in Sources */,
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0607D8B2AD27C44002E4CBD /* DetailTravelSpotVC.swift in Sources */,
+				C0289E932ADD0C5900F52624 /* FavoriteAudioGuideVC.swift in Sources */,
 				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
 				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
@@ -1166,6 +1192,7 @@
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */,
 				C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */,
+				C0289E992ADD1F3400F52624 /* FavoriteStoryCell.swift in Sources */,
 				C0F383652AD7180900DF276D /* DetailRegionMapVC.swift in Sources */,
 				C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */,
 				C0D662352ADA448C00391C50 /* StoryAnnotation.swift in Sources */,
@@ -1176,6 +1203,7 @@
 				C0E8BAB02ABDDD9700B1CCA6 /* SettingView.swift in Sources */,
 				C05F53632AD8063D00E7FF28 /* DetailRegionMapVCProtocol.swift in Sources */,
 				C05F53612AD8058500E7FF28 /* LocationManager.swift in Sources */,
+				C0289E952ADD0C7000F52624 /* FavoriteAudioGuideView.swift in Sources */,
 				C05F536A2AD83EAD00E7FF28 /* RequestStoryByLocation.swift in Sources */,
 				C0D81A7A2AC4104300CB2EF0 /* RealmProtocol.swift in Sources */,
 				C00C3C832ACC8A3C00B89928 /* RegionType.swift in Sources */,

@@ -128,7 +128,7 @@
 "setting_etc" = "Etc";
 
 // 설정 헤더, 아이템 타이틀
-"setting_audio_guide_item_01" = "Audio guide of interest";
+"setting_audio_guide_item_01" = "Story of interest";
 "setting_notification_item_01" = "Notification settings";
 "setting_terms_item_01" = "Privacy policy";
 "setting_etc_item_01" = "Contact us";

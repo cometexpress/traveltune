@@ -128,7 +128,7 @@
 "setting_etc" = "기타";
 
 // 설정 헤더, 아이템 타이틀
-"setting_audio_guide_item_01" = "관심있는 오디오 가이드";
+"setting_audio_guide_item_01" = "관심있는 이야기";
 "setting_notification_item_01" = "알림 설정";
 "setting_terms_item_01" = "개인정보 처리방침";
 "setting_etc_item_01" = "문의하기";

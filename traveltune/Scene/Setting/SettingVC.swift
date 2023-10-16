@@ -32,9 +32,30 @@ final class SettingVC: BaseViewController<SettingView, SettingViewModel> {
         navigationItem.scrollEdgeAppearance = appearance
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.backButtonDisplayMode = .minimal
+        
+        mainView.settingVCProtocol = self
     }
     
     func bindViewModel() {
         
+    }
+}
+
+extension SettingVC: SettingVCProtocol {
+    
+    func didSelectItemAt(item: SettingItem) {
+        switch item.title {
+        case Strings.Setting.settingAudioGuideItem01:
+            let vc = FavoriteAudioGuideVC(
+                viewModel: FavoriteAudioGuideViewModel(
+                    localFavoriteStoryRepository: LocalFavoriteStoryRepository()
+                )
+            )
+            vc.hidesBottomBarWhenPushed = true
+            vc.naviTitle = item.title
+            navigationController?.pushViewController(vc, animated: true)
+        default:
+            print(item.title)
+        }
     }
 }

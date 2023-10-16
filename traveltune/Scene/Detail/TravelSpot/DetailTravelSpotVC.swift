@@ -29,7 +29,12 @@ final class DetailTravelSpotVC: BaseViewController<DetailTravelSpotView, DetailT
             case .loading: 
                 LoadingIndicator.show()
             case .success(let data):
-                self?.mainView.applySnapShot(items: data)
+                if data.isEmpty {
+                    self?.mainView.hideNearbyCollectionView()
+                } else {
+                    self?.mainView.applySnapShot(items: data)
+                }
+                
                 LoadingIndicator.hide()
             case .error(let msg):
                 print(msg)

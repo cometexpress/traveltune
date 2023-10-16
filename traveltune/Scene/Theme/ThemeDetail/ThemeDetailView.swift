@@ -247,16 +247,14 @@ extension ThemeDetailView: UICollectionViewDelegate, UICollectionViewDataSource 
 extension ThemeDetailView {
     
     private func createLayout() -> UICollectionViewLayout {
-        // 비율 계산해서 디바이스 별로 UI 설정
-        let layout = StretchableUICollectionViewFlowLayout()
-        let spacing: CGFloat = 8
         let width: CGFloat = UIScreen.main.bounds.width
-        
-        layout.itemSize = CGSize(width: width, height: 60)
-        layout.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)  // 컨텐츠가 잘리지 않고 자연스럽게 표시되도록 여백설정
-        layout.minimumLineSpacing = spacing         // 셀과셀 위 아래 최소 간격
-        layout.minimumInteritemSpacing = spacing    // 셀과셀 좌 우 최소 간격
-        return layout
+        let spacing: CGFloat = 8
+        return UICollectionViewFlowLayout().collectionViewLayout(
+            headerSize: .zero,
+            itemSize: CGSize(width: width, height: 60),
+            sectionInset: UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing),
+            minimumLineSpacing: 2,
+            minimumInteritemSpacing: 0)
     }
     
 //    private func configureDataSource() {
@@ -283,16 +281,4 @@ extension ThemeDetailView {
 //        snapshot.appendItems(items, toSection: 0)
 //        dataSource.applySnapshotUsingReloadData(snapshot)
 //    }
-    
-    private func collectionViewLayout() -> UICollectionViewFlowLayout {
-        let width: CGFloat = UIScreen.main.bounds.width
-        //        let headerHeight: CGFloat = UIScreen.main.bounds.height / 3.1
-        return UICollectionViewFlowLayout().collectionViewLayout(
-            headerSize: .zero,
-            itemSize: CGSize(width: width, height: 60),
-            //            itemSize: CGSize(width: width, height: headerHeight / 3.4),
-            sectionInset: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0),
-            minimumLineSpacing: 2,
-            minimumInteritemSpacing: 0)
-    }
 }

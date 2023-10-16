@@ -23,6 +23,8 @@ final class SettingView: BaseView {
         )
     }
     
+    weak var settingVCProtocol: SettingVCProtocol?
+    
     override func configureHierarchy() {
         addSubview(collectionView)
     }
@@ -60,7 +62,11 @@ extension SettingView: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        let item = SettingItem(
+            title: SettingsType.allCases[indexPath.section].contents[indexPath.item],
+            rightTitle: SettingsType.allCases[indexPath.section].detailContents[indexPath.item]
+        )
+        settingVCProtocol?.didSelectItemAt(item: item)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
