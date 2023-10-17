@@ -49,7 +49,7 @@ final class DetailRegionMapViewModel: BaseViewModel {
         state.value = .loading
         storyRepository.requestStoryByLocation(
             page: 1, 
-            numOfRows: 500,
+            numOfRows: 800,
             mapX: lng,
             mapY: lat,
             radius: Network.maxRadius) { [weak self] response in

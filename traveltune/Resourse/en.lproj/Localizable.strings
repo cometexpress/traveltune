@@ -31,6 +31,9 @@
 "favorite_story_no_data" = "Add stories of interest!";
 "alert_msg_delete_story_item" = "Do you want to delete it?";
 "continuous_play" = "Continuous play";
+"enter_inquiry_details" = "Please enter your inquiry details";
+"inquiry" = "Inquiry";
+"success_send_email" = "Inquiry completed";
 
 
 // 에러메시지
@@ -41,6 +44,8 @@
 "error_no_file" = "Be preparing a file";
 "error_first_story" = "This is the first story";
 "error_last_story" = "This is the last story";
+"error_fail_send_email" = "An error occurred while sending email";
+"error_fail_no_email" = "Please check your iPhone email settings";
 
 
 // 홈 네비 타이틀
@@ -75,12 +80,12 @@
 //"theme_bukchon_search_keyword" = "Bukchon alley travel";
 
 // 홈 테마 컨텐츠
-"theme_hangang_content" = "비옥한 한강 하류지역은 고대부터 문화발달의 터전이었고, 삼국시대에는 중국과의 교통로로서 쟁패의 요지였다. 조선이 한성에 도읍을 정한 이래로는 수상 교통로로서도 중요한 기능을 했다. 홍수조절과 수력발전을 위해 많은 댐이 건설되어 교통로의 기능은 잃었으나 수도권의 생활·공업 용수의 공급원으로서 막대한 기여를 하고 있다.";
-"theme_market_content" = "가게 한 집에서 취급하는 품목은 대형마트와 비교를 할 수 있을 정도가 아니지만, 시장 전체를 기준으로 삼는다면 어느 규모 이상의 전통시장은 웬만한 대형마트나 백화점도 명함을 쉽게 내밀기 어려울 정도로 다양한 품목을 취급한다.";
-"theme_history_content" = "한국의 역사마을에는 씨족마을, 읍성마을 등의 다양한 유형이 있으나 그 중에서 씨족마을은 전체 역사마을의 약 80%를 차지하는 한국의 대표적인 역사마을 유형이다.";
-"theme_museum_content" = "과거 박물관의 역할은 전시품을 보존하고 이용객들이 관람할 수 있도록 전시하는 기능에 한정되기 마련이었다. 그러나 오늘날 박물관은 전시와 관련된 프로그램을 체험하거나 휴식을 취하기도 하고 다양한 컨텐츠를 즐길 수 있는 공간으로 변모하고 있다.";
-"theme_temple_content" = "사찰의 구조물들에는 각각 의미가 있다. 일주문에서 시작하는 사찰의 경계를 통해 세속의 때를 벗고 깨달음의 길로 나아갈 수 있게 점층적인 구조를 가지고 있다. 한국의 전통적 사찰구조는 탑을 중심으로 배치되어 있다. 건축물들의 이름은 그곳에 모셔진 부처님에 따라 다르게 부르고 있다.";
-"theme_bukchon_content" = "북촌한옥마을은 600년 전부터 양반층이 살던 곳으로 지금도 실제 주민들이 거주하며 한옥마을을 보존하고 있다. 북촌한옥마을에는 중요한 역사적 자산들이 남아있으며, 한옥의 아름다움이 돋보이는 거리가 많아 매력적인 관광지로 손꼽힌다.";
+"theme_hangang_content" = "The lower Han River region in Korea has a rich history as a cultural center and a crucial transportation route to China during the Three Kingdoms period. After Seoul became the capital during the Joseon Dynasty, it remained important for water transportation. Although its transportation role declined due to dam construction for flood control and hydroelectric power, it still plays a significant role in supplying water to the metropolitan area for domestic and industrial use.";
+"theme_market_content" = "The items sold in a single shop may not compare to those in a large supermarket, but when considering the entire market, traditional markets of a certain size offer a wide variety of products that would be challenging for most large supermarkets or department stores to match.";
+"theme_history_content" = "In Korean historical villages, there are various types such as clan villages and fortified villages, but among them, clan villages are the predominant type, making up approximately 80% of all historical villages in Korea.";
+"theme_museum_content" = "In the past, the role of museums was primarily limited to preserving and displaying exhibits for visitors to see. However, today, museums have transformed into spaces where visitors can experience exhibition-related programs, take a break, and enjoy a wide range of content.";
+"theme_temple_content" = "The structures within a temple hold individual meanings. Starting with the Iljumun Gate, the temple's layout gradually leads from the secular world to the path of enlightenment. Traditional Korean temple architecture is centered around a pagoda. The names of the buildings vary according to the Buddha enshrined within them.";
+"theme_bukchon_content" = "Bukchon Hanok Village is a place where the yangban (nobility) class has lived for over 600 years. Even today, actual residents inhabit the village and preserve its hanok (traditional Korean house) architecture. Bukchon Hanok Village boasts important historical assets, and its streets with the beauty of hanoks stand out, making it a charming and popular tourist destination.";
 
 // 지역
 "seoul" = "seoul";

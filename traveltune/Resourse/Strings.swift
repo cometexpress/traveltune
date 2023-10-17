@@ -35,6 +35,9 @@ struct Strings {
         static let favoriteStoryNoData = "favorite_story_no_data".localized
         static let alertMsgDeleteStoryItem = "alert_msg_delete_story_item".localized
         static let continuousPlay = "continuous_play".localized
+        static let enterInquiryDetails = "enter_inquiry_details".localized
+        static let inquiry = "inquiry".localized
+        static let successSendEmail = "success_send_email".localized
     }
     
     struct ErrorMsg {
@@ -44,7 +47,9 @@ struct Strings {
         static let errorLoadingData = "error_loading_data".localized
         static let errorFirstStory = "error_first_story".localized
         static let errorLastStory = "error_last_story".localized
-        static let errorNoFile = "error_no_file".localized        
+        static let errorNoFile = "error_no_file".localized
+        static let errorFailSendEmail = "error_fail_send_email".localized
+        static let errorFailNoEmail = "error_fail_no_email".localized
     }
     
     struct TabMap {
