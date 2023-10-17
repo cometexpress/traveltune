@@ -141,7 +141,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
                 }
                 
                 guard let url = URL(string: newPlayItem.audioURL) else { return }
-                audioPlay(url: url)
+                audioPlay(item: newPlayItem)
                 updateData(item: newPlayItem)
                 
             } else {
@@ -156,9 +156,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
                     }
                     return $0
                 }
-                
-                guard let url = URL(string: newPlayItem.audioURL) else { return }
-                audioPlay(url: url)
+                audioPlay(item: newPlayItem)
                 updateData(item: newPlayItem)
             }
             
@@ -174,10 +172,11 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         
     }
     
-    private func audioPlay(url: URL) {
-        currentPlayingAudioURL = String(describing: url)
+    private func audioPlay(item: FavoriteStory) {
+        guard let audioURL = URL(string: item.audioURL) else { return }
+        currentPlayingAudioURL = item.audioURL
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(url: url)
+        AVPlayerManager.shared.play(item: AudioItem(audioUrl: audioURL, title: item.audioTitle, imagePath: item.imageURL))
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
             self.mainView.playerBottomView.audioSlider.value = interval
         }
@@ -217,17 +216,14 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
             if isContinuousPlay {
                 // 첫번째 아이템에서 이전버튼 클릭시 마지막아이템으로 이동
                 let lastPlayItem = mainView.favoriteStories[mainView.favoriteStories.count - 1]
-                
-                if let audioURL = URL(string: lastPlayItem.audioURL) {
-                    audioPlay(url: audioURL)
-                    updateData(item: lastPlayItem)
-                    mainView.favoriteStories = mainView.favoriteStories.map {
-                        $0.isPlaying = false
-                        if $0 == lastPlayItem {
-                            $0.isPlaying = true
-                        }
-                        return $0
+                audioPlay(item: lastPlayItem)
+                updateData(item: lastPlayItem)
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == lastPlayItem {
+                        $0.isPlaying = true
                     }
+                    return $0
                 }
                 
             } else {
@@ -237,17 +233,14 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
         } else {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = mainView.favoriteStories[previousItemIndex]
-            
-            if let audioURL = URL(string: previousPlayItem.audioURL) {
-                audioPlay(url: audioURL)
-                updateData(item: previousPlayItem)
-                mainView.favoriteStories = mainView.favoriteStories.map {
-                    $0.isPlaying = false
-                    if $0 == previousPlayItem {
-                        $0.isPlaying = !previousPlayItem.isPlaying
-                    }
-                    return $0
+            audioPlay(item: previousPlayItem)
+            updateData(item: previousPlayItem)
+            mainView.favoriteStories = mainView.favoriteStories.map {
+                $0.isPlaying = false
+                if $0 == previousPlayItem {
+                    $0.isPlaying = !previousPlayItem.isPlaying
                 }
+                return $0
             }
         }
     }
@@ -264,17 +257,14 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
             if isContinuousPlay {
                 // 마지막 아이템에서 이전버튼 클릭시 첫 아이템으로 이동
                 let firstPlayItem = mainView.favoriteStories[0]
-                
-                if let audioURL = URL(string: firstPlayItem.audioURL) {
-                    audioPlay(url: audioURL)
-                    updateData(item: firstPlayItem)
-                    mainView.favoriteStories = mainView.favoriteStories.map {
-                        $0.isPlaying = false
-                        if $0 == firstPlayItem {
-                            $0.isPlaying = true
-                        }
-                        return $0
+                audioPlay(item: firstPlayItem)
+                updateData(item: firstPlayItem)
+                mainView.favoriteStories = mainView.favoriteStories.map {
+                    $0.isPlaying = false
+                    if $0 == firstPlayItem {
+                        $0.isPlaying = true
                     }
+                    return $0
                 }
                 
             } else {
@@ -284,23 +274,21 @@ extension FavoriteAudioGuideVC: PlayerBottomProtocol {
         } else {
             let nextItemIndex = currentIndex + 1
             let nextPlayItem = mainView.favoriteStories[nextItemIndex]
-            
-            if let audioURL = URL(string: nextPlayItem.audioURL) {
-                audioPlay(url: audioURL)
-                updateData(item: nextPlayItem)
-                mainView.favoriteStories = mainView.favoriteStories.map {
-                    $0.isPlaying = false
-                    if $0 == nextPlayItem {
-                        $0.isPlaying = !nextPlayItem.isPlaying
-                    }
-                    return $0
+            audioPlay(item: nextPlayItem)
+            updateData(item: nextPlayItem)
+            mainView.favoriteStories = mainView.favoriteStories.map {
+                $0.isPlaying = false
+                if $0 == nextPlayItem {
+                    $0.isPlaying = !nextPlayItem.isPlaying
                 }
+                return $0
             }
         }
     }
     
     func playAndPauseClicked() {
-        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first else {
+        let playItem = mainView.favoriteStories.filter { $0.isPlaying == true }.first
+        if playItem == nil {
             return
         }
         
@@ -357,12 +345,12 @@ extension FavoriteAudioGuideVC: FavoriteAudioGuideVCProtocol {
             return $0
         }
         
-        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first, let url = URL(string: playItem.audioURL) else {
+        guard let playItem = mainView.favoriteStories.filter({ $0.isPlaying == true }).first else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
             return
         }
-        audioPlay(url: url)
+        audioPlay(item: playItem)
         updateData(item: playItem)
     }
     

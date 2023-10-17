@@ -91,14 +91,11 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
 //        mainView.applySnapshot(items: themeStoryItems)
     }
     
-    private func audioPlay(url: URL) {
+    private func audioPlay(item: StoryItem) {
+        guard let url = URL(string: item.audioURL) else { return }
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(url: url)
+        AVPlayerManager.shared.play(item: AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL))
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
-//            let seconds = String(format: "%02d", Int(playTime) % 60)
-//            let minutes = String(format: "%02d", Int(playTime / 60))
-//            print("interval = \(interval)")
-//            print("\(minutes):\(seconds)")
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }
@@ -139,18 +136,16 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             let previousItemIndex = currentIndex - 1
             let previousPlayItem = mainView.themeStoryItems[previousItemIndex]
             
-            if let audioURL = URL(string: previousPlayItem.audioURL) {
-                audioPlay(url: audioURL)
-                updateData(item: previousPlayItem)
-                mainView.themeStoryItems = mainView.themeStoryItems.map {
-                    $0.isPlaying = false
-                    if $0 == previousPlayItem {
-                        $0.isPlaying = !previousPlayItem.isPlaying
-                    }
-                    return $0
+            audioPlay(item: previousPlayItem)
+            updateData(item: previousPlayItem)
+            mainView.themeStoryItems = mainView.themeStoryItems.map {
+                $0.isPlaying = false
+                if $0 == previousPlayItem {
+                    $0.isPlaying = !previousPlayItem.isPlaying
                 }
-//                mainView.applySnapshot(items: themeStoryItems)
+                return $0
             }
+//                mainView.applySnapshot(items: themeStoryItems)
         }
     }
     
@@ -166,25 +161,23 @@ extension ThemeDetailVC: PlayerBottomProtocol {
         } else {
             let nextItemIndex = currentIndex + 1
             let nextPlayItem = mainView.themeStoryItems[nextItemIndex]
-            
-            if let audioURL = URL(string: nextPlayItem.audioURL) {
-                audioPlay(url: audioURL)
-                updateData(item: nextPlayItem)
-                mainView.themeStoryItems = mainView.themeStoryItems.map {
-                    $0.isPlaying = false
-                    if $0 == nextPlayItem {
-                        $0.isPlaying = !nextPlayItem.isPlaying
-                    }
-                    return $0
+            audioPlay(item: nextPlayItem)
+            updateData(item: nextPlayItem)
+            mainView.themeStoryItems = mainView.themeStoryItems.map {
+                $0.isPlaying = false
+                if $0 == nextPlayItem {
+                    $0.isPlaying = !nextPlayItem.isPlaying
                 }
-//                mainView.applySnapshot(items: themeStoryItems)
+                return $0
             }
+//            mainView.applySnapshot(items: themeStoryItems)
         }
     }
     
     func playAndPauseClicked() {
         // 재생중인 아이템이 없을 때는 실행 안되도록
-        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first else {
+        let playItem = mainView.themeStoryItems.filter { $0.isPlaying == true }.first
+        if playItem == nil {
             return
         }
         
@@ -248,14 +241,13 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             return $0
         }
         
-        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first,
-              let audioURL = URL(string: playItem.audioURL) else {
+        guard let playItem = mainView.themeStoryItems.filter({ $0.isPlaying == true }).first else {
             AVPlayerManager.shared.stop()
             self.mainView.playerBottomView.resetData()
             return
         }
 //        self.mainView.applySnapshot(items: themeStoryItems)
-        audioPlay(url: audioURL)
+        audioPlay(item: playItem)
         updateData(item: playItem)
     }
 }

@@ -53,9 +53,10 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         )
     }
     
-    private func audioPlay(url: URL) {
+    private func audioPlay(item: StoryItem) {
+        guard let url = URL(string: item.audioURL) else { return }
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(url: url)
+        AVPlayerManager.shared.play(item: AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL))
         AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
             let seconds = String(format: "%02d", Int(playTime) % 60)
             let minutes = String(format: "%02d", Int(playTime / 60))
@@ -140,11 +141,11 @@ extension DetailStoryVC: DetailStoryProtocol {
     func playAndPauseClicked() {
         
         if AVPlayerManager.shared.isFirstPlay() {
-            guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
+            guard let _ = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
                 showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
                 return
             }
-            audioPlay(url: url)
+            audioPlay(item: (viewModel?.detailStory.value)!)
             mainView.setPlayImageInAudio()
         } else {
             switch AVPlayerManager.shared.status {
@@ -161,7 +162,7 @@ extension DetailStoryVC: DetailStoryProtocol {
     }
     
     func likeViewClicked() {
-        guard let url = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
+        guard let _ = URL(string: viewModel?.detailStory.value?.audioURL ?? "") else {
             showAlert(title: "", msg: Strings.ErrorMsg.errorNoFile, ok: Strings.Common.ok)
             return
         }

@@ -53,6 +53,10 @@ class CustomAnnotationView: MKAnnotationView {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
+        if let imageURL {
+            print("이미지 있음")
+            addImage(imagePath: imageURL)
+        }
 //        print(#function, " = \(imageURL)")
 //        addImage(imagePath: imageURL ?? "")
     }
