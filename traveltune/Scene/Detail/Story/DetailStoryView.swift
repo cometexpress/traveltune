@@ -85,7 +85,6 @@ final class DetailStoryView: BaseView {
     let intervalTimeLabel = UILabel().setup { view in
         view.textColor = .txtSecondary
         view.font = .monospacedSystemFont(ofSize: 11, weight: .regular)
-        view.text = "00:00"
     }
     
     let playTimeLabel = UILabel().setup { view in

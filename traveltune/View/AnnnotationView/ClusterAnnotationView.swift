@@ -9,13 +9,14 @@ import MapKit
 
 final class ClusterAnnotationView: MKAnnotationView {
     
-    private let clusterSize: CGFloat = 44.0
+    private let clusterSize: CGFloat = 42.0
     
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         displayPriority = .defaultHigh
         collisionMode = .circle
         centerOffset = CGPoint(x: 0, y: -10) // Offset center point to animate better with marker annotations
+        isExclusiveTouch = true
     }
     
     required init?(coder aDecoder: NSCoder) {

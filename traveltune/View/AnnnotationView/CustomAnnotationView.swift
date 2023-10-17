@@ -55,17 +55,16 @@ class CustomAnnotationView: MKAnnotationView {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        // placeHolder 이미지 = 회색 색깔
-        // 이미지 처리 완료 되었을 때는 - 이미지 있을 때는 이미지 , 이미지 없을 때는 파란색 색깔.
         annotationImageView.image = nil
         annotationImageView.image = thumbnail == nil ? .defaultImg : thumbnail
-        if let thumbnail {
-            print("이미지 있음")
-        }
-
+//        if let thumbnail {
+//            print("이미지 있음")
+//        }
     }
     
     private func setUI() {
+        isExclusiveTouch = true
+        
         frame = CGRect(x: 0, y: 0, width: defaultSize, height: defaultSize)
         centerOffset = CGPoint(x: 0, y: -frame.size.height / 2)
         addSubview(annotationImageView)
@@ -87,7 +86,7 @@ class CustomAnnotationView: MKAnnotationView {
                     
                     DispatchQueue.global(qos: .background).async {
                         let resultImage: UIImage!
-                        let size = CGSize(width: 50, height: 50)
+                        let size = CGSize(width: 100, height: 100)
                         UIGraphicsBeginImageContext(size)
                         resultImage = value.image
                         resultImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
