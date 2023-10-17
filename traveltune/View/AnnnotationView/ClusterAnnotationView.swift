@@ -9,6 +9,8 @@ import MapKit
 
 final class ClusterAnnotationView: MKAnnotationView {
     
+    private let clusterSize: CGFloat = 44.0
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         displayPriority = .defaultHigh
@@ -33,15 +35,20 @@ final class ClusterAnnotationView: MKAnnotationView {
     }
     
     func defaultDrawRatio(to whole: Int, wholeColor: UIColor?) {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: clusterSize, height: clusterSize))
         let defaultImage = renderer.image { _ in
             wholeColor?.setFill()
-            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
+            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: clusterSize, height: clusterSize)).fill()
             let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
                                NSAttributedString.Key.font: UIFont.monospacedSystemFont(ofSize: 18, weight: .regular)]
             let text = "\(whole)"
             let size = text.size(withAttributes: attributes)
-            let rect = CGRect(x: 20 - size.width / 2, y: 20 - size.height / 2, width: size.width, height: size.height)
+            let rect = CGRect(
+                x: (clusterSize / 2) - size.width / 2,
+                y: (clusterSize / 2) - size.height / 2,
+                width: size.width,
+                height: size.height
+            )
             text.draw(in: rect, withAttributes: attributes)
         }
         image = defaultImage
@@ -49,15 +56,20 @@ final class ClusterAnnotationView: MKAnnotationView {
     }
     
     func selectedDrawRatio(to whole: Int, wholeColor: UIColor?) {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: 40, height: 40))
+        let renderer = UIGraphicsImageRenderer(size: CGSize(width: clusterSize, height: clusterSize))
         let selectedImage = renderer.image { _ in
             wholeColor?.setFill()
-            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 40, height: 40)).fill()
+            UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: clusterSize, height: clusterSize)).fill()
             let attributes = [ NSAttributedString.Key.foregroundColor: UIColor.white,
                                NSAttributedString.Key.font: UIFont.monospacedSystemFont(ofSize: 18, weight: .regular)]
             let text = "\(whole)"
             let size = text.size(withAttributes: attributes)
-            let rect = CGRect(x: 20 - size.width / 2, y: 20 - size.height / 2, width: size.width, height: size.height)
+            let rect = CGRect(
+                x: (clusterSize / 2) - (size.width / 2),
+                y: (clusterSize / 2) - size.height / 2,
+                width: size.width,
+                height: size.height
+            )
             text.draw(in: rect, withAttributes: attributes)
         }
         image = selectedImage

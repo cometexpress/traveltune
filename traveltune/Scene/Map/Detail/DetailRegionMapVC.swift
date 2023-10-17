@@ -270,8 +270,11 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                 withIdentifier: CustomAnnotationView.identifier, for: customAnnotation) as? CustomAnnotationView
             
             guard let annotationView else { return nil }
-            let customAnnotaionImageUrl = stories.first { $0.stid == customAnnotation.item.stid }?.imageURL ?? ""
-            annotationView.addImage(imagePath: customAnnotaionImageUrl)
+            let customAnnotaionImageUrl = stories.first { 
+                $0 == customAnnotation.item
+            }?.imageURL ?? ""
+//            annotationView.addImage(imagePath: customAnnotaionImageUrl)
+            annotationView.createImage(imagePath: customAnnotaionImageUrl)
             return annotationView
             
         default:

@@ -49,6 +49,7 @@ final class StoryItem: Object, Decodable {
     @objc dynamic var modifiedtime = ""
     @objc dynamic var searchKeyword = ""
     
+    // 서버에서 주는 데이터와 파일 재생시간이 다른 경우가 있음
     var convertTime: String {
         guard let time = Int(playTime) else {
             return "00:00"

@@ -177,7 +177,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         currentPlayingAudioURL = item.audioURL
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.play(item: AudioItem(audioUrl: audioURL, title: item.audioTitle, imagePath: item.imageURL))
-        AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
+        AVPlayerManager.shared.addPlayTimeObserver { duration, interval, playTime in
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }

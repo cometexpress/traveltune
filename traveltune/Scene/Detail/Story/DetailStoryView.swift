@@ -88,7 +88,7 @@ final class DetailStoryView: BaseView {
         view.text = "00:00"
     }
     
-    private let playTimeLabel = UILabel().setup { view in
+    let playTimeLabel = UILabel().setup { view in
         view.textColor = .txtSecondary
         view.font = .monospacedSystemFont(ofSize: 11, weight: .regular)
     }
@@ -118,7 +118,7 @@ final class DetailStoryView: BaseView {
     func fetchData(item: StoryItem) {
         titleLabel.text = item.title
         audioTitleLabel.text = item.audioTitle
-        playTimeLabel.text = item.convertTime
+//        playTimeLabel.text = item.convertTime
         
         if item.script.isEmpty {
             scriptLabel.text = Strings.Common.scriptInfoNoData

@@ -31,7 +31,6 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
     func bindViewModel() {
         viewModel?.detailStory.bind { [weak self] item in
             guard let item else { return }
-            print(item)
             self?.mainView.fetchData(item: item)
             self?.viewModel?.favoriteStoryObserve()
         }
@@ -57,10 +56,20 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         guard let url = URL(string: item.audioURL) else { return }
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.play(item: AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL))
-        AVPlayerManager.shared.addPlayTimeObserver { interval, playTime in
+        AVPlayerManager.shared.addPlayTimeObserver { duration, interval, playTime in
             let seconds = String(format: "%02d", Int(playTime) % 60)
             let minutes = String(format: "%02d", Int(playTime / 60))
             let intervalTime = "\(minutes):\(seconds)"
+            
+            /**
+             서버에서 주는 playTime 과 파일재생시간이 다른 경우가 있는데
+             재생했을 때만 현재아이템의 길이를 파악할 수 있어서 이 방법도 아닌듯 하지만...
+             상세 페이지이기에 여기는 재생될 때 바뀌도록 다른 리스트가 있는 재생화면과 다르게 동작
+             */
+            guard !(duration.roundedSeconds.isNaN) else {
+                return
+            }
+            self.mainView.playTimeLabel.text = duration.positionalTime
             self.mainView.intervalTimeLabel.text = intervalTime
             self.mainView.audioSlider.value = interval
         }

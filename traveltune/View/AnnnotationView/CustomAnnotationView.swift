@@ -18,6 +18,8 @@ class CustomAnnotationView: MKAnnotationView {
     
     private var imageURL: String?
     
+    private var thumbnail: UIImage?
+    
     private lazy var annotationImageView = UIImageView(frame: .init(x: 0, y: 0, width: defaultSize, height: defaultSize)).setup { view in
         view.layer.cornerRadius = 8
         view.clipsToBounds = true
@@ -53,12 +55,14 @@ class CustomAnnotationView: MKAnnotationView {
     
     override func prepareForDisplay() {
         super.prepareForDisplay()
-        if let imageURL {
+        // placeHolder 이미지 = 회색 색깔
+        // 이미지 처리 완료 되었을 때는 - 이미지 있을 때는 이미지 , 이미지 없을 때는 파란색 색깔.
+        annotationImageView.image = nil
+        annotationImageView.image = thumbnail == nil ? .defaultImg : thumbnail
+        if let thumbnail {
             print("이미지 있음")
-            addImage(imagePath: imageURL)
         }
-//        print(#function, " = \(imageURL)")
-//        addImage(imagePath: imageURL ?? "")
+
     }
     
     private func setUI() {
@@ -72,24 +76,63 @@ class CustomAnnotationView: MKAnnotationView {
         rightCalloutAccessoryView?.tintColor = .txtSecondary
     }
     
-    func addImage(imagePath: String) {
-        self.imageURL = imagePath
-        if !imagePath.isEmpty {
-            if let url = URL(string: imagePath) {
-                annotationImageView.kf.setImage(
-                    with: url,
-                    placeholder: UIImage(named: "default_img"),
-                    options: [
-                        .processor(DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))),
-                        .scaleFactor(UIScreen.main.scale),
-                        .forceRefresh
-                    ]
-                )
+    private func downloadImage(with urlString : String , imageCompletionHandler: @escaping (UIImage?) -> Void) {
+            guard let url = URL.init(string: urlString) else {
+                return  imageCompletionHandler(nil)
             }
+        
+            KingfisherManager.shared.retrieveImage(with: url, options: nil, progressBlock: nil) { result in
+                switch result {
+                case .success(let value):
+                    
+                    DispatchQueue.global(qos: .background).async {
+                        let resultImage: UIImage!
+                        let size = CGSize(width: 50, height: 50)
+                        UIGraphicsBeginImageContext(size)
+                        resultImage = value.image
+                        resultImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                        UIGraphicsEndImageContext()
+                        return imageCompletionHandler(resizedImage)
+                    }
+
+                case .failure:
+                    return imageCompletionHandler(nil)
+                }
+            }
+        }
+    
+    func createImage(imagePath: String) {
+        if imagePath.isEmpty {
+            thumbnail = .defaultImg
         } else {
-            annotationImageView.image = .defaultImg
+            downloadImage(with: imagePath) { image in
+                guard let image else {
+                    self.thumbnail = .defaultImg
+                    return
+                }
+                self.thumbnail = image
+            }
         }
     }
+    
+//    func addImage(imagePath: String) {
+//        self.imageURL = imagePath
+//        if !imagePath.isEmpty {
+//            if let url = URL(string: imagePath) {
+//                annotationImageView.kf.setImage(
+//                    with: url,
+//                    placeholder: UIImage(named: "default_img"),
+//                    options: [
+//                        .processor(DownsamplingImageProcessor(size: CGSize(width: 50, height: 50))),
+//                        .scaleFactor(UIScreen.main.scale),
+//                        .cacheOriginalImage
+//                    ])
+//            }
+//        } else {
+//            annotationImageView.image = .defaultImg
+//        }
+//    }
     
 }
 
