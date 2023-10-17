@@ -7,7 +7,7 @@ target 'traveltune' do
 
   # Pods for traveltune
   pod 'FSPagerView'
-  pod 'Firebase/Analytics'
+  pod 'Firebase/AnalyticsWithoutAdIdSupport'
   pod 'Firebase/Crashlytics'
   pod 'Parchment', '~> 3.2'
 
