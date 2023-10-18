@@ -18,23 +18,8 @@ final class ThemeVC: BaseViewController<ThemeView, ThemeViewModel> {
         NotificationManager.shared.authorization {
             NotificationManager.shared.registerMainPush()
         }
+        
         NotificationManager.shared.registerMainPush()
-        
-//        Network.shared.requestVisitorInfo(
-//            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
-//                pageNo: "1",
-//                numOfRows: "10",
-//                startYmd: "20210513",
-//                endYmd: "20210513")
-//            ), type: ResponseCheckVisitorsInMetros.self) { response in
-//                switch response {
-//                case .success(let success):
-//                    print(success)
-//                case .failure(let failure):
-//                    print(failure)
-//                }
-//            }
-        
     }
     
     @objc func searchButtonClicked() {

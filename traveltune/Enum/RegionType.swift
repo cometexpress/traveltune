@@ -7,24 +7,25 @@
 
 import UIKit
 
-enum RegionType: CaseIterable {
-    case seoul
-    case gyeonggi
-    case incheon
-    case gangwon
-    case chungbuk
-    case chungnam
-    case sejong
-    case daejeon
-    case gyeongbuk
-    case gyeongnam
-    case daegu
-    case ulsan
-    case busan
-    case jeonbuk
-    case jeonnam
-    case gwangju
-    case jeju
+enum RegionType:String, CaseIterable {
+
+    case seoul = "11"
+    case gyeonggi = "41"
+    case incheon = "28"
+    case gangwon = "42"
+    case chungbuk = "43"
+    case chungnam = "44"
+    case sejong = "36"
+    case daejeon = "30"
+    case gyeongbuk = "47"
+    case gyeongnam = "48"
+    case daegu = "27"
+    case ulsan = "31"
+    case busan = "26"
+    case jeonbuk = "45"
+    case jeonnam = "46"
+    case gwangju = "29"
+    case jeju = "50"
     
     var name: String {
         switch self {
@@ -142,4 +143,5 @@ enum RegionType: CaseIterable {
             126.531254
         }
     }
+  
 }

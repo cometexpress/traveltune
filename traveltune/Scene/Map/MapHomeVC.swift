@@ -41,7 +41,20 @@ final class MapHomeVC: BaseViewController<MapHomeView, MapHomeViewModel> {
         navigationController?.navigationBar.topItem?.title = Strings.TabMap.title
     }
     
+    @objc func chartButtonClicked() {
+        let vc = ChartVC(viewModel: ChartViewModel(travelBigDataRepository: TravelBigDataRepository()))
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
     func configureVC() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: .chartPieFill.withTintColor(.txtSecondary, renderingMode: .alwaysOriginal),
+            style: .plain,
+            target: self,
+            action: #selector(chartButtonClicked)
+        )
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithTransparentBackground()
         appearance.backgroundColor = UIColor.background

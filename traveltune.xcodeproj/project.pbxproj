@@ -20,6 +20,7 @@
 		C00C3CB92ACD4A2B00B89928 /* SearchKeyword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */; };
 		C011CAA22AD29E2400D1E89B /* DetailTravelSpotProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */; };
 		C0139F6F2ACC040800F7A378 /* SearchTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */; };
+		C01A54EC2AE0392A003B8651 /* Array+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01A54EB2AE0392A003B8651 /* Array+Extension.swift */; };
 		C01AF0ED2AC9CB74006E8494 /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */; };
 		C0225C8F2ADBA5D90057CC6B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */; };
 		C0225C912ADBAB350057CC6B /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0225C902ADBAB350057CC6B /* SettingItem.swift */; };
@@ -177,6 +178,11 @@
 		C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */; };
 		C0EF78812AC5D60B0098D091 /* StoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0EF78802AC5D60B0098D091 /* StoryCell.swift */; };
 		C0F1394C2ADF12C2008AABD0 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F1394B2ADF12C2008AABD0 /* NotificationManager.swift */; };
+		C0F1394F2ADFC883008AABD0 /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = C0F1394E2ADFC883008AABD0 /* DGCharts */; };
+		C0F139522ADFC9C0008AABD0 /* ChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F139512ADFC9C0008AABD0 /* ChartVC.swift */; };
+		C0F139542ADFC9E1008AABD0 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F139532ADFC9E1008AABD0 /* ChartView.swift */; };
+		C0F139562ADFC9FB008AABD0 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F139552ADFC9FB008AABD0 /* ChartViewModel.swift */; };
+		C0F139582ADFCA49008AABD0 /* TravelBigDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F139572ADFCA49008AABD0 /* TravelBigDataRepository.swift */; };
 		C0F383612AD7093B00DF276D /* DetailRegionMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F383602AD7093B00DF276D /* DetailRegionMapView.swift */; };
 		C0F383632AD7095000DF276D /* DetailRegionMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F383622AD7095000DF276D /* DetailRegionMapViewModel.swift */; };
 		C0F383652AD7180900DF276D /* DetailRegionMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F383642AD7180900DF276D /* DetailRegionMapVC.swift */; };
@@ -197,6 +203,7 @@
 		C00C3CB82ACD4A2B00B89928 /* SearchKeyword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeyword.swift; sourceTree = "<group>"; };
 		C011CAA12AD29E2400D1E89B /* DetailTravelSpotProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotProtocol.swift; sourceTree = "<group>"; };
 		C0139F6E2ACC040800F7A378 /* SearchTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTagCell.swift; sourceTree = "<group>"; };
+		C01A54EB2AE0392A003B8651 /* Array+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extension.swift"; sourceTree = "<group>"; };
 		C01AF0EC2AC9CB74006E8494 /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
 		C0225C8E2ADBA5D90057CC6B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		C0225C902ADBAB350057CC6B /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -350,6 +357,10 @@
 		C0E8BAB22ABDE72800B1CCA6 /* RegionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegionButton.swift; sourceTree = "<group>"; };
 		C0EF78802AC5D60B0098D091 /* StoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryCell.swift; sourceTree = "<group>"; };
 		C0F1394B2ADF12C2008AABD0 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		C0F139512ADFC9C0008AABD0 /* ChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVC.swift; sourceTree = "<group>"; };
+		C0F139532ADFC9E1008AABD0 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		C0F139552ADFC9FB008AABD0 /* ChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
+		C0F139572ADFCA49008AABD0 /* TravelBigDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelBigDataRepository.swift; sourceTree = "<group>"; };
 		C0F383602AD7093B00DF276D /* DetailRegionMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRegionMapView.swift; sourceTree = "<group>"; };
 		C0F383622AD7095000DF276D /* DetailRegionMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRegionMapViewModel.swift; sourceTree = "<group>"; };
 		C0F383642AD7180900DF276D /* DetailRegionMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRegionMapVC.swift; sourceTree = "<group>"; };
@@ -370,6 +381,7 @@
 				C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */,
 				C0E8BA7E2ABC976500B1CCA6 /* RealmSwift in Frameworks */,
 				C0E8BA732ABC972D00B1CCA6 /* SnapKit in Frameworks */,
+				C0F1394F2ADFC883008AABD0 /* DGCharts in Frameworks */,
 				91C51E2E461BDC6F5A352807 /* Pods_traveltune.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -697,8 +709,9 @@
 		C0D81A7D2AC413F800CB2EF0 /* Remote */ = {
 			isa = PBXGroup;
 			children = (
-				C0D81A852AC42C2800CB2EF0 /* TravelSpotRepository.swift */,
 				C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */,
+				C0F139572ADFCA49008AABD0 /* TravelBigDataRepository.swift */,
+				C0D81A852AC42C2800CB2EF0 /* TravelSpotRepository.swift */,
 			);
 			path = Remote;
 			sourceTree = "<group>";
@@ -788,6 +801,7 @@
 				C02DABD92ACAAE4E00F3BC42 /* UITextView+Extension.swift */,
 				C0D81A872AC43EF300CB2EF0 /* UIViewController+Extension.swift */,
 				C02C02F02AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift */,
+				C01A54EB2AE0392A003B8651 /* Array+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -833,6 +847,7 @@
 		C0E8BA972ABDCD1900B1CCA6 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				C0F139502ADFC99F008AABD0 /* Chart */,
 				C0F3835D2AD7090E00DF276D /* Detail */,
 				C0E203C72AD59B4300607534 /* FloatingPanelVC */,
 				C0E8BA9B2ABDCD5B00B1CCA6 /* MapHomeVC.swift */,
@@ -908,6 +923,16 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		C0F139502ADFC99F008AABD0 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				C0F139512ADFC9C0008AABD0 /* ChartVC.swift */,
+				C0F139532ADFC9E1008AABD0 /* ChartView.swift */,
+				C0F139552ADFC9FB008AABD0 /* ChartViewModel.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
 		C0F3835D2AD7090E00DF276D /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -948,6 +973,7 @@
 				C0D81A952AC5437800CB2EF0 /* Hero */,
 				C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */,
 				C0E203BE2AD57C7F00607534 /* FloatingPanel */,
+				C0F1394E2ADFC883008AABD0 /* DGCharts */,
 			);
 			productName = traveltune;
 			productReference = C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */;
@@ -987,6 +1013,7 @@
 				C0D81A942AC5437800CB2EF0 /* XCRemoteSwiftPackageReference "Hero" */,
 				C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C0E203BD2AD57C7F00607534 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
+				C0F1394D2ADFC883008AABD0 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = C0E8BA482ABC8B7600B1CCA6 /* Products */;
 			projectDirPath = "";
@@ -1101,6 +1128,7 @@
 				C03FE0372ACFDB2800D02385 /* MapHomeViewModel.swift in Sources */,
 				C02AA11A2AD68C34007BA3AD /* DetailMapSpotVC.swift in Sources */,
 				C0D81A9A2AC5609800CB2EF0 /* Constant.swift in Sources */,
+				C0F139562ADFC9FB008AABD0 /* ChartViewModel.swift in Sources */,
 				C00C3CB12ACD28DC00B89928 /* LocalSearchKeywordRepository.swift in Sources */,
 				C05F535F2AD8036300E7FF28 /* ExcludeMapView.swift in Sources */,
 				C0289E972ADD0C8A00F52624 /* FavoriteAudioGuideViewModel.swift in Sources */,
@@ -1136,6 +1164,7 @@
 				C05F92262AC3F93B00427F6D /* ThemeVCProtocol.swift in Sources */,
 				C0607D8B2AD27C44002E4CBD /* DetailTravelSpotVC.swift in Sources */,
 				C0289E932ADD0C5900F52624 /* FavoriteAudioGuideVC.swift in Sources */,
+				C0F139542ADFC9E1008AABD0 /* ChartView.swift in Sources */,
 				C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */,
 				C07D8B162AD00D4800267C8B /* Notification+Extension.swift in Sources */,
 				C03019422ACC713C00926451 /* SearchViewModel.swift in Sources */,
@@ -1205,8 +1234,10 @@
 				C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */,
 				C04F9CFC2AC09CBC0058A8D0 /* ResponseCheckVisitorsInMetro.swift in Sources */,
 				C03592952ACDDC2600AA3D36 /* SearchResultViewModel.swift in Sources */,
+				C0F139522ADFC9C0008AABD0 /* ChartVC.swift in Sources */,
 				C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */,
 				C02DABDA2ACAAE4E00F3BC42 /* UITextView+Extension.swift in Sources */,
+				C0F139582ADFCA49008AABD0 /* TravelBigDataRepository.swift in Sources */,
 				C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */,
 				C0289E992ADD1F3400F52624 /* FavoriteStoryCell.swift in Sources */,
 				C0F383652AD7180900DF276D /* DetailRegionMapVC.swift in Sources */,
@@ -1229,6 +1260,7 @@
 				C0E8BA4D2ABC8B7600B1CCA6 /* SceneDelegate.swift in Sources */,
 				C0E203C32AD5984C00607534 /* MapSpotCell.swift in Sources */,
 				C0607D8D2AD27C64002E4CBD /* DetailTravelSpotView.swift in Sources */,
+				C01A54EC2AE0392A003B8651 /* Array+Extension.swift in Sources */,
 				C0E8BAB32ABDE72800B1CCA6 /* RegionButton.swift in Sources */,
 				C0E203CB2AD5A4AC00607534 /* MapSpotItem.swift in Sources */,
 				C0D6153D2ACEE8AA00EC5EE9 /* BaseViewModel.swift in Sources */,
@@ -1547,6 +1579,14 @@
 				minimumVersion = 5.0.1;
 			};
 		};
+		C0F1394D2ADFC883008AABD0 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1594,6 +1634,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C0E8BA7F2ABC977C00B1CCA6 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		C0F1394E2ADFC883008AABD0 /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C0F1394D2ADFC883008AABD0 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -23,7 +23,7 @@ final class BaseRequestInterceptor: RequestInterceptor {
     private lazy var defaultParameters = [
         "serviceKey": APIKey.dataKey,
         "MobileOS": "IOS",
-        "MobileApp": "traveltune",
+        "MobileApp": "트래블튠",
         "_type": "json",
         "langCode": langCode
     ]
