@@ -6,6 +6,9 @@
   
 */
 
+// 알림
+"local_push_main" = "주말여행 계획이라면 미리 주변을\n둘러보고 떠나보세요!";
+
 // 공통
 "common_play" = "play";
 "common_ok" = "확인";

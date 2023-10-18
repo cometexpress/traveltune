@@ -9,6 +9,10 @@ import Foundation
 
 struct Strings {
     
+    struct Push {
+        static let localPushMain = "local_push_main".localized
+    }
+    
     struct Common {
         static let logoTitle = "home_nav_title".localized
         static let play = "common_play".localized

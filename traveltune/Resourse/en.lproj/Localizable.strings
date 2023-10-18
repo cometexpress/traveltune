@@ -6,6 +6,9 @@
   
 */
 
+// 알림
+"local_push_main" = "If you're planning a weekend trip\ntake a look around in advance!";
+
 // 공통
 "common_play" = "play";
 "common_ok" = "OK";

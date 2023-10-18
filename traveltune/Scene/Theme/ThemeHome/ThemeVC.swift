@@ -14,6 +14,11 @@ final class ThemeVC: BaseViewController<ThemeView, ThemeViewModel> {
         super.viewDidLoad()
         configureVC()
         bindViewModel()
+
+        NotificationManager.shared.authorization {
+            NotificationManager.shared.registerMainPush()
+        }
+        NotificationManager.shared.registerMainPush()
         
 //        Network.shared.requestVisitorInfo(
 //            api: .checkVisitorsInMetro(request: RequestCheckVisitorsInMetro(
