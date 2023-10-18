@@ -19,6 +19,7 @@ final class ChartViewModel: BaseViewModel {
     struct ChartData {
         let dataPoints: [String]
         let values: [Double]
+        let totalNum: String
     }
     
     private var travelBigDataRepository: TravelBigDataRepository
@@ -31,6 +32,7 @@ final class ChartViewModel: BaseViewModel {
     
     func fetchTravelVistor(startDate: String, endDate: String) {
         state.value = .loading
+        
         travelBigDataRepository.requestTravelBigData(startDate: startDate, endDate: endDate) { [weak self] response in
             switch response {
             case .success(let success):
@@ -76,11 +78,25 @@ final class ChartViewModel: BaseViewModel {
                     values.append(etcValue)
                 }
                 
-                self?.state.value = .success(data: ChartData(dataPoints: dataPoints, values: values))
+                let totalNum = round(sum * pow(10,2)) / pow(10,2)
+                
+                self?.state.value = .success(
+                    data: ChartData(
+                        dataPoints: dataPoints,
+                        values: values, 
+                        totalNum: makeCommaNum(num: totalNum))
+                )
                 
             case .failure(let failure):
                 self?.state.value = .error(msg: failure.localizedDescription)
             }
         }
     }
+}
+
+private func makeCommaNum(num: Double) -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .decimal
+    numberFormatter.maximumFractionDigits = 2
+    return numberFormatter.string(for: num) ?? ""
 }

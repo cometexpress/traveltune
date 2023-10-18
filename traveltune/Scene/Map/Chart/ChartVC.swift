@@ -9,14 +9,23 @@ import UIKit
 
 final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
 
+    private var requestYear = ""
+    private var startDate = ""
+    private var endDate = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateRequestDate()
         configureVC()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         bindViewModel()
     }
     
     func bindViewModel() {
-        viewModel?.fetchTravelVistor(startDate: "20220101", endDate: "20221231")
+        viewModel?.fetchTravelVistor(startDate: startDate, endDate: endDate)
         viewModel?.state.bind { [weak self] state in
             guard let self else { return }
             switch state {
@@ -26,6 +35,8 @@ final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
             case .success(let chartData):
                 self.mainView.setPieChart(dataPoints: chartData.dataPoints, values: chartData.values)
                 mainView.showChartView()
+                mainView.totalTravelNumLabel.text = chartData.totalNum
+                mainView.yearLabel.text = Strings.Chart.yearStandard.localized(with: [requestYear]) 
                 LoadingIndicator.hide()
             case .error(let msg):
                 mainView.hideChartView()
@@ -39,6 +50,23 @@ final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
         mainView.chartVCProtocol = self
     }
     
+    private func updateRequestDate() {
+        let date = Date()
+        let previusYear = Calendar.current.date(byAdding: .year, value: -1, to: date)
+        var formatter_year = DateFormatter()
+        formatter_year.dateFormat = "yyyy"
+        guard let previusYear else {
+            startDate = "20210101"
+            endDate = "20211231"
+            return
+        }
+        var strPreviusYear = formatter_year.string(from: previusYear)
+        print(strPreviusYear)
+        startDate = "\(strPreviusYear)0101"
+        endDate = "\(strPreviusYear)1231"
+        requestYear = strPreviusYear
+    }
+    
 }
 
 extension ChartVC: ChartVCProtocol {
@@ -48,6 +76,7 @@ extension ChartVC: ChartVCProtocol {
     }
     
     func reloadClicked() {
-        viewModel?.fetchTravelVistor(startDate: "20220101", endDate: "20221231")
+        updateRequestDate()
+        viewModel?.fetchTravelVistor(startDate: startDate, endDate: endDate)
     }
 }

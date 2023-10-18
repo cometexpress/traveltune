@@ -76,6 +76,27 @@ final class ChartView: BaseView {
         view.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
     }
     
+    private let guideTotalTravelLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 14, weight: .regular)
+        view.text = Strings.Chart.totalNumberOfTourists
+        view.textColor = .txtPrimary
+        view.isHidden = true
+    }
+    
+    var totalTravelNumLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.textColor = .primary
+        view.numberOfLines = 1
+        view.adjustsFontSizeToFitWidth = true
+        view.minimumScaleFactor = 0.5
+    }
+    
+    var yearLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .semibold)
+        view.textColor = .txtPrimary
+        view.textAlignment = .center
+    }
+    
     @objc private func reloadViewClicked() {
         chartVCProtocol?.reloadClicked()
     }
@@ -129,16 +150,21 @@ final class ChartView: BaseView {
     func showChartView() {
         loadFailView.isHidden = true
         pieChartView.isHidden = false
+        guideTotalTravelLabel.isHidden = false
     }
     
     func hideChartView() {
         pieChartView.isHidden = true
+        guideTotalTravelLabel.isHidden = true
         loadFailView.isHidden = false
     }
     
     override func configureHierarchy() {
         addSubview(titleLabel)
         addSubview(backButton)
+        addSubview(yearLabel)
+        addSubview(guideTotalTravelLabel)
+        addSubview(totalTravelNumLabel)
         loadFailView.addSubview(reloadLabel)
         loadFailView.addSubview(reloadImageView)
         addSubview(loadFailView)
@@ -155,6 +181,24 @@ final class ChartView: BaseView {
             make.size.equalTo(44)
             make.leading.equalToSuperview().inset(16)
             make.centerY.equalTo(titleLabel)
+        }
+        
+        yearLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(28)
+            make.horizontalEdges.equalToSuperview().inset(32)
+        }
+        
+        guideTotalTravelLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+        guideTotalTravelLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
+        guideTotalTravelLabel.snp.makeConstraints { make in
+            make.top.equalTo(yearLabel.snp.bottom).offset(24)
+            make.leading.equalTo(yearLabel)
+        }
+                
+        totalTravelNumLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(guideTotalTravelLabel)
+            make.leading.equalTo(guideTotalTravelLabel.snp.trailing).offset(8)
+            make.trailing.equalToSuperview().inset(24)
         }
         
         loadFailView.snp.makeConstraints { make in
@@ -174,9 +218,10 @@ final class ChartView: BaseView {
         
         pieChartView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide).inset(24)
+            make.top.equalTo(totalTravelNumLabel.snp.bottom).offset(24)
+//            make.bottom.equalTo(safeAreaLayoutGuide).inset(24)
             make.width.equalTo(self.snp.width).multipliedBy(0.95)
-            make.height.equalTo(self.snp.height).multipliedBy(0.7)
+            make.height.equalTo(self.snp.height).multipliedBy(0.6)
         }
     }
 }

@@ -149,4 +149,5 @@
 
 // 차트
 "chart_title" = "관광지역 통계";
-
+"chart_year_standard" = "%@년 기준";
+"total_number_of_tourists" = "총 관광객 수";

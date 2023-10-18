@@ -150,3 +150,5 @@
 
 // 차트
 "chart_title" = "Tourism area statistics";
+"chart_year_standard" = "As of %@";
+"total_number_of_tourists" = "Total number of tourists";

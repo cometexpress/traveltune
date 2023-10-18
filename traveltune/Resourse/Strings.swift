@@ -148,6 +148,8 @@ struct Strings {
     
     struct Chart {
         static var title = "chart_title".localized
+        static var totalNumberOfTourists = "total_number_of_tourists".localized
+        static var yearStandard = "chart_year_standard".localized
     }
     
 }
