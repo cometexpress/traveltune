@@ -55,47 +55,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler([.sound, .badge, .banner, .list])
     }
     
-//    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
 //        UIApplication.shared.applicationIconBadgeNumber = 0
-//        
-//        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-//        let sceneDelegate = windowScene?.delegate as? SceneDelegate
-//        
-//        let appState = UIApplication.shared.applicationState
-//        let value = response.notification.request.identifier
-//        
-//        switch NotificationManager.identifier(rawValue: value) {
-//        case .schedule:
-//            switch appState {
-//            case .active, .inactive:
-//                print("스케줄 알림 포그라운드")
-//                guard let vc = sb.instantiateViewController(withIdentifier: MainVC.identifier) as? MainVC else { return }
-//                sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
-//                sceneDelegate?.window?.makeKeyAndVisible()
-//            case .background:
-//                print("스케줄 알림 백그라운드")
-//            default:
-//                print("error")
-//            }
-//        case .test:
-//            switch appState {
-//            case .active, .inactive:
-//                print("테스트 알림 포그라운드")
-//                guard let vc = sb.instantiateViewController(withIdentifier: SettingVC.identifier) as? SettingVC else { return }
-//                
-//                sceneDelegate?.window?.rootViewController = UINavigationController(rootViewController: vc)
-//                sceneDelegate?.window?.makeKeyAndVisible()
-//            case .background:
-//                print("테스트 알림 백그라운드")
-//            default:
-//                print("error")
-//            }
-//        case .none:
-//            print("오류")
-//        }
-//        completionHandler()
-//    }
+        completionHandler()
+    }
 }
 
