@@ -121,6 +121,7 @@
 		C0BDC3282AC934F100D7331E /* FavoriteStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3272AC934F100D7331E /* FavoriteStory.swift */; };
 		C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */; };
 		C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */; };
+		C0C046F32AE04D9600939DEB /* ChartVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C046F22AE04D9600939DEB /* ChartVCProtocol.swift */; };
 		C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */; };
 		C0D615342ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */; };
 		C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */; };
@@ -304,6 +305,7 @@
 		C0BDC3272AC934F100D7331E /* FavoriteStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteStory.swift; sourceTree = "<group>"; };
 		C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteStoryRepository.swift; sourceTree = "<group>"; };
 		C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomView.swift; sourceTree = "<group>"; };
+		C0C046F22AE04D9600939DEB /* ChartVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVCProtocol.swift; sourceTree = "<group>"; };
 		C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSpotCell.swift; sourceTree = "<group>"; };
 		C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabTravelSpotViewModel.swift; sourceTree = "<group>"; };
 		C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryViewModel.swift; sourceTree = "<group>"; };
@@ -929,6 +931,7 @@
 				C0F139512ADFC9C0008AABD0 /* ChartVC.swift */,
 				C0F139532ADFC9E1008AABD0 /* ChartView.swift */,
 				C0F139552ADFC9FB008AABD0 /* ChartViewModel.swift */,
+				C0C046F22AE04D9600939DEB /* ChartVCProtocol.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -1218,6 +1221,7 @@
 				C02C02F12AC5B7FF0078CB29 /* UIVisualEffectView+Extension.swift in Sources */,
 				C0BDC3262AC8912200D7331E /* Copy+Extension.swift in Sources */,
 				C0453D192AC6A3DB00C220A6 /* RequestStory.swift in Sources */,
+				C0C046F32AE04D9600939DEB /* ChartVCProtocol.swift in Sources */,
 				C002E3B82ACAA225004C9C54 /* StoryScriptView.swift in Sources */,
 				C0D81A882AC43EF300CB2EF0 /* UIViewController+Extension.swift in Sources */,
 				C0D81A862AC42C2800CB2EF0 /* TravelSpotRepository.swift in Sources */,

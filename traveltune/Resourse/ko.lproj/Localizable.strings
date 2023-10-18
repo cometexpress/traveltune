@@ -37,7 +37,7 @@
 "enter_inquiry_details" = "문의 내용을 입력해주세요";
 "inquiry" = "문의";
 "success_send_email" = "문의 완료";
-
+"retry" = "재시도";
 
 // 에러메시지
 "error_network" = "네트워크 연결을 확인해주세요";
@@ -146,3 +146,7 @@
 "setting_etc_item_01" = "문의하기";
 "setting_etc_item_02" = "오픈소스";
 "setting_etc_item_03" = "앱 버전";
+
+// 차트
+"chart_title" = "관광지역 통계";
+

@@ -8,7 +8,7 @@
 import UIKit
 
 final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
@@ -25,8 +25,10 @@ final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
                 LoadingIndicator.show()
             case .success(let chartData):
                 self.mainView.setPieChart(dataPoints: chartData.dataPoints, values: chartData.values)
+                mainView.showChartView()
                 LoadingIndicator.hide()
             case .error(let msg):
+                mainView.hideChartView()
                 showToast(msg: Strings.ErrorMsg.errorLoadingData)
                 LoadingIndicator.hide()
             }
@@ -34,7 +36,18 @@ final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
     }
     
     func configureVC() {
-        
+        mainView.chartVCProtocol = self
     }
     
+}
+
+extension ChartVC: ChartVCProtocol {
+    
+    func backClicked() {
+        dismiss(animated: true)
+    }
+    
+    func reloadClicked() {
+        viewModel?.fetchTravelVistor(startDate: "20220101", endDate: "20221231")
+    }
 }

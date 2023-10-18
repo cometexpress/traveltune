@@ -37,6 +37,7 @@
 "enter_inquiry_details" = "Please enter your inquiry details";
 "inquiry" = "Inquiry";
 "success_send_email" = "Inquiry completed";
+"retry" = "Retry";
 
 
 // 에러메시지
@@ -146,3 +147,6 @@
 "setting_etc_item_01" = "Contact us";
 "setting_etc_item_02" = "Open source";
 "setting_etc_item_03" = "App version";
+
+// 차트
+"chart_title" = "Tourism area statistics";

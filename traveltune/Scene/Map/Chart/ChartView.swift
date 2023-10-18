@@ -11,19 +11,7 @@ import SnapKit
 
 final class ChartView: BaseView {
     
-//    var barChartView = BarChartView().setup { view in
-//        view.noDataText = "데이터가 없습니다"
-//        view.noDataFont = .monospacedSystemFont(ofSize: 16, weight: .semibold)
-//        view.noDataTextColor = .txtDisabled
-//        view.xAxis.labelPosition = .bottom
-//        //        view.xAxis.enabled = false
-//        
-//        view.leftAxis.enabled = false
-//        view.rightAxis.enabled = false
-//        view.drawBordersEnabled = false
-//        view.minOffset = 0
-//        view.animate(xAxisDuration: 0, yAxisDuration: 2.0, easingOption: .easeInOutSine)
-//    }
+    weak var chartVCProtocol: ChartVCProtocol?
     
     var pieChartView = PieChartView().setup { view in
 //        view.noDataText = "데이터가 없습니다"
@@ -55,38 +43,46 @@ final class ChartView: BaseView {
 //        l.calculatedLabelSizes = [CGSize(width: 20, height: 16)]
         
         view.animate(xAxisDuration: 1, easingOption: .easeInSine)
-        view.setExtraOffsets(left: 24, top: 0, right: 24, bottom: 0)
+        view.setExtraOffsets(left: 26, top: 0, right: 26, bottom: 0)
     }
     
-//    func setBarChart(dataPoints: [String], values: [Double]) {
-//        // 데이터 생성
-//        var dataEntries: [BarChartDataEntry] = []
-//        for i in 0..<dataPoints.count {
-//            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
-//            dataEntries.append(dataEntry)
-//        }
-//        
-//        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "방문자 수")
-//        
-//        // 차트 컬러
-//        chartDataSet.colors = [.systemBlue]
-//        
-//        // 데이터 삽입
-//        let chartData = BarChartData(dataSet: chartDataSet)
-//        barChartView.data = chartData
-//        
-//        // 선택 안되게
-//        chartDataSet.highlightEnabled = false
-//        // 줌 안되게
-//        barChartView.doubleTapToZoomEnabled = false
-//        barChartView.pinchZoomEnabled = false
-//        
-//        barChartView.xAxis.valueFormatter = IndexAxisValueFormatter(values: dataPoints)
-//        barChartView.xAxis.setLabelCount(dataPoints.count, force: false)
-//        
-//        //        barChartView.leftAxis.axisMinimum = 0.0
-//        barChartView.xAxis.drawAxisLineEnabled = false
-//    }
+    private let titleLabel = UILabel().setup { view in
+        view.font = .monospacedSystemFont(ofSize: 18, weight: .bold)
+        view.textAlignment = .center
+        view.text = Strings.Chart.title
+    }
+    
+    private lazy var loadFailView = UIView().setup { view in
+        view.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(reloadViewClicked))
+        view.addGestureRecognizer(tap)
+        view.isHidden = true
+    }
+    
+    private let reloadImageView = UIImageView().setup { view in
+        let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+        view.image = .reload.withConfiguration(configuration).withTintColor(.txtDisabled, renderingMode: .alwaysOriginal)        
+    }
+    
+    private let reloadLabel = UILabel().setup { view in
+        view.text = Strings.Common.retry
+        view.font = .monospacedSystemFont(ofSize: 16, weight: .regular)
+        view.textColor = .txtDisabled
+    }
+    
+    private lazy var backButton = UIButton().setup { view in
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
+        view.setImage(.xmark.withConfiguration(configuration).withTintColor(.txtSecondary, renderingMode: .alwaysOriginal), for: .normal)
+        view.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc private func reloadViewClicked() {
+        chartVCProtocol?.reloadClicked()
+    }
+    
+    @objc func backButtonClicked() {
+        chartVCProtocol?.backClicked()
+    }
     
     func setPieChart(dataPoints: [String], values: [Double]) {
         var dataEntries: [ChartDataEntry] = []
@@ -100,7 +96,7 @@ final class ChartView: BaseView {
         pieChartDataSet.sliceSpace = 2
         pieChartDataSet.yValuePosition = .outsideSlice
         pieChartDataSet.valueLinePart1Length = 0.8
-        pieChartDataSet.valueLinePart2Length = 0.3
+        pieChartDataSet.valueLinePart2Length = 0.1
         pieChartDataSet.valueLineColor = .txtPrimary
 
         let pieChartData = PieChartData(dataSet: pieChartDataSet)
@@ -130,11 +126,52 @@ final class ChartView: BaseView {
         return colors
     }
     
+    func showChartView() {
+        loadFailView.isHidden = true
+        pieChartView.isHidden = false
+    }
+    
+    func hideChartView() {
+        pieChartView.isHidden = true
+        loadFailView.isHidden = false
+    }
+    
     override func configureHierarchy() {
+        addSubview(titleLabel)
+        addSubview(backButton)
+        loadFailView.addSubview(reloadLabel)
+        loadFailView.addSubview(reloadImageView)
+        addSubview(loadFailView)
         addSubview(pieChartView)
     }
     
     override func configureLayout() {
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide).offset(16)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.size.equalTo(44)
+            make.leading.equalToSuperview().inset(16)
+            make.centerY.equalTo(titleLabel)
+        }
+        
+        loadFailView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.bottom.equalTo(safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
+        }
+        
+        reloadLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        reloadImageView.snp.makeConstraints { make in
+            make.bottom.equalTo(reloadLabel.snp.top).offset(6)
+            make.centerX.equalToSuperview()
+        }
+        
         pieChartView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide).inset(24)

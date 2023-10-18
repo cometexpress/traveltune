@@ -42,6 +42,7 @@ struct Strings {
         static let enterInquiryDetails = "enter_inquiry_details".localized
         static let inquiry = "inquiry".localized
         static let successSendEmail = "success_send_email".localized
+        static let retry = "retry".localized
     }
     
     struct ErrorMsg {
@@ -144,4 +145,9 @@ struct Strings {
         static var settingEtcItem02 = "setting_etc_item_02".localized
         static var settingEtcItem03 = "setting_etc_item_03".localized
     }
+    
+    struct Chart {
+        static var title = "chart_title".localized
+    }
+    
 }
