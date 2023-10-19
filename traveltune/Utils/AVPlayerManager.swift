@@ -64,7 +64,7 @@ final class AVPlayerManager: NSObject {
                 player.volume = 1
                 player.play()
                 
-                MPRemoteCommandCenterManager.shared.registerRemoteCenterAction(player: player)
+                MPRemoteCommandCenterManager.shared.registerRemoteCenterAction()
             }
             
         } catch let error {

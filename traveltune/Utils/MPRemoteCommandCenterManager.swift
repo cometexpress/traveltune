@@ -15,19 +15,22 @@ final class MPRemoteCommandCenterManager {
     
     private let center = MPRemoteCommandCenter.shared()
     
-    func registerRemoteCenterAction(player: AVPlayer) {
+    func registerRemoteCenterAction() {
 //        UIApplication.shared.beginReceivingRemoteControlEvents()
         
         // 이전에 등록된 버튼에 대한 액션 제거 - 하지않으면 동시에 여러개 파일이 재생되는 현상발생
         print("removeTarget 실행")
-        center.playCommand.removeTarget(nil)
-        center.pauseCommand.removeTarget(nil)
+//        center.playCommand.removeTarget(nil)
+//        center.pauseCommand.removeTarget(nil)
+        center.playCommand.removeTarget(self)
+        center.pauseCommand.removeTarget(self)
         
         center.playCommand.isEnabled = true
         center.pauseCommand.isEnabled = true
         
         center.playCommand.addTarget { event in
-            player.play()
+//            player.play()
+            AVPlayerManager.shared.replay()
             MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
             // 시간이 흐르게 설정
             MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
@@ -35,7 +38,8 @@ final class MPRemoteCommandCenterManager {
         }
         
         center.pauseCommand.addTarget { event in
-            player.pause()
+//            player.pause()
+            AVPlayerManager.shared.pause()
             MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
             // 시간이 안흐르게 설정
             MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
