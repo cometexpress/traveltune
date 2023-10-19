@@ -53,11 +53,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillResignActive(_ scene: UIScene) {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
+        print("Foreground -> Background 로 이동중")
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        print("Background -> Foreground 로 이동중")
+        
+        /**
+         현재 AVPlayer 재생상태 값 Notification 으로 전달하기
+         */
+        let status = switch AVPlayerManager.shared.status {
+        case .playing: AVPlayerManager.RemotePlayerStatus.play.rawValue
+        case .stop: AVPlayerManager.RemotePlayerStatus.stop.rawValue
+        case .waitingToPlay: AVPlayerManager.RemotePlayerStatus.stop.rawValue
+        }
+        
+        NotificationCenter.default.post(
+                name: .playerStatus,
+                object: nil,
+                userInfo: ["status" : status]
+            )
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

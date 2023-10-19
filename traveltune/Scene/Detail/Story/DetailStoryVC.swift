@@ -50,6 +50,28 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
             name: Notification.Name.AVPlayerItemDidPlayToEndTime,
             object: nil
         )
+        
+        // RemoteCommandCenter 의 재생버튼 확인용
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(remotePlayerStatusObserver),
+            name: .playerStatus,
+            object: nil
+        )
+    }
+    
+    @objc func remotePlayerStatusObserver(notification: NSNotification) {
+        if let status = notification.userInfo?["status"] as? String {
+            let remoteStatus = AVPlayerManager.RemotePlayerStatus(rawValue: status)
+            switch remoteStatus {
+            case .play:
+                mainView.playView.setView(backgroundColor: .backgroundButton, image: .pauseFill)
+            case .stop:
+                mainView.playView.setView(backgroundColor: .backgroundButton, image: .playFill)
+            case nil:
+                print("error")
+            }
+        }
     }
     
     private func audioPlay(item: StoryItem) {
@@ -157,7 +179,7 @@ extension DetailStoryVC: DetailStoryProtocol {
                 return
             }
             audioPlay(item: (viewModel?.detailStory.value)!)
-            mainView.setPlayImageInAudio()
+            mainView.playView.setView(backgroundColor: .backgroundButton, image: .pauseFill)
         } else {
             switch AVPlayerManager.shared.status {
             case .playing:  // 재생중일 때 누르면 할 일
@@ -165,7 +187,7 @@ extension DetailStoryVC: DetailStoryProtocol {
                 mainView.playView.setView(backgroundColor: .backgroundButton, image: .playFill)
             case .stop:     // 멈춰있을 때 누르면 할 일
                 AVPlayerManager.shared.replay()
-                mainView.setPlayImageInAudio()
+                mainView.playView.setView(backgroundColor: .backgroundButton, image: .pauseFill)
             case .waitingToPlay:
                 print("로딩 중")
             }

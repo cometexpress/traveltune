@@ -16,7 +16,7 @@ final class MPRemoteCommandCenterManager {
     private let center = MPRemoteCommandCenter.shared()
     
     func registerRemoteCenterAction(player: AVPlayer) {
-        UIApplication.shared.beginReceivingRemoteControlEvents()
+//        UIApplication.shared.beginReceivingRemoteControlEvents()
         center.playCommand.isEnabled = true
         center.pauseCommand.isEnabled = true
         

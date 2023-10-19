@@ -10,5 +10,5 @@ import Foundation
 extension NSNotification.Name {
     static let beginScroll = NSNotification.Name("beginScroll")
     static let regionChange = NSNotification.Name("regionChange")
-    
+    static let playerStatus = NSNotification.Name("playerStatus")
 }

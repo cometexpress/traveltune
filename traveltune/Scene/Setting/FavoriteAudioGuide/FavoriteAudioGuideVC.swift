@@ -19,14 +19,6 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         super.viewDidLoad()
         bindViewModel()
         configureVC()
-        
-        // 재생완료시점 확인용
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(playingMusicFinish(_:)),
-            name: Notification.Name.AVPlayerItemDidPlayToEndTime,
-            object: nil
-        )
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,6 +105,36 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         mainView.favoriteAudioGuideProtocol = self
         mainView.playerBottomView.playerBottomProtocol = self
         mainView.checkBoxView.delegate = self
+        
+        // 재생완료시점 확인용
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(playingMusicFinish(_:)),
+            name: Notification.Name.AVPlayerItemDidPlayToEndTime,
+            object: nil
+        )
+        
+        // RemoteCommandCenter 의 재생버튼 확인용
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(remotePlayerStatusObserver),
+            name: .playerStatus,
+            object: nil
+        )
+    }
+    
+    @objc func remotePlayerStatusObserver(notification: NSNotification) {
+        if let status = notification.userInfo?["status"] as? String {
+            let remoteStatus = AVPlayerManager.RemotePlayerStatus(rawValue: status)
+            switch remoteStatus {
+            case .play:
+                mainView.playerBottomView.addPlayAndPauseImage(isPlaying: false)
+            case .stop:
+                mainView.playerBottomView.addPlayAndPauseImage(isPlaying: true)
+            case nil:
+                print("error")
+            }
+        }
     }
     
     @objc private func backButtonClicked() {

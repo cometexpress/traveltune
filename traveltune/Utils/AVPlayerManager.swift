@@ -27,6 +27,12 @@ final class AVPlayerManager: NSObject {
     
     private var timeObserverToken: Any?
     
+    // scene delegate 에서 값 전달시 사용
+    enum RemotePlayerStatus: String {
+        case play
+        case stop
+    }
+    
     var status: PlayerStauts {
         switch player?.timeControlStatus {
         case .paused:
@@ -48,6 +54,7 @@ final class AVPlayerManager: NSObject {
         do {
             player?.pause()
             player = nil
+            MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             player = AVPlayer(url: item.audioUrl)
             if let player {
@@ -124,8 +131,9 @@ final class AVPlayerManager: NSObject {
                 let durationSeconds = CMTimeGetSeconds(duration)
                 listener(duration, Float(seconds / durationSeconds), seconds)
                 
+                guard let player = AVPlayerManager.shared.player else { return }
                 MPRemoteCommandCenterManager.shared.updateRemoteCenterInfo(
-                    player: AVPlayerManager.shared.player!,
+                    player: player,
                     item: item
                 )
             }

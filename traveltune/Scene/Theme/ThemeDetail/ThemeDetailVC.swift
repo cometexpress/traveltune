@@ -49,6 +49,14 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
             name: Notification.Name.AVPlayerItemDidPlayToEndTime,
             object: nil
         )
+        
+        // RemoteCommandCenter 의 재생버튼 확인용
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(remotePlayerStatusObserver),
+            name: .playerStatus,
+            object: nil
+        )
     }
     
     func bindViewModel() {
@@ -61,12 +69,12 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
             case .loading: LoadingIndicator.show()
             case .success(let data):
                 self?.mainView.themeStoryItems = data
-//                self?.mainView.applySnapshot(items: data)
+                //                self?.mainView.applySnapshot(items: data)
                 LoadingIndicator.hide()
             case .singleDataError:
                 LoadingIndicator.hide()
                 // 데이터중 몇개씩 오류 발생할 때 어떻게 할지?
-//                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+                //                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
             case .localDataLoadError:
                 LoadingIndicator.hide()
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
@@ -76,7 +84,20 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
                 self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
             }
         }
-        
+    }
+    
+    @objc func remotePlayerStatusObserver(notification: NSNotification) {
+        if let status = notification.userInfo?["status"] as? String {
+            let remoteStatus = AVPlayerManager.RemotePlayerStatus(rawValue: status)
+            switch remoteStatus {
+            case .play:
+                mainView.playerBottomView.addPlayAndPauseImage(isPlaying: false)
+            case .stop:
+                mainView.playerBottomView.addPlayAndPauseImage(isPlaying: true)
+            case nil:
+                print("error")
+            }
+        }
     }
     
     //현재 진행중인 PlayerItem이 EndTime에 도달하면 호출
@@ -90,7 +111,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
             return $0
         }
         MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
-//        mainView.applySnapshot(items: themeStoryItems)
+        //        mainView.applySnapshot(items: themeStoryItems)
     }
     
     private func audioPlay(item: StoryItem) {
@@ -148,7 +169,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
                 }
                 return $0
             }
-//                mainView.applySnapshot(items: themeStoryItems)
+            //                mainView.applySnapshot(items: themeStoryItems)
         }
     }
     
@@ -173,7 +194,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
                 }
                 return $0
             }
-//            mainView.applySnapshot(items: themeStoryItems)
+            //            mainView.applySnapshot(items: themeStoryItems)
         }
     }
     
@@ -203,7 +224,7 @@ extension ThemeDetailVC: PlayerBottomProtocol {
             mainView.showScriptView()
         } else {
             mainView.hideScriptView()
-        }        
+        }
     }
     
 }
@@ -249,7 +270,7 @@ extension ThemeDetailVC: ThemeDetailVCProtocol {
             self.mainView.playerBottomView.resetData()
             return
         }
-//        self.mainView.applySnapshot(items: themeStoryItems)
+        //        self.mainView.applySnapshot(items: themeStoryItems)
         audioPlay(item: playItem)
         updateData(item: playItem)
     }
