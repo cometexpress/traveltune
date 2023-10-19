@@ -17,7 +17,11 @@ final class MPRemoteCommandCenterManager {
     
     func registerRemoteCenterAction(player: AVPlayer) {
 //        UIApplication.shared.beginReceivingRemoteControlEvents()
-        unregisterRemoteCenter()
+        
+        // 이전에 등록된 버튼에 대한 액션 제거 - 하지않으면 동시에 여러개 파일이 재생되는 현상발생
+        print("removeTarget 실행")
+        center.playCommand.removeTarget(nil)
+        center.pauseCommand.removeTarget(nil)
         
         center.playCommand.isEnabled = true
         center.pauseCommand.isEnabled = true
