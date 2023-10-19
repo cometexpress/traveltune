@@ -125,6 +125,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         
         if isContinuousPlay {
             let playItemIdx = mainView.favoriteStories.firstIndex { $0.isPlaying == true }
@@ -174,10 +175,11 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
     
     private func audioPlay(item: FavoriteStory) {
         guard let audioURL = URL(string: item.audioURL) else { return }
+        let audioItem = AudioItem(audioUrl: audioURL, title: item.audioTitle, imagePath: item.imageURL)
         currentPlayingAudioURL = item.audioURL
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(item: AudioItem(audioUrl: audioURL, title: item.audioTitle, imagePath: item.imageURL))
-        AVPlayerManager.shared.addPlayTimeObserver { duration, interval, playTime in
+        AVPlayerManager.shared.play(item: audioItem)
+        AVPlayerManager.shared.addPlayTimeObserver(item: audioItem) { duration, interval, playTime in
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }

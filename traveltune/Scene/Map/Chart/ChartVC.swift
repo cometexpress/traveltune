@@ -53,14 +53,14 @@ final class ChartVC: BaseViewController<ChartView, ChartViewModel> {
     private func updateRequestDate() {
         let date = Date()
         let previusYear = Calendar.current.date(byAdding: .year, value: -1, to: date)
-        var formatter_year = DateFormatter()
-        formatter_year.dateFormat = "yyyy"
+        let formatterYear = DateFormatter()
+        formatterYear.dateFormat = "yyyy"
         guard let previusYear else {
             startDate = "20210101"
             endDate = "20211231"
             return
         }
-        var strPreviusYear = formatter_year.string(from: previusYear)
+        var strPreviusYear = formatterYear.string(from: previusYear)
         print(strPreviusYear)
         startDate = "\(strPreviusYear)0101"
         endDate = "\(strPreviusYear)1231"

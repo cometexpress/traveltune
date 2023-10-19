@@ -54,9 +54,10 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
     
     private func audioPlay(item: StoryItem) {
         guard let url = URL(string: item.audioURL) else { return }
+        let audioItem = AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL)
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(item: AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL))
-        AVPlayerManager.shared.addPlayTimeObserver { duration, interval, playTime in
+        AVPlayerManager.shared.play(item: audioItem)
+        AVPlayerManager.shared.addPlayTimeObserver(item: audioItem) { duration, interval, playTime in
             let seconds = String(format: "%02d", Int(playTime) % 60)
             let minutes = String(format: "%02d", Int(playTime / 60))
             let intervalTime = "\(minutes):\(seconds)"
@@ -138,6 +139,7 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.resetAudio()
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
     }
 }
 

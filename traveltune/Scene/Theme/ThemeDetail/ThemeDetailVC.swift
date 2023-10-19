@@ -21,6 +21,7 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.stop()
     }
@@ -88,14 +89,16 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
             $0.isPlaying = false
             return $0
         }
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
 //        mainView.applySnapshot(items: themeStoryItems)
     }
     
     private func audioPlay(item: StoryItem) {
         guard let url = URL(string: item.audioURL) else { return }
+        let audioItem = AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL)
         AVPlayerManager.shared.removePlayTimeObserver()
-        AVPlayerManager.shared.play(item: AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL))
-        AVPlayerManager.shared.addPlayTimeObserver { duration, interval, playTime in
+        AVPlayerManager.shared.play(item: audioItem)
+        AVPlayerManager.shared.addPlayTimeObserver(item: audioItem) { duration, interval, playTime in
             self.mainView.playerBottomView.audioSlider.value = interval
         }
     }

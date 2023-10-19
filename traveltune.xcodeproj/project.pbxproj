@@ -122,6 +122,7 @@
 		C0BDC32D2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */; };
 		C0BDC3352AC982E100D7331E /* PlayerBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */; };
 		C0C046F32AE04D9600939DEB /* ChartVCProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C046F22AE04D9600939DEB /* ChartVCProtocol.swift */; };
+		C0C046F52AE0F21100939DEB /* MPRemoteCommandCenterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C046F42AE0F21100939DEB /* MPRemoteCommandCenterManager.swift */; };
 		C0D615322ACE81A000EC5EE9 /* SearchResultSpotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */; };
 		C0D615342ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */; };
 		C0D615362ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */; };
@@ -306,6 +307,7 @@
 		C0BDC32C2AC9372B00D7331E /* LocalFavoriteStoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFavoriteStoryRepository.swift; sourceTree = "<group>"; };
 		C0BDC3342AC982E100D7331E /* PlayerBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerBottomView.swift; sourceTree = "<group>"; };
 		C0C046F22AE04D9600939DEB /* ChartVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartVCProtocol.swift; sourceTree = "<group>"; };
+		C0C046F42AE0F21100939DEB /* MPRemoteCommandCenterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPRemoteCommandCenterManager.swift; sourceTree = "<group>"; };
 		C0D615312ACE81A000EC5EE9 /* SearchResultSpotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSpotCell.swift; sourceTree = "<group>"; };
 		C0D615332ACE890A00EC5EE9 /* SearchResultTabTravelSpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabTravelSpotViewModel.swift; sourceTree = "<group>"; };
 		C0D615352ACE89E100EC5EE9 /* SearchResultTabStoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTabStoryViewModel.swift; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 				C0D81A992AC5609800CB2EF0 /* Constant.swift */,
 				C0D81A922AC4A5B300CB2EF0 /* DateManager.swift */,
 				C05F53602AD8058500E7FF28 /* LocationManager.swift */,
+				C0C046F42AE0F21100939DEB /* MPRemoteCommandCenterManager.swift */,
 				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
 				C0F1394B2ADF12C2008AABD0 /* NotificationManager.swift */,
 				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
@@ -1209,6 +1212,7 @@
 				C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */,
 				C0E8BA9C2ABDCD5B00B1CCA6 /* MapHomeVC.swift in Sources */,
 				C0E8BAAA2ABDDC3D00B1CCA6 /* ConfigurableViewProtocol.swift in Sources */,
+				C0C046F52AE0F21100939DEB /* MPRemoteCommandCenterManager.swift in Sources */,
 				C03FE03B2ACFE73800D02385 /* SearchResultTabStoryVCProtocol.swift in Sources */,
 				C0B6CA192AC99EDD005A0E2A /* ThumbnailImageView.swift in Sources */,
 				C035928F2ACDA09600AA3D36 /* SearchResultTabTravelSpotView.swift in Sources */,

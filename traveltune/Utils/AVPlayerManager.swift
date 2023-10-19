@@ -21,7 +21,7 @@ final class AVPlayerManager: NSObject {
     static let shared = AVPlayerManager()
     private override init() {}
     
-    private var player: AVPlayer? = nil
+    var player: AVPlayer? = nil
     
     private var playerItemContext = 0
     
@@ -64,9 +64,8 @@ final class AVPlayerManager: NSObject {
             print("Error in AVAudio Session\(error.localizedDescription)")
         }
         
-        // 주석 처리
-//        remoteCommandCenterSetting()
-//        remoteCommandInfoCenterSetting(item: item)
+        guard let player else { return }
+        MPRemoteCommandCenterManager.shared.registerRemoteCenterAction(player: player)
     }
     
     // 나만의 이야기에서 테스트 필요
@@ -98,17 +97,16 @@ final class AVPlayerManager: NSObject {
     
     func pause() {
         player?.pause()
-//        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
     }
     
     func replay() {
         player?.play()
-//        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
+        MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
     }
     
     func stop() {
         // remote command 이벤트 중단
-        UIApplication.shared.endReceivingRemoteControlEvents()
         player?.pause()
         player = nil
     }
@@ -117,7 +115,7 @@ final class AVPlayerManager: NSObject {
         player?.seek(to: CMTimeMakeWithSeconds(0, preferredTimescale: 1))
     }
     
-    func addPlayTimeObserver(listener: @escaping (CMTime, Float, Float64) -> Void) {
+    func addPlayTimeObserver(item: AudioItem, listener: @escaping (CMTime, Float, Float64) -> Void) {
         let time = CMTime(seconds: 0.001, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
         timeObserverToken = player?.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] progressTime in
             //현재 진행된 progressTime 을 '초'로 변경
@@ -125,6 +123,11 @@ final class AVPlayerManager: NSObject {
             if let duration = self?.player?.currentItem?.duration {
                 let durationSeconds = CMTimeGetSeconds(duration)
                 listener(duration, Float(seconds / durationSeconds), seconds)
+                
+                MPRemoteCommandCenterManager.shared.updateRemoteCenterInfo(
+                    player: AVPlayerManager.shared.player!,
+                    item: item
+                )
             }
         }
     }
@@ -141,93 +144,5 @@ final class AVPlayerManager: NSObject {
         case stop
         case waitingToPlay
     }
-    
-    let center = MPRemoteCommandCenter.shared()
-    
-    func remoteCommandCenterSetting() {
-        
-        UIApplication.shared.beginReceivingRemoteControlEvents()
-        
-        center.playCommand.removeTarget(nil)
-        center.pauseCommand.removeTarget(nil)
-        
-        center.playCommand.addTarget { (commandEvent) -> MPRemoteCommandHandlerStatus in
-            self.player?.play()
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.player?.currentTime().seconds
-            // 시간이 흐르게 설정
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
-            return .success
-        }
-        
-        center.pauseCommand.addTarget { (commandEvent) -> MPRemoteCommandHandlerStatus in
-            self.player?.pause()
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = self.player?.currentTime().seconds
-            // 시간이 안흐르게 설정
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
-            return .success
-        }
-        center.playCommand.isEnabled = true
-        center.pauseCommand.isEnabled = true
-        
-    }
-    
-    func remoteCommandInfoCenterSetting(item: AudioItem) {
-        let center = MPNowPlayingInfoCenter.default()
-        var nowPlayingInfo = center.nowPlayingInfo ?? [String: Any]()
-        
-        nowPlayingInfo[MPMediaItemPropertyTitle] = item.title
-        //        nowPlayingInfo[MPMediaItemPropertyArtist] = "아티스트"
-        
-        if let thumbnailURL = URL(string: item.imagePath) {
-            print("11111")
-            KingfisherManager.shared.retrieveImage(with: thumbnailURL) { result in
-                switch result {
-                case .success(let imageResult):
-                    let artwork = MPMediaItemArtwork(boundsSize: imageResult.image.size) { size in
-                        return imageResult.image
-                    }
-                    print("22222")
-                    print("사이즈 = \(imageResult.image.size)")
-                    dump(artwork)
-                    nowPlayingInfo[MPMediaItemPropertyArtwork] = artwork
-                    
-                    //                    nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: imageResult.image.size, requestHandler: { size in
-                    //                        return imageResult.image
-                    //                    })
-                    
-                case .failure:
-                    print("3333")
-                    if let logo = UIImage(named: "logo") {
-                        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: logo.size, requestHandler: { size in
-                            return logo
-                        })
-                    }
-                }
-            }
-        } else {
-            if let logo = UIImage(named: "logo") {
-                nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: logo.size, requestHandler: { size in
-                    return logo
-                })
-            }
-        }
-        
-        /**
-         1. 현재 오류 이미지 안나옴
-         2. 노래 재생하는 화면 벗어났을 때도 잠금화면에서 안사라짐
-         3. 잠금화면에서 동작되는 버튼이랑 앱 내부에 버튼이 동기화 되지 않음
-         4. 프로그래스바가 안뜸.
-         */
-        
-        // 콘텐츠 총 길이
-        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player?.currentItem?.duration.seconds
-        // 콘텐츠 재생 시간에 따른 progressBar 초기화
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = 1
-        // 콘텐츠 현재 재생시간
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
-        
-        center.nowPlayingInfo = nowPlayingInfo
-    }
-    
     
 }

@@ -78,7 +78,7 @@ final class ChartViewModel: BaseViewModel {
                     values.append(etcValue)
                 }
                 
-                let totalNum = round(sum * pow(10,2)) / pow(10,2)
+                let totalNum = Int(round(sum * pow(10,2)) / pow(10,2))
                 
                 self?.state.value = .success(
                     data: ChartData(
@@ -94,7 +94,7 @@ final class ChartViewModel: BaseViewModel {
     }
 }
 
-private func makeCommaNum(num: Double) -> String {
+private func makeCommaNum(num: Int) -> String {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .decimal
     numberFormatter.maximumFractionDigits = 2

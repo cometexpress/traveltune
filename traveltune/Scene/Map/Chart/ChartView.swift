@@ -212,7 +212,7 @@ final class ChartView: BaseView {
         }
         
         reloadImageView.snp.makeConstraints { make in
-            make.bottom.equalTo(reloadLabel.snp.top).offset(6)
+            make.bottom.equalTo(reloadLabel.snp.top).offset(-6)
             make.centerX.equalToSuperview()
         }
         
