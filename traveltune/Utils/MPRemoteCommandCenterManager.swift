@@ -17,6 +17,8 @@ final class MPRemoteCommandCenterManager {
     
     func registerRemoteCenterAction(player: AVPlayer) {
 //        UIApplication.shared.beginReceivingRemoteControlEvents()
+        unregisterRemoteCenter()
+        
         center.playCommand.isEnabled = true
         center.pauseCommand.isEnabled = true
         
@@ -37,7 +39,8 @@ final class MPRemoteCommandCenterManager {
         }
     }
     
-    func updateRemoteCenterInfo(player: AVPlayer, item: AudioItem) {
+    func updateRemoteCenterInfo(item: AudioItem) {
+        guard let player = AVPlayerManager.shared.player else { return }
         let center = MPNowPlayingInfoCenter.default()
         var nowPlayingInfo = center.nowPlayingInfo ?? [String: Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = item.title
@@ -81,8 +84,9 @@ final class MPRemoteCommandCenterManager {
     }
     
     func unregisterRemoteCenter() {
-        center.playCommand.removeTarget(self)
-        center.pauseCommand.removeTarget(self)
+        // removeTarget(nil) 안해주면 여러 파일 재생후 잠금화면에서 다시 재생시키면 동시에 여러파일 재생됨
+        center.playCommand.removeTarget(nil)
+        center.pauseCommand.removeTarget(nil)
         center.playCommand.isEnabled = false
         center.pauseCommand.isEnabled = false
         UIApplication.shared.endReceivingRemoteControlEvents()

@@ -119,8 +119,8 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
         let audioItem = AudioItem(audioUrl: url, title: item.audioTitle, imagePath: item.imageURL)
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.play(item: audioItem)
-        AVPlayerManager.shared.addPlayTimeObserver(item: audioItem) { duration, interval, playTime in
-            self.mainView.playerBottomView.audioSlider.value = interval
+        AVPlayerManager.shared.addPlayTimeObserver(item: audioItem) { [weak self] duration, interval, playTime in
+            self?.mainView.playerBottomView.audioSlider.value = interval            
         }
     }
     

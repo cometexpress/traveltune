@@ -54,7 +54,6 @@ final class AVPlayerManager: NSObject {
         do {
             player?.pause()
             player = nil
-            MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
             player = AVPlayer(url: item.audioUrl)
             if let player {
@@ -64,15 +63,14 @@ final class AVPlayerManager: NSObject {
                 player.preventsDisplaySleepDuringVideoPlayback = true       // 비디오 재생이 디스플레이와 기기 잠자기 모드를 예방해야하는지를 가리키는 Bool 값
                 player.volume = 1
                 player.play()
+                
+                MPRemoteCommandCenterManager.shared.registerRemoteCenterAction(player: player)
             }
             
         } catch let error {
             // 에러일 때 어떤식으로 처리할지 ?
             print("Error in AVAudio Session\(error.localizedDescription)")
         }
-        
-        guard let player else { return }
-        MPRemoteCommandCenterManager.shared.registerRemoteCenterAction(player: player)
     }
     
     // 나만의 이야기에서 테스트 필요
@@ -102,6 +100,7 @@ final class AVPlayerManager: NSObject {
     //        }
     //    }
     
+    
     func pause() {
         player?.pause()
         MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
@@ -130,12 +129,7 @@ final class AVPlayerManager: NSObject {
             if let duration = self?.player?.currentItem?.duration {
                 let durationSeconds = CMTimeGetSeconds(duration)
                 listener(duration, Float(seconds / durationSeconds), seconds)
-                
-                guard let player = AVPlayerManager.shared.player else { return }
-                MPRemoteCommandCenterManager.shared.updateRemoteCenterInfo(
-                    player: player,
-                    item: item
-                )
+                MPRemoteCommandCenterManager.shared.updateRemoteCenterInfo(item: item)
             }
         }
     }

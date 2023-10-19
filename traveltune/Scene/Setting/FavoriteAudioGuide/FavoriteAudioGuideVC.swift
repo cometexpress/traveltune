@@ -28,6 +28,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.stop()
     }
@@ -147,7 +148,6 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
         print("재생이 완료되었어요")
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
-        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         
         if isContinuousPlay {
             let playItemIdx = mainView.favoriteStories.firstIndex { $0.isPlaying == true }

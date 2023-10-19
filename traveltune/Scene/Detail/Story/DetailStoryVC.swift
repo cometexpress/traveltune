@@ -24,6 +24,7 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         AVPlayerManager.shared.removePlayTimeObserver()
         AVPlayerManager.shared.stop()
     }
