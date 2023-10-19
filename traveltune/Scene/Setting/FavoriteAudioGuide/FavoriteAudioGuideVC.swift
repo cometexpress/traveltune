@@ -190,6 +190,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
                     $0.isPlaying = false
                     return $0
                 }
+                MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
             }
         }
         

@@ -104,13 +104,14 @@ final class ThemeDetailVC: BaseViewController<ThemeDetailView, ThemeDetailViewMo
     @objc func playingMusicFinish(_ notification: Notification) {
         //필요한 정보나 객체가 있으면 object를 통해서 받아서 이용
         print("재생이 완료되었어요")
+        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
         AVPlayerManager.shared.stop()
         mainView.playerBottomView.resetData()
         mainView.themeStoryItems = mainView.themeStoryItems.map {
             $0.isPlaying = false
             return $0
         }
-        MPRemoteCommandCenterManager.shared.unregisterRemoteCenter()
+        
         //        mainView.applySnapshot(items: themeStoryItems)
     }
     

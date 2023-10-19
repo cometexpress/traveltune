@@ -28,21 +28,23 @@ final class MPRemoteCommandCenterManager {
         center.playCommand.isEnabled = true
         center.pauseCommand.isEnabled = true
         
+        let player = AVPlayerManager.shared.player
+        
         center.playCommand.addTarget { event in
 //            player.play()
             AVPlayerManager.shared.replay()
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
             // 시간이 흐르게 설정
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
+//            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 1
             return .success
         }
         
         center.pauseCommand.addTarget { event in
 //            player.pause()
             AVPlayerManager.shared.pause()
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime().seconds
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
             // 시간이 안흐르게 설정
-            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
+//            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyPlaybackRate] = 0
             return .success
         }
     }
