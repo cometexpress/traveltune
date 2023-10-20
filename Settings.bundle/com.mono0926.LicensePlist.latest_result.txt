@@ -1,0 +1,98 @@
+name: Firebase, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseAnalytics, nameSpecified: 
+body: Copyright 2022 Googl…
+version: 10.15.0
+
+name: FirebaseCore, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseCoreExtension, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseCoreInternal, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseCrashlytics, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseInstallations, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FirebaseSessions, nameSpecified: 
+body: 
+                   …
+version: 10.15.0
+
+name: FSPagerView, nameSpecified: 
+body: Copyright (c) 2017 F…
+version: 0.8.3
+
+name: GoogleAppMeasurement, nameSpecified: 
+body: Copyright 2022 Googl…
+version: 10.15.0
+
+name: GoogleDataTransport, nameSpecified: 
+body: 
+                   …
+version: 9.2.5
+
+name: GoogleUtilities, nameSpecified: 
+body: 
+                   …
+version: 7.11.5
+
+name: nanopb, nameSpecified: 
+body: Copyright (c) 2011 P…
+version: 2.30909.0
+
+name: Parchment, nameSpecified: 
+body: The MIT License (MIT…
+version: 3.2.0
+
+name: PromisesObjC, nameSpecified: 
+body: 
+                   …
+version: 2.3.1
+
+name: PromisesSwift, nameSpecified: 
+body: 
+                   …
+version: 2.3.1
+
+name: Alamofire, nameSpecified: Alamofire, owner: Alamofire, version: 5.8.0, source: https://github.com/Alamofire/Alamofire
+
+name: Charts, nameSpecified: DGCharts, owner: danielgindi, version: 5.0.0, source: https://github.com/danielgindi/Charts
+
+name: FloatingPanel, nameSpecified: FloatingPanel, owner: scenee, version: 2.8.0, source: https://github.com/scenee/FloatingPanel
+
+name: Hero, nameSpecified: Hero, owner: HeroTransitions, version: 1.6.2, source: https://github.com/HeroTransitions/Hero
+
+name: IQKeyboardManager, nameSpecified: IQKeyboardManagerSwift, owner: hackiftekhar, version: 6.5.13, source: https://github.com/hackiftekhar/IQKeyboardManager
+
+name: Kingfisher, nameSpecified: Kingfisher, owner: onevcat, version: 7.9.1, source: https://github.com/onevcat/Kingfisher
+
+name: realm-core, nameSpecified: realm-core, owner: realm, version: 13.20.1, source: https://github.com/realm/realm-core
+
+name: realm-swift, nameSpecified: realm-swift, owner: realm, version: , source: https://github.com/realm/realm-swift
+
+name: SnapKit, nameSpecified: SnapKit, owner: SnapKit, version: 5.6.0, source: https://github.com/SnapKit/SnapKit
+
+name: Toast-Swift, nameSpecified: Toast, owner: scalessec, version: 5.0.1, source: https://github.com/scalessec/Toast-Swift
+
+add-version-numbers: false
+
+LicensePlist Version: 3.24.11

@@ -61,6 +61,7 @@
 		C0453D1D2AC7F6B900C220A6 /* StoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */; };
 		C0453D1F2AC7F8F500C220A6 /* ThemeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0453D1E2AC7F8F500C220A6 /* ThemeDetailViewModel.swift */; };
 		C049FBB82AD914400000344C /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C049FBB72AD914400000344C /* ClusterAnnotationView.swift */; };
+		C04DF05C2AE265FF005EE45A /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C04DF05B2AE265FF005EE45A /* Settings.bundle */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -246,6 +247,7 @@
 		C0453D1C2AC7F6B900C220A6 /* StoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryRepository.swift; sourceTree = "<group>"; };
 		C0453D1E2AC7F8F500C220A6 /* ThemeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDetailViewModel.swift; sourceTree = "<group>"; };
 		C049FBB72AD914400000344C /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
+		C04DF05B2AE265FF005EE45A /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -734,11 +736,12 @@
 		C0E8BA3E2ABC8B7600B1CCA6 = {
 			isa = PBXGroup;
 			children = (
+				C04DF05B2AE265FF005EE45A /* Settings.bundle */,
 				C05BB6BD2AC339C8007CC4A5 /* Font */,
-				C0E8BA492ABC8B7600B1CCA6 /* traveltune */,
-				C0E8BA482ABC8B7600B1CCA6 /* Products */,
-				5E6D859DA31D3F4FF6A1C4D2 /* Pods */,
 				4DC0C71A865D783711EB1525 /* Frameworks */,
+				5E6D859DA31D3F4FF6A1C4D2 /* Pods */,
+				C0E8BA482ABC8B7600B1CCA6 /* Products */,
+				C0E8BA492ABC8B7600B1CCA6 /* traveltune */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1042,6 +1045,7 @@
 				C05BB6B62AC335D5007CC4A5 /* Pavelt 400.otf in Resources */,
 				C0E8BA542ABC8B7700B1CCA6 /* Assets.xcassets in Resources */,
 				C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */,
+				C04DF05C2AE265FF005EE45A /* Settings.bundle in Resources */,
 				C07D8B182AD0358B00267C8B /* launch_screen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
