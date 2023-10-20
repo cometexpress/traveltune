@@ -113,6 +113,7 @@ class CustomAnnotationView: MKAnnotationView {
                 self.thumbnail = image
             }
         }
+        annotationImageView.image = thumbnail
     }
     
 //    func addImage(imagePath: String) {

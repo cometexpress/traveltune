@@ -90,7 +90,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 LoadingIndicator.show()
             case .success(let data, let lat, let lng):
                 print("성공 = ", lat, lng)
-                if data.isEmpty {
+                if !data.isEmpty {
                     data.forEach { item in
                         self.addMarker(story: item)
                     }
