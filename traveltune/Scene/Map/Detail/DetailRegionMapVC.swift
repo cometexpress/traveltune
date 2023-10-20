@@ -122,9 +122,10 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 // iOS 설정으로 보내라는 alert 띄우기
                 self.showLocationSettingAlert()
             case .authorized:
+                print("123456789")
+                LocationManager.shared.startUpdating()
                 // didUpDateLocationer
-                DispatchQueue.main.async {
-                    LocationManager.shared.startUpdating()
+                
                     self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
                     self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
                     
@@ -138,7 +139,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                     
                     self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
                     self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
-                }
+                
             }
         }
     }
@@ -356,6 +357,21 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 
 extension DetailRegionMapVC: CLLocationManagerDelegate {
     
+    // 위치 업데이트 성공
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print(#function ,locations)
+//        if let coordinate = locations.last?.coordinate {
+//            LocationManager.shared.checkCurrentLocationAuthorization(status: CLAuthorizationStatus.authorizedWhenInUse)
+//        }
+//        // 위치 업데이트 그만하고 싶을 때
+//        LocationManager.shared.stopUpdating()
+//    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("1234")
+        LocationManager.shared.checkCurrentLocationAuthorization(status: status)
+    }
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function, error.localizedDescription)
         showToast(msg: Strings.ErrorMsg.errorLocation)
@@ -365,7 +381,7 @@ extension DetailRegionMapVC: CLLocationManagerDelegate {
     // 허용해서 위치를 가지고 오는 도중에 설정에서 거부를 하고 앱으로 다시 돌아올 때
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // 어떤 권한인지는 모르고 권한이 바뀌는 것만 암,
-        print(#function)
+        print(#function, "권한 체인지")
         checkAvailableCurrentLocation()
     }
 }

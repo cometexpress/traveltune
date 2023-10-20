@@ -73,7 +73,7 @@
 "theme_history_search_keyword" = "Village";
 "theme_museum_search_keyword" = "Museum";
 "theme_temple_search_keyword" = "Temple";
-"theme_bukchon_search_keyword" = "Bukchon";
+"theme_bukchon_search_keyword" = "alley";
 
 // 테마와 완전히 똑같은 것
 //"theme_hangang_search_keyword" = "Hangang";

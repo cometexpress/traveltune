@@ -12,12 +12,6 @@
 		<string>nmap</string>
 		<string>kakaomap</string>
 	</array>
-	<key>FirebaseAutomaticScreenReportingEnabled</key>
-	<false/>
-	<key>FirebaseScreenReportingEnabled</key>
-	<false/>
-	<key>FirebaseAppDelegateProxyEnabled</key>
-	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pavelt 400.otf</string>

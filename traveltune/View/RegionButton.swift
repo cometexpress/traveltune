@@ -32,6 +32,7 @@ final class RegionButton: UIButton {
     }
     
     func defaultBackground() {
+        isExclusiveTouch = true
         layer.borderWidth = 0.7
         layer.borderColor = UIColor.txtSecondary.cgColor
         layer.cornerRadius = 8
