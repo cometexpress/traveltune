@@ -31,7 +31,7 @@ final class NotificationManager {
         // 매주 목요일, 20시에 로컬알림 발생시키기
         let content = UNMutableNotificationContent()
         content.title = Constant.productName
-        content.body = Strings.Push.localPushMain + "이게 되냐???"
+        content.body = Strings.Push.localPushMain
         content.badge = 1
         
         var dateComponets = DateComponents()
