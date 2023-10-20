@@ -55,6 +55,7 @@ struct Strings {
         static let errorNoFile = "error_no_file".localized
         static let errorFailSendEmail = "error_fail_send_email".localized
         static let errorFailNoEmail = "error_fail_no_email".localized
+        static let errorEmptyResultStoryByLocation = "error_empty_result_story_by_location".localized
     }
     
     struct TabMap {

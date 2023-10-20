@@ -50,6 +50,7 @@
 "error_last_story" = "This is the last story";
 "error_fail_send_email" = "An error occurred while sending email";
 "error_fail_no_email" = "Please check your iPhone email settings";
+"error_empty_result_story_by_location" = "There is no story information around your current location";
 
 
 // 홈 네비 타이틀

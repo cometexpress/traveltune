@@ -49,6 +49,7 @@
 "error_last_story" = "마지막 이야기에요";
 "error_fail_send_email" = "이메일 보내는 중 오류가 발생했어요";
 "error_fail_no_email" = "아이폰 이메일 설정을 확인해주세요";
+"error_empty_result_story_by_location" = "현재 위치 주변에 이야기 정보가 없어요";
 
 
 // 홈 네비 타이틀

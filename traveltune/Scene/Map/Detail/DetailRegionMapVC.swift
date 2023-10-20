@@ -34,7 +34,7 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
     }
     
     @objc func touchAction (sender: UIPanGestureRecognizer) {
-            
+        
         print("터치터ㅣ터치")
     }
     
@@ -89,20 +89,26 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
             case .loading:
                 LoadingIndicator.show()
             case .success(let data, let lat, let lng):
-                data.forEach { item in
-                    self.addMarker(story: item)
+                print("성공 = ", lat, lng)
+                if data.isEmpty {
+                    data.forEach { item in
+                        self.addMarker(story: item)
+                    }
+                    stories = data
+                    
+                    let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
+                    let region = MKCoordinateRegion(center: center, latitudinalMeters: 100000, longitudinalMeters: 100000)
+                    self.mainView.mapView.setRegion(region, animated: true)
+                    
+                    // 모든 annotation 표시
+                    //                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
+                } else {
+                    self.showToast(msg: Strings.ErrorMsg.errorEmptyResultStoryByLocation)
                 }
-                stories = data
-                
-                let center = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-                let region = MKCoordinateRegion(center: center, latitudinalMeters: 100000, longitudinalMeters: 100000)
-                self.mainView.mapView.setRegion(region, animated: true)
-                
-                // 모든 annotation 표시
-                //                self.mainView.mapView.showAnnotations(self.mainView.mapView.annotations, animated: true)
-                
+
                 LoadingIndicator.hide()
-            case .error:
+            case .error(let msg):
+                print("실패 = ", msg)
                 self.showToast(msg: Strings.ErrorMsg.errorLoadingData)
                 LoadingIndicator.hide()
             }
@@ -122,24 +128,24 @@ final class DetailRegionMapVC: BaseViewController<DetailRegionMapView, DetailReg
                 // iOS 설정으로 보내라는 alert 띄우기
                 self.showLocationSettingAlert()
             case .authorized:
-                print("123456789")
-                LocationManager.shared.startUpdating()
                 // didUpDateLocationer
+                print("권한 허용 상태")
+                LocationManager.shared.startUpdating()
+                self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
+                self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
                 
-                    self.mainView.mapView.removeAnnotations(self.mainView.mapView.annotations)
-                    self.mainView.mapView.setUserTrackingMode(.follow, animated: true)
-                    
-                    guard let userLocation = self.mainView.mapView.userLocation.location else {
-                        print("유저 위치 없음")
-                        self.showToast(msg: Strings.ErrorMsg.errorLocation)
-                        return
-                    }
-                    
-//                    mainView.updateUserLocation()
-                    
-                    self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
-                    self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
-                
+                guard let userLocation = self.mainView.mapView.userLocation.location else {
+                    print("유저 위치 없음")
+                    self.showToast(msg: Strings.ErrorMsg.errorLocation)
+                    return
+                }
+
+//                // 워싱턴일 때 위경도
+//                let testUSALat = 38.9071923
+//                let testUSALng = -77.0368707
+//                self.viewModel?.fetchStoryByLocation(lat: testUSALat, lng: testUSALng)
+                self.viewModel?.fetchStoryByLocation(lat: userLocation.coordinate.latitude, lng: userLocation.coordinate.longitude)
+                self.mainView.updateButtonTitle(title: Strings.Common.currentLocation)
             }
         }
     }
@@ -271,10 +277,10 @@ extension DetailRegionMapVC: MKMapViewDelegate {
                 withIdentifier: CustomAnnotationView.identifier, for: customAnnotation) as? CustomAnnotationView
             
             guard let annotationView else { return nil }
-            let customAnnotaionImageUrl = stories.first { 
+            let customAnnotaionImageUrl = stories.first {
                 $0 == customAnnotation.item
             }?.imageURL ?? ""
-//            annotationView.addImage(imagePath: customAnnotaionImageUrl)
+            //            annotationView.addImage(imagePath: customAnnotaionImageUrl)
             annotationView.createImage(imagePath: customAnnotaionImageUrl)
             return annotationView
             
@@ -285,42 +291,42 @@ extension DetailRegionMapVC: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-            if !isTouchable {
-                return
-            }
-            
-            switch view {
-            case is ClusterAnnotationView:
-                let selectedClusterView = view as? ClusterAnnotationView
-                if let cluster = view.annotation as? MKClusterAnnotation {
-                    let memberAnnotations = cluster.memberAnnotations
-                    selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
-                    self.mainView.selectedStoryItems = []
-                    memberAnnotations.forEach { annotation in
-                        if let storyAnnotation = annotation as? StoryAnnotation {
-                            mainView.selectedStoryItems.append(storyAnnotation.item)
-                        }
-                    }
-                    selectedClusterView?.setSelected(true, animated: false)
-                    if !mainView.selectedStoryItems.isEmpty {
-                        mainView.bottomCollectionView.scrollToItem(
-                            at: IndexPath(item: 0, section: 0),
-                            at: .left,
-                            animated: false
-                        )
+        if !isTouchable {
+            return
+        }
+        
+        switch view {
+        case is ClusterAnnotationView:
+            let selectedClusterView = view as? ClusterAnnotationView
+            if let cluster = view.annotation as? MKClusterAnnotation {
+                let memberAnnotations = cluster.memberAnnotations
+                selectedClusterView?.selectedDrawRatio(to: memberAnnotations.count, wholeColor: .selectedBackgroundButton)
+                self.mainView.selectedStoryItems = []
+                memberAnnotations.forEach { annotation in
+                    if let storyAnnotation = annotation as? StoryAnnotation {
+                        mainView.selectedStoryItems.append(storyAnnotation.item)
                     }
                 }
-                
-            case is CustomAnnotationView:
-                let selectedAnnotationView = view as? CustomAnnotationView
-                guard let selectedAnnotationView else { return }
-                let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
-                guard let storyAnnotation else { return }
-                selectedAnnotationView.setSelected(true, animated: false)
-                mainView.selectedStoryItems = []
-                mainView.selectedStoryItems.append(storyAnnotation.item)
-            default: Void()
+                selectedClusterView?.setSelected(true, animated: false)
+                if !mainView.selectedStoryItems.isEmpty {
+                    mainView.bottomCollectionView.scrollToItem(
+                        at: IndexPath(item: 0, section: 0),
+                        at: .left,
+                        animated: false
+                    )
+                }
             }
+            
+        case is CustomAnnotationView:
+            let selectedAnnotationView = view as? CustomAnnotationView
+            guard let selectedAnnotationView else { return }
+            let storyAnnotation = selectedAnnotationView.annotation as? StoryAnnotation
+            guard let storyAnnotation else { return }
+            selectedAnnotationView.setSelected(true, animated: false)
+            mainView.selectedStoryItems = []
+            mainView.selectedStoryItems.append(storyAnnotation.item)
+        default: Void()
+        }
         
     }
     
@@ -358,14 +364,14 @@ extension DetailRegionMapVC: UIGestureRecognizerDelegate {
 extension DetailRegionMapVC: CLLocationManagerDelegate {
     
     // 위치 업데이트 성공
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        print(#function ,locations)
-//        if let coordinate = locations.last?.coordinate {
-//            LocationManager.shared.checkCurrentLocationAuthorization(status: CLAuthorizationStatus.authorizedWhenInUse)
-//        }
-//        // 위치 업데이트 그만하고 싶을 때
-//        LocationManager.shared.stopUpdating()
-//    }
+    //    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    //        print(#function ,locations)
+    //        if let coordinate = locations.last?.coordinate {
+    //            LocationManager.shared.checkCurrentLocationAuthorization(status: CLAuthorizationStatus.authorizedWhenInUse)
+    //        }
+    //        // 위치 업데이트 그만하고 싶을 때
+    //        LocationManager.shared.stopUpdating()
+    //    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("1234")

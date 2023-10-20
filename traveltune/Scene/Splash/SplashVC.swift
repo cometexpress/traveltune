@@ -61,9 +61,10 @@ final class SplashVC: BaseViewController<SplashView, SplashViewModel> {
             case .loading: self?.mainView.indicatorView.startAnimating()
             case .success(let data):
                 self?.mainView.indicatorView.stopAnimating()
-                if data {
-                    self?.moveTabBarVC()
-                }
+                self?.moveTabBarVC()
+//                if data {
+//                    self?.moveTabBarVC()
+//                }
             case .error(let msg):
                 print(msg)
                 self?.mainView.indicatorView.stopAnimating()
