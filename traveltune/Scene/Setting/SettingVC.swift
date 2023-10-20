@@ -111,6 +111,9 @@ extension SettingVC: SettingVCProtocol {
             sendEmail()
         case Strings.Setting.settingEtcItem02:
             print("오픈소스")
+            if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(appSetting)
+            }
         case Strings.Setting.settingEtcItem03:
             print("앱버전")
             
