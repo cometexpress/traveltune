@@ -33,6 +33,12 @@ final class CheckBoxView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(isChecked: Bool) {
+        self.init(frame: .zero)
+        self.isChecked = isChecked
+        updateCheckboxImage(checked: isChecked)
+    }
+    
     private func configure() {
         isUserInteractionEnabled = true
         

@@ -13,7 +13,7 @@ final class FavoriteAudioGuideVC: BaseViewController<FavoriteAudioGuideView, Fav
     
     private var currentPlayingAudioURL = ""
     
-    private var isContinuousPlay = false // 연속 재생 여부
+    private var isContinuousPlay = true // 연속 재생 여부
     
     override func viewDidLoad() {
         super.viewDidLoad()

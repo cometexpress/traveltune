@@ -105,6 +105,11 @@ extension SettingVC: SettingVCProtocol {
             
         case Strings.Setting.settingNotificationItem01:
             print("알림 상세")
+            let vc = AlarmSettingVC(viewModel: AlarmSettingViewModel())
+            vc.hidesBottomBarWhenPushed = true
+            vc.naviTitle = item.title
+            navigationController?.pushViewController(vc, animated: true)
+            
         case Strings.Setting.settingTermsItem01:
             print("이용약관")
         case Strings.Setting.settingEtcItem01:

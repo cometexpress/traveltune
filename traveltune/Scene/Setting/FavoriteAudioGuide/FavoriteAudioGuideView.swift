@@ -20,7 +20,7 @@ final class FavoriteAudioGuideView: BaseView {
     
     private let topView = UIView()
     
-    let checkBoxView = CheckBoxView()
+    let checkBoxView = CheckBoxView(isChecked: true)
     
     private let guideContinuousLabel = UILabel().setup { view in
         view.textColor = .txtPrimary
