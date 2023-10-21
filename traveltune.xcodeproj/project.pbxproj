@@ -65,6 +65,7 @@
 		C04DF05F2AE26DD6005EE45A /* AlarmSettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF05E2AE26DD6005EE45A /* AlarmSettingVC.swift */; };
 		C04DF0612AE26DED005EE45A /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0602AE26DED005EE45A /* AlarmSettingView.swift */; };
 		C04DF0632AE26E10005EE45A /* AlarmSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0622AE26E10005EE45A /* AlarmSettingViewModel.swift */; };
+		C04DF0662AE405D3005EE45A /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0652AE405D3005EE45A /* TermsVC.swift */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -254,6 +255,7 @@
 		C04DF05E2AE26DD6005EE45A /* AlarmSettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingVC.swift; sourceTree = "<group>"; };
 		C04DF0602AE26DED005EE45A /* AlarmSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingView.swift; sourceTree = "<group>"; };
 		C04DF0622AE26E10005EE45A /* AlarmSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingViewModel.swift; sourceTree = "<group>"; };
+		C04DF0652AE405D3005EE45A /* TermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsVC.swift; sourceTree = "<group>"; };
 		C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C04F9C9D2ABEEE460058A8D0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
@@ -529,6 +531,14 @@
 				C04DF0622AE26E10005EE45A /* AlarmSettingViewModel.swift */,
 			);
 			path = AlarmSetting;
+			sourceTree = "<group>";
+		};
+		C04DF0642AE405AC005EE45A /* Terms */ = {
+			isa = PBXGroup;
+			children = (
+				C04DF0652AE405D3005EE45A /* TermsVC.swift */,
+			);
+			path = Terms;
 			sourceTree = "<group>";
 		};
 		C04F9C9C2ABEEDDD0058A8D0 /* Network */ = {
@@ -884,6 +894,7 @@
 		C0E8BA982ABDCD2000B1CCA6 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				C04DF0642AE405AC005EE45A /* Terms */,
 				C04DF05D2AE26DB5005EE45A /* AlarmSetting */,
 				C0289E912ADD0C4000F52624 /* FavoriteAudioGuide */,
 				C0E8BA9D2ABDCD8300B1CCA6 /* SettingVC.swift */,
@@ -1182,6 +1193,7 @@
 				C0E203C12AD5885300607534 /* MapHomeVCProtocol.swift in Sources */,
 				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
+				C04DF0662AE405D3005EE45A /* TermsVC.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,
 				C0F383612AD7093B00DF276D /* DetailRegionMapView.swift in Sources */,
 				C0225C8F2ADBA5D90057CC6B /* SettingCell.swift in Sources */,

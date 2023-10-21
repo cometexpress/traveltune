@@ -11,6 +11,8 @@ struct Constant {
 
     static let productName = Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as! String
     
+    static let termsURL = "https://jcomet.notion.site/764891b769564d6692fea7cce8c82854?pvs=4"
+    
     static let storeId = "6469851530"
     
     static var appVersion: String {
@@ -18,11 +20,6 @@ struct Constant {
               let version = dictionary["CFBundleShortVersionString"] as? String else { return "" }
         return version
     }
-    
-//    static var storeVersion: String {
-//        guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(Constant.storeId)") else { return "" }
-//        let (data, response) = try await URLSession.shared.data(from: url)
-//    }
     
     static func getStoreVersion() async throws -> String {
         guard let url = URL(string: "http://itunes.apple.com/lookup?id=\(Constant.storeId)") else { return "" }
@@ -34,23 +31,6 @@ struct Constant {
         }
         return version
     }
-    
-//    static func fetchStoreVersion(with url: URL) async throws -> String? {
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            guard let data, let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any],
-//                let results = json["results"] as? [[String: Any]],
-//                let appStoreVersion = results[0]["version"] as? String else {
-////                DispatchQueue.main.async {
-////                    completion(error?.localizedDescription ?? "")
-////                }
-//                return ""
-//            }
-//            
-//            DispatchQueue.main.async {
-//                completion(appStoreVersion)
-//            }
-//        }.resume()
-//    }
     
     struct HeroID {
         static let themeThumnail = "themeThumnail"

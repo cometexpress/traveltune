@@ -142,6 +142,10 @@ extension SettingVC: SettingVCProtocol {
             
         case Strings.Setting.settingTermsItem01:
             print("이용약관")
+            let vc = TermsVC()
+            vc.naviTitle = item.title
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         case Strings.Setting.settingEtcItem01:
             sendEmail()
         case Strings.Setting.settingEtcItem02:
