@@ -44,13 +44,17 @@ final class SettingCell: BaseCollectionViewCell<SettingItem> {
         }
         
         rightLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(arrowImageView.snp.leading).offset(-16)
+            make.trailing.equalToSuperview().inset(30)
             make.centerY.equalToSuperview()
         }
     }
     
     override func configCell(row: SettingItem) {
         titleLabel.text = row.title
-        rightLabel.text = row.rightTitle
+        if !row.rightTitle.isEmpty {
+            rightLabel.text = row.rightTitle
+            arrowImageView.isHidden = true
+        }
+        
     }
 }
