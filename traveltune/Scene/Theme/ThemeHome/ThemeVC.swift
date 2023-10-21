@@ -18,8 +18,6 @@ final class ThemeVC: BaseViewController<ThemeView, ThemeViewModel> {
         NotificationManager.shared.authorization {
             NotificationManager.shared.registerMainPush()
         }
-        
-        NotificationManager.shared.registerMainPush()
     }
     
     @objc func searchButtonClicked() {

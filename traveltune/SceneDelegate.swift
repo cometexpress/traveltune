@@ -64,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         /**
          현재 AVPlayer 재생상태 값 Notification 으로 전달하기
          */
-        let status = switch AVPlayerManager.shared.status {
+        let playerStatus = switch AVPlayerManager.shared.status {
         case .playing: AVPlayerManager.RemotePlayerStatus.play.rawValue
         case .stop: AVPlayerManager.RemotePlayerStatus.stop.rawValue
         case .waitingToPlay: AVPlayerManager.RemotePlayerStatus.stop.rawValue
@@ -73,7 +73,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.post(
                 name: .playerStatus,
                 object: nil,
-                userInfo: ["status" : status]
+                userInfo: ["status" : playerStatus]
+            )
+        
+        NotificationManager.shared.checkNotiPermission()
+        NotificationCenter.default.post(
+                name: .notificationStatus,
+                object: nil,
+                userInfo: ["notiStatus" : NotificationManager.shared.notificationStatus]
             )
     }
     

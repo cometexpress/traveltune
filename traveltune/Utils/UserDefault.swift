@@ -23,12 +23,16 @@ struct UserDefault<T> {
 }
 
 enum UserDefaultsKey: String {
+    case notificationStatus          // 노티피케이션 on, off
     case visitDate                  // 유저가 앱 방문한 날짜 - 관광지 정보 데이터 업데이트 할 때 사용 예정
     case updateKoreaTravelSpots     // 한국어버전 관광지 정보 오류 없이 잘가져왔는지 체크
     case updateEnglishTravelSpots   // 영어버전 관광지 정보 오류 없이 잘가져왔는지 체크
 }
 
 extension UserDefaults {
+    @UserDefault(key: UserDefaultsKey.notificationStatus.rawValue, defaultValue: true)
+    static var notificationStatus: Bool
+    
     @UserDefault(key: UserDefaultsKey.visitDate.rawValue, defaultValue: "")
     static var visitDate: String
     

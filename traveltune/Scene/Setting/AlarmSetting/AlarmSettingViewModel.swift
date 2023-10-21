@@ -6,7 +6,15 @@
 //
 
 import Foundation
+import UserNotifications
 
 final class AlarmSettingViewModel: BaseViewModel {
     
+    func useNotifications() {
+        NotificationManager.shared.registerMainPush()
+    }
+    
+    func disableNotifications() {
+        NotificationManager.shared.removeAllNotification()
+    }
 }

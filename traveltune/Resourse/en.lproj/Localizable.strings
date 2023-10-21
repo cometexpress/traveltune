@@ -29,6 +29,8 @@
 "location_services" = "Location services";
 "location_services_guide" = "Please turn on location services in Settings > Privacy";
 "current_location" = "Current location";
+"notification_services" = "Notification service";
+"notification_services_guide" = "Settings > Turn on Allow notifications";
 "script_info_no_data" = "There is no script information";
 "story" = "Story";
 "favorite_story_no_data" = "Add stories of interest!";
@@ -140,6 +142,10 @@
 "setting_notification" = "Notification";
 "setting_terms" = "Terms";
 "setting_etc" = "Etc";
+
+"setting_notification_service_title" = "App service";
+"setting_notification_setting_button" = "Notification settings";
+"setting_notification_guide_content" = " to receive notifications\nPlease turn on notifications in iOS settings";
 
 // 설정 헤더, 아이템 타이틀
 "setting_audio_guide_item_01" = "Story of interest";

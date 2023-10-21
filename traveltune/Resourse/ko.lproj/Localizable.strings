@@ -29,6 +29,8 @@
 "location_services" = "위치 서비스";
 "location_services_guide" = "설정 > 개인정보 보호에서 위치 서비스를 켜주세요";
 "current_location" = "현재 위치";
+"notification_services" = "알림 서비스";
+"notification_services_guide" = "설정 > 알림 허용을 켜주세요";
 "script_info_no_data" = "스크립트 정보가 없어요";
 "story" = "이야기";
 "favorite_story_no_data" = "관심있는 이야기를 추가해보세요!";
@@ -128,10 +130,10 @@
 "search_tab_story" = "이야기";
 
 // 관광지 상세 - 길찾기 지도 종류
-"map_kakao" = "카카오맵";
-"map_naver" = "네이버지도";
+"map_kakao" = "카카오";
+"map_naver" = "네이버";
 "map_tmap" = "티맵";
-"map_apple" = "애플지도";
+"map_apple" = "애플";
 
 // 설정
 "tab_setting_title" = "설정";
@@ -139,6 +141,11 @@
 "setting_notification" = "알림";
 "setting_terms" = "이용약관";
 "setting_etc" = "기타";
+
+"setting_notification_service_title" = "서비스 알림";
+"setting_notification_setting_button" = "알림 설정하기";
+"setting_notification_guide_content" = " 알림을 받으려면\n iOS 설정에서 알림을 켜주세요";
+
 
 // 설정 헤더, 아이템 타이틀
 "setting_audio_guide_item_01" = "관심있는 이야기";

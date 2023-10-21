@@ -34,6 +34,8 @@ struct Strings {
         static let locationServices = "location_services".localized
         static let locationServicesGuide = "location_services_guide".localized
         static let currentLocation = "current_location".localized
+        static let notificationServices = "notification_services".localized
+        static let notificationServicesGuide = "notification_services_guide".localized
         static let scriptInfoNoData = "script_info_no_data".localized
         static let story = "story".localized
         static let favoriteStoryNoData = "favorite_story_no_data".localized
@@ -145,6 +147,10 @@ struct Strings {
         static var settingEtcItem01 = "setting_etc_item_01".localized
         static var settingEtcItem02 = "setting_etc_item_02".localized
         static var settingEtcItem03 = "setting_etc_item_03".localized
+        
+        static var settingNotificationServiceTitle = "setting_notification_service_title".localized
+        static var settingNotificationSettingButton = "setting_notification_setting_button".localized
+        static var settingNotificationGuideContent = "setting_notification_guide_content".localized
     }
     
     struct Chart {
