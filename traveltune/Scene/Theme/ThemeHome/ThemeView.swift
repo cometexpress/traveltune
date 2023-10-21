@@ -22,7 +22,7 @@ final class ThemeView: BaseView {
         let spacing: CGFloat = 16
         view.register(ThemePagerCell.self, forCellWithReuseIdentifier: ThemePagerCell.identifier)
         let pagerItemWidth: CGFloat = UIScreen.main.bounds.width - (spacing * count)
-        view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * 2)
+        view.itemSize = CGSize(width: pagerItemWidth / count, height: (pagerItemWidth / count) * 1.85)
         //        view.isInfinite = true
         //        view.interitemSpacing = 10 // margin
         view.transformer = FSPagerViewTransformer(type: .linear)

@@ -119,6 +119,12 @@ final class DetailStoryView: BaseView {
         audioTitleLabel.text = item.audioTitle
 //        playTimeLabel.text = item.convertTime
         
+        if item.audioURL.isEmpty {
+            playView.alpha = 0.5
+            likeView.alpha = 0.5
+            shareView.alpha = 0.5
+        }
+        
         if item.script.isEmpty {
             scriptLabel.text = Strings.Common.scriptInfoNoData
         } else {

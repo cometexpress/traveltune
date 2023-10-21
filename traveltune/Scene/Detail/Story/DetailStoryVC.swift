@@ -15,11 +15,11 @@ final class DetailStoryVC: BaseViewController<DetailStoryView, DetailStoryViewMo
         bindViewModel()
         configureVC()
         
-        if self.modalPresentationStyle == .fullScreen {
-            mainView.backButton.isHidden = false
-        } else {
-            mainView.backButton.isHidden = true
-        }
+//        if self.modalPresentationStyle == .fullScreen {
+//            mainView.backButton.isHidden = false
+//        } else {
+//            mainView.backButton.isHidden = true
+//        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
