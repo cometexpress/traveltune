@@ -78,18 +78,17 @@ final class SettingVC: BaseViewController<SettingView, SettingViewModel> {
                 let compareResult = appVer.compare(storeVer, options: .numeric)
                 switch compareResult {
                     
-                case .orderedAscending:
-                    let appStoreOpenUrlString = "itms-apps://itunes.apple.com/app/apple-store/\(Constant.storeId)"
-                    showAlert(title: "알림", msg: "새로운 버전이 나왔어요!", ok: Strings.Common.move) { _ in
-                        if let url = URL(string: appStoreOpenUrlString),
+                case .orderedAscending:  // appVer < storeVer
+                    showAlert(title: "", msg: Strings.Common.openNewStoreVersion, ok: Strings.Common.move) { _ in
+                        if let url = URL(string: Constant.appStoreURL),
                            UIApplication.shared.canOpenURL(url) {
                             UIApplication.shared.open(url, options: [:], completionHandler: nil)
                         }
                     }
-                case .orderedDescending:
+                case .orderedDescending: // storeVer < appVer
                     break
-                case .orderedSame:
-                    break
+                case .orderedSame:  // 같을 떄
+                    showAlert(title: "", msg: Strings.Common.currentTheLatestVersion, ok: Strings.Common.ok)
                 }
             } else {
                 showToast(msg: Strings.ErrorMsg.errorNetwork)
@@ -156,7 +155,7 @@ extension SettingVC: SettingVCProtocol {
         case Strings.Setting.settingEtcItem03:
             print("앱버전")
             // TODO: 추후 앱 출시 후 테스트 필요
-//            appVersionCheck()
+            appVersionCheck()
         default:
             print(item.title)
         }

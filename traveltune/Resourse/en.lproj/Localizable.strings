@@ -40,6 +40,8 @@
 "inquiry" = "Inquiry";
 "success_send_email" = "Inquiry completed";
 "retry" = "Retry";
+"open_new_store_version" = "A new version has been released!";
+"current_the_latest_version" = "It's the latest version!";
 
 
 // 에러메시지

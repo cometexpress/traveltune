@@ -13,6 +13,8 @@ struct Constant {
     
     static let termsURL = "https://jcomet.notion.site/764891b769564d6692fea7cce8c82854?pvs=4"
     
+    static let appStoreURL = "itms-apps://itunes.apple.com/app/apple-store/\(Constant.storeId)"
+    
     static let storeId = "6469851530"
     
     static var appVersion: String {

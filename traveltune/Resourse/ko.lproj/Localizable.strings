@@ -40,6 +40,8 @@
 "inquiry" = "문의";
 "success_send_email" = "문의 완료";
 "retry" = "재시도";
+"open_new_store_version" = "새로운 버전이 출시했어요!";
+"current_the_latest_version" = "최신버전이에요!";
 
 // 에러메시지
 "error_network" = "네트워크 연결을 확인해주세요";

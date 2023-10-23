@@ -45,6 +45,8 @@ struct Strings {
         static let inquiry = "inquiry".localized
         static let successSendEmail = "success_send_email".localized
         static let retry = "retry".localized
+        static let openNewStoreVersion = "open_new_store_version".localized
+        static let currentTheLatestVersion = "current_the_latest_version".localized
     }
     
     struct ErrorMsg {
