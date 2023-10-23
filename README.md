@@ -2,6 +2,11 @@
 
 ### 소개
  - 국내 관광지에 대한 정보와 관광지 가이드를 들을 수 있는 앱
+   
+<br>
+
+## 앱스토어
+https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%82%B4-%EC%97%AC%ED%96%89-%EC%98%A4%EB%94%94%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C/id6469851530
 
 <br>
 
