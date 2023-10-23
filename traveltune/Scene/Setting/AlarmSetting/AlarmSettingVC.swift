@@ -14,6 +14,7 @@ final class AlarmSettingVC: BaseViewController<AlarmSettingView, AlarmSettingVie
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
+        NotificationManager.shared.checkNotiPermission()
         bindViewModel()
     }
     

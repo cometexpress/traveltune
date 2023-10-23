@@ -21,7 +21,7 @@ final class AlarmSettingView: BaseView {
     let baseNotiSwicth = UISwitch().setup { view in
         view.setOn(false, animated: true)
         view.onTintColor = .primary
-        view.thumbTintColor = .txtPrimary
+        view.thumbTintColor = .white
     }
 
     let requsetNotiPermissionButton = UIButton().setup { view in

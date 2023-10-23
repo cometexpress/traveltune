@@ -76,12 +76,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 userInfo: ["status" : playerStatus]
             )
         
-        NotificationManager.shared.checkNotiPermission()
-        NotificationCenter.default.post(
-                name: .notificationStatus,
-                object: nil,
-                userInfo: ["notiStatus" : NotificationManager.shared.notificationStatus]
-            )
+//        NotificationManager.shared.checkNotiPermission()
+//        NotificationCenter.default.post(
+//                name: .notificationStatus,
+//                object: nil,
+//                userInfo: ["notiStatus" : NotificationManager.shared.notificationStatus]
+//            )
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
