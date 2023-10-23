@@ -5,6 +5,11 @@
 
 <br>
 
+## 미리보기
+![ezgif com-resize](https://github.com/J-comet/traveltune/assets/67407666/956e88e5-b76f-4a87-bdbc-325b920d8264)
+
+<br>
+
 ## 출시일
 2023.10.22
 
