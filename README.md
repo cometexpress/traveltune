@@ -15,14 +15,18 @@ https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%
 
 <br>
 
-## 출시일
-2023.10.22
+## 개발환경
+<p align="left">
+<img src ="https://img.shields.io/badge/Swift-5.9-F05138?style=for-the-plastic&logo=swift&logoColor=white">
+<img src ="https://img.shields.io/badge/Xcode-15.0-147EFB?style=for-the-plastic&logo=Xcode&logoColor=white">
+<img src ="https://img.shields.io/badge/iOS-16.0-orange?style=for-the-plastic&logo=apple&logoColor=white">
+</p>
 
 <br>
 
 ## 개발 기간
 
-2023.09.24 ~ 
+2023.09.24 ~ 2023.10.22
 
 <br>
 
