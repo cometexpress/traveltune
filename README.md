@@ -11,7 +11,7 @@ https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%
 <br>
 
 ## 미리보기
-![ezgif com-resize](https://github.com/J-comet/traveltune/assets/67407666/956e88e5-b76f-4a87-bdbc-325b920d8264)
+![ezgif com-resize](https://github.com/J-comet/traveltune/assets/67407666/4f07e962-e385-488c-8f70-1f3698f5e624)
 
 <br>
 
