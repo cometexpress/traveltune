@@ -1,26 +1,17 @@
-# traveltune
+# 트래블튠 - 국내 여행 오디오 가이드
+![gitreadmeAppIcon](https://github.com/J-comet/bookwarm/assets/67407666/603d0a53-6740-42e0-aa8f-04e9ad9d0859)
+### [앱스토어 바로가기](https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%82%B4-%EC%97%AC%ED%96%89-%EC%98%A4%EB%94%94%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C/id6469851530)
 
-### 소개
- - 국내 관광지에 대한 정보와 관광지 가이드를 들을 수 있는 앱
+<br>
+
+### 한줄소개
+ - 국내 관광지에 대한 정보를 알수 있고 관광지 가이드를 들을 수 있는 앱
    
 <br>
 
-## 앱스토어
-https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%82%B4-%EC%97%AC%ED%96%89-%EC%98%A4%EB%94%94%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C/id6469851530
-
-<br>
-
 ## 미리보기
-![ezgif com-resize](https://github.com/J-comet/traveltune/assets/67407666/4f07e962-e385-488c-8f70-1f3698f5e624)
+![gitreadmeImgage](https://github.com/J-comet/bookwarm/assets/67407666/ac5491ba-e76a-4c52-9cdd-cd0f6ce949f7)
 
-<br>
-
-## 개발환경
-<p align="left">
-<img src ="https://img.shields.io/badge/Swift-5.9-F05138?style=for-the-plastic&logo=swift&logoColor=white">
-<img src ="https://img.shields.io/badge/Xcode-15.0-147EFB?style=for-the-plastic&logo=Xcode&logoColor=white">
-<img src ="https://img.shields.io/badge/iOS-16.0-orange?style=for-the-plastic&logo=apple&logoColor=white">
-</p>
 
 <br>
 
