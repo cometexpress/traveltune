@@ -1,5 +1,5 @@
-# 트래블튠 - 국내 여행 오디오 가이드
 ![gitreadmeAppIcon](https://github.com/J-comet/bookwarm/assets/67407666/603d0a53-6740-42e0-aa8f-04e9ad9d0859)
+# 트래블튠 - 국내 여행 오디오 가이드
 ### [앱스토어 바로가기](https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%82%B4-%EC%97%AC%ED%96%89-%EC%98%A4%EB%94%94%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C/id6469851530)
 
 <br>
@@ -9,15 +9,32 @@
    
 <br>
 
-## 미리보기
+### 미리보기
 ![gitreadmeImgage](https://github.com/J-comet/bookwarm/assets/67407666/ac5491ba-e76a-4c52-9cdd-cd0f6ce949f7)
 
+### 개발 인원
+개인 프로젝트
 
 <br>
 
-## 개발 기간
-
+### 개발 기간
 2023.09.24 ~ 2023.10.22
+
+<br>
+
+### 기술
+| Category | Stack |
+|----|-----|
+| Architecture | `MVVM` |
+| iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
+|  UI  | `Storyboard` `CodeBaseUI` |
+|  Network  | `Alamofire` `SwiftyJSON` `URLSession` `Codable` |
+|  Database  | `Realm` |
+|  Image  | `Kingfisher` |
+|  Dependency Manager  | `Cocoapods` `SwiftPackageManager` |
+|  Firebase  | `Crashlytics` `Analytics` |
+|  Etc  | `SnapKit` `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `Charts` `Toast` |
+
 
 <br>
 
