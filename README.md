@@ -207,3 +207,4 @@ final class BaseRequestInterceptor: RequestInterceptor {
 <br>
 
 ### 회고
+-> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
