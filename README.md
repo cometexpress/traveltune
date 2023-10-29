@@ -208,6 +208,8 @@ final class BaseRequestInterceptor: RequestInterceptor {
 
 ### 회고
 -> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
+- Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분이다. <br>
+  WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있다.
 - 개발자는 생각의 폭을 항상 넓게 가질 수 있어야 한다. 이런 부분까지 신경써야되냐? 라고 한다면 신경써야한다. <br>
   기능 개발을 빨리 할 수 있는 실력이 키워진다면 여러 상황에서 어떻게 동작이 되어질까? 에 대한 부분을 미리 알고 미리 대응할 수 있어야한다. <br>
   출시 버전에서는 이러한 부분을 많이 챙기지 못했지만 이후 업데이트 버전은 다양한 상황들에 대해 좀더 고민해보고 그에 맞게 업데이트를 진행할 예정이다.
