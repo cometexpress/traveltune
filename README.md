@@ -18,7 +18,7 @@
 <br>
 
 ### 개발 기간
-2023.09.24 ~ 2023.10.22
+2023.09.24 ~ 2023.10.22 (4주)
 
 <br>
 
@@ -27,7 +27,7 @@
 |----|-----|
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
-|  UI  | `Storyboard` `CodeBaseUI` |
+|  UI  | `CodeBaseUI` |
 |  Network  | `Alamofire` `SwiftyJSON` `URLSession` `Codable` |
 |  Database  | `Realm` |
 |  Image  | `Kingfisher` |
@@ -35,6 +35,15 @@
 |  Firebase  | `Crashlytics` `Analytics` |
 |  Etc  | `SnapKit` `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `Charts` `Toast` |
 
+<br>
+
+### 기능
+1. 관광지 오디오 가이드 재생 (백그라운드,잠금화면 오디오 재생)
+2. 오디오 가이드 좋아요
+3. 관광지 / 가이드 검색
+4. 오디오 가이드 파일 공유
+5. 위치 기반 관광지 가이드 검색
+6. 관광지 방문객 통계
 
 <br>
 
@@ -66,8 +75,8 @@
 |  테마 상세 UI |  1  |  8  | 16 | <ul><li>[x] </li></ul> | hero 라이브러리 기능 개발 지연, UIVisualEffectView 안 객체 터치 안되는 이슈로 지연 HitTest 로 해결 |
 |  테마 상세 기능 |  2  |  10  | 20 | <ul><li>[x] </li></ul> | 테마상세로 이동시 api 최초 한번만 호출 데이터 캐시 기능 구현으로 지연, 좋아요, 재생 관련기능이 생각보다 처리할게 많아 지연 |
 |  테마 상세 지도모드 UI |  2  | 4 |  - h  | <ul><li>[ ] </li></ul> | 보류 |
-|  (공통)하단 재생 UI - minimalSize  |  2  |  2  |  3 | <ul><li>[x] </li></ul> | 없음 |
-|  (공통)하단 재생 기능 - minimalSize  |  2  |  8  |  6 | <ul><li>[x] </li></ul> | 없음 |
+|  (커스텀뷰)하단 재생 UI  |  2  |  2  |  3 | <ul><li>[x] </li></ul> | 없음 |
+|  (커스텀뷰)하단 재생 기능  |  2  |  8  |  6 | <ul><li>[x] </li></ul> | 없음 |
 |  검색 메인 UI  |  2  | 6 | 22 | <ul><li>[x] </li></ul> | DiffableDataSource, CompositionalLayout 학습 지연 |
 |  검색 메인 기능  |  3  | 10 |  6  | <ul><li>[x] </li></ul> | 없음 |
 |  검색 결과 UI  |  3  | 6 |  12  | <ul><li>[x] </li></ul> | tabMan -> parchment 라이브러리 변경 |
@@ -88,6 +97,113 @@
 |  설정 메인 기능  |  7  |  16  | 12 | <ul><li>[x] </li></ul> | 없음 |
 |  로컬 알림 기능  |  7  |  3  |  6 | <ul><li>[x] </li></ul> | 로컬 알림을 등록하는 부분보다 등록 후 알림설정 페이지에서 권한이 변경되었을 때 처리하는 로직에 시간이 많이 듬 |
 |  잠금모드일 때 오디오 재생 기능  |  7  |  6  |  8 | <ul><li>[x] </li></ul> | MPRemoteCommandCenter 를 이용해 테스트 코드 작성 후 실제 적용시키는데 지연됨 |
+	
+<br>
 
-		
+### 트러블슈팅
+ -> [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
+- 일일 API 콜 제한수가 1000회여서 하루종일 개발,테스트를 반복하다보면 콜 제한되어 호출이 안되는 문제<br>
+  	-> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했다.<br>
+  	-> 시스템언어를 영어로 설정했을 경우에도 대응이 필요해서 한국어, 영어 두가지 언어 모두 호출 (DispatchGroup 으로 모든 API 요청이 끝났을 때 Realm 에 저장)
 
+```swift
+// 한국어 데이터 요청
+private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping () -> Void) {
+        
+        group.enter()
+        let language = Network.LangCode.ko
+        
+        remoteTravelSpotRepository?.requestTravelSpots(page: koPage, language: language) { [weak self] response in
+            guard let self else {
+                errorHandler()
+                group.leave()
+                return
+            }
+            
+            switch response {
+            case .success(let success):
+                let result = success.response
+                if self.koPage == 1 {
+                    self.koTotalCount = result.body.totalCount
+                }
+                
+                self.koTravelSpots.append(contentsOf: result.body.items.item)
+                
+                let travelSpotsCnt = self.koTravelSpots.count
+                if travelSpotsCnt < self.koTotalCount {
+                    self.koPage += 1
+                    self.updateKoTravelSpots(group: group) { errorHandler() }
+                }
+                
+            case .failure(let failure):
+                errorHandler()
+            }
+            group.leave()
+        }
+    }
+```
+  
+<br>
+
+- UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
+	-> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했다.<br>
+  	  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었다.<br>
+  	  hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했다.
+  
+```swift
+extension UIVisualEffectView {
+
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        return view == self.contentView ? nil : view
+    }
+}
+```
+
+<br>
+
+- API 요청할 떄 항상 파라미터로 전달되는 값들이 있는데 반복해서 계속 작성되고 있는 문제
+  	-> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했다.
+  
+```swift
+final class BaseRequestInterceptor: RequestInterceptor {
+    
+    init(language: String?) {
+        guard let language else {
+            langCode = systemLangCode
+            return
+        }
+        langCode = language
+    }
+    
+    private var langCode = "ko"
+    
+    private lazy var defaultParameters = [
+        "serviceKey": APIKey.dataKey,
+        "MobileOS": "IOS",
+        "MobileApp": "트래블튠",
+        "_type": "json",
+        "langCode": langCode
+    ]
+    
+    private let systemLangCode = if #available(iOS 16.0, *) {
+        Locale.current.language.languageCode?.identifier ?? "ko"
+    } else {
+        Locale.current.languageCode ?? "ko"
+    }
+    
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
+        let encoding = URLEncodedFormParameterEncoder.default
+        if let request = try? encoding.encode(defaultParameters, into: urlRequest) {
+            urlRequest = request
+        }
+        
+        completion(.success(urlRequest))
+    }
+    
+}
+```
+<br>
+
+### 회고
