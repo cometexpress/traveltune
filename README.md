@@ -1,4 +1,4 @@
-![gitreadmeAppIcon](https://github.com/J-comet/bookwarm/assets/67407666/603d0a53-6740-42e0-aa8f-04e9ad9d0859)
+![traveltune-korea-audio-guide_small](https://github.com/J-comet/traveltune/assets/67407666/931a54d9-c83f-43b3-95a2-55982c005512)
 # 트래블튠 - 국내 여행 오디오 가이드
 ### [앱스토어 바로가기](https://apps.apple.com/kr/app/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EA%B5%AD%EB%82%B4-%EC%97%AC%ED%96%89-%EC%98%A4%EB%94%94%EC%98%A4-%EA%B0%80%EC%9D%B4%EB%93%9C/id6469851530)
 
@@ -19,6 +19,11 @@
 
 ### 개발 기간
 2023.09.24 ~ 2023.10.22 (4주)
+
+<br>
+
+### 최소지원버전
+iOS 16
 
 <br>
 
