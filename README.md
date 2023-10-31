@@ -33,7 +33,7 @@ iOS 16
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
 |  UI  | `CodeBaseUI` |
-|  Network  | `Alamofire` `SwiftyJSON` `URLSession` `Codable` |
+|  Network  | `Alamofire` `URLSession` `Codable` |
 |  Database  | `Realm` |
 |  Image  | `Kingfisher` |
 |  Dependency Manager  | `Cocoapods` `SwiftPackageManager` |
@@ -49,6 +49,18 @@ iOS 16
 4. 오디오 가이드 파일 공유
 5. 위치 기반 관광지 가이드 검색
 6. 관광지 방문객 통계
+
+<br>
+
+### 개발 고려사항
+- 다크모드, 다국어 대응
+  	- 한국어, 영어일 때 다르게 API 호출 필요
+- 메모리 누수 방지
+  	- weak 키워드를 통해 순환참조 방지
+- 프로젝트 구조 통일
+	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 모두 생성
+- 접근제한자를 사용해서 불필요한 접근 막음
+
 
 <br>
 
