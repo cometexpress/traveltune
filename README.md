@@ -48,7 +48,7 @@
 
 ### 개발 고려사항
 - AVPlayer, MPRemoteCommandCenter 를 적절할 때 메모리에서 해지
-  	- 오디오 재생이 완료되었거나 화면을 벗어났을 때, ViewController LifeCycle 의 viewDidDisappear 에서 해지했습니다.
+  	- 오디오 재생이 완료되었을 때, 재생 중인 화면을 벗어났을 때 해지했습니다.
 - MPRemoteCommandCenter 를 이용해 잠금화면과 다이나믹 아일랜드에서 재생 기능을 제어할 수 있도록 했습니다.
 - MPRemoteCommandCenter 와 AVPlayer 의 재생 상태를 동기화 시켰습니다.
 - MapKit 의 Annotation 을 커스텀해서 서버에 이미지가 있는지 여부에 따라 기본이미지나 서버의 이미지를 보여주었습니다.
