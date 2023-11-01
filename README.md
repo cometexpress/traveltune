@@ -32,7 +32,7 @@
 |  Image  | `Kingfisher` |
 |  Dependency Manager  | `CocoaPods` `SwiftPackageManager` |
 |  Firebase  | `Crashlytics` `Analytics` |
-|  Etc  | `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `Charts` `Toast` |
+|  Etc  | `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `FloatingPanel` `Charts` `Toast` |
 
 <br>
 
@@ -68,11 +68,11 @@
 
 
 ### 트러블슈팅
- -> [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
+  ✏️ [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
 
- - 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 문제 <br>
- 	-> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 addTarget 호출이 필요했는데 <br>
-   	   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가했습니다. <br>
+ ####  1. 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 문제
+ -> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 addTarget 호출이 필요했는데 <br>
+   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가했습니다. <br>
 
 ```swift
 func registerRemoteCenterAction() {
@@ -102,9 +102,9 @@ func registerRemoteCenterAction() {
      
 <br>
  
- - 일일 API 콜 제한수가 1000회여서 콜이 금방 제한 되는 문제 <br>
-  	-> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했습니다.<br>
-  	-> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료되면 Realm 에 저장했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
+ #### 2. 일일 API 콜 제한수가 1000회여서 콜이 금방 제한 되는 문제
+  -> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대 한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했습니다.<br>
+  -> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료되면 Realm 에 저장했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
 
 ```swift
 // 한국어 데이터 요청
@@ -145,10 +145,10 @@ private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping (
   
 <br>
 
-- UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
-	-> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했습니다.<br>
-  	  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었습니다.<br>
-  	  hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했습니다.
+#### 3. UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
+-> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했습니다.<br>
+  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었습니다.<br>
+-> hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했습니다.
   
 ```swift
 extension UIVisualEffectView {
@@ -162,8 +162,8 @@ extension UIVisualEffectView {
 
 <br>
 
-- API 요청할 떄 동일한 인자값을 전달할 때 
-  	-> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했습니다.
+#### 4. API 요청시 동일한 인자값을 전달할 때 
+  -> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했습니다. <br>
   
 ```swift
 final class BaseRequestInterceptor: RequestInterceptor {
@@ -207,7 +207,7 @@ final class BaseRequestInterceptor: RequestInterceptor {
 <br>
 
 ### 회고
--> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
+✏️ [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
 - Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분입니다. <br>
   WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있습니다.
 - 개발자는 생각의 폭을 넓게 가질 수 있어야 합니다. 이런 부분까지 신경써야되냐? 라고 한다면 어떤 사용자가 어떤 환경에서 사용할지 모르기 때문에 신경써야 한다고 생각합니다. <br>
