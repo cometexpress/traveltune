@@ -51,8 +51,9 @@
   	- 오디오 재생이 완료되었을 때, 재생 중인 화면을 벗어났을 때 해지했습니다.
 - MPRemoteCommandCenter 를 이용해 잠금화면과 다이나믹 아일랜드에서 재생 기능을 제어할 수 있도록 했습니다.
 - MPRemoteCommandCenter 와 AVPlayer 의 재생 상태를 동기화 시켰습니다.
-- MapKit 의 Annotation 을 커스텀해서 서버에 이미지가 있는지 여부에 따라 기본이미지나 서버의 이미지를 보여주었습니다.
-  	- 이미지를 받아 오는 속도가 제각각이여서 prepareForDisplay 메서드에서 이미지뷰의 이미지를 nil 로 초기화 후 다운 받은 이미지가 있는지 체크 후 이미지를 보여주었습니다.
+- MapKit 의 Annotation 을 커스텀해서 서버 이미지 유무에 따라 기본이미지나 서버의 이미지를 보여주었습니다.
+  	- 이미지를 받아 오는 속도가 제각각이여서 prepareForDisplay 메서드에서 UIImageView 의 이미지를 nil 로 초기화 후 <br>
+  	  다운 받은 이미지가 있을 때 이미지를 보여주고 없을 때는 기본이미지를 보여주었습니다.
 - Kingfisher 의 retriveImage 메서드로 서버로 받은 이미지를 사이즈를 줄인 후 Annotaion 의 이미지로 사용했습니다.
 - MapKit 의 Clustering 을 커스텀해서 선택했을 때 해당 클러스터링의 컬러값을 바꿔 유저가 선택했다는 것을 알 수 있도록 했습니다.
 - Alamofire 로 API 요청할 때 Router 패턴으로 관리했습니다.
