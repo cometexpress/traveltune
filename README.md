@@ -4,26 +4,20 @@
 
 <br>
 
+### 프로젝트
+ - 인원 : 개인프로젝트 <br>
+ - 기간 : 2023.09.24 ~ 2023.10.22 (4주) <br>
+ - 최소지원버전 : iOS 16 <br>
+ 
+<br>
+
 ### 한줄소개
- - 국내 관광지에 대한 정보를 알수 있고 관광지 가이드를 들을 수 있는 앱
+ - 국내 관광지에 대한 정보를 알수 있고 관광지 가이드를 들을 수 있는 앱 입니다.
    
 <br>
 
 ### 미리보기
 ![gitreadmeImgage](https://github.com/J-comet/bookwarm/assets/67407666/ac5491ba-e76a-4c52-9cdd-cd0f6ce949f7)
-
-### 개발 인원
-개인 프로젝트
-
-<br>
-
-### 개발 기간
-2023.09.24 ~ 2023.10.22 (4주)
-
-<br>
-
-### 최소지원버전
-iOS 16
 
 <br>
 
@@ -32,13 +26,13 @@ iOS 16
 |----|-----|
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
-|  UI  | `CodeBaseUI` |
+|  UI  | `CodeBaseUI` `SnapKit` |
 |  Network  | `Alamofire` `URLSession` `Codable` |
 |  Database  | `Realm` |
 |  Image  | `Kingfisher` |
-|  Dependency Manager  | `Cocoapods` `SwiftPackageManager` |
+|  Dependency Manager  | `CocoaPods` `SwiftPackageManager` |
 |  Firebase  | `Crashlytics` `Analytics` |
-|  Etc  | `SnapKit` `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `Charts` `Toast` |
+|  Etc  | `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `Charts` `Toast` |
 
 <br>
 
@@ -54,13 +48,129 @@ iOS 16
 
 ### 개발 고려사항
 - 다크모드, 다국어 대응
-  	- 한국어, 영어일 때 다르게 API 호출 필요
+  	- 현재 한국어, 영어일 때 처리가 되어있는데 언어가 변동될 때 시스템언어를 따라 API 파라미터로 값 전달이 필요했습니다.
 - 메모리 누수 방지
-  	- weak 키워드를 통해 순환참조 방지
+  	- weak 키워드를 통해 순환참조 방지를 신경썼습니다.
 - 프로젝트 구조 통일
-	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 모두 생성
-- 접근제한자를 사용해서 불필요한 접근 막음
+	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 모두 생성했습니다.
+- 접근제한자를 사용해서 불필요한 접근 막았습니다.
 
+<br>
+
+
+### 트러블슈팅
+ -> [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
+- 일일 API 콜 제한수가 1000회여서 하루종일 개발,테스트를 반복하다보면 콜 제한되어 호출이 안되는 문제<br>
+  	-> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했습니다.<br>
+  	-> 시스템언어를 영어로 설정했을 경우에도 대응이 필요해서 한국어, 영어 두가지 언어 모두 호출했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 Realm 에 저장하도록 구현)
+
+```swift
+// 한국어 데이터 요청
+private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping () -> Void) {
+        
+        group.enter()
+        let language = Network.LangCode.ko
+        
+        remoteTravelSpotRepository?.requestTravelSpots(page: koPage, language: language) { [weak self] response in
+            guard let self else {
+                errorHandler()
+                group.leave()
+                return
+            }
+            
+            switch response {
+            case .success(let success):
+                let result = success.response
+                if self.koPage == 1 {
+                    self.koTotalCount = result.body.totalCount
+                }
+                
+                self.koTravelSpots.append(contentsOf: result.body.items.item)
+                
+                let travelSpotsCnt = self.koTravelSpots.count
+                if travelSpotsCnt < self.koTotalCount {
+                    self.koPage += 1
+                    self.updateKoTravelSpots(group: group) { errorHandler() }
+                }
+                
+            case .failure(let failure):
+                errorHandler()
+            }
+            group.leave()
+        }
+    }
+```
+  
+<br>
+
+- UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
+	-> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했습니다.<br>
+  	  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었습니다.<br>
+  	  hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했습니다.
+  
+```swift
+extension UIVisualEffectView {
+
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        return view == self.contentView ? nil : view
+    }
+}
+```
+
+<br>
+
+- API 요청할 떄 항상 파라미터로 전달되는 값들이 있는데 반복해서 계속 작성되고 있는 문제
+  	-> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했습니다.
+  
+```swift
+final class BaseRequestInterceptor: RequestInterceptor {
+    
+    init(language: String?) {
+        guard let language else {
+            langCode = systemLangCode
+            return
+        }
+        langCode = language
+    }
+    
+    private var langCode = "ko"
+    
+    private lazy var defaultParameters = [
+        "serviceKey": APIKey.dataKey,
+        "MobileOS": "IOS",
+        "MobileApp": "트래블튠",
+        "_type": "json",
+        "langCode": langCode
+    ]
+    
+    private let systemLangCode = if #available(iOS 16.0, *) {
+        Locale.current.language.languageCode?.identifier ?? "ko"
+    } else {
+        Locale.current.languageCode ?? "ko"
+    }
+    
+    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
+        var urlRequest = urlRequest
+        let encoding = URLEncodedFormParameterEncoder.default
+        if let request = try? encoding.encode(defaultParameters, into: urlRequest) {
+            urlRequest = request
+        }
+        
+        completion(.success(urlRequest))
+    }
+    
+}
+```
+<br>
+
+### 회고
+-> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
+- Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분입니다. <br>
+  WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있습니다.
+- 개발자는 생각의 폭을 항상 넓게 가질 수 있어야 한다. 이런 부분까지 신경써야되냐? 라고 한다면 신경써야합니다. <br>
+  기능 개발을 빨리 할 수 있는 실력이 키워진다면 여러 상황에서 어떻게 동작이 되어질까? 에 대한 부분을 미리 알고 미리 대응할 수 있어야한다고 생각합니다. <br>
+  출시 버전에서는 이러한 부분을 많이 챙기지 못했지만 이후 업데이트 버전은 다양한 상황들에 대해 좀더 고민해보고 그에 맞게 업데이트를 진행할 예정입니다.
 
 <br>
 
@@ -117,116 +227,3 @@ iOS 16
 	
 <br>
 
-### 트러블슈팅
- -> [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
-- 일일 API 콜 제한수가 1000회여서 하루종일 개발,테스트를 반복하다보면 콜 제한되어 호출이 안되는 문제<br>
-  	-> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했다.<br>
-  	-> 시스템언어를 영어로 설정했을 경우에도 대응이 필요해서 한국어, 영어 두가지 언어 모두 호출 (DispatchGroup 으로 모든 API 요청이 끝났을 때 Realm 에 저장)
-
-```swift
-// 한국어 데이터 요청
-private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping () -> Void) {
-        
-        group.enter()
-        let language = Network.LangCode.ko
-        
-        remoteTravelSpotRepository?.requestTravelSpots(page: koPage, language: language) { [weak self] response in
-            guard let self else {
-                errorHandler()
-                group.leave()
-                return
-            }
-            
-            switch response {
-            case .success(let success):
-                let result = success.response
-                if self.koPage == 1 {
-                    self.koTotalCount = result.body.totalCount
-                }
-                
-                self.koTravelSpots.append(contentsOf: result.body.items.item)
-                
-                let travelSpotsCnt = self.koTravelSpots.count
-                if travelSpotsCnt < self.koTotalCount {
-                    self.koPage += 1
-                    self.updateKoTravelSpots(group: group) { errorHandler() }
-                }
-                
-            case .failure(let failure):
-                errorHandler()
-            }
-            group.leave()
-        }
-    }
-```
-  
-<br>
-
-- UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
-	-> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했다.<br>
-  	  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었다.<br>
-  	  hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했다.
-  
-```swift
-extension UIVisualEffectView {
-
-    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
-        return view == self.contentView ? nil : view
-    }
-}
-```
-
-<br>
-
-- API 요청할 떄 항상 파라미터로 전달되는 값들이 있는데 반복해서 계속 작성되고 있는 문제
-  	-> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했다.
-  
-```swift
-final class BaseRequestInterceptor: RequestInterceptor {
-    
-    init(language: String?) {
-        guard let language else {
-            langCode = systemLangCode
-            return
-        }
-        langCode = language
-    }
-    
-    private var langCode = "ko"
-    
-    private lazy var defaultParameters = [
-        "serviceKey": APIKey.dataKey,
-        "MobileOS": "IOS",
-        "MobileApp": "트래블튠",
-        "_type": "json",
-        "langCode": langCode
-    ]
-    
-    private let systemLangCode = if #available(iOS 16.0, *) {
-        Locale.current.language.languageCode?.identifier ?? "ko"
-    } else {
-        Locale.current.languageCode ?? "ko"
-    }
-    
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        var urlRequest = urlRequest
-        let encoding = URLEncodedFormParameterEncoder.default
-        if let request = try? encoding.encode(defaultParameters, into: urlRequest) {
-            urlRequest = request
-        }
-        
-        completion(.success(urlRequest))
-    }
-    
-}
-```
-<br>
-
-### 회고
--> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
-- Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분이다. <br>
-  WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있다.
-- 개발자는 생각의 폭을 항상 넓게 가질 수 있어야 한다. 이런 부분까지 신경써야되냐? 라고 한다면 신경써야한다. <br>
-  기능 개발을 빨리 할 수 있는 실력이 키워진다면 여러 상황에서 어떻게 동작이 되어질까? 에 대한 부분을 미리 알고 미리 대응할 수 있어야한다. <br>
-  출시 버전에서는 이러한 부분을 많이 챙기지 못했지만 이후 업데이트 버전은 다양한 상황들에 대해 좀더 고민해보고 그에 맞게 업데이트를 진행할 예정이다.
