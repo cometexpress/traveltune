@@ -47,23 +47,19 @@
 <br>
 
 ### 개발 고려사항
-- AVPlayer, MPRemoteCommandCenter 를 적절할 때 메모리에서 해지
-  	- 오디오 재생이 완료되었을 때, 재생 중인 화면을 벗어났을 때 해지했습니다.
-- MPRemoteCommandCenter 를 이용해 잠금화면과 다이나믹 아일랜드에서 재생 기능을 제어할 수 있도록 했습니다.
-- MPRemoteCommandCenter 와 AVPlayer 의 재생 상태를 동기화 시켰습니다.
-- MapKit 의 Annotation 을 커스텀해서 서버 이미지 유무에 따라 기본이미지나 서버의 이미지를 보여주었습니다.
-  	- 이미지를 받아 오는 속도가 제각각이여서 prepareForDisplay 메서드에서 UIImageView 의 이미지를 nil 로 초기화 후 <br>
-  	  다운 받은 이미지가 있을 때 이미지를 보여주고 없을 때는 기본이미지를 보여주었습니다.
-- Kingfisher 의 retriveImage 메서드로 서버로 받은 이미지를 사이즈를 줄인 후 Annotaion 의 이미지로 사용했습니다.
-- MapKit 의 Clustering 을 커스텀해서 선택했을 때 해당 클러스터링의 컬러값을 바꿔 유저가 선택했다는 것을 알 수 있도록 했습니다.
-- Alamofire 로 API 요청할 때 Router 패턴으로 관리했습니다.
+- AVPlayer, MPRemoteCommandCenter 클래스 더이상 사용되지 않을 때 메모리에서 해지 되도록 구현
+- MPRemoteCommandCenter 클래스를 활용해 잠금화면과 다이나믹 아일랜드에서 재생/일시정지 기능 구현
+- MPRemoteCommandCenter, AVPlayer 의 재생 상태 동기화
+- MapKit CustomAnnotationView 구현
+- MapKit CustomClustering 구현
+- Kingfisher 라이브러리를 활용해 이미지 재가공후 Annotation 이미지로 사용하도록 구현
+- Alamofire 라이브러리 Request Router 패턴으로 관리
 - 다크모드, 다국어 대응
-  	- 시스템 언어에 따라 API 인자값으로 전달되는 값을 변경했습니다.
+  	- 시스템 언어에 따라 API request 인자 값 변경
 - 메모리 누수 방지
-  	- weak 키워드를 통해 순환참조를 방지했습니다.
+  	- weak 키워드를 통해 순환참조 방지
 - 프로젝트 구조 통일
-	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 생성해 프로젝트 구조를 통일했습니다.
-- 접근제한자를 사용해서 불필요한 접근을 막았습니다.
+- 접근제한자를 사용해서 불필요한 접근 제어
 
 <br>
 
@@ -73,7 +69,7 @@
 
  ####  1. 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 문제
  -> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 addTarget 호출이 필요했는데 <br>
-   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가했습니다. <br>
+   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가 후 해결했습니다. <br>
 
 ```swift
 func registerRemoteCenterAction() {
