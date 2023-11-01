@@ -47,22 +47,64 @@
 <br>
 
 ### 개발 고려사항
+- AVPlayer, MPRemoteCommandCenter 를 적절할 때 메모리에서 해지
+  	- 오디오 재생이 완료되었거나 화면을 벗어났을 때, ViewController LifeCycle 의 viewDidDisappear 에서 해지했습니다.
+- MPRemoteCommandCenter 를 이용해 잠금화면과 다이나믹 아일랜드에서 재생 기능을 제어할 수 있도록 했습니다.
+- MPRemoteCommandCenter 와 AVPlayer 의 재생 상태를 동기화 시켰습니다.
+- MapKit 의 Annotation 을 커스텀해서 서버에 이미지가 있는지 여부에 따라 기본이미지나 서버의 이미지를 보여주었습니다.
+- Kingfisher 의 retriveImage 메서드로 서버로 받은 이미지를 사이즈를 줄인 후 Annotaion 의 이미지로 사용했습니다.
+- Annotation 에 서버 이미지를 받아서 보여줄 때 이미지를 받아 오는 속도가 제각각이여서 prepareForDisplay 메서드에서 다운 받은 이미지가 있는지 체크 후 이미지를 보여주었습니다.
+- MapKit 의 Clustering 을 커스텀해서 선택했을 때 해당 클러스터링의 컬러값을 바꿔 유저가 선택했다는 것을 알 수 있도록 했습니다.
+- Alamofire 로 API 요청할 때 Router 패턴으로 관리했습니다.
 - 다크모드, 다국어 대응
-  	- 현재 한국어, 영어일 때 처리가 되어있는데 언어가 변동될 때 시스템언어를 따라 API 파라미터로 값 전달이 필요했습니다.
+  	- 시스템 언어에 따라 API 인자값으로 전달되는 값을 변경했습니다.
 - 메모리 누수 방지
-  	- weak 키워드를 통해 순환참조 방지를 신경썼습니다.
+  	- weak 키워드를 통해 순환참조를 방지했습니다.
 - 프로젝트 구조 통일
-	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 모두 생성했습니다.
-- 접근제한자를 사용해서 불필요한 접근 막았습니다.
+	- ViewController 하나를 생성할 때 BaseView 역할, BaseViewModel 역할, VCDelegate 로 액션 전달 받을 역할 생성해 프로젝트 구조를 통일했습니다.
+- 접근제한자를 사용해서 불필요한 접근을 막았습니다.
 
 <br>
 
 
 ### 트러블슈팅
  -> [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
-- 일일 API 콜 제한수가 1000회여서 하루종일 개발,테스트를 반복하다보면 콜 제한되어 호출이 안되는 문제<br>
+
+ - 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 문제 <br>
+ 	-> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 addTarget 호출이 필요했는데 <br>
+   	   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가했습니다. <br>
+
+```swift
+func registerRemoteCenterAction() {
+
+        center.playCommand.removeTarget(self)
+        center.pauseCommand.removeTarget(self)
+        
+        center.playCommand.isEnabled = true
+        center.pauseCommand.isEnabled = true
+        
+        let player = AVPlayerManager.shared.player
+        
+        center.playCommand.addTarget { event in
+            AVPlayerManager.shared.replay()
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
+            return .success
+        }
+        
+        center.pauseCommand.addTarget { event in
+            AVPlayerManager.shared.pause()
+            MPNowPlayingInfoCenter.default().nowPlayingInfo?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player?.currentTime().seconds
+            return .success
+        }
+    }
+
+```
+     
+<br>
+ 
+ - 일일 API 콜 제한수가 1000회여서 콜이 금방 제한 되는 문제 <br>
   	-> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했습니다.<br>
-  	-> 시스템언어를 영어로 설정했을 경우에도 대응이 필요해서 한국어, 영어 두가지 언어 모두 호출했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 Realm 에 저장하도록 구현)
+  	-> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료되면 Realm 에 저장했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
 
 ```swift
 // 한국어 데이터 요청
@@ -120,7 +162,7 @@ extension UIVisualEffectView {
 
 <br>
 
-- API 요청할 떄 항상 파라미터로 전달되는 값들이 있는데 반복해서 계속 작성되고 있는 문제
+- API 요청할 떄 동일한 인자값을 전달할 때 
   	-> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했습니다.
   
 ```swift
@@ -168,7 +210,7 @@ final class BaseRequestInterceptor: RequestInterceptor {
 -> [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
 - Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분입니다. <br>
   WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있습니다.
-- 개발자는 생각의 폭을 항상 넓게 가질 수 있어야 한다. 이런 부분까지 신경써야되냐? 라고 한다면 신경써야합니다. <br>
+- 개발자는 생각의 폭을 넓게 가질 수 있어야 합니다. 이런 부분까지 신경써야되냐? 라고 한다면 어떤 사용자가 어떤 환경에서 사용할지 모르기 때문에 신경써야 한다고 생각합니다. <br>
   기능 개발을 빨리 할 수 있는 실력이 키워진다면 여러 상황에서 어떻게 동작이 되어질까? 에 대한 부분을 미리 알고 미리 대응할 수 있어야한다고 생각합니다. <br>
   출시 버전에서는 이러한 부분을 많이 챙기지 못했지만 이후 업데이트 버전은 다양한 상황들에 대해 좀더 고민해보고 그에 맞게 업데이트를 진행할 예정입니다.
 
