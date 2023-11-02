@@ -23,7 +23,7 @@
 
 ### 기술
 | Category | Stack |
-|----|-----|
+|:----:|:-----:|
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
 |  UI  | `CodeBaseUI` `SnapKit` |
