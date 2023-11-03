@@ -53,12 +53,12 @@
 - MapKit CustomAnnotationView 구현
 - MapKit CustomClustering 구현
 - Kingfisher 라이브러리를 활용해 이미지 재가공후 Annotation 이미지로 사용하도록 구현
-- Alamofire 라이브러리 Request Router 패턴으로 관리
+- Alamofire API요청 Router 패턴으로 관리
+- Alamofire RequestInterceptor 프로토콜을 활용해 동일한 인자값들 defaultParameters 로 관리
 - 다크모드, 다국어 대응
   	- 시스템 언어에 따라 API request 인자 값 변경
 - 메모리 누수 방지
   	- weak 키워드를 통해 순환참조 방지
-- 프로젝트 구조 통일
 - 접근제한자를 사용해서 불필요한 접근 제어
 
 <br>
@@ -67,13 +67,14 @@
 ### 트러블슈팅
   ✏️ [트러블슈팅 일지](https://medium.com/@hyeseong7848/%EA%B8%B0%ED%9A%8D%EB%B6%80%ED%84%B0-%EC%B6%9C%EC%8B%9C%EA%B9%8C%EC%A7%80-6051a4143a05)
 
- ####  1. 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 문제
- -> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 addTarget 호출이 필요했는데 <br>
-   이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가 후 해결했습니다. <br>
+ ####  1. 잠금 화면에서 여러 오디오 파일을 재생 했을 때 중첩되서 재생 되는 오류
+ -> 오디오를 재생시킬 때 MPRemoteCommandCenter 의 재생/일시정지 기능이 동작하도록 MPRemoteCommandCenter 를 등록하는 과정이 필요했습니다. <br>
+   등록할 때 계속 addTarget 이 호출되어 이전에 등록된 action 이 해지되지 않아 중첩되고 있었습니다. 해당 메서드에 removeTarget 을 추가 후 해결했습니다. <br>
 
 ```swift
 func registerRemoteCenterAction() {
 
+	// 중첨 액션 방지용
         center.playCommand.removeTarget(self)
         center.pauseCommand.removeTarget(self)
         
@@ -99,9 +100,9 @@ func registerRemoteCenterAction() {
      
 <br>
  
- #### 2. 일일 API 콜 제한수가 1000회여서 콜이 금방 제한 되는 문제
-  -> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대 한 정보를 Realm 에 저장 후 기존에 데이터를 불러와서 사용하도록 했습니다.<br>
-  -> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료되면 Realm 에 저장했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
+ #### 2. 일일 API 콜 제한 수 문제
+  -> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 캐싱 후 캐싱 데이터를 로드해서 사용 했습니다.<br>
+  -> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료된 후 캐싱 되도록 구현했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
 
 ```swift
 // 한국어 데이터 요청
@@ -142,10 +143,10 @@ private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping (
   
 <br>
 
-#### 3. UIVibrancyEffect 안에 버튼들의 클릭 액션이 전달되지 않는 문제
--> 기존에 잘동작하던 UIButton 의 액션이 동작하지 않아서 UIVibrancyEffet 관련 코드를 주석처리 후 테스트 해보니 정상동작 하는 것을 확인했습니다.<br>
-  현재 View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 로 되어있었습니다.<br>
--> hitTest 를 통해 하위뷰로 터치 이벤트를 넘겨서 해결했습니다.
+#### 3. UIVibrancyEffect 안에 있는 버튼에 터치 액션이 전달 되지 않는 오류
+-> View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 구조였습니다. <br>
+   Button 위에 여러 개의 View 가 쌓이면서 Button 의 터치이벤트가 상위 뷰에게 터치 액션을 빼앗겼습니다.
+-> 하위뷰로 터치 이벤트를 넘기기 위해 hitTest 를 활용해 해결했습니다.
   
 ```swift
 extension UIVisualEffectView {
@@ -159,54 +160,10 @@ extension UIVisualEffectView {
 
 <br>
 
-#### 4. API 요청시 동일한 인자값을 전달할 때 
-  -> Alamofire 의 RequestInterceptor 프로토콜을 사용해서 defaultParameters 로 관리했습니다. <br>
-  
-```swift
-final class BaseRequestInterceptor: RequestInterceptor {
-    
-    init(language: String?) {
-        guard let language else {
-            langCode = systemLangCode
-            return
-        }
-        langCode = language
-    }
-    
-    private var langCode = "ko"
-    
-    private lazy var defaultParameters = [
-        "serviceKey": APIKey.dataKey,
-        "MobileOS": "IOS",
-        "MobileApp": "트래블튠",
-        "_type": "json",
-        "langCode": langCode
-    ]
-    
-    private let systemLangCode = if #available(iOS 16.0, *) {
-        Locale.current.language.languageCode?.identifier ?? "ko"
-    } else {
-        Locale.current.languageCode ?? "ko"
-    }
-    
-    func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        var urlRequest = urlRequest
-        let encoding = URLEncodedFormParameterEncoder.default
-        if let request = try? encoding.encode(defaultParameters, into: urlRequest) {
-            urlRequest = request
-        }
-        
-        completion(.success(urlRequest))
-    }
-    
-}
-```
-<br>
-
 ### 회고
 ✏️ [회고 일지](https://medium.com/@hyeseong7848/%ED%8A%B8%EB%9E%98%EB%B8%94%ED%8A%A0-%EC%B6%9C%EC%8B%9C-%ED%9A%8C%EA%B3%A0-eb66b6cc57aa)
-- Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분입니다. <br>
-  WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘이해하고 있어야 Swift 성능을 향상시킬 수 있습니다.
+- Swift 언어에 대한 이해도는 앱이 커질 수록 점점 중요해지는 부분이라고 느꼈습니다. <br>
+  WMO, Struct, Reference Count, final 이런 키워드들에 대한 내용을 잘 이해하고 있어야 Swift 성능을 향상시킬 수 있기 때문에 앞으로도 꾸준히 학습이 필요하다고 느꼈습니다.
 - 개발자는 생각의 폭을 넓게 가질 수 있어야 합니다. 이런 부분까지 신경써야되냐? 라고 한다면 어떤 사용자가 어떤 환경에서 사용할지 모르기 때문에 신경써야 한다고 생각합니다. <br>
   기능 개발을 빨리 할 수 있는 실력이 키워진다면 여러 상황에서 어떻게 동작이 되어질까? 에 대한 부분을 미리 알고 미리 대응할 수 있어야한다고 생각합니다. <br>
   출시 버전에서는 이러한 부분을 많이 챙기지 못했지만 이후 업데이트 버전은 다양한 상황들에 대해 좀더 고민해보고 그에 맞게 업데이트를 진행할 예정입니다.
