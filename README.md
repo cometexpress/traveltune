@@ -27,6 +27,7 @@
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
 |  UI  | `CodeBaseUI` `SnapKit` |
+| Reactive | `RxSwift` |
 |  Network  | `Alamofire` `URLSession` `Codable` |
 |  Database  | `Realm` |
 |  Image  | `Kingfisher` |
