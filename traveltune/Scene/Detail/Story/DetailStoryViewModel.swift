@@ -17,8 +17,8 @@ final class DetailStoryViewModel: BaseViewModel {
         case error(msg: String)
     }
     
-    var detailStory: Observable<StoryItem?> = Observable(nil)
-    var likeStatus: Observable<Bool> = Observable(false)
+    var detailStory: MyObservable<StoryItem?> = MyObservable(nil)
+    var likeStatus: MyObservable<Bool> = MyObservable(false)
     
     private var storyRepository: StoryRepository
     private var localFavoriteStoryRepository: LocalFavoriteStoryRepository

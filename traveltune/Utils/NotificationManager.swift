@@ -24,7 +24,7 @@ final class NotificationManager {
         case weekly
     }
 
-    var notificationStatus: Observable<NotificationSettingStatus> = Observable(.notiInit)
+    var notificationStatus: MyObservable<NotificationSettingStatus> = MyObservable(.notiInit)
     
     // 알림 권한
     func authorization(

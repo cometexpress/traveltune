@@ -40,7 +40,7 @@ final class SplashViewModel: BaseViewModel {
     
     var maximumDays = 14
     
-    var isCompleteAllLanguageUpdateSpots: Observable<SplashUIState<Bool>> = Observable(.initValue)
+    var isCompleteAllLanguageUpdateSpots: MyObservable<SplashUIState<Bool>> = MyObservable(.initValue)
     
     func updateAllLangTravelSpots() {
         requestGroup { group in

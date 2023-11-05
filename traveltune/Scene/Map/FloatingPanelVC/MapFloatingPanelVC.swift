@@ -14,7 +14,7 @@ import RxCocoa
 final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloatingPanelViewModel> {
     
     var didSelect: ((MapSpotItem) -> Void)?
-    
+
     private var mapSpotItems: [MapSpotItem] = [] {
         didSet {
             mainView.collectionView.reloadData()
@@ -29,8 +29,6 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
     
     func configureVC() {
         mainView.mapFloatingPanelProtocol = self
-        mainView.collectionView.delegate = self
-        mainView.collectionView.dataSource = self
         
         if let name = viewModel?.regionType.name {
             var upperName = name
@@ -38,43 +36,33 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
         }
     }
     
-    
     func bindViewModel() {
         guard let viewModel else { return }
-        // 지도상세 개발 중 주석처리
         viewModel.fetchMapSpotItems()
         viewModel.state.subscribe(with: self, onNext: { owner, state in
             switch state {
             case .initValue: Void()
             case .loading: LoadingIndicator.show()
-            case .success(let spotItems):
-                owner.mapSpotItems = spotItems
-                LoadingIndicator.hide()
+            case .success: LoadingIndicator.hide()
             case .error:
                 owner.showToast(msg: Strings.ErrorMsg.errorLoadingData)
                 LoadingIndicator.hide()
             }
         })
         .disposed(by: viewModel.disposeBag)
-    }
-}
-
-extension MapFloatingPanelVC: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MapSpotCell.identifier, for: indexPath) as? MapSpotCell else {
-            return UICollectionViewCell()
-        }
-        cell.configCell(row: mapSpotItems[indexPath.item])
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mapSpotItems.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelect?(mapSpotItems[indexPath.item])
+        
+        viewModel.mapSpotItems
+            .bind(to: mainView.collectionView.rx.items(cellIdentifier: MapSpotCell.identifier, cellType: MapSpotCell.self)) { (row, element, cell) in
+                cell.configCell(row: element)
+            }
+            .disposed(by: viewModel.disposeBag)
+        
+        // didSelectItemAt
+        Observable.zip(mainView.collectionView.rx.itemSelected, mainView.collectionView.rx.modelSelected(MapSpotItem.self))
+            .subscribe(with: self) { owner, selectedItem in
+                owner.didSelect?(selectedItem.1)
+            }
+            .disposed(by: viewModel.disposeBag)
     }
 }
 

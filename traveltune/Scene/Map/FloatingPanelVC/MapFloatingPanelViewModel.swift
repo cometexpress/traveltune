@@ -12,11 +12,11 @@ import RxCocoa
 
 final class MapFloatingPanelViewModel: BaseViewModel {
     
-    enum MapFloatingPaneUIState<T> {
+    enum MapFloatingPaneUIState {
         case initValue
         case loading
-        case success(data: T)
-        case error(msg: String)
+        case success
+        case error
     }
     
     private var travelSpotRepository: TravelSpotRepository
@@ -33,15 +33,14 @@ final class MapFloatingPanelViewModel: BaseViewModel {
         self.storyRepository = storyRepository
     }
     
-//    var state: Observable<MapFloatingPaneUIState<[MapSpotItem]>> = Observable(.initValue)
-    
     // 1. 관광지 지역별로 검색
     // 2. 해당 관광지 id 로 이야기 리스트 조회
     private var travelSpots: [TravelSpotItem] = []
     
-    private var saveMapSpotDatas: [MapSpotItem] = []
+    private var datas = [MapSpotItem]()
+    lazy var mapSpotItems = BehaviorSubject(value: self.datas)
     
-    var state: BehaviorSubject<MapFloatingPaneUIState<[MapSpotItem]>> = BehaviorSubject(value: .initValue)
+    var state: BehaviorSubject<MapFloatingPaneUIState> = BehaviorSubject(value: .initValue)
     
     var disposeBag = DisposeBag()
     
@@ -67,13 +66,13 @@ final class MapFloatingPanelViewModel: BaseViewModel {
                 
                 dispatchGroup.notify(queue: .main) { [weak self] in
                     guard let self else { return }
-                    self.state.onNext(.success(data: self.saveMapSpotDatas.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL})))
-//                    self.state.value = .success(data: self.saveMapSpotItems.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL}))
+                    self.state.onNext(.success)
+                    self.mapSpotItems.onNext(self.datas.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL}))
                 }
                 
             case .failure(let failure):
-                self?.state.onNext(.error(msg: failure.localizedDescription))
-//                self?.state.value = .error(msg: failure.localizedDescription)
+                print(failure.localizedDescription)
+                self?.state.onNext(.error)
             }
         }
     }
@@ -84,7 +83,7 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             case .success(let success):
                 let stories = success.response.body.items.item
                 if !stories.isEmpty {
-                    self?.saveMapSpotDatas.append(MapSpotItem(travelSpot: item, stories: stories))
+                    self?.datas.append(MapSpotItem(travelSpot: item, stories: stories))
                 }
                 
             case .failure(let error):

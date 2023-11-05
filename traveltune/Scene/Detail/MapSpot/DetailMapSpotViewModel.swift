@@ -24,7 +24,7 @@ final class DetailMapSpotViewModel: BaseViewModel {
         self.localFavoriteStoryRepository = localFavoriteStoryRepository
     }
     
-    var state: Observable<DetailMapSpotUIState> = Observable(.initValue)
+    var state: MyObservable<DetailMapSpotUIState> = MyObservable(.initValue)
     
     private var notificationToken: NotificationToken?
     
@@ -56,7 +56,7 @@ final class DetailMapSpotViewModel: BaseViewModel {
 //                if let stories {
 //                    self.state.value = .likeUpdateSuccess(data: stories)
 //                }
-            case .error(let error): break
+            case .error(let error):
                 self.state.value = .error(msg: error.localizedDescription)
             }
         }

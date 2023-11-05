@@ -27,7 +27,7 @@ final class SearchResultTabTravelSpotViewModel: BaseViewModel {
     var totalPage = 0
     var isLoading = false
     
-    var state: Observable<SearchResultTabSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
+    var state: MyObservable<SearchResultTabSpotUIState<[TravelSpotItem]>> = MyObservable(.initValue)
     
     func searchSpots(
         page: Int

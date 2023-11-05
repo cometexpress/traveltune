@@ -1,5 +1,5 @@
 //
-//  Observarble.swift
+//  MyObservable.swift
 //  traveltune
 //
 //  Created by 장혜성 on 2023/09/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Observable<T> {
+class MyObservable<T> {
     
     private var listener: ((T) -> Void)?
     

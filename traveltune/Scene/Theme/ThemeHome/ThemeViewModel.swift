@@ -9,7 +9,7 @@ import Foundation
 
 final class ThemeViewModel: BaseViewModel {
     
-    var themes: Observable<[ThemeStory]> = Observable([])
+    var themes: MyObservable<[ThemeStory]> = MyObservable([])
     
     func fetchThemes() {
         themes.value = ThemeStory.allCases

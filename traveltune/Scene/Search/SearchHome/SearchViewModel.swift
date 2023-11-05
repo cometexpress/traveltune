@@ -38,7 +38,7 @@ final class SearchViewModel: BaseViewModel {
     
     private var words = Words()
     
-    var state: Observable<SearchUIState<Words>> = Observable(.initValue)
+    var state: MyObservable<SearchUIState<Words>> = MyObservable(.initValue)
     
     func fetchWords() {
         state.value = .loading

@@ -176,7 +176,7 @@
 		C0E8BA9A2ABDCD3800B1CCA6 /* ThemeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA992ABDCD3800B1CCA6 /* ThemeVC.swift */; };
 		C0E8BA9C2ABDCD5B00B1CCA6 /* MapHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA9B2ABDCD5B00B1CCA6 /* MapHomeVC.swift */; };
 		C0E8BA9E2ABDCD8300B1CCA6 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BA9D2ABDCD8300B1CCA6 /* SettingVC.swift */; };
-		C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */; };
+		C0E8BAA12ABDDA5900B1CCA6 /* MyObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA02ABDDA5900B1CCA6 /* MyObservable.swift */; };
 		C0E8BAA32ABDDAF100B1CCA6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */; };
 		C0E8BAA52ABDDB5D00B1CCA6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */; };
 		C0E8BAA72ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */; };
@@ -362,7 +362,7 @@
 		C0E8BA992ABDCD3800B1CCA6 /* ThemeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVC.swift; sourceTree = "<group>"; };
 		C0E8BA9B2ABDCD5B00B1CCA6 /* MapHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapHomeVC.swift; sourceTree = "<group>"; };
 		C0E8BA9D2ABDCD8300B1CCA6 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
-		C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		C0E8BAA02ABDDA5900B1CCA6 /* MyObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyObservable.swift; sourceTree = "<group>"; };
 		C0E8BAA22ABDDAF100B1CCA6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		C0E8BAA42ABDDB5D00B1CCA6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C0E8BAA62ABDDBE400B1CCA6 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -919,7 +919,7 @@
 				C0C046F42AE0F21100939DEB /* MPRemoteCommandCenterManager.swift */,
 				C0D81A772AC40FB000CB2EF0 /* NetworkMonitor.swift */,
 				C0F1394B2ADF12C2008AABD0 /* NotificationManager.swift */,
-				C0E8BAA02ABDDA5900B1CCA6 /* Observable.swift */,
+				C0E8BAA02ABDDA5900B1CCA6 /* MyObservable.swift */,
 				C05824AE2AD459A500E34DF0 /* ShareableLinkPresentation.swift */,
 				C073F6532AD3074300EEE107 /* URLSchemeManager.swift */,
 				C0D81A8C2AC4941100CB2EF0 /* UserDefault.swift */,
@@ -1198,7 +1198,7 @@
 				C05824AD2AD419C700E34DF0 /* CircleImageButtonView.swift in Sources */,
 				C091AA722AD3DC4300A450E7 /* DetailStoryViewModel.swift in Sources */,
 				C0E203C12AD5885300607534 /* MapHomeVCProtocol.swift in Sources */,
-				C0E8BAA12ABDDA5900B1CCA6 /* Observable.swift in Sources */,
+				C0E8BAA12ABDDA5900B1CCA6 /* MyObservable.swift in Sources */,
 				C04F9CF62AC0919B0058A8D0 /* BaseRequestInterceptor.swift in Sources */,
 				C04DF0662AE405D3005EE45A /* TermsVC.swift in Sources */,
 				C0E8BA4B2ABC8B7600B1CCA6 /* AppDelegate.swift in Sources */,

@@ -48,7 +48,7 @@ final class ThemeDetailViewModel: BaseViewModel {
     
     private var saveStories: [StoryItem] = []
     
-    var state: Observable<ThemeDetailUIState<[StoryItem]>> = Observable(.initValue)
+    var state: MyObservable<ThemeDetailUIState<[StoryItem]>> = MyObservable(.initValue)
     
     private let storyGroup = DispatchGroup()
     

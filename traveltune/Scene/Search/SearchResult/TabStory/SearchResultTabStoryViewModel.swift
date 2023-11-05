@@ -27,7 +27,7 @@ final class SearchResultTabStoryViewModel: BaseViewModel {
     var totalPage = 0
     var isLoading = false
     
-    var state: Observable<SearchResultTabStoryUIState<[StoryItem]>> = Observable(.initValue)
+    var state: MyObservable<SearchResultTabStoryUIState<[StoryItem]>> = MyObservable(.initValue)
     
     func searchStories(
         page: Int

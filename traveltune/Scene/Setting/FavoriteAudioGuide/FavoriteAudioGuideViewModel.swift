@@ -30,7 +30,7 @@ final class FavoriteAudioGuideViewModel: BaseViewModel {
         notificationToken?.invalidate()
     }
     
-    var state: Observable<FavoriteAudioGuideUIState<[FavoriteStory]>> = Observable(.initValue)
+    var state: MyObservable<FavoriteAudioGuideUIState<[FavoriteStory]>> = MyObservable(.initValue)
     
     func favoriteStoryObserve() {
         guard let tasks = localFavoriteStoryRepository.fetch() else { return }
@@ -52,7 +52,7 @@ final class FavoriteAudioGuideViewModel: BaseViewModel {
                 }
                 self.state.value = .deleteUpdate(data: favoriteStroies)
 
-            case .error(let error): break
+            case .error(let error):
                 self.state.value = .error(msg: error.localizedDescription)
             }
         }

@@ -16,7 +16,7 @@ final class DetailTravelSpotViewModel: BaseViewModel {
         case error(msg: String)
     }
     
-    var detailTravelSpot: Observable<TravelSpotItem?> = Observable(nil)
+    var detailTravelSpot: MyObservable<TravelSpotItem?> = MyObservable(nil)
     
     private var travelSportRepository: TravelSpotRepository
     
@@ -24,7 +24,7 @@ final class DetailTravelSpotViewModel: BaseViewModel {
         self.travelSportRepository = travelSportRepository
     }
     
-    var state: Observable<DetailSpotUIState<[TravelSpotItem]>> = Observable(.initValue)
+    var state: MyObservable<DetailSpotUIState<[TravelSpotItem]>> = MyObservable(.initValue)
     
     private let nearbyRadius = "5000"
     

@@ -26,7 +26,7 @@ final class LocationManager {
         case initAuth, none, notDetermined, denied, authorized
     }
     
-    var locationAuthorizationStatus: Observable<LocationAuthorizationStatus> = Observable(.initAuth)
+    var locationAuthorizationStatus: MyObservable<LocationAuthorizationStatus> = MyObservable(.initAuth)
         
     func requestAuthorization() {
         locationManager.requestWhenInUseAuthorization()

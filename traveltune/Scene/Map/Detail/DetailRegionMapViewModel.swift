@@ -27,7 +27,7 @@ final class DetailRegionMapViewModel: BaseViewModel {
         self.storyRepository = storyRepository
     }
     
-    var state: Observable<DetailRegionMapUIState<[StoryItem]>> = Observable(.initValue)
+    var state: MyObservable<DetailRegionMapUIState<[StoryItem]>> = MyObservable(.initValue)
     
     func fetchStoryByLocation(lat: Double, lng: Double) {
         print("위치변경에 따른 이야기 데이터 업데이트")   

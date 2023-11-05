@@ -28,7 +28,7 @@ final class ChartViewModel: BaseViewModel {
         self.travelBigDataRepository = travelBigDataRepository
     }
     
-    var state: Observable<ChartUIState<ChartData>> = Observable(.initValue)
+    var state: MyObservable<ChartUIState<ChartData>> = MyObservable(.initValue)
     
     func fetchTravelVistor(startDate: String, endDate: String) {
         state.value = .loading
