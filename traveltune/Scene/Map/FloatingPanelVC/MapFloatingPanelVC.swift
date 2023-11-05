@@ -15,12 +15,6 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
     
     var didSelect: ((MapSpotItem) -> Void)?
 
-    private var mapSpotItems: [MapSpotItem] = [] {
-        didSet {
-            mainView.collectionView.reloadData()
-        }
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         configureVC()
