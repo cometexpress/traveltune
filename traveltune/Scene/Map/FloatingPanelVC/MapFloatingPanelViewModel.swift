@@ -7,6 +7,9 @@
 
 import Foundation
 
+import RxSwift
+import RxCocoa
+
 final class MapFloatingPanelViewModel: BaseViewModel {
     
     enum MapFloatingPaneUIState<T> {
@@ -30,13 +33,17 @@ final class MapFloatingPanelViewModel: BaseViewModel {
         self.storyRepository = storyRepository
     }
     
-    var state: Observable<MapFloatingPaneUIState<[MapSpotItem]>> = Observable(.initValue)
+//    var state: Observable<MapFloatingPaneUIState<[MapSpotItem]>> = Observable(.initValue)
     
     // 1. 관광지 지역별로 검색
     // 2. 해당 관광지 id 로 이야기 리스트 조회
     private var travelSpots: [TravelSpotItem] = []
     
-    private var saveMapSpotItems: [MapSpotItem] = []
+    private var saveMapSpotDatas: [MapSpotItem] = []
+    
+    var state: BehaviorSubject<MapFloatingPaneUIState<[MapSpotItem]>> = BehaviorSubject(value: .initValue)
+    
+    var disposeBag = DisposeBag()
     
     func fetchMapSpotItems() {
         travelSpotRepository.requestTravelSpotsByLocation(
@@ -60,11 +67,13 @@ final class MapFloatingPanelViewModel: BaseViewModel {
                 
                 dispatchGroup.notify(queue: .main) { [weak self] in
                     guard let self else { return }
-                    self.state.value = .success(data: self.saveMapSpotItems.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL}))
+                    self.state.onNext(.success(data: self.saveMapSpotDatas.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL})))
+//                    self.state.value = .success(data: self.saveMapSpotItems.sorted(by: {$0.travelSpot.imageURL > $1.travelSpot.imageURL}))
                 }
                 
             case .failure(let failure):
-                self?.state.value = .error(msg: failure.localizedDescription)
+                self?.state.onNext(.error(msg: failure.localizedDescription))
+//                self?.state.value = .error(msg: failure.localizedDescription)
             }
         }
     }
@@ -75,7 +84,7 @@ final class MapFloatingPanelViewModel: BaseViewModel {
             case .success(let success):
                 let stories = success.response.body.items.item
                 if !stories.isEmpty {
-                    self?.saveMapSpotItems.append(MapSpotItem(travelSpot: item, stories: stories))
+                    self?.saveMapSpotDatas.append(MapSpotItem(travelSpot: item, stories: stories))
                 }
                 
             case .failure(let error):

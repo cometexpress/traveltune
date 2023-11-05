@@ -6,7 +6,10 @@
 //
 
 import UIKit
+
 import SnapKit
+import RxSwift
+import RxCocoa
 
 final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloatingPanelViewModel> {
     
@@ -35,24 +38,24 @@ final class MapFloatingPanelVC: BaseViewController<MapFloatingPanelView, MapFloa
         }
     }
     
+    
     func bindViewModel() {
+        guard let viewModel else { return }
         // 지도상세 개발 중 주석처리
-        viewModel?.fetchMapSpotItems()
-//        LoadingIndicator.hide()   테스트 중이라 바로 로딩바 제거 중
-        viewModel?.state.bind { [weak self] state in
+        viewModel.fetchMapSpotItems()
+        viewModel.state.subscribe(with: self, onNext: { owner, state in
             switch state {
             case .initValue: Void()
-            case .loading:
-                LoadingIndicator.show()
-            case .success(let data):
-//                dump(data)
-                self?.mapSpotItems = data
+            case .loading: LoadingIndicator.show()
+            case .success(let spotItems):
+                owner.mapSpotItems = spotItems
                 LoadingIndicator.hide()
-            case .error(let msg):
-                self?.showToast(msg: Strings.ErrorMsg.errorLoadingData)
+            case .error:
+                owner.showToast(msg: Strings.ErrorMsg.errorLoadingData)
                 LoadingIndicator.hide()
             }
-        }
+        })
+        .disposed(by: viewModel.disposeBag)
     }
 }
 

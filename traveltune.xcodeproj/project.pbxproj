@@ -66,6 +66,8 @@
 		C04DF0612AE26DED005EE45A /* AlarmSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0602AE26DED005EE45A /* AlarmSettingView.swift */; };
 		C04DF0632AE26E10005EE45A /* AlarmSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0622AE26E10005EE45A /* AlarmSettingViewModel.swift */; };
 		C04DF0662AE405D3005EE45A /* TermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04DF0652AE405D3005EE45A /* TermsVC.swift */; };
+		C04E79342AF762AD00E5AD8D /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C04E79332AF762AD00E5AD8D /* RxCocoa */; };
+		C04E79362AF762AD00E5AD8D /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C04E79352AF762AD00E5AD8D /* RxSwift */; };
 		C04F9C892ABEE0590058A8D0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */; };
 		C04F9C9E2ABEEE460058A8D0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C04F9C9D2ABEEE460058A8D0 /* .gitignore */; };
 		C04F9CA02ABEEED60058A8D0 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = C04F9C9F2ABEEED60058A8D0 /* APIKey.swift */; };
@@ -392,6 +394,8 @@
 				C0D81A962AC5437800CB2EF0 /* Hero in Frameworks */,
 				C0E8BA762ABC973900B1CCA6 /* Kingfisher in Frameworks */,
 				C0E8BA7C2ABC976500B1CCA6 /* Realm in Frameworks */,
+				C04E79362AF762AD00E5AD8D /* RxSwift in Frameworks */,
+				C04E79342AF762AD00E5AD8D /* RxCocoa in Frameworks */,
 				C06449FC2ACC3AE6005C8529 /* IQKeyboardManagerSwift in Frameworks */,
 				C0E8BA7E2ABC976500B1CCA6 /* RealmSwift in Frameworks */,
 				C0E8BA732ABC972D00B1CCA6 /* SnapKit in Frameworks */,
@@ -1011,6 +1015,8 @@
 				C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */,
 				C0E203BE2AD57C7F00607534 /* FloatingPanel */,
 				C0F1394E2ADFC883008AABD0 /* DGCharts */,
+				C04E79332AF762AD00E5AD8D /* RxCocoa */,
+				C04E79352AF762AD00E5AD8D /* RxSwift */,
 			);
 			productName = traveltune;
 			productReference = C0E8BA472ABC8B7600B1CCA6 /* traveltune.app */;
@@ -1051,6 +1057,7 @@
 				C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				C0E203BD2AD57C7F00607534 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				C0F1394D2ADFC883008AABD0 /* XCRemoteSwiftPackageReference "Charts" */,
+				C04E79322AF762AD00E5AD8D /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = C0E8BA482ABC8B7600B1CCA6 /* Products */;
 			projectDirPath = "";
@@ -1352,6 +1359,7 @@
 		C0E8BA592ABC8B7700B1CCA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1416,6 +1424,7 @@
 		C0E8BA5A2ABC8B7700B1CCA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -1476,6 +1485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1495,6 +1505,7 @@
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.comet.traveltune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1510,6 +1521,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SV3K237PCX;
@@ -1528,6 +1540,7 @@
 				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.comet.traveltune;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1561,6 +1574,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C04E79322AF762AD00E5AD8D /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
 		C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -1636,6 +1657,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		C04E79332AF762AD00E5AD8D /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C04E79322AF762AD00E5AD8D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		C04E79352AF762AD00E5AD8D /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C04E79322AF762AD00E5AD8D /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		C06449FB2ACC3AE6005C8529 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = C06449FA2ACC3AE6005C8529 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
