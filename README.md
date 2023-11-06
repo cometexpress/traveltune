@@ -26,7 +26,7 @@
 |:----:|:-----:|
 | Architecture | `MVVM` |
 | iOS | `UIKit` `AVFoundation` `WebKit` `MapKit` `UserDefaults` `CoreLocation`|
-|  UI  | `CodeBaseUI` `SnapKit` |
+|  UI  | `SnapKit` |
 | Reactive | `RxSwift` |
 |  Network  | `Alamofire` `URLSession` `Codable` |
 |  Database  | `Realm` |
@@ -42,7 +42,7 @@
 2. 오디오 가이드 좋아요
 3. 관광지 / 가이드 검색
 4. 오디오 가이드 파일 공유
-5. 위치 기반 관광지 가이드 검색
+5. 위치 기반 관광지 오디오 검색
 6. 관광지 방문객 통계
 
 <br>
