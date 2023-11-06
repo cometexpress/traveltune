@@ -56,8 +56,10 @@
 - Alamofire Router 패턴으로 Request 관리
 - Alamofire RequestInterceptor 프로토콜을 활용해 동일한 인자값들 defaultParameters 로 관리
 - URLScheme 지도앱 연동
+- 재사용 가능한 CustomView 구현
+- CollectionView - DiffableDataSource / CompositionalLayout 적용
+- API 통신 중 UIWindow 하위의 화면 위 사용자의 상호작용 차단 하는 공통 LoadingIndicator 구현
 - 다크모드, 다국어 대응
-  	- 시스템 언어에 따라 API request 인자 값 변경
 
 <br>
 
