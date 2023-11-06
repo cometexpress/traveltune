@@ -55,11 +55,9 @@
 - Kingfisher, 이미지 재가공후 Annotation 이미지로 사용
 - Alamofire Router 패턴으로 Request 관리
 - Alamofire RequestInterceptor 프로토콜을 활용해 동일한 인자값들 defaultParameters 로 관리
+- URLScheme 지도앱 연동
 - 다크모드, 다국어 대응
   	- 시스템 언어에 따라 API request 인자 값 변경
-- 메모리 누수 방지
-  	- weak 키워드를 통해 순환참조 방지
-- 접근제한자를 사용해서 불필요한 접근 제어
 
 <br>
 
