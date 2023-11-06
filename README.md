@@ -51,10 +51,9 @@
 - AVPlayer, MPRemoteCommandCenter 클래스 더이상 사용되지 않을 때 메모리에서 해지 되도록 구현
 - MPRemoteCommandCenter 클래스를 활용해 잠금화면과 다이나믹 아일랜드에서 재생/일시정지 기능 구현
 - MPRemoteCommandCenter, AVPlayer 의 재생 상태 동기화
-- MapKit CustomAnnotationView 구현
-- MapKit CustomClustering 구현
-- Kingfisher 라이브러리를 활용해 이미지 재가공후 Annotation 이미지로 사용하도록 구현
-- Alamofire API요청 Router 패턴으로 관리
+- MapKit CustomAnnotationView / CustomClustering 구현
+- Kingfisher, 이미지 재가공후 Annotation 이미지로 사용
+- Alamofire Router 패턴으로 Request 관리
 - Alamofire RequestInterceptor 프로토콜을 활용해 동일한 인자값들 defaultParameters 로 관리
 - 다크모드, 다국어 대응
   	- 시스템 언어에 따라 API request 인자 값 변경
