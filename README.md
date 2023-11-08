@@ -98,52 +98,76 @@ func registerRemoteCenterAction() {
      
 <br>
  
- #### 2. 일일 API 콜 제한 수 문제
-  -> Splash화면에서 최초 앱 실행하는 유저일 경우 관광지에 대한 정보를 Realm 에 캐싱 후 캐싱 데이터를 로드해서 사용 했습니다.<br>
-  -> 다국어 대응이 필요해서 한국어, 영어 모두 요청이 완료된 후 캐싱 되도록 구현했습니다. (DispatchGroup 으로 모든 API 요청이 끝났을 때 저장하도록 구현)
+ #### 2. 지도 커스텀어노테이션 서버 이미지 있을 때 보이지 않는 오류
+  -> 서버 이미지가 있는 경우에도 Default 이미지가 보이는 오류가 있었습니다. <br>
+     이미지 용량이 작은 것은 로드가 빨리 되고 큰 것은 로드가 느려서 나타나는 문제로 파악했습니다. <br>
+  -> MKMapViewDelegate 프로토콜의 viewFor 메서드에서 이미지 URL 전달 후 MKAnnotationView 의 annotation 이 View 에 표시되기 전에 호출 되는 prepareForDisplay() 에서 이미지를 load 하도록 했습니다.
+```swift
+extension DetailRegionMapVC: MKMapViewDelegate {
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        	guard !annotation.isKind(of: MKUserLocation.self) else { return nil }
+        	switch annotation {
+        	case is MKClusterAnnotation:
+          	  let clusterAnotaionView = mapView.dequeueReusableAnnotationView(
+            	    withIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier, for: annotation) as? ClusterAnnotationView
+        	    return clusterAnotaionView
+            
+        	case is StoryAnnotation:
+       	     let customAnnotation = annotation as? StoryAnnotation
+         	   guard let customAnnotation else { return nil }
+          	  let annotationView = mapView.dequeueReusableAnnotationView(
+          	      withIdentifier: CustomAnnotationView.identifier, for: customAnnotation) as? CustomAnnotationView
+            
+         	   guard let annotationView else { return nil }
+       	     let customAnnotaionImageUrl = stories.first {
+       	         $0 == customAnnotation.item
+       	     }?.imageURL ?? ""
+        	    annotationView.createImage(imagePath: customAnnotaionImageUrl)
+        	    return annotationView
+      	  default:
+         	   return nil
+       	 }
+    	}
+}
+```
+
+<br>
 
 ```swift
-// 한국어 데이터 요청
-private func updateKoTravelSpots(group: DispatchGroup, errorHandler: @escaping () -> Void) {
-        
-        group.enter()
-        let language = Network.LangCode.ko
-        
-        remoteTravelSpotRepository?.requestTravelSpots(page: koPage, language: language) { [weak self] response in
-            guard let self else {
-                errorHandler()
-                group.leave()
-                return
-            }
-            
-            switch response {
-            case .success(let success):
-                let result = success.response
-                if self.koPage == 1 {
-                    self.koTotalCount = result.body.totalCount
-                }
-                
-                self.koTravelSpots.append(contentsOf: result.body.items.item)
-                
-                let travelSpotsCnt = self.koTravelSpots.count
-                if travelSpotsCnt < self.koTotalCount {
-                    self.koPage += 1
-                    self.updateKoTravelSpots(group: group) { errorHandler() }
-                }
-                
-            case .failure(let failure):
-                errorHandler()
-            }
-            group.leave()
-        }
-    }
+final class CustomAnnotationView: MKAnnotationView {
+
+	private var thumbnail: UIImage?
+			...
+
+	override func prepareForDisplay() {
+        	super.prepareForDisplay()
+        	annotationImageView.image = nil
+        	annotationImageView.image = thumbnail == nil ? .defaultImg : thumbnail
+    	}
+			...
+
+	func createImage(imagePath: String) {
+        	if imagePath.isEmpty {
+          	  thumbnail = .defaultImg
+        	} else {
+         	   downloadImage(with: imagePath) { image in
+         	       guard let image else {
+         	           self.thumbnail = .defaultImg
+                 	   return
+               	 }
+               	 self.thumbnail = image
+           	 }
+        	}
+        	annotationImageView.image = thumbnail
+    	}
+}
 ```
   
 <br>
 
 #### 3. UIVibrancyEffect 안에 있는 버튼에 터치 액션이 전달 되지 않는 오류
 -> View 구조는 VisualEffectView(BlurEffect) > View > VisualEffectView(VibrancyEffect) > View > UIButton 구조였습니다. <br>
-   Button 위에 여러 개의 View 가 쌓이면서 Button 의 터치이벤트가 상위 뷰에게 터치 액션을 빼앗겼습니다.
+   Button 위에 여러 개의 View 가 쌓이면서 Button 의 터치이벤트가 상위 뷰에게 터치 액션을 빼앗겼습니다. <br>
 -> 하위뷰로 터치 이벤트를 넘기기 위해 hitTest 를 활용해 해결했습니다.
   
 ```swift
