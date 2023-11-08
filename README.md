@@ -31,7 +31,7 @@
 |  Network  | `URLSession` `Codable` `Alamofire` |
 |  Database  | `Realm` |
 |  Image  | `Kingfisher` |
-|  Dependency Manager  | `SPM` `CocoaPods` |
+|  Dependency Manager  | `SPM` `CocoaPods` |
 |  Firebase  | `Crashlytics` `Analytics` |
 |  Etc  | `Hero` `Parchment` `FSPagerView` `IQKeyboardManager` `FloatingPanel` `Charts` `Toast` |
 
