@@ -73,12 +73,12 @@ extension AppDelegate: MessagingDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
     
     /**
-     Apple 에서 제공하는 푸시 테스트 Token 가져올 때
+     Apple 에서 제공하는 푸시 테스트 할 때
      */
-    // APNS - DeviceToken 가져오기
+    // APNs - DeviceToken 가져오기
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        // 앱을 삭제 했다가 다시 깔면 토큰이 갱신됨
+        // 앱을 삭제 했다가 다시 깔면 토큰 갱신
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         print("Apple token: " ,token)
     }
