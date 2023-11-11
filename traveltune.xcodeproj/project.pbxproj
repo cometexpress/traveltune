@@ -290,6 +290,7 @@
 		C0607D8A2AD27C44002E4CBD /* DetailTravelSpotVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotVC.swift; sourceTree = "<group>"; };
 		C0607D8C2AD27C64002E4CBD /* DetailTravelSpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotView.swift; sourceTree = "<group>"; };
 		C0607D8E2AD27C8B002E4CBD /* DetailTravelSpotViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTravelSpotViewModel.swift; sourceTree = "<group>"; };
+		C06131762AFF4921005241DA /* traveltune.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = traveltune.entitlements; sourceTree = "<group>"; };
 		C06449F12ACC2D60005C8529 /* SearchRecentWordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecentWordCell.swift; sourceTree = "<group>"; };
 		C06449F82ACC37D7005C8529 /* SearchVCProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVCProtocol.swift; sourceTree = "<group>"; };
 		C06449FD2ACC3C4D005C8529 /* UITextfield+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextfield+Extension.swift"; sourceTree = "<group>"; };
@@ -786,6 +787,7 @@
 		C0E8BA492ABC8B7600B1CCA6 /* traveltune */ = {
 			isa = PBXGroup;
 			children = (
+				C06131762AFF4921005241DA /* traveltune.entitlements */,
 				C04F9C9D2ABEEE460058A8D0 /* .gitignore */,
 				C04F9C882ABEE0590058A8D0 /* GoogleService-Info.plist */,
 				C0E8BA582ABC8B7700B1CCA6 /* Info.plist */,
@@ -1485,6 +1487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = traveltune/traveltune.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1493,6 +1496,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = traveltune/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "내 주변 관광지를 확인하기 위해 위치 권한을 허용해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -1521,6 +1525,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = traveltune/traveltune.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1528,6 +1533,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = traveltune/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.travel";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "내 주변 관광지를 확인하기 위해 위치 권한을 허용해주세요";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
