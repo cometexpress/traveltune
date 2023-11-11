@@ -51,12 +51,12 @@
 - CollectionView - DiffableDataSource / CompositionalLayout 적용
 - AVPlayer, MPRemoteCommandCenter 클래스 더이상 사용되지 않을 때 메모리에서 해지 되도록 구현
 - MPRemoteCommandCenter 클래스를 활용해 잠금화면과 다이나믹 아일랜드에서 재생/일시정지 기능 구현
-- MPRemoteCommandCenter, AVPlayer 의 재생 상태 동기화
+- AVPlayer, MPNowPlayingInfoCenter 의 재생 상태 동기화
 - MapKit CustomAnnotationView / CustomClustering 구현
-- Kingfisher, 이미지 재가공후 Annotation 이미지로 사용
+- Kingfisher, 서버 이미지 재가공후 Annotation 이미지로 사용
 - Alamofire Router 패턴으로 Request 관리 / RequestInterceptor 프로토콜을 활용해 동일한 인자값들 defaultParameters 로 관리
-- URLScheme 지도앱 연동
-- 재사용 가능한 CustomView 구현
+- 비동기 함수 async / await 적용 후 가독성 개선
+- URLScheme 외부 지도앱 연동
 - 다크모드, 다국어 대응
 
 <br>
