@@ -38,24 +38,17 @@ final class DetailMapSpotViewModel: BaseViewModel {
             guard let self else { return }
             switch changes {
             case .initial:
-                print("좋아요한지 체크 - init")
                 let stories = self.mapSpotItem?.stories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
                 if let stories {
                     mapSpotItem?.stories = stories
                 }
                 self.state.value = .likeUpdateSuccess
-//                if let stories {
-//                    self.state.value = .likeUpdateSuccess(data: stories)
-//                }
             case .update(_, let deletions, let insertions, let modifications):
                 let stories = self.mapSpotItem?.stories.map(checkFavoriteStory(item:)).sorted(by: {$0.imageURL > $1.imageURL})
                 if let stories {
                     mapSpotItem?.stories = stories
                 }
                 self.state.value = .likeUpdateSuccess
-//                if let stories {
-//                    self.state.value = .likeUpdateSuccess(data: stories)
-//                }
             case .error(let error):
                 self.state.value = .error(msg: error.localizedDescription)
             }
