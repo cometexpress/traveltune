@@ -125,7 +125,6 @@ final class MapHomeView: BaseView {
     
     @objc func regionButtonClicked(_ sender: RegionButton) {
         guard let name = sender.titleLabel?.text else { return }
-        print(name)
         mapVCProtocol?.regionButtonClicked(type: sender.type)
         for btn in arrRegionButton {
             if btn == sender {

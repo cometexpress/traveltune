@@ -89,7 +89,7 @@ class MapFloatingPanelLayout: FloatingPanelLayout {
 extension MapHomeVC: FloatingPanelControllerDelegate {
     
     func floatingPanelDidMove(_ fpc: FloatingPanelController) {
-//        print(fpc)
+
     }
     
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout {

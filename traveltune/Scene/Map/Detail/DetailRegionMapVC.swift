@@ -374,7 +374,6 @@ extension DetailRegionMapVC: CLLocationManagerDelegate {
     //    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("1234")
         LocationManager.shared.checkCurrentLocationAuthorization(status: status)
     }
     
