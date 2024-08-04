@@ -17,7 +17,7 @@
 <br>
 
 ### 미리보기
-![gitreadmeImgage](https://github.com/J-comet/bookwarm/assets/67407666/ac5491ba-e76a-4c52-9cdd-cd0f6ce949f7)
+![gitreadmeImgage](https://github.com/cometexpress/bookwarm/assets/67407666/ac5491ba-e76a-4c52-9cdd-cd0f6ce949f7)
 
 <br>
 
